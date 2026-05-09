@@ -317,6 +317,24 @@ def create_app(
                         line-height: 1.15;
                     }
                     .hero p { margin: 8px 0 0; color: rgba(255, 255, 255, 0.9); }
+                    .hero-top {
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: flex-start;
+                        gap: 10px;
+                    }
+                    .hero-home {
+                        display: inline-block;
+                        text-decoration: none;
+                        color: #fff;
+                        border: 1px solid rgba(255, 255, 255, 0.35);
+                        background: rgba(255, 255, 255, 0.14);
+                        border-radius: 999px;
+                        padding: 7px 12px;
+                        font-size: 0.82rem;
+                        font-weight: 800;
+                        white-space: nowrap;
+                    }
                     .section-grid {
                         display: grid;
                         grid-template-columns: 1fr;
@@ -488,7 +506,10 @@ def create_app(
     def _ui_header(title: str, subtitle: str) -> str:
                 return f"""
                 <div class="hero">
-                    <h1>{title}</h1>
+                    <div class="hero-top">
+                        <h1>{title}</h1>
+                        <a class="hero-home" href="/">Inicio</a>
+                    </div>
                     <p>{subtitle}</p>
                 </div>
                 """
