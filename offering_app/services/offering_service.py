@@ -1,6 +1,7 @@
 from datetime import date, datetime
 from pathlib import Path
 from typing import Any
+from uuid import UUID
 
 import cv2
 
@@ -72,6 +73,7 @@ class OfferingService:
 
     def build_offering_from_form(self, form: dict[str, str], actor_user_id: str | None) -> Offering:
         service_date_value = form.get("service_date") or date.today().isoformat()
+        safe_actor_user_id = self._normalize_uuid(actor_user_id)
         offering = Offering(
             member_name=form.get("member_name", ""),
             diezmo=float(form.get("diezmo", 0) or 0),
@@ -84,11 +86,23 @@ class OfferingService:
             payment_method=form.get("payment_method", "cash"),
             image_path=form.get("image_path"),
             ocr_confidence=float(form.get("ocr_confidence", 0.5) or 0.5),
-            captured_by_user_id=actor_user_id,
-            confirmed_by_user_id=actor_user_id,
+            captured_by_user_id=safe_actor_user_id,
+            confirmed_by_user_id=safe_actor_user_id,
         )
         offering.compute_total()
         return offering
+
+    @staticmethod
+    def _normalize_uuid(value: str | None) -> str | None:
+        if not value:
+            return None
+        candidate = str(value).strip()
+        if not candidate:
+            return None
+        try:
+            return str(UUID(candidate))
+        except (ValueError, TypeError):
+            return None
 
     def build_corrections_from_form(self, form: dict[str, str]) -> list[Correction]:
         fields = [

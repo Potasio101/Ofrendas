@@ -38,6 +38,12 @@ Phase 2 - Test and QA
 - Added timezone route tests in `tests/test_app_timezone.py` to validate DB-backed date resolution path.
 - Expanded RBAC tests for write-path denial and admin-only endpoint behavior.
 - Docker test run after RBAC policy refactor: 13 passed.
+- Added service-level UUID normalization coverage for actor identity in confirm path.
+- Docker test run after UUID hardening: 14 passed.
+- Smoke matrix against running app:
+	- `/admin/config`: admin 200, treasurer 403, auditor 403
+	- `/confirm`: auditor 403, treasurer 302
+	- `/day-log`: auditor 200
 
 Phase 3 - Merge and Handoff
 - Pending.

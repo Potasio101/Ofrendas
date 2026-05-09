@@ -46,3 +46,28 @@ def test_get_daily_summary_uses_storage_totals_when_available():
 
     assert summary["envelopes"] == 2
     assert summary["total"] == 55.5
+
+
+def test_build_offering_from_form_normalizes_invalid_actor_user_id_to_none():
+    service = OfferingService(
+        ocr=DummyOCR(),
+        corrector=DummyCorrector(),
+        storage=DummyStorage(),
+        training=DummyTraining(),
+        processor=DummyProcessor(),
+        members=[],
+    )
+
+    offering = service.build_offering_from_form(
+        {
+            "member_name": "Test",
+            "diezmo": "1",
+            "ofrenda": "1",
+            "service_date": "2026-05-08",
+            "payment_method": "cash",
+        },
+        actor_user_id="not-a-uuid",
+    )
+
+    assert offering.captured_by_user_id is None
+    assert offering.confirmed_by_user_id is None
