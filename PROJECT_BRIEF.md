@@ -132,9 +132,9 @@ DevOps (Dash, on demand):
 ## 7. Sprint Status (updated every sprint)
 
 Current sprint: Sprint 5 (Identity provider integration and workflow UX hardening)
-Status: Ready for merge
-Branch target: feature/sprint-5
-Completion criteria met:
+Status: Completed (merged to main)
+Branch target: feature/sprint-5 (closed)
+Completion outcomes:
 - Proxy-token auth mode implemented with strict token validation
 - Workflow transition endpoints return consistent JSON response envelopes
 - Automated tests passing and Sprint 5 QA sign-off published
@@ -146,7 +146,7 @@ Repository state:
 - Sprint 2 is merged to main with complete handoff artifacts.
 - Sprint 3 is merged to main with complete handoff artifacts.
 - Sprint 4 is merged to main with complete handoff artifacts.
-- Sprint 5 branch is active with planning artifacts initialized.
+- Sprint 5 is merged to main with complete handoff artifacts.
 
 Technical baseline:
 - PostgreSQL schema migrations exist through 0007.
@@ -168,8 +168,7 @@ Technical baseline:
 - Workflow transition responses and error payloads are standardized for API consumers.
 
 Immediate next move:
-- Merge `feature/sprint-5` into `main`.
-- Complete `docs/sprint-5/done.md` with delivery and validation evidence.
+- Start Sprint 6 planning for identity provider/OIDC integration and workflow UI screens.
 
 ## 9. Security Rules
 
