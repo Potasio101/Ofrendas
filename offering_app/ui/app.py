@@ -411,12 +411,76 @@ def create_app(
                     .row-main { min-width: 0; }
                     .row-title { font-weight: 700; }
                     .row-meta { color: var(--muted); font-size: 0.85rem; }
+                    .daylog-entry {
+                        display: grid;
+                        gap: 10px;
+                        width: 100%;
+                    }
+                    .daylog-header {
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: baseline;
+                        gap: 10px;
+                        flex-wrap: wrap;
+                    }
+                    .daylog-date {
+                        color: var(--muted);
+                        font-size: 0.82rem;
+                        font-weight: 700;
+                    }
+                    .daylog-total {
+                        font-weight: 800;
+                        color: var(--brand-strong);
+                        font-size: 1rem;
+                    }
+                    .daylog-grid {
+                        display: grid;
+                        grid-template-columns: 1fr 1fr;
+                        gap: 8px;
+                    }
+                    .kv {
+                        border: 1px solid var(--line);
+                        border-radius: 10px;
+                        background: rgba(21, 97, 109, 0.06);
+                        padding: 8px;
+                    }
+                    .kv-label {
+                        display: block;
+                        color: var(--muted);
+                        font-size: 0.74rem;
+                        font-weight: 700;
+                        text-transform: uppercase;
+                        letter-spacing: 0.2px;
+                    }
+                    .kv-value {
+                        display: block;
+                        margin-top: 2px;
+                        font-weight: 800;
+                        color: var(--ink);
+                        font-size: 0.96rem;
+                    }
+                    .row-actions {
+                        display: flex;
+                        justify-content: flex-end;
+                    }
+                    .action-pill {
+                        display: inline-block;
+                        text-decoration: none;
+                        color: var(--brand-strong);
+                        background: rgba(21, 97, 109, 0.1);
+                        border: 1px solid rgba(21, 97, 109, 0.22);
+                        border-radius: 999px;
+                        padding: 8px 12px;
+                        font-weight: 800;
+                        font-size: 0.85rem;
+                    }
                     .inline-link { color: var(--brand-strong); text-decoration: none; font-weight: 700; }
                     .stack { display: grid; gap: 12px; }
                     @media (min-width: 720px) {
                         .app-shell { padding: 26px 22px 36px; }
                         .section-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
                         .section-grid.full { grid-template-columns: 1fr; }
+                        .daylog-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
                     }
                 </style>
                 """
@@ -703,14 +767,27 @@ def create_app(
                                 <ul class="list-clean">
                                 {% for row in rows %}
                                     <li class="row-item">
-                                        <div class="row-main">
-                                            <div class="row-title">{{ row.member_name or 'Sin nombre' }}</div>
-                                            <div class="row-meta">Fecha: {{ row.service_date }} | Total: {{ row.total }}</div>
-                                            <div class="row-meta">Ofrenda: {{ row.ofrenda or 0 }} | Diezmo: {{ row.diezmo or 0 }} | Primicias: {{ row.primicias or 0 }}</div>
-                                            <div class="row-meta">Pro Templo: {{ row.pro_templo or 0 }} | Misionera: {{ row.ofrenda_misionera or 0 }} | Pastoral: {{ row.ofrenda_pastoral or 0 }}</div>
-                                            <div class="row-meta">Metodo de pago: {{ row.payment_method or 'N/A' }}</div>
+                                        <div class="daylog-entry">
+                                            <div class="daylog-header">
+                                                <div>
+                                                    <div class="row-title">{{ row.member_name or 'Sin nombre' }}</div>
+                                                    <div class="daylog-date">{{ row.service_date }}</div>
+                                                </div>
+                                                <div class="daylog-total">Total: {{ '%.2f'|format((row.total or 0)|float) }}</div>
+                                            </div>
+                                            <div class="daylog-grid">
+                                                <div class="kv"><span class="kv-label">Ofrenda</span><span class="kv-value">{{ '%.2f'|format((row.ofrenda or 0)|float) }}</span></div>
+                                                <div class="kv"><span class="kv-label">Diezmo</span><span class="kv-value">{{ '%.2f'|format((row.diezmo or 0)|float) }}</span></div>
+                                                <div class="kv"><span class="kv-label">Primicias</span><span class="kv-value">{{ '%.2f'|format((row.primicias or 0)|float) }}</span></div>
+                                                <div class="kv"><span class="kv-label">Pro Templo</span><span class="kv-value">{{ '%.2f'|format((row.pro_templo or 0)|float) }}</span></div>
+                                                <div class="kv"><span class="kv-label">Misionera</span><span class="kv-value">{{ '%.2f'|format((row.ofrenda_misionera or 0)|float) }}</span></div>
+                                                <div class="kv"><span class="kv-label">Pastoral</span><span class="kv-value">{{ '%.2f'|format((row.ofrenda_pastoral or 0)|float) }}</span></div>
+                                                <div class="kv" style="grid-column: 1 / -1;"><span class="kv-label">Metodo de pago</span><span class="kv-value">{{ row.payment_method or 'N/A' }}</span></div>
+                                            </div>
+                                            <div class="row-actions">
+                                                <a class="action-pill" href="/review/{{ row.id }}">Revisar</a>
+                                            </div>
                                         </div>
-                                        <a class="inline-link" href="/review/{{ row.id }}">Revisar</a>
                                     </li>
                                 {% endfor %}
                                 {% if not rows %}
