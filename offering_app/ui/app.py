@@ -613,26 +613,23 @@ def create_app(
         denied = _require_policy("process_image")
         if denied:
             return denied
-        data = {
+        actor = getattr(g, "auth_user_id", None)
+        manual_payload = {
             "member_name": request.form.get("member_name", ""),
-            "diezmo": float(request.form.get("diezmo", 0) or 0),
-            "ofrenda": float(request.form.get("ofrenda", 0) or 0),
-            "primicias": float(request.form.get("primicias", 0) or 0),
-            "pro_templo": float(request.form.get("pro_templo", 0) or 0),
-            "ofrenda_misionera": float(request.form.get("ofrenda_misionera", 0) or 0),
-            "ofrenda_pastoral": float(request.form.get("ofrenda_pastoral", 0) or 0),
+            "diezmo": request.form.get("diezmo", "0"),
+            "ofrenda": request.form.get("ofrenda", "0"),
+            "primicias": request.form.get("primicias", "0"),
+            "pro_templo": request.form.get("pro_templo", "0"),
+            "ofrenda_misionera": request.form.get("ofrenda_misionera", "0"),
+            "ofrenda_pastoral": request.form.get("ofrenda_pastoral", "0"),
             "payment_method": request.form.get("payment_method", "cash"),
             "service_date": _current_service_date(),
-            "ocr_confidence": 1.0,
+            "ocr_confidence": "1.0",
             "image_path": "",
         }
-        return render_template_string(
-            _review_template(),
-            data=data,
-            action=url_for("confirm"),
-            title="Revisar Sobre",
-            offering_id="",
-        )
+        offering = service.build_offering_from_form(manual_payload, actor)
+        service.confirm(offering, [])
+        return redirect(url_for("day_log"))
 
     @app.get("/summary")
     def summary():
