@@ -99,6 +99,9 @@ New orchestration docs:
 - docs/sprint-1/plan.md: sprint tasks and acceptance criteria
 - docs/sprint-1/progress.md: live tracker for context recovery
 - docs/sprint-1/done.md: sprint closure handoff
+- docs/sprint-2/plan.md: sprint tasks and acceptance criteria
+- docs/sprint-2/progress.md: live tracker for context recovery
+- docs/sprint-2/done.md: sprint closure handoff
 
 ## 6. Team Roles
 
@@ -119,30 +122,31 @@ DevOps (Dash, on demand):
 
 ## 7. Sprint Status (updated every sprint)
 
-Current sprint: Sprint 1 (Foundation and vertical slice)
-Status: Completed (merged to main)
-Branch target: feature/sprint-1 (closed)
-Completion criteria met:
-- Core vertical slice implemented and validated
-- Unit + integration tests passing in Docker
-- QA sign-off completed for Sprint 1 core scope
+Current sprint: Sprint 2 (Auth/RBAC hardening and timezone normalization)
+Status: In progress
+Branch target: feature/sprint-2
+Start criteria:
+- Sprint 2 plan and tracker initialized
+- Sprint 1 merged to main with closure docs published
 
 ## 8. Current State (rewritten every sprint)
 
 Repository state:
-- Documentation-first repository with ADRs and SQL migrations.
-- Executable application scaffold is implemented with Docker runtime.
-- Architecture direction is implemented in code (SOLID + Strategy baseline).
+- Sprint 1 is merged to main and documented as completed.
+- Sprint 2 branch is active with planning artifacts initialized.
+- Executable scaffold remains stable as baseline for hardening work.
 
 Technical baseline:
 - PostgreSQL schema migrations exist through 0007.
-- UX flows define required screens and transitions.
 - Security and environment strategy documented (ADR-003, ADR-004).
 - Health/readiness and baseline structured logging are active.
-- Core QA and automated tests are passing.
+- Core QA and automated tests are passing for Sprint 1 baseline.
+- Next risk-reduction scope is auth/RBAC enforcement and timezone determinism.
 
 Immediate next move:
-- Start Sprint 2 with auth/RBAC hardening, timezone normalization, and next module expansion.
+- Implement auth context + RBAC guards on existing routes.
+- Implement timezone policy in day-based queries and QA/test flows.
+- Keep module expansion as interface-level prep in this sprint.
 
 ## 9. Security Rules
 
