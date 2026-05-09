@@ -71,6 +71,7 @@ class OfferingService:
         return {"envelopes": len(rows), "total": total}
 
     def build_offering_from_form(self, form: dict[str, str], actor_user_id: str | None) -> Offering:
+        service_date_value = form.get("service_date") or date.today().isoformat()
         offering = Offering(
             member_name=form.get("member_name", ""),
             diezmo=float(form.get("diezmo", 0) or 0),
@@ -79,7 +80,7 @@ class OfferingService:
             pro_templo=float(form.get("pro_templo", 0) or 0),
             ofrenda_misionera=float(form.get("ofrenda_misionera", 0) or 0),
             ofrenda_pastoral=float(form.get("ofrenda_pastoral", 0) or 0),
-            service_date=date.fromisoformat(form.get("service_date", date.today().isoformat())),
+            service_date=date.fromisoformat(service_date_value),
             payment_method=form.get("payment_method", "cash"),
             image_path=form.get("image_path"),
             ocr_confidence=float(form.get("ocr_confidence", 0.5) or 0.5),

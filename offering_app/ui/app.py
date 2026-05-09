@@ -1,8 +1,10 @@
-from datetime import date
+from datetime import datetime
 import json
 import logging
+import os
 from pathlib import Path
 import time
+from zoneinfo import ZoneInfo
 
 from flask import Flask, jsonify, redirect, render_template_string, request, url_for, g
 from werkzeug.utils import secure_filename
@@ -14,11 +16,36 @@ from offering_app.services.offering_service import OfferingService
 def create_app(service: OfferingService, storage: PostgreSQLRepo, upload_path: str) -> Flask:
     app = Flask(__name__)
     app.config["UPLOAD_PATH"] = upload_path
+    app.config["APP_TIMEZONE"] = os.getenv("APP_TIMEZONE", "UTC")
+    app.config["APP_DEFAULT_ROLE"] = os.getenv("APP_DEFAULT_ROLE", "treasurer")
+    app.config["APP_DEFAULT_USER_ID"] = os.getenv("APP_DEFAULT_USER_ID", "local-dev-user")
     _configure_logging(app)
 
     @app.before_request
     def before_request():
         g._request_started_at = time.time()
+        role = (request.headers.get("X-User-Role") or "").strip().lower()
+        if not role:
+            role = (app.config.get("APP_DEFAULT_ROLE") or "treasurer").strip().lower()
+        g.auth_role = role
+        g.auth_user_id = (
+            request.headers.get("X-User-Id")
+            or request.form.get("actor_user_id")
+            or app.config.get("APP_DEFAULT_USER_ID")
+        )
+
+    def _current_service_date() -> str:
+        tz_name = (app.config.get("APP_TIMEZONE") or "UTC").strip() or "UTC"
+        try:
+            tz = ZoneInfo(tz_name)
+        except Exception:
+            tz = ZoneInfo("UTC")
+        return datetime.now(tz).date().isoformat()
+
+    def _require_roles(allowed_roles: set[str]):
+        if getattr(g, "auth_role", "") not in allowed_roles:
+            return "Forbidden", 403
+        return None
 
     @app.after_request
     def after_request(response):
@@ -46,14 +73,17 @@ def create_app(service: OfferingService, storage: PostgreSQLRepo, upload_path: s
     @app.get("/readyz")
     def readyz():
         try:
-            storage.get_daily_totals(date.today().isoformat())
+            storage.get_daily_totals(_current_service_date())
             return jsonify({"status": "ready"})
         except Exception as exc:
             return jsonify({"status": "not-ready", "error": str(exc)}), 503
 
     @app.get("/")
     def home():
-        summary = service.get_daily_summary(date.today().isoformat())
+        denied = _require_roles({"treasurer", "admin", "auditor"})
+        if denied:
+            return denied
+        summary = service.get_daily_summary(_current_service_date())
         return render_template_string(
             """
             <h1>Ofrendas</h1>
@@ -70,6 +100,9 @@ def create_app(service: OfferingService, storage: PostgreSQLRepo, upload_path: s
 
     @app.post("/process")
     def process_image():
+        denied = _require_roles({"treasurer", "admin"})
+        if denied:
+            return denied
         file = request.files.get("image")
         if not file or file.filename == "":
             return "Image is required", 400
@@ -80,6 +113,7 @@ def create_app(service: OfferingService, storage: PostgreSQLRepo, upload_path: s
         file.save(target)
 
         data = service.process_image(str(target))
+        data["service_date"] = _current_service_date()
         return render_template_string(
             _review_template(),
             data=data,
@@ -90,7 +124,10 @@ def create_app(service: OfferingService, storage: PostgreSQLRepo, upload_path: s
 
     @app.post("/confirm")
     def confirm():
-        actor = request.form.get("actor_user_id")
+        denied = _require_roles({"treasurer", "admin"})
+        if denied:
+            return denied
+        actor = getattr(g, "auth_user_id", None)
         offering = service.build_offering_from_form(request.form, actor)
         corrections = service.build_corrections_from_form(request.form)
         offering_id = service.confirm(offering, corrections)
@@ -98,7 +135,10 @@ def create_app(service: OfferingService, storage: PostgreSQLRepo, upload_path: s
 
     @app.get("/summary")
     def summary():
-        data = service.get_daily_summary(date.today().isoformat())
+        denied = _require_roles({"treasurer", "admin", "auditor"})
+        if denied:
+            return denied
+        data = service.get_daily_summary(_current_service_date())
         return render_template_string(
             """
             <h1>Resumen del dia</h1>
@@ -110,7 +150,10 @@ def create_app(service: OfferingService, storage: PostgreSQLRepo, upload_path: s
 
     @app.get("/day-log")
     def day_log():
-        rows = storage.get_by_date(date.today().isoformat())
+        denied = _require_roles({"treasurer", "admin", "auditor"})
+        if denied:
+            return denied
+        rows = storage.get_by_date(_current_service_date())
         return render_template_string(
             """
             <h1>Day Log</h1>
@@ -129,6 +172,9 @@ def create_app(service: OfferingService, storage: PostgreSQLRepo, upload_path: s
 
     @app.get("/review/<offering_id>")
     def review_existing(offering_id: str):
+        denied = _require_roles({"treasurer", "admin", "auditor"})
+        if denied:
+            return denied
         row = storage.get_offering(offering_id)
         if not row:
             return "Not found", 404
@@ -143,6 +189,9 @@ def create_app(service: OfferingService, storage: PostgreSQLRepo, upload_path: s
 
     @app.post("/review/<offering_id>/save")
     def save_review(offering_id: str):
+        denied = _require_roles({"treasurer", "admin"})
+        if denied:
+            return denied
         updates = {
             field: request.form.get(field, "")
             for field in [
@@ -159,7 +208,7 @@ def create_app(service: OfferingService, storage: PostgreSQLRepo, upload_path: s
         ok = storage.update_offering_fields(
             offering_id=offering_id,
             updates=updates,
-            changed_by_user_id=request.form.get("actor_user_id"),
+            changed_by_user_id=getattr(g, "auth_user_id", None),
             reason=request.form.get("reason"),
         )
         if not ok:
@@ -175,7 +224,6 @@ def _review_template() -> str:
     <form method="post" action="{{ action }}">
       <input type="hidden" name="image_path" value="{{ data.image_path or '' }}">
       <input type="hidden" name="ocr_confidence" value="{{ data.ocr_confidence or 0.5 }}">
-      <label>Usuario</label><input name="actor_user_id" placeholder="UUID usuario"><br>
       <label>Nombre</label><input name="member_name" value="{{ data.member_name or '' }}"><br>
       <label>Diezmo</label><input name="diezmo" value="{{ data.diezmo or 0 }}"><br>
       <label>Ofrenda</label><input name="ofrenda" value="{{ data.ofrenda or 0 }}"><br>
