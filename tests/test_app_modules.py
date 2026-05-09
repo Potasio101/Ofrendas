@@ -133,6 +133,60 @@ class DummyOutputsService:
         return {"id": disbursement_id, "status": "paid"}
 
 
+class DummyKioskPOSService:
+    def get_or_create_open_order(self, service_date: str, actor_user_id: str | None, notes: str | None):
+        return {
+            "id": "kiosk-order-1",
+            "service_date": service_date,
+            "order_status": "open",
+            "subtotal": 0,
+            "total": 0,
+            "created": True,
+            "notes": notes,
+        }
+
+    def list_items(self, active_only: bool = True):
+        return [{"id": "item-1", "item_name": "Cafe", "default_price": 2.0, "is_active": True, "is_custom": False}]
+
+    def add_catalog_line(self, kiosk_order_id: str, kiosk_item_id: str, quantity: int, actor_user_id: str | None):
+        return {"id": kiosk_order_id, "order_status": "open", "subtotal": 4.0, "total": 4.0, "line_count": quantity}
+
+    def add_custom_line(
+        self,
+        kiosk_order_id: str,
+        item_name: str,
+        unit_price: float,
+        quantity: int,
+        actor_user_id: str | None,
+    ):
+        if not item_name:
+            raise ValueError("invalid_item_name")
+        return {
+            "id": kiosk_order_id,
+            "order_status": "open",
+            "subtotal": round(unit_price * quantity, 2),
+            "total": round(unit_price * quantity, 2),
+            "line_count": quantity,
+        }
+
+    def pay_order(
+        self,
+        kiosk_order_id: str,
+        payment_method: str,
+        amount_paid: float,
+        cash_received: float | None,
+        zelle_customer_name: str | None,
+        transaction_reference: str | None,
+        actor_user_id: str | None,
+    ):
+        if payment_method == "zelle" and not (zelle_customer_name or "").strip():
+            raise ValueError("invalid_zelle_customer_name")
+        return {
+            "order": {"id": kiosk_order_id, "order_status": "paid", "total": amount_paid},
+            "payment": {"payment_method": payment_method, "amount_paid": amount_paid},
+        }
+
+
 def _build_client():
     app = create_app(
         service=DummyService(),
@@ -140,6 +194,7 @@ def _build_client():
         upload_path="/tmp",
         cash_window_service=DummyCashWindowService(),
         outputs_service=DummyOutputsService(),
+        kiosk_pos_service=DummyKioskPOSService(),
     )
     app.config["TESTING"] = True
     return app.test_client()
@@ -366,3 +421,56 @@ def test_outputs_update_draft_allows_admin():
     body = response.get_json()
     assert body["status"] == "ok"
     assert body["data"]["disbursement"]["status"] == "draft"
+
+
+def test_kiosk_open_order_forbidden_for_auditor():
+    client = _build_client()
+
+    response = client.post(
+        "/kiosk/order/open",
+        data={"service_date": "2026-05-08"},
+        headers={"X-User-Role": "auditor", "X-User-Id": "audit-user"},
+    )
+
+    assert response.status_code == 403
+
+
+def test_kiosk_open_order_allows_admin():
+    client = _build_client()
+
+    response = client.post(
+        "/kiosk/order/open",
+        data={"service_date": "2026-05-08"},
+        headers={"X-User-Role": "admin", "X-User-Id": "admin-user"},
+    )
+
+    assert response.status_code == 201
+    body = response.get_json()
+    assert body["status"] == "ok"
+    assert body["data"]["order"]["order_status"] == "open"
+
+
+def test_kiosk_items_allows_auditor():
+    client = _build_client()
+
+    response = client.get(
+        "/kiosk/items",
+        headers={"X-User-Role": "auditor", "X-User-Id": "audit-user"},
+    )
+
+    assert response.status_code == 200
+    body = response.get_json()
+    assert body["status"] == "ok"
+    assert isinstance(body["data"]["items"], list)
+
+
+def test_kiosk_pay_zelle_requires_payer_name():
+    client = _build_client()
+
+    response = client.post(
+        "/kiosk/order/pay",
+        data={"kiosk_order_id": "kiosk-order-1", "payment_method": "zelle", "amount_paid": "10"},
+        headers={"X-User-Role": "admin", "X-User-Id": "admin-user"},
+    )
+
+    assert response.status_code == 400

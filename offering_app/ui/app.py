@@ -14,6 +14,7 @@ from werkzeug.utils import secure_filename
 
 from offering_app.repositories.postgresql_repo import PostgreSQLRepo
 from offering_app.services.cash_window_service import CashWindowService
+from offering_app.services.kiosk_pos_service import KioskPOSService
 from offering_app.services.offering_service import OfferingService
 from offering_app.services.outputs_service import OutputsService
 
@@ -40,6 +41,12 @@ ROLE_POLICY = {
     "outputs_pay": {"admin"},
     "workflow_cash_view": {"treasurer", "admin", "auditor"},
     "workflow_outputs_view": {"treasurer", "admin", "auditor"},
+    "workflow_kiosk_view": {"treasurer", "admin", "auditor"},
+    "kiosk_open_order": {"treasurer", "admin"},
+    "kiosk_list_items": {"treasurer", "admin", "auditor"},
+    "kiosk_add_catalog_line": {"treasurer", "admin"},
+    "kiosk_add_custom_line": {"treasurer", "admin"},
+    "kiosk_pay_order": {"treasurer", "admin"},
 }
 
 KNOWN_ROLES = {"treasurer", "admin", "auditor"}
@@ -51,6 +58,7 @@ def create_app(
     upload_path: str,
     cash_window_service: CashWindowService | None = None,
     outputs_service: OutputsService | None = None,
+    kiosk_pos_service: KioskPOSService | None = None,
 ) -> Flask:
     app = Flask(__name__)
     app.config["UPLOAD_PATH"] = upload_path
@@ -65,6 +73,7 @@ def create_app(
 
     cash_window_service = cash_window_service or CashWindowService(storage)
     outputs_service = outputs_service or OutputsService(storage)
+    kiosk_pos_service = kiosk_pos_service or KioskPOSService(storage)
 
     @app.before_request
     def before_request():
@@ -475,6 +484,7 @@ def create_app(
                                     <a class="nav-pill" href="/summary">Resumen</a>
                                     <a class="nav-pill" href="/workflow/cash">Caja</a>
                                     <a class="nav-pill" href="/workflow/outputs">Salidas</a>
+                                    <a class="nav-pill" href="/workflow/kiosk">Kiosk POS</a>
                                 </div>
                             </section>
                         </main>
@@ -738,6 +748,88 @@ def create_app(
                         ui_header=_ui_header("Outputs Workflow", "Registro de salidas con base operativa y control de estados."),
         )
 
+    @app.get("/workflow/kiosk")
+    def workflow_kiosk_view():
+        denied = _require_policy("workflow_kiosk_view")
+        if denied:
+            return denied
+        service_date = _current_service_date()
+        items = kiosk_pos_service.list_items(active_only=True)
+        return render_template_string(
+            """
+                        {{ ui_css|safe }}
+                        <main class="app-shell">
+                            {{ ui_header|safe }}
+                            <section class="section-grid full">
+                                <article class="card">
+                                    <h2>Abrir orden</h2>
+                                    <p class="hint">Fecha de servicio: {{ service_date }}</p>
+                                    <form method="post" action="/kiosk/order/open">
+                                        <input type="hidden" name="service_date" value="{{ service_date }}">
+                                        <label>Notas</label>
+                                        <input name="notes" placeholder="Notas opcionais">
+                                        <button type="submit">Abrir orden</button>
+                                    </form>
+                                </article>
+
+                                <article class="card stack">
+                                    <h2>Agregar item de catalogo</h2>
+                                    <form method="post" action="/kiosk/order/line/catalog">
+                                        <label>Order ID</label>
+                                        <input name="kiosk_order_id" placeholder="UUID de orden abierta">
+                                        <label>Item ID</label>
+                                        <input name="kiosk_item_id" placeholder="UUID item">
+                                        <label>Cantidad</label>
+                                        <input name="quantity" value="1">
+                                        <button type="submit">Agregar item</button>
+                                    </form>
+                                    <p class="hint">Items activos: {{ items|length }}</p>
+                                </article>
+
+                                <article class="card stack">
+                                    <h2>Agregar item custom</h2>
+                                    <form method="post" action="/kiosk/order/line/custom">
+                                        <label>Order ID</label>
+                                        <input name="kiosk_order_id" placeholder="UUID de orden abierta">
+                                        <label>Nombre item</label>
+                                        <input name="item_name" placeholder="Empanada especial">
+                                        <label>Precio unitario</label>
+                                        <input name="unit_price" value="5">
+                                        <label>Cantidad</label>
+                                        <input name="quantity" value="1">
+                                        <button type="submit">Agregar custom</button>
+                                    </form>
+                                </article>
+
+                                <article class="card stack">
+                                    <h2>Cerrar pago</h2>
+                                    <form method="post" action="/kiosk/order/pay">
+                                        <label>Order ID</label>
+                                        <input name="kiosk_order_id" placeholder="UUID de orden abierta">
+                                        <label>Metodo (cash o zelle)</label>
+                                        <input name="payment_method" value="cash">
+                                        <label>Monto pagado</label>
+                                        <input name="amount_paid" value="10">
+                                        <label>Cash recibido (cash)</label>
+                                        <input name="cash_received" value="10">
+                                        <label>Nombre pagador (zelle)</label>
+                                        <input name="zelle_customer_name" placeholder="Nombre completo">
+                                        <label>Referencia</label>
+                                        <input name="transaction_reference" placeholder="ref-123">
+                                        <button type="submit">Registrar pago</button>
+                                    </form>
+                                    <p class="hint">Para zelle se requiere nombre del pagador; total debe ser mayor a cero.</p>
+                                </article>
+                            </section>
+                            <a class="inline-link" href="/">Volver al inicio</a>
+                        </main>
+            """,
+            service_date=service_date,
+            items=items,
+            ui_css=_ui_base_css(),
+            ui_header=_ui_header("Kiosk Workflow", "POS rapido para cash y zelle con items custom."),
+        )
+
     @app.post("/cash-window/open")
     def cash_window_open():
         denied = _require_policy("cash_window_open")
@@ -946,6 +1038,120 @@ def create_app(
                 "to_status": row.get("status", "paid"),
             }
             return _ok_response({"disbursement": row, "transition": transition}, "Disbursement paid")
+        except ValueError as exc:
+            return _domain_error_response(exc)
+
+    @app.post("/kiosk/order/open")
+    def kiosk_open_order():
+        denied = _require_policy("kiosk_open_order")
+        if denied:
+            return denied
+        order = kiosk_pos_service.get_or_create_open_order(
+            service_date=request.form.get("service_date", _current_service_date()),
+            actor_user_id=getattr(g, "auth_user_id", None),
+            notes=request.form.get("notes"),
+        )
+        status_code = 201 if order.get("created") else 200
+        transition = {
+            "entity": "kiosk_order",
+            "action": "open_order",
+            "from_status": "none" if order.get("created") else "open",
+            "to_status": order.get("order_status", "open"),
+        }
+        return _ok_response({"order": order, "transition": transition}, "Kiosk order opened", status_code)
+
+    @app.get("/kiosk/items")
+    def kiosk_items():
+        denied = _require_policy("kiosk_list_items")
+        if denied:
+            return denied
+        items = kiosk_pos_service.list_items(active_only=request.args.get("active_only", "1") != "0")
+        return _ok_response({"items": items}, "Kiosk items fetched")
+
+    @app.post("/kiosk/order/line/catalog")
+    def kiosk_add_catalog_line():
+        denied = _require_policy("kiosk_add_catalog_line")
+        if denied:
+            return denied
+        kiosk_order_id = (request.form.get("kiosk_order_id") or "").strip()
+        kiosk_item_id = (request.form.get("kiosk_item_id") or "").strip()
+        if not kiosk_order_id or not kiosk_item_id:
+            return jsonify({"status": "error", "error": "invalid_payload", "message": "Order and item are required"}), 400
+        try:
+            order = kiosk_pos_service.add_catalog_line(
+                kiosk_order_id=kiosk_order_id,
+                kiosk_item_id=kiosk_item_id,
+                quantity=int(request.form.get("quantity", "1") or 1),
+                actor_user_id=getattr(g, "auth_user_id", None),
+            )
+            transition = {
+                "entity": "kiosk_order",
+                "action": "line_add_catalog",
+                "from_status": "open",
+                "to_status": order.get("order_status", "open"),
+            }
+            return _ok_response({"order": order, "transition": transition}, "Catalog line added")
+        except ValueError as exc:
+            return _domain_error_response(exc)
+
+    @app.post("/kiosk/order/line/custom")
+    def kiosk_add_custom_line():
+        denied = _require_policy("kiosk_add_custom_line")
+        if denied:
+            return denied
+        kiosk_order_id = (request.form.get("kiosk_order_id") or "").strip()
+        item_name = (request.form.get("item_name") or "").strip()
+        if not kiosk_order_id or not item_name:
+            return jsonify({"status": "error", "error": "invalid_payload", "message": "Order and item name are required"}), 400
+        try:
+            order = kiosk_pos_service.add_custom_line(
+                kiosk_order_id=kiosk_order_id,
+                item_name=item_name,
+                unit_price=float(request.form.get("unit_price", "0") or 0),
+                quantity=int(request.form.get("quantity", "1") or 1),
+                actor_user_id=getattr(g, "auth_user_id", None),
+            )
+            transition = {
+                "entity": "kiosk_order",
+                "action": "line_add_custom",
+                "from_status": "open",
+                "to_status": order.get("order_status", "open"),
+            }
+            return _ok_response({"order": order, "transition": transition}, "Custom line added")
+        except ValueError as exc:
+            return _domain_error_response(exc)
+
+    @app.post("/kiosk/order/pay")
+    def kiosk_pay_order():
+        denied = _require_policy("kiosk_pay_order")
+        if denied:
+            return denied
+        kiosk_order_id = (request.form.get("kiosk_order_id") or "").strip()
+        method = (request.form.get("payment_method") or "").strip().lower()
+        amount_raw = (request.form.get("amount_paid") or "").strip()
+        if not kiosk_order_id or not method or not amount_raw:
+            return jsonify({"status": "error", "error": "invalid_payload", "message": "Order, payment method and amount are required"}), 400
+        try:
+            result = kiosk_pos_service.pay_order(
+                kiosk_order_id=kiosk_order_id,
+                payment_method=method,
+                amount_paid=float(amount_raw),
+                cash_received=(
+                    float(request.form.get("cash_received"))
+                    if request.form.get("cash_received") not in {None, ""}
+                    else None
+                ),
+                zelle_customer_name=request.form.get("zelle_customer_name"),
+                transaction_reference=request.form.get("transaction_reference"),
+                actor_user_id=getattr(g, "auth_user_id", None),
+            )
+            transition = {
+                "entity": "kiosk_order",
+                "action": "pay",
+                "from_status": "open",
+                "to_status": result.get("order", {}).get("order_status", "paid"),
+            }
+            return _ok_response({"payment": result.get("payment"), "order": result.get("order"), "transition": transition}, "Kiosk order paid")
         except ValueError as exc:
             return _domain_error_response(exc)
 

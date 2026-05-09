@@ -80,6 +80,42 @@ class DummyOutputsService:
         return {"id": disbursement_id, "status": "paid"}
 
 
+class DummyKioskPOSService:
+    def get_or_create_open_order(self, service_date: str, actor_user_id: str | None, notes: str | None):
+        return {"id": "kiosk-order-1", "order_status": "open", "service_date": service_date, "created": True}
+
+    def list_items(self, active_only: bool = True):
+        return [{"id": "item-1", "item_name": "Cafe", "default_price": 2.0, "is_active": True, "is_custom": False}]
+
+    def add_catalog_line(self, kiosk_order_id: str, kiosk_item_id: str, quantity: int, actor_user_id: str | None):
+        return {"id": kiosk_order_id, "order_status": "open", "total": 2.0}
+
+    def add_custom_line(
+        self,
+        kiosk_order_id: str,
+        item_name: str,
+        unit_price: float,
+        quantity: int,
+        actor_user_id: str | None,
+    ):
+        return {"id": kiosk_order_id, "order_status": "open", "total": round(unit_price * quantity, 2)}
+
+    def pay_order(
+        self,
+        kiosk_order_id: str,
+        payment_method: str,
+        amount_paid: float,
+        cash_received: float | None,
+        zelle_customer_name: str | None,
+        transaction_reference: str | None,
+        actor_user_id: str | None,
+    ):
+        return {
+            "order": {"id": kiosk_order_id, "order_status": "paid", "total": amount_paid},
+            "payment": {"payment_method": payment_method, "amount_paid": amount_paid},
+        }
+
+
 def _build_client():
     app = create_app(
         service=DummyService(),
@@ -87,6 +123,7 @@ def _build_client():
         upload_path="/tmp",
         cash_window_service=DummyCashWindowService(),
         outputs_service=DummyOutputsService(),
+        kiosk_pos_service=DummyKioskPOSService(),
     )
     app.config["TESTING"] = True
     return app.test_client()
@@ -108,3 +145,12 @@ def test_workflow_outputs_view_renders_for_auditor():
 
     assert response.status_code == 200
     assert b"Outputs Workflow" in response.data
+
+
+def test_workflow_kiosk_view_renders_for_auditor():
+    client = _build_client()
+
+    response = client.get("/workflow/kiosk", headers={"X-User-Role": "auditor", "X-User-Id": "audit-user"})
+
+    assert response.status_code == 200
+    assert b"Kiosk Workflow" in response.data

@@ -796,3 +796,540 @@ class PostgreSQLRepo(IStorageRepo):
             with conn.cursor() as cur:
                 cur.execute(base_query, params)
                 return [dict(row) for row in cur.fetchall()]
+
+    def get_or_create_open_kiosk_order(
+        self,
+        service_date: str,
+        actor_user_id: str | None,
+        notes: str | None,
+    ) -> dict[str, Any]:
+        safe_user_id = self._normalize_uuid(actor_user_id)
+        with self._connect() as conn:
+            with conn.cursor() as cur:
+                cur.execute(
+                    """
+                    SELECT id, service_date, order_status, subtotal, total, notes, created_at, paid_at
+                    FROM kiosk_orders
+                    WHERE service_date = %(service_date)s
+                      AND order_status = 'open'
+                    ORDER BY created_at DESC
+                    LIMIT 1
+                    """,
+                    {"service_date": service_date},
+                )
+                existing = cur.fetchone()
+                if existing:
+                    row = dict(existing)
+                    row["created"] = False
+                    return row
+
+                cur.execute(
+                    """
+                    INSERT INTO kiosk_orders (service_date, order_status, subtotal, total, notes, created_by_user_id)
+                    VALUES (%(service_date)s, 'open', 0, 0, %(notes)s, %(created_by_user_id)s)
+                    RETURNING id, service_date, order_status, subtotal, total, notes, created_at, paid_at
+                    """,
+                    {
+                        "service_date": service_date,
+                        "notes": notes,
+                        "created_by_user_id": safe_user_id,
+                    },
+                )
+                row = cur.fetchone()
+                if not row:
+                    raise RuntimeError("failed_create_kiosk_order")
+                order = dict(row)
+                cur.execute(
+                    """
+                    INSERT INTO kiosk_events (kiosk_order_id, event_type, actor_user_id, metadata)
+                    VALUES (
+                        %(kiosk_order_id)s,
+                        'order_created',
+                        %(actor_user_id)s,
+                        jsonb_build_object('service_date', %(service_date)s::text)
+                    )
+                    """,
+                    {
+                        "kiosk_order_id": order["id"],
+                        "actor_user_id": safe_user_id,
+                        "service_date": service_date,
+                    },
+                )
+                conn.commit()
+                order["created"] = True
+                return order
+
+    def list_kiosk_items(self, active_only: bool = True) -> list[dict[str, Any]]:
+        query = """
+            SELECT id, item_name, default_price, is_active, is_custom
+            FROM kiosk_items
+            WHERE (%(active_only)s = FALSE OR is_active = TRUE)
+            ORDER BY is_custom ASC, item_name ASC
+        """
+        with self._connect() as conn:
+            with conn.cursor() as cur:
+                cur.execute(query, {"active_only": active_only})
+                return [dict(row) for row in cur.fetchall()]
+
+    def add_kiosk_catalog_line(
+        self,
+        kiosk_order_id: str,
+        kiosk_item_id: str,
+        quantity: int,
+        actor_user_id: str | None,
+    ) -> dict[str, Any]:
+        safe_user_id = self._normalize_uuid(actor_user_id)
+        if quantity <= 0:
+            raise ValueError("invalid_quantity")
+        with self._connect() as conn:
+            with conn.cursor() as cur:
+                order = self._get_kiosk_order_for_update(cur, kiosk_order_id)
+                if not order:
+                    raise ValueError("kiosk_order_not_found")
+                if order["order_status"] != "open":
+                    raise ValueError("invalid_transition_kiosk_order_closed")
+
+                cur.execute(
+                    """
+                    SELECT id, item_name, default_price
+                    FROM kiosk_items
+                    WHERE id = %(kiosk_item_id)s AND is_active = TRUE
+                    LIMIT 1
+                    """,
+                    {"kiosk_item_id": kiosk_item_id},
+                )
+                item = cur.fetchone()
+                if not item:
+                    raise ValueError("kiosk_item_not_found")
+
+                unit_price = float(item["default_price"])
+                line_total = round(unit_price * quantity, 2)
+                cur.execute(
+                    """
+                    INSERT INTO kiosk_order_lines (
+                        kiosk_order_id,
+                        kiosk_item_id,
+                        item_name,
+                        quantity,
+                        unit_price,
+                        line_total,
+                        is_custom_line
+                    )
+                    VALUES (
+                        %(kiosk_order_id)s,
+                        %(kiosk_item_id)s,
+                        %(item_name)s,
+                        %(quantity)s,
+                        %(unit_price)s,
+                        %(line_total)s,
+                        FALSE
+                    )
+                    """,
+                    {
+                        "kiosk_order_id": kiosk_order_id,
+                        "kiosk_item_id": item["id"],
+                        "item_name": item["item_name"],
+                        "quantity": quantity,
+                        "unit_price": unit_price,
+                        "line_total": line_total,
+                    },
+                )
+
+                cur.execute(
+                    """
+                    INSERT INTO kiosk_events (kiosk_order_id, event_type, actor_user_id, metadata)
+                    VALUES (
+                        %(kiosk_order_id)s,
+                        'line_added',
+                        %(actor_user_id)s,
+                        jsonb_build_object(
+                            'kiosk_item_id', %(kiosk_item_id)s::text,
+                            'item_name', %(item_name)s::text,
+                            'quantity', %(quantity)s::integer,
+                            'unit_price', %(unit_price)s::numeric
+                        )
+                    )
+                    """,
+                    {
+                        "kiosk_order_id": kiosk_order_id,
+                        "actor_user_id": safe_user_id,
+                        "kiosk_item_id": str(item["id"]),
+                        "item_name": item["item_name"],
+                        "quantity": quantity,
+                        "unit_price": unit_price,
+                    },
+                )
+                order_totals = self._recalculate_kiosk_order(cur, kiosk_order_id)
+                conn.commit()
+                return order_totals
+
+    def add_kiosk_custom_line(
+        self,
+        kiosk_order_id: str,
+        item_name: str,
+        unit_price: float,
+        quantity: int,
+        actor_user_id: str | None,
+    ) -> dict[str, Any]:
+        safe_user_id = self._normalize_uuid(actor_user_id)
+        clean_name = (item_name or "").strip()
+        if not clean_name:
+            raise ValueError("invalid_item_name")
+        if unit_price < 0:
+            raise ValueError("invalid_unit_price")
+        if quantity <= 0:
+            raise ValueError("invalid_quantity")
+
+        with self._connect() as conn:
+            with conn.cursor() as cur:
+                order = self._get_kiosk_order_for_update(cur, kiosk_order_id)
+                if not order:
+                    raise ValueError("kiosk_order_not_found")
+                if order["order_status"] != "open":
+                    raise ValueError("invalid_transition_kiosk_order_closed")
+
+                cur.execute(
+                    """
+                    INSERT INTO kiosk_items (item_name, default_price, is_active, is_custom, created_by_user_id)
+                    VALUES (%(item_name)s, %(default_price)s, TRUE, TRUE, %(created_by_user_id)s)
+                    RETURNING id
+                    """,
+                    {
+                        "item_name": clean_name,
+                        "default_price": float(unit_price),
+                        "created_by_user_id": safe_user_id,
+                    },
+                )
+                item_row = cur.fetchone()
+                if not item_row:
+                    raise RuntimeError("failed_create_custom_item")
+                kiosk_item_id = item_row["id"]
+
+                line_total = round(float(unit_price) * quantity, 2)
+                cur.execute(
+                    """
+                    INSERT INTO kiosk_order_lines (
+                        kiosk_order_id,
+                        kiosk_item_id,
+                        item_name,
+                        quantity,
+                        unit_price,
+                        line_total,
+                        is_custom_line
+                    )
+                    VALUES (
+                        %(kiosk_order_id)s,
+                        %(kiosk_item_id)s,
+                        %(item_name)s,
+                        %(quantity)s,
+                        %(unit_price)s,
+                        %(line_total)s,
+                        TRUE
+                    )
+                    """,
+                    {
+                        "kiosk_order_id": kiosk_order_id,
+                        "kiosk_item_id": kiosk_item_id,
+                        "item_name": clean_name,
+                        "quantity": quantity,
+                        "unit_price": float(unit_price),
+                        "line_total": line_total,
+                    },
+                )
+
+                cur.execute(
+                    """
+                    INSERT INTO kiosk_events (kiosk_order_id, event_type, actor_user_id, metadata)
+                    VALUES (
+                        %(kiosk_order_id)s,
+                        'line_added',
+                        %(actor_user_id)s,
+                        jsonb_build_object(
+                            'kiosk_item_id', %(kiosk_item_id)s::text,
+                            'item_name', %(item_name)s::text,
+                            'quantity', %(quantity)s::integer,
+                            'unit_price', %(unit_price)s::numeric,
+                            'is_custom_line', TRUE
+                        )
+                    )
+                    """,
+                    {
+                        "kiosk_order_id": kiosk_order_id,
+                        "actor_user_id": safe_user_id,
+                        "kiosk_item_id": str(kiosk_item_id),
+                        "item_name": clean_name,
+                        "quantity": quantity,
+                        "unit_price": float(unit_price),
+                    },
+                )
+                order_totals = self._recalculate_kiosk_order(cur, kiosk_order_id)
+                conn.commit()
+                return order_totals
+
+    def pay_kiosk_order(
+        self,
+        kiosk_order_id: str,
+        payment_method: str,
+        amount_paid: float,
+        cash_received: float | None,
+        zelle_customer_name: str | None,
+        transaction_reference: str | None,
+        actor_user_id: str | None,
+    ) -> dict[str, Any]:
+        safe_user_id = self._normalize_uuid(actor_user_id)
+        method = (payment_method or "").strip().lower()
+        if method not in {"cash", "zelle"}:
+            raise ValueError("invalid_payment_method")
+
+        with self._connect() as conn:
+            with conn.cursor() as cur:
+                order = self._get_kiosk_order_for_update(cur, kiosk_order_id)
+                if not order:
+                    raise ValueError("kiosk_order_not_found")
+                if order["order_status"] != "open":
+                    raise ValueError("invalid_transition_kiosk_order_not_open")
+
+                order_totals = self._recalculate_kiosk_order(cur, kiosk_order_id)
+                order_total = float(order_totals.get("total", 0) or 0)
+                if order_total <= 0:
+                    raise ValueError("invalid_total_zero")
+
+                cur.execute(
+                    """
+                    SELECT id
+                    FROM kiosk_payments
+                    WHERE kiosk_order_id = %(kiosk_order_id)s
+                    LIMIT 1
+                    """,
+                    {"kiosk_order_id": kiosk_order_id},
+                )
+                existing_payment = cur.fetchone()
+                if existing_payment:
+                    raise ValueError("invalid_transition_order_already_paid")
+
+                paid_amount = round(float(amount_paid), 2)
+                if paid_amount < order_total:
+                    raise ValueError("invalid_amount_paid")
+
+                effective_cash_received: float | None = None
+                cash_change: float | None = None
+                zelle_customer_id: str | None = None
+                clean_zelle_name: str | None = None
+
+                if method == "cash":
+                    effective_cash_received = round(float(cash_received) if cash_received is not None else paid_amount, 2)
+                    if effective_cash_received < order_total:
+                        raise ValueError("invalid_cash_received")
+                    cash_change = round(effective_cash_received - order_total, 2)
+                else:
+                    clean_zelle_name = (zelle_customer_name or "").strip()
+                    if not clean_zelle_name:
+                        raise ValueError("invalid_zelle_customer_name")
+                    normalized = " ".join(clean_zelle_name.lower().split())
+                    cur.execute(
+                        """
+                        SELECT id
+                        FROM kiosk_customers
+                        WHERE normalized_name = %(normalized_name)s
+                        LIMIT 1
+                        """,
+                        {"normalized_name": normalized},
+                    )
+                    customer = cur.fetchone()
+                    if customer:
+                        zelle_customer_id = str(customer["id"])
+                    else:
+                        cur.execute(
+                            """
+                            INSERT INTO kiosk_customers (customer_name, normalized_name, preferred_payment_method, created_from_kiosk)
+                            VALUES (%(customer_name)s, %(normalized_name)s, 'zelle', TRUE)
+                            RETURNING id
+                            """,
+                            {
+                                "customer_name": clean_zelle_name,
+                                "normalized_name": normalized,
+                            },
+                        )
+                        new_customer = cur.fetchone()
+                        if not new_customer:
+                            raise RuntimeError("failed_create_kiosk_customer")
+                        zelle_customer_id = str(new_customer["id"])
+                        cur.execute(
+                            """
+                            INSERT INTO kiosk_events (kiosk_order_id, event_type, actor_user_id, metadata)
+                            VALUES (
+                                %(kiosk_order_id)s,
+                                'customer_created',
+                                %(actor_user_id)s,
+                                jsonb_build_object(
+                                    'customer_id', %(customer_id)s::text,
+                                    'customer_name', %(customer_name)s::text
+                                )
+                            )
+                            """,
+                            {
+                                "kiosk_order_id": kiosk_order_id,
+                                "actor_user_id": safe_user_id,
+                                "customer_id": zelle_customer_id,
+                                "customer_name": clean_zelle_name,
+                            },
+                        )
+
+                cur.execute(
+                    """
+                    INSERT INTO kiosk_payments (
+                        kiosk_order_id,
+                        payment_method,
+                        amount_paid,
+                        cash_received,
+                        cash_change,
+                        zelle_customer_id,
+                        zelle_customer_name,
+                        transaction_reference,
+                        paid_by_user_id
+                    )
+                    VALUES (
+                        %(kiosk_order_id)s,
+                        %(payment_method)s,
+                        %(amount_paid)s,
+                        %(cash_received)s,
+                        %(cash_change)s,
+                        %(zelle_customer_id)s,
+                        %(zelle_customer_name)s,
+                        %(transaction_reference)s,
+                        %(paid_by_user_id)s
+                    )
+                    RETURNING id, payment_method, amount_paid, cash_received, cash_change, zelle_customer_name, transaction_reference
+                    """,
+                    {
+                        "kiosk_order_id": kiosk_order_id,
+                        "payment_method": method,
+                        "amount_paid": paid_amount,
+                        "cash_received": effective_cash_received,
+                        "cash_change": cash_change,
+                        "zelle_customer_id": zelle_customer_id,
+                        "zelle_customer_name": clean_zelle_name,
+                        "transaction_reference": transaction_reference,
+                        "paid_by_user_id": safe_user_id,
+                    },
+                )
+                payment = cur.fetchone()
+                if not payment:
+                    raise RuntimeError("failed_create_kiosk_payment")
+
+                cur.execute(
+                    """
+                    UPDATE kiosk_orders
+                    SET order_status = 'paid', paid_at = NOW()
+                    WHERE id = %(kiosk_order_id)s
+                    """,
+                    {"kiosk_order_id": kiosk_order_id},
+                )
+                cur.execute(
+                    """
+                    INSERT INTO kiosk_events (kiosk_order_id, event_type, actor_user_id, metadata)
+                    VALUES (
+                        %(kiosk_order_id)s,
+                        'payment_recorded',
+                        %(actor_user_id)s,
+                        jsonb_build_object(
+                            'payment_method', %(payment_method)s::text,
+                            'amount_paid', %(amount_paid)s::numeric,
+                            'order_total', %(order_total)s::numeric
+                        )
+                    )
+                    """,
+                    {
+                        "kiosk_order_id": kiosk_order_id,
+                        "actor_user_id": safe_user_id,
+                        "payment_method": method,
+                        "amount_paid": paid_amount,
+                        "order_total": order_total,
+                    },
+                )
+                cur.execute(
+                    """
+                    INSERT INTO kiosk_events (kiosk_order_id, event_type, actor_user_id, metadata)
+                    VALUES (
+                        %(kiosk_order_id)s,
+                        'order_closed',
+                        %(actor_user_id)s,
+                        jsonb_build_object('to_status', 'paid')
+                    )
+                    """,
+                    {
+                        "kiosk_order_id": kiosk_order_id,
+                        "actor_user_id": safe_user_id,
+                    },
+                )
+                cur.execute(
+                    """
+                    SELECT id, service_date, order_status, subtotal, total, notes, created_at, paid_at
+                    FROM kiosk_orders
+                    WHERE id = %(kiosk_order_id)s
+                    LIMIT 1
+                    """,
+                    {"kiosk_order_id": kiosk_order_id},
+                )
+                final_order = cur.fetchone()
+                conn.commit()
+                return {
+                    "order": dict(final_order) if final_order else order_totals,
+                    "payment": dict(payment),
+                }
+
+    def _get_kiosk_order_for_update(self, cur, kiosk_order_id: str) -> dict[str, Any] | None:
+        cur.execute(
+            """
+            SELECT id, service_date, order_status, subtotal, total, notes, created_at, paid_at
+            FROM kiosk_orders
+            WHERE id = %(kiosk_order_id)s
+            FOR UPDATE
+            """,
+            {"kiosk_order_id": kiosk_order_id},
+        )
+        row = cur.fetchone()
+        return dict(row) if row else None
+
+    def _recalculate_kiosk_order(self, cur, kiosk_order_id: str) -> dict[str, Any]:
+        cur.execute(
+            """
+            SELECT COALESCE(SUM(line_total), 0) AS subtotal, COUNT(*) AS line_count
+            FROM kiosk_order_lines
+            WHERE kiosk_order_id = %(kiosk_order_id)s
+            """,
+            {"kiosk_order_id": kiosk_order_id},
+        )
+        totals = cur.fetchone()
+        subtotal = round(float(totals["subtotal"] if totals else 0), 2)
+        line_count = int(totals["line_count"] if totals else 0)
+        cur.execute(
+            """
+            UPDATE kiosk_orders
+            SET subtotal = %(subtotal)s, total = %(total)s
+            WHERE id = %(kiosk_order_id)s
+            """,
+            {
+                "kiosk_order_id": kiosk_order_id,
+                "subtotal": subtotal,
+                "total": subtotal,
+            },
+        )
+        cur.execute(
+            """
+            SELECT id, service_date, order_status, subtotal, total, notes, created_at, paid_at
+            FROM kiosk_orders
+            WHERE id = %(kiosk_order_id)s
+            LIMIT 1
+            """,
+            {"kiosk_order_id": kiosk_order_id},
+        )
+        order = cur.fetchone()
+        row = dict(order) if order else {
+            "id": kiosk_order_id,
+            "order_status": "open",
+            "subtotal": subtotal,
+            "total": subtotal,
+        }
+        row["line_count"] = line_count
+        return row
