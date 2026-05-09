@@ -1,0 +1,48 @@
+services:
+  postgres:
+    image: postgres:16
+    container_name: ofrendas-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ofrendas
+      POSTGRES_USER: ofrendas
+      POSTGRES_PASSWORD: ofrendas
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ofrendas -d ofrendas"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: ofrendas-app
+    restart: unless-stopped
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      APP_ENV: local
+      FLASK_DEBUG: "false"
+      HOST: 0.0.0.0
+      PORT: "5000"
+      OCR_STRATEGY: easyocr
+      CORRECTION_STRATEGY: fuzzy
+      STORAGE_BACKEND: postgresql
+      DATABASE_URL: postgresql://ofrendas:ofrendas@postgres:5432/ofrendas
+      TRAINING_PATH: /app/data/training
+      LOCAL_EXPORT_PATH: /app/data/exports
+      UPLOAD_PATH: /app/data/uploads
+    ports:
+      - "5001:5000"
+    volumes:
+      - app_data:/app/data
+
+volumes:
+  postgres_data:
+  app_data:

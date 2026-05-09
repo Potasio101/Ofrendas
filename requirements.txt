@@ -1,0 +1,8 @@
+Flask==3.0.3
+python-dotenv==1.0.1
+psycopg[binary]==3.2.1
+numpy==2.1.1
+opencv-python-headless==4.10.0.84
+rapidfuzz==3.9.7
+APScheduler==3.10.4
+pytest==8.3.3
