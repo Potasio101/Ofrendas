@@ -133,7 +133,7 @@ class PostgreSQLRepo(IStorageRepo):
             with conn.cursor() as cur:
                 cur.execute(query, {"service_date": service_date})
                 row = cur.fetchone()
-                return dict(row) if row else {"envelopes": 0, "total": 0}
+                return dict(row) if row else {"envelopes": 0, "total": 0, "diezmo": 0, "ofrenda": 0}
 
     def get_offering(self, offering_id: str) -> dict[str, Any] | None:
         query = "SELECT * FROM offerings WHERE id = %(offering_id)s"

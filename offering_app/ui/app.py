@@ -483,6 +483,14 @@ def create_app(
                                             <span class="metric-label">Total</span>
                                             <span class="metric-value">{{ summary.total }}</span>
                                         </div>
+                                        <div class="metric">
+                                            <span class="metric-label">Ofrendas</span>
+                                            <span class="metric-value">{{ summary.ofrenda or 0 }}</span>
+                                        </div>
+                                        <div class="metric">
+                                            <span class="metric-label">Diezmo</span>
+                                            <span class="metric-value">{{ summary.diezmo or 0 }}</span>
+                                        </div>
                                     </div>
                                     <p class="hint">Registro rapido para momentos de alta afluencia.</p>
                                 </article>

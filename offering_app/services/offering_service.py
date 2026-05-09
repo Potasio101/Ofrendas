@@ -69,7 +69,9 @@ class OfferingService:
 
         rows = self.storage.get_by_date(service_date)
         total = sum(float(row.get("total", 0)) for row in rows)
-        return {"envelopes": len(rows), "total": total}
+        diezmo = sum(float(row.get("diezmo", 0)) for row in rows)
+        ofrenda = sum(float(row.get("ofrenda", 0)) for row in rows)
+        return {"envelopes": len(rows), "total": total, "diezmo": diezmo, "ofrenda": ofrenda}
 
     def build_offering_from_form(self, form: dict[str, str], actor_user_id: str | None) -> Offering:
         service_date_value = form.get("service_date") or date.today().isoformat()
