@@ -135,7 +135,7 @@ DevOps (Dash, on demand):
 ## 7. Sprint Status (updated every sprint)
 
 Current sprint: Sprint 6 (Proxy signed identity and workflow UI foundations)
-Status: Ready for merge
+Status: Completed
 Branch target: feature/sprint-6
 Start criteria:
 - Sprint 6 plan and tracker initialized
@@ -149,7 +149,7 @@ Repository state:
 - Sprint 3 is merged to main with complete handoff artifacts.
 - Sprint 4 is merged to main with complete handoff artifacts.
 - Sprint 5 is merged to main with complete handoff artifacts.
-- Sprint 6 branch is implemented and validated; pending merge to main.
+- Sprint 6 is merged to main with QA sign-off artifact.
 
 Technical baseline:
 - PostgreSQL schema migrations exist through 0007.
@@ -175,8 +175,8 @@ Technical baseline:
 - Regression suite passes with Sprint 6 increments (42 tests).
 
 Immediate next move:
-- Commit feature/sprint-6 and merge to main.
-- Mark Sprint 6 artifacts as completed after merge.
+- Start Sprint 7 planning from Sprint 6 completed baseline.
+- Prioritize richer workflow task UX and audit timeline visibility.
 
 ## 9. Security Rules
 

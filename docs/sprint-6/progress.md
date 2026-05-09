@@ -1,6 +1,6 @@
 # Sprint 6 Progress Tracker
 
-Status: Ready for merge
+Status: Completed
 Last update: 2026-05-09
 
 ## Checklist
@@ -12,7 +12,7 @@ Last update: 2026-05-09
 - [x] Workflow UI foundation pages added
 - [x] Tests for Sprint 6 scope passing
 - [x] QA playthrough completed
-- [ ] Merge to main completed
+- [x] Merge to main completed
 
 ## Phase Notes
 
@@ -33,7 +33,7 @@ Phase 2 - Test and QA
 - QA signoff prepared in `docs/qa/sprint-6-signoff.md`.
 
 Phase 3 - Merge and Handoff
-- Ready to commit and merge once producer confirms.
+- Merged `feature/sprint-6` to `main` (fast-forward) and pushed to origin.
 
 ## Open Blockers
 
