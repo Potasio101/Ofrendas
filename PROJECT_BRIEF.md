@@ -126,9 +126,9 @@ DevOps (Dash, on demand):
 ## 7. Sprint Status (updated every sprint)
 
 Current sprint: Sprint 3 (Authentication hardening and module expansion start)
-Status: Ready for merge
-Branch target: feature/sprint-3
-Completion criteria met:
+Status: Completed (merged to main)
+Branch target: feature/sprint-3 (closed)
+Completion outcomes:
 - Auth mode abstraction implemented with strict identity checks
 - Cash window and outputs skeleton routes/services/repository operations implemented
 - Automated tests passing and Sprint 3 QA sign-off published
@@ -138,7 +138,7 @@ Completion criteria met:
 Repository state:
 - Sprint 1 is merged to main and documented as completed.
 - Sprint 2 is merged to main with complete handoff artifacts.
-- Sprint 3 branch is active with initial planning artifacts.
+- Sprint 3 is merged to main with complete handoff artifacts.
 
 Technical baseline:
 - PostgreSQL schema migrations exist through 0007.
@@ -154,8 +154,7 @@ Technical baseline:
 - Regression suite currently passes with Sprint 3 increments.
 
 Immediate next move:
-- Merge `feature/sprint-3` into `main`.
-- Complete `docs/sprint-3/done.md` with delivery and validation evidence.
+- Start Sprint 4 planning for full workflow implementation of cash window and outputs approvals.
 
 ## 9. Security Rules
 

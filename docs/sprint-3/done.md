@@ -1,6 +1,6 @@
 # Sprint 3 Done Handoff
 
-Status: Ready for merge
+Status: Completed
 
 ## What Was Delivered
 

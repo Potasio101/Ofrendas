@@ -1,6 +1,6 @@
 # Sprint 3 Progress Tracker
 
-Status: Ready for merge
+Status: Completed
 Last update: 2026-05-08
 
 ## Checklist
@@ -14,7 +14,7 @@ Last update: 2026-05-08
 - [x] Outputs skeleton routes/services added
 - [x] Tests for Sprint 3 scope passing
 - [x] QA playthrough completed
-- [ ] Merge to main completed
+- [x] Merge to main completed
 
 ## Phase Notes
 
@@ -40,8 +40,8 @@ Phase 2 - Test and QA
 - QA sign-off published at `docs/qa/sprint-3-signoff.md`.
 
 Phase 3 - Merge and Handoff
-- Sprint 3 scope is merge-ready.
-- Pending only: merge branch to main and finalize sprint done handoff.
+- Sprint 3 merged to `main` and pushed to origin.
+- Sprint 3 handoff artifacts completed.
 
 ## Open Blockers
 
