@@ -468,12 +468,63 @@ def create_app(
 
                                 <article class="card">
                                     <h2>Nuevo sobre</h2>
-                                    <form action="/process" method="post" enctype="multipart/form-data">
-                                        <label>Imagen del sobre</label>
-                                        <input type="file" name="image" accept="image/*" capture="environment" required>
-                                        <p class="hint">En celular se abrira la camara para tomar la foto del sobre.</p>
-                                        <button type="submit">Procesar captura</button>
-                                    </form>
+                                    <div style="display: flex; gap: 8px; margin-bottom: 12px;">
+                                        <button type="button" onclick="document.getElementById('capture-tab').style.display='block'; document.getElementById('manual-tab').style.display='none'; this.style.fontWeight='800'; document.querySelector('[onclick*=manual]').style.fontWeight='400';" style="flex: 1; padding: 8px; border: 1px solid #15616d; border-radius: 8px; background: #fff; cursor: pointer; font-weight: 800;">📷 Capturar</button>
+                                        <button type="button" onclick="document.getElementById('manual-tab').style.display='block'; document.getElementById('capture-tab').style.display='none'; this.style.fontWeight='800'; document.querySelector('[onclick*=capture]').style.fontWeight='400';" style="flex: 1; padding: 8px; border: 1px solid #15616d; border-radius: 8px; background: #fff; cursor: pointer;">✍️ Manual</button>
+                                    </div>
+
+                                    <div id="capture-tab">
+                                        <form action="/process" method="post" enctype="multipart/form-data">
+                                            <label>Imagen del sobre</label>
+                                            <input type="file" name="image" accept="image/*" capture="environment" required>
+                                            <p class="hint">En celular se abrira la camara para tomar la foto del sobre.</p>
+                                            <button type="submit">Procesar captura</button>
+                                        </form>
+                                    </div>
+
+                                    <div id="manual-tab" style="display: none;">
+                                        <form method="post" action="/process-manual">
+                                            <div style="display: grid; grid-template-columns: 1fr; gap: 8px;">
+                                                <div>
+                                                    <label>Nombre</label>
+                                                    <input name="member_name" required>
+                                                </div>
+                                                <div>
+                                                    <label>Diezmo</label>
+                                                    <input name="diezmo" type="number" step="0.01">
+                                                </div>
+                                                <div>
+                                                    <label>Ofrenda</label>
+                                                    <input name="ofrenda" type="number" step="0.01">
+                                                </div>
+                                                <div>
+                                                    <label>Primicias</label>
+                                                    <input name="primicias" type="number" step="0.01">
+                                                </div>
+                                                <div>
+                                                    <label>Pro templo</label>
+                                                    <input name="pro_templo" type="number" step="0.01">
+                                                </div>
+                                                <div>
+                                                    <label>Ofrenda misionera</label>
+                                                    <input name="ofrenda_misionera" type="number" step="0.01">
+                                                </div>
+                                                <div>
+                                                    <label>Ofrenda pastoral</label>
+                                                    <input name="ofrenda_pastoral" type="number" step="0.01">
+                                                </div>
+                                                <div>
+                                                    <label>Metodo de pago</label>
+                                                    <select name="payment_method" style="width: 100%; font: inherit; border: 1px solid rgba(31, 42, 55, 0.24); border-radius: 12px; padding: 11px 12px; background: #fff;">
+                                                        <option value="cash">Efectivo</option>
+                                                        <option value="zelle">Zelle</option>
+                                                        <option value="check">Cheque</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <button type="submit">Crear sobre</button>
+                                        </form>
+                                    </div>
                                 </article>
                             </section>
 
@@ -528,6 +579,32 @@ def create_app(
         corrections = service.build_corrections_from_form(request.form)
         offering_id = service.confirm(offering, corrections)
         return redirect(url_for("review_existing", offering_id=offering_id))
+
+    @app.post("/process-manual")
+    def process_manual():
+        denied = _require_policy("process_image")
+        if denied:
+            return denied
+        data = {
+            "member_name": request.form.get("member_name", ""),
+            "diezmo": float(request.form.get("diezmo", 0) or 0),
+            "ofrenda": float(request.form.get("ofrenda", 0) or 0),
+            "primicias": float(request.form.get("primicias", 0) or 0),
+            "pro_templo": float(request.form.get("pro_templo", 0) or 0),
+            "ofrenda_misionera": float(request.form.get("ofrenda_misionera", 0) or 0),
+            "ofrenda_pastoral": float(request.form.get("ofrenda_pastoral", 0) or 0),
+            "payment_method": request.form.get("payment_method", "cash"),
+            "service_date": _current_service_date(),
+            "ocr_confidence": 1.0,
+            "image_path": "",
+        }
+        return render_template_string(
+            _review_template(),
+            data=data,
+            action=url_for("confirm"),
+            title="Revisar Sobre",
+            offering_id="",
+        )
 
     @app.get("/summary")
     def summary():
@@ -1168,6 +1245,7 @@ def _review_template() -> str:
                 --brand: #15616d;
                 --card: rgba(255, 255, 255, 0.9);
                 --line: rgba(31, 42, 55, 0.14);
+                --warning: #f59e0b;
             }
             * { box-sizing: border-box; }
             body {
@@ -1199,6 +1277,15 @@ def _review_template() -> str:
                 border-radius: 16px;
                 padding: 14px;
             }
+            .warning-box {
+                background: rgba(245, 158, 11, 0.1);
+                border: 2px solid var(--warning);
+                border-radius: 12px;
+                padding: 12px;
+                margin-bottom: 12px;
+                color: #78350f;
+            }
+            .warning-box strong { color: #92400e; }
             .grid { display: grid; grid-template-columns: 1fr; gap: 10px; }
             @media (min-width: 760px) { .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
             label {
@@ -1208,7 +1295,7 @@ def _review_template() -> str:
                 font-weight: 700;
                 color: #0f4a53;
             }
-            input, button {
+            input, select, button {
                 width: 100%;
                 font: inherit;
                 border: 1px solid rgba(31, 42, 55, 0.24);
@@ -1222,9 +1309,15 @@ def _review_template() -> str:
                 color: #fff;
                 font-weight: 800;
                 background: linear-gradient(125deg, #15616d 0%, #1f7a7a 100%);
+                cursor: pointer;
+            }
+            .btn-secondary {
+                background: linear-gradient(125deg, #6b7280 0%, #4b5563 100%);
             }
             .meta { margin: 8px 0 0; color: var(--muted); font-size: 0.86rem; }
             .inline-link { display: inline-block; margin-top: 12px; color: #0f4a53; font-weight: 700; text-decoration: none; }
+            .button-group { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 12px; }
+            .button-group button { margin-top: 0; }
         </style>
 
         <main class="shell">
@@ -1233,7 +1326,95 @@ def _review_template() -> str:
                 <p>Ajusta montos, valida metodo de pago y guarda con trazabilidad.</p>
             </section>
 
+            <script>
+                function checkIfEmpty() {
+                    const name = document.querySelector('input[name="member_name"]');
+                    const isEmpty = !name || !name.value || name.value.trim() === '';
+                    const emptyBox = document.getElementById('empty-warning');
+                    const emptyForm = document.getElementById('empty-form');
+                    const filledForm = document.getElementById('filled-form');
+                    
+                    if (isEmpty && {{ (data.member_name or '') | tojson }}.trim() === '') {
+                        if (emptyBox) emptyBox.style.display = 'block';
+                        if (emptyForm) emptyForm.style.display = 'block';
+                        if (filledForm) filledForm.style.display = 'none';
+                    } else {
+                        if (emptyBox) emptyBox.style.display = 'none';
+                        if (emptyForm) emptyForm.style.display = 'none';
+                        if (filledForm) filledForm.style.display = 'block';
+                    }
+                }
+                window.addEventListener('load', checkIfEmpty);
+            </script>
+
+            {% if not data.member_name or data.member_name.strip() == '' %}
             <section class="card">
+                <div id="empty-warning" class="warning-box">
+                    <strong>⚠️ La captura no tiene datos</strong><br/>
+                    El OCR no pudo leer la foto. Puedes rellenar los campos manualmente:
+                </div>
+
+                <form id="empty-form" method="post" action="/confirm">
+                    <input type="hidden" name="image_path" value="{{ data.image_path or '' }}">
+                    <input type="hidden" name="ocr_confidence" value="1.0">
+
+                    <div class="grid">
+                        <div>
+                            <label>Nombre*</label>
+                            <input name="member_name" required>
+                        </div>
+                        <div>
+                            <label>Fecha</label>
+                            <input name="service_date" value="{{ data.service_date or '' }}">
+                        </div>
+                        <div>
+                            <label>Diezmo</label>
+                            <input name="diezmo" type="number" step="0.01" value="0">
+                        </div>
+                        <div>
+                            <label>Ofrenda</label>
+                            <input name="ofrenda" type="number" step="0.01" value="0">
+                        </div>
+                        <div>
+                            <label>Primicias</label>
+                            <input name="primicias" type="number" step="0.01" value="0">
+                        </div>
+                        <div>
+                            <label>Pro templo</label>
+                            <input name="pro_templo" type="number" step="0.01" value="0">
+                        </div>
+                        <div>
+                            <label>Ofrenda misionera</label>
+                            <input name="ofrenda_misionera" type="number" step="0.01" value="0">
+                        </div>
+                        <div>
+                            <label>Ofrenda pastoral</label>
+                            <input name="ofrenda_pastoral" type="number" step="0.01" value="0">
+                        </div>
+                        <div>
+                            <label>Metodo de pago</label>
+                            <select name="payment_method">
+                                <option value="cash">Efectivo</option>
+                                <option value="zelle">Zelle</option>
+                                <option value="check">Cheque</option>
+                            </select>
+                        </div>
+                        {% if offering_id %}
+                        <div>
+                            <label>Motivo</label>
+                            <input name="reason" value="">
+                        </div>
+                        {% endif %}
+                    </div>
+
+                    <div class="button-group">
+                        <button type="submit">✓ Guardar</button>
+                        <a href="/" style="display: flex; align-items: center; justify-content: center; text-decoration: none; color: white; background: linear-gradient(125deg, #6b7280 0%, #4b5563 100%); border-radius: 12px; font-weight: 800;">← Volver</a>
+                    </div>
+                </form>
+            </section>
+            {% else %}
+            <section class="card" id="filled-form">
                 <form method="post" action="{{ action }}">
                     <input type="hidden" name="image_path" value="{{ data.image_path or '' }}">
                     <input type="hidden" name="ocr_confidence" value="{{ data.ocr_confidence or 0.5 }}">
@@ -1288,6 +1469,7 @@ def _review_template() -> str:
                 </form>
                 <a class="inline-link" href="/">Volver al inicio</a>
             </section>
+            {% endif %}
         </main>
     """
 
