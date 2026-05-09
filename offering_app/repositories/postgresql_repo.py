@@ -1,5 +1,6 @@
 from datetime import date
 from typing import Any
+from uuid import UUID
 
 import psycopg
 from psycopg.rows import dict_row
@@ -22,6 +23,18 @@ class PostgreSQLRepo(IStorageRepo):
                 cur.execute(query, {"timezone": timezone_name})
                 row = cur.fetchone()
                 return row["service_date"].isoformat()
+
+    @staticmethod
+    def _normalize_uuid(value: str | None) -> str | None:
+        if not value:
+            return None
+        candidate = str(value).strip()
+        if not candidate:
+            return None
+        try:
+            return str(UUID(candidate))
+        except (ValueError, TypeError):
+            return None
 
     def save(self, offering: Offering) -> str:
         offering.compute_total()
@@ -206,3 +219,140 @@ class PostgreSQLRepo(IStorageRepo):
                 "reason": reason,
             },
         )
+
+    def open_cash_session(
+        self,
+        service_date: str,
+        opened_by_user_id: str | None,
+        notes: str | None,
+    ) -> dict[str, Any]:
+        safe_user_id = self._normalize_uuid(opened_by_user_id)
+        with self._connect() as conn:
+            with conn.cursor() as cur:
+                cur.execute(
+                    """
+                    INSERT INTO cash_sessions (service_date, session_status, notes, opened_by_user_id)
+                    VALUES (%(service_date)s, 'open', %(notes)s, %(opened_by_user_id)s)
+                    ON CONFLICT (service_date) DO NOTHING
+                    RETURNING id
+                    """,
+                    {
+                        "service_date": service_date,
+                        "notes": notes,
+                        "opened_by_user_id": safe_user_id,
+                    },
+                )
+                created_row = cur.fetchone()
+                cur.execute(
+                    """
+                    SELECT id, service_date, session_status, expected_cash_total, counted_cash_total, variance_total, notes
+                    FROM cash_sessions
+                    WHERE service_date = %(service_date)s
+                    LIMIT 1
+                    """,
+                    {"service_date": service_date},
+                )
+                session_row = cur.fetchone()
+                session = dict(session_row) if session_row else None
+                if not session:
+                    raise RuntimeError("Failed to open or retrieve cash session")
+                if created_row:
+                    cur.execute(
+                        """
+                        INSERT INTO cash_session_events (cash_session_id, event_type, actor_user_id, metadata)
+                        VALUES (%(cash_session_id)s, 'open', %(actor_user_id)s, '{}'::jsonb)
+                        """,
+                        {
+                            "cash_session_id": session["id"],
+                            "actor_user_id": safe_user_id,
+                        },
+                    )
+                conn.commit()
+                session["created"] = bool(created_row)
+                return session
+
+    def get_cash_session(self, service_date: str) -> dict[str, Any] | None:
+        query = """
+            SELECT id, service_date, session_status, expected_cash_total, counted_cash_total, variance_total, notes
+            FROM cash_sessions
+            WHERE service_date = %(service_date)s
+            LIMIT 1
+        """
+        with self._connect() as conn:
+            with conn.cursor() as cur:
+                cur.execute(query, {"service_date": service_date})
+                row = cur.fetchone()
+                return dict(row) if row else None
+
+    def create_disbursement_draft(self, payload: dict[str, Any], created_by_user_id: str | None) -> dict[str, Any]:
+        safe_user_id = self._normalize_uuid(created_by_user_id)
+        with self._connect() as conn:
+            with conn.cursor() as cur:
+                cur.execute(
+                    """
+                    INSERT INTO disbursements (
+                        output_date,
+                        category,
+                        description,
+                        beneficiary_name,
+                        amount,
+                        fund_source_code,
+                        status,
+                        justification,
+                        created_by_user_id
+                    )
+                    VALUES (
+                        %(output_date)s,
+                        %(category)s,
+                        %(description)s,
+                        %(beneficiary_name)s,
+                        %(amount)s,
+                        %(fund_source_code)s,
+                        'draft',
+                        %(justification)s,
+                        %(created_by_user_id)s
+                    )
+                    RETURNING id, output_date, category, description, beneficiary_name, amount, fund_source_code, status
+                    """,
+                    {
+                        "output_date": payload["output_date"],
+                        "category": payload.get("category", "other"),
+                        "description": payload["description"],
+                        "beneficiary_name": payload.get("beneficiary_name"),
+                        "amount": float(payload["amount"]),
+                        "fund_source_code": payload.get("fund_source_code", "other"),
+                        "justification": payload.get("justification"),
+                        "created_by_user_id": safe_user_id,
+                    },
+                )
+                row = cur.fetchone()
+                if not row:
+                    raise RuntimeError("Failed to create disbursement draft")
+                cur.execute(
+                    """
+                    INSERT INTO disbursement_events (disbursement_id, event_type, actor_user_id, metadata)
+                    VALUES (%(disbursement_id)s, 'created', %(actor_user_id)s, '{}'::jsonb)
+                    """,
+                    {
+                        "disbursement_id": row["id"],
+                        "actor_user_id": safe_user_id,
+                    },
+                )
+                conn.commit()
+                return dict(row)
+
+    def list_disbursement_drafts(self, output_date: str | None) -> list[dict[str, Any]]:
+        base_query = """
+            SELECT id, output_date, category, description, beneficiary_name, amount, fund_source_code, status, created_at
+            FROM disbursements
+            WHERE status = 'draft'
+        """
+        params: dict[str, Any] = {}
+        if output_date:
+            base_query += " AND output_date = %(output_date)s"
+            params["output_date"] = output_date
+        base_query += " ORDER BY created_at DESC"
+        with self._connect() as conn:
+            with conn.cursor() as cur:
+                cur.execute(base_query, params)
+                return [dict(row) for row in cur.fetchall()]

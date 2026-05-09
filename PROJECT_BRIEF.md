@@ -126,11 +126,12 @@ DevOps (Dash, on demand):
 ## 7. Sprint Status (updated every sprint)
 
 Current sprint: Sprint 3 (Authentication hardening and module expansion start)
-Status: In progress
+Status: Ready for merge
 Branch target: feature/sprint-3
-Start criteria:
-- Sprint 3 plan and tracker initialized
-- Sprint 2 merged to main with QA sign-off and handoff artifacts
+Completion criteria met:
+- Auth mode abstraction implemented with strict identity checks
+- Cash window and outputs skeleton routes/services/repository operations implemented
+- Automated tests passing and Sprint 3 QA sign-off published
 
 ## 8. Current State (rewritten every sprint)
 
@@ -149,10 +150,12 @@ Technical baseline:
 - Confirm flow hardened against invalid actor UUID input.
 - Next implementation target is auth source hardening and first cash/output module skeleton routes.
 - Auth mode abstraction is implemented with strict header validation mode.
+- Cash window and outputs now have first executable service/repository/route skeletons.
+- Regression suite currently passes with Sprint 3 increments.
 
 Immediate next move:
-- Implement first executable skeletons for cash window and outputs modules.
-- Add test coverage and QA matrix for Sprint 3 scope.
+- Merge `feature/sprint-3` into `main`.
+- Complete `docs/sprint-3/done.md` with delivery and validation evidence.
 
 ## 9. Security Rules
 

@@ -10,7 +10,9 @@ from flask import Flask, jsonify, redirect, render_template_string, request, url
 from werkzeug.utils import secure_filename
 
 from offering_app.repositories.postgresql_repo import PostgreSQLRepo
+from offering_app.services.cash_window_service import CashWindowService
 from offering_app.services.offering_service import OfferingService
+from offering_app.services.outputs_service import OutputsService
 
 
 ROLE_POLICY = {
@@ -22,12 +24,22 @@ ROLE_POLICY = {
     "review_existing": {"treasurer", "admin", "auditor"},
     "save_review": {"treasurer", "admin"},
     "admin_config": {"admin"},
+    "cash_window_open": {"treasurer", "admin"},
+    "cash_window_get": {"treasurer", "admin", "auditor"},
+    "outputs_create_draft": {"treasurer", "admin"},
+    "outputs_list_drafts": {"treasurer", "admin", "auditor"},
 }
 
 KNOWN_ROLES = {"treasurer", "admin", "auditor"}
 
 
-def create_app(service: OfferingService, storage: PostgreSQLRepo, upload_path: str) -> Flask:
+def create_app(
+    service: OfferingService,
+    storage: PostgreSQLRepo,
+    upload_path: str,
+    cash_window_service: CashWindowService | None = None,
+    outputs_service: OutputsService | None = None,
+) -> Flask:
     app = Flask(__name__)
     app.config["UPLOAD_PATH"] = upload_path
     app.config["APP_TIMEZONE"] = os.getenv("APP_TIMEZONE", "UTC")
@@ -35,6 +47,9 @@ def create_app(service: OfferingService, storage: PostgreSQLRepo, upload_path: s
     app.config["APP_DEFAULT_USER_ID"] = os.getenv("APP_DEFAULT_USER_ID", "local-dev-user")
     app.config["APP_AUTH_MODE"] = os.getenv("APP_AUTH_MODE", "local-dev")
     _configure_logging(app)
+
+    cash_window_service = cash_window_service or CashWindowService(storage)
+    outputs_service = outputs_service or OutputsService(storage)
 
     @app.before_request
     def before_request():
@@ -295,6 +310,64 @@ def create_app(service: OfferingService, storage: PostgreSQLRepo, upload_path: s
         if denied:
             return denied
         return jsonify({"status": "ok", "scope": "admin"})
+
+    @app.post("/cash-window/open")
+    def cash_window_open():
+        denied = _require_policy("cash_window_open")
+        if denied:
+            return denied
+        session = cash_window_service.open_session(
+            service_date=request.form.get("service_date", _current_service_date()),
+            actor_user_id=getattr(g, "auth_user_id", None),
+            notes=request.form.get("notes"),
+        )
+        status_code = 201 if session.get("created") else 200
+        return jsonify(session), status_code
+
+    @app.get("/cash-window")
+    def cash_window_get():
+        denied = _require_policy("cash_window_get")
+        if denied:
+            return denied
+        service_date = request.args.get("service_date", _current_service_date())
+        session = cash_window_service.get_session(service_date)
+        if not session:
+            return jsonify({"status": "not-found", "service_date": service_date}), 404
+        return jsonify(session)
+
+    @app.post("/outputs/draft")
+    def outputs_create_draft():
+        denied = _require_policy("outputs_create_draft")
+        if denied:
+            return denied
+        description = request.form.get("description", "").strip()
+        amount_raw = request.form.get("amount", "").strip()
+        if not description:
+            return "Description is required", 400
+        if not amount_raw:
+            return "Amount is required", 400
+        payload = {
+            "output_date": request.form.get("output_date", _current_service_date()),
+            "category": request.form.get("category", "other"),
+            "description": description,
+            "beneficiary_name": request.form.get("beneficiary_name"),
+            "amount": amount_raw,
+            "fund_source_code": request.form.get("fund_source_code", "other"),
+            "justification": request.form.get("justification"),
+        }
+        try:
+            row = outputs_service.create_draft(payload, getattr(g, "auth_user_id", None))
+        except Exception:
+            return "Invalid draft payload", 400
+        return jsonify(row), 201
+
+    @app.get("/outputs/drafts")
+    def outputs_list_drafts():
+        denied = _require_policy("outputs_list_drafts")
+        if denied:
+            return denied
+        rows = outputs_service.list_drafts(request.args.get("output_date"))
+        return jsonify({"items": rows})
 
     return app
 
