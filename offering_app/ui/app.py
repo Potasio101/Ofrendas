@@ -1,4 +1,5 @@
 from datetime import datetime
+from decimal import Decimal
 import json
 import logging
 import os
@@ -26,8 +27,15 @@ ROLE_POLICY = {
     "admin_config": {"admin"},
     "cash_window_open": {"treasurer", "admin"},
     "cash_window_get": {"treasurer", "admin", "auditor"},
+    "cash_window_line": {"treasurer", "admin"},
+    "cash_window_close": {"treasurer", "admin"},
+    "cash_window_reopen": {"admin"},
     "outputs_create_draft": {"treasurer", "admin"},
     "outputs_list_drafts": {"treasurer", "admin", "auditor"},
+    "outputs_update_draft": {"treasurer", "admin"},
+    "outputs_submit": {"treasurer", "admin"},
+    "outputs_approve": {"admin"},
+    "outputs_pay": {"admin"},
 }
 
 KNOWN_ROLES = {"treasurer", "admin", "auditor"}
@@ -135,6 +143,38 @@ def create_app(
             )
             return "Forbidden", 403
         return None
+
+    def _domain_error_response(exc: Exception):
+        message = str(exc)
+        if "not_found" in message:
+            return "Not found", 404
+        if "invalid_transition" in message or "closed" in message:
+            return "Conflict", 409
+        if "invalid_" in message:
+            return "Invalid payload", 400
+        app.logger.info(
+            json.dumps(
+                {
+                    "event": "unexpected_domain_error",
+                    "message": message,
+                    "path": request.path,
+                    "method": request.method,
+                },
+                ensure_ascii=True,
+            )
+        )
+        return "Internal error", 500
+
+    def _json_safe(value):
+        if isinstance(value, dict):
+            return {k: _json_safe(v) for k, v in value.items()}
+        if isinstance(value, list):
+            return [_json_safe(v) for v in value]
+        if isinstance(value, Decimal):
+            return float(value)
+        if hasattr(value, "isoformat") and callable(value.isoformat):
+            return value.isoformat()
+        return value
 
     @app.after_request
     def after_request(response):
@@ -322,7 +362,7 @@ def create_app(
             notes=request.form.get("notes"),
         )
         status_code = 201 if session.get("created") else 200
-        return jsonify(session), status_code
+        return jsonify(_json_safe(session)), status_code
 
     @app.get("/cash-window")
     def cash_window_get():
@@ -333,7 +373,54 @@ def create_app(
         session = cash_window_service.get_session(service_date)
         if not session:
             return jsonify({"status": "not-found", "service_date": service_date}), 404
-        return jsonify(session)
+        return jsonify(_json_safe(session))
+
+    @app.post("/cash-window/line")
+    def cash_window_line():
+        denied = _require_policy("cash_window_line")
+        if denied:
+            return denied
+        try:
+            session = cash_window_service.upsert_line(
+                service_date=request.form.get("service_date", _current_service_date()),
+                denomination_value=float(request.form.get("denomination_value", "0") or 0),
+                denomination_type=request.form.get("denomination_type", "bill"),
+                quantity=int(request.form.get("quantity", "0") or 0),
+                actor_user_id=getattr(g, "auth_user_id", None),
+            )
+            return jsonify(_json_safe(session))
+        except ValueError as exc:
+            return _domain_error_response(exc)
+
+    @app.post("/cash-window/close")
+    def cash_window_close():
+        denied = _require_policy("cash_window_close")
+        if denied:
+            return denied
+        try:
+            session = cash_window_service.close_session(
+                service_date=request.form.get("service_date", _current_service_date()),
+                actor_user_id=getattr(g, "auth_user_id", None),
+                notes=request.form.get("notes"),
+            )
+            return jsonify(_json_safe(session))
+        except ValueError as exc:
+            return _domain_error_response(exc)
+
+    @app.post("/cash-window/reopen")
+    def cash_window_reopen():
+        denied = _require_policy("cash_window_reopen")
+        if denied:
+            return denied
+        try:
+            session = cash_window_service.reopen_session(
+                service_date=request.form.get("service_date", _current_service_date()),
+                actor_user_id=getattr(g, "auth_user_id", None),
+                reason=request.form.get("reason"),
+            )
+            return jsonify(_json_safe(session))
+        except ValueError as exc:
+            return _domain_error_response(exc)
 
     @app.post("/outputs/draft")
     def outputs_create_draft():
@@ -357,9 +444,9 @@ def create_app(
         }
         try:
             row = outputs_service.create_draft(payload, getattr(g, "auth_user_id", None))
-        except Exception:
+        except ValueError:
             return "Invalid draft payload", 400
-        return jsonify(row), 201
+        return jsonify(_json_safe(row)), 201
 
     @app.get("/outputs/drafts")
     def outputs_list_drafts():
@@ -367,7 +454,59 @@ def create_app(
         if denied:
             return denied
         rows = outputs_service.list_drafts(request.args.get("output_date"))
-        return jsonify({"items": rows})
+        return jsonify({"items": _json_safe(rows)})
+
+    @app.post("/outputs/<disbursement_id>/update")
+    def outputs_update_draft(disbursement_id: str):
+        denied = _require_policy("outputs_update_draft")
+        if denied:
+            return denied
+        payload = {
+            "category": request.form.get("category"),
+            "description": request.form.get("description"),
+            "beneficiary_name": request.form.get("beneficiary_name"),
+            "amount": request.form.get("amount"),
+            "fund_source_code": request.form.get("fund_source_code"),
+            "justification": request.form.get("justification"),
+        }
+        try:
+            row = outputs_service.update_draft(disbursement_id, payload, getattr(g, "auth_user_id", None))
+            return jsonify(_json_safe(row))
+        except ValueError as exc:
+            return _domain_error_response(exc)
+
+    @app.post("/outputs/<disbursement_id>/submit")
+    def outputs_submit(disbursement_id: str):
+        denied = _require_policy("outputs_submit")
+        if denied:
+            return denied
+        try:
+            row = outputs_service.submit(disbursement_id, getattr(g, "auth_user_id", None))
+            return jsonify(_json_safe(row))
+        except ValueError as exc:
+            return _domain_error_response(exc)
+
+    @app.post("/outputs/<disbursement_id>/approve")
+    def outputs_approve(disbursement_id: str):
+        denied = _require_policy("outputs_approve")
+        if denied:
+            return denied
+        try:
+            row = outputs_service.approve(disbursement_id, getattr(g, "auth_user_id", None))
+            return jsonify(_json_safe(row))
+        except ValueError as exc:
+            return _domain_error_response(exc)
+
+    @app.post("/outputs/<disbursement_id>/pay")
+    def outputs_pay(disbursement_id: str):
+        denied = _require_policy("outputs_pay")
+        if denied:
+            return denied
+        try:
+            row = outputs_service.pay(disbursement_id, getattr(g, "auth_user_id", None))
+            return jsonify(_json_safe(row))
+        except ValueError as exc:
+            return _domain_error_response(exc)
 
     return app
 

@@ -65,6 +65,38 @@ class DummyCashWindowService:
             "session_status": "open",
         }
 
+    def upsert_line(
+        self,
+        service_date: str,
+        denomination_value: float,
+        denomination_type: str,
+        quantity: int,
+        actor_user_id: str | None,
+    ):
+        return {
+            "id": "cash-session-1",
+            "service_date": service_date,
+            "session_status": "open",
+            "counted_cash_total": round(denomination_value * quantity, 2),
+            "denomination_type": denomination_type,
+        }
+
+    def close_session(self, service_date: str, actor_user_id: str | None, notes: str | None):
+        return {
+            "id": "cash-session-1",
+            "service_date": service_date,
+            "session_status": "closed",
+            "notes": notes,
+        }
+
+    def reopen_session(self, service_date: str, actor_user_id: str | None, reason: str | None):
+        return {
+            "id": "cash-session-1",
+            "service_date": service_date,
+            "session_status": "open",
+            "notes": reason,
+        }
+
 
 class DummyOutputsService:
     def __init__(self):
@@ -83,6 +115,22 @@ class DummyOutputsService:
 
     def list_drafts(self, output_date: str | None):
         return [{"id": "disb-1", "status": "draft", "output_date": output_date or "2026-05-08"}]
+
+    def update_draft(self, disbursement_id: str, payload: dict, actor_user_id: str | None):
+        return {
+            "id": disbursement_id,
+            "status": "draft",
+            "description": payload.get("description") or "Updated",
+        }
+
+    def submit(self, disbursement_id: str, actor_user_id: str | None):
+        return {"id": disbursement_id, "status": "submitted"}
+
+    def approve(self, disbursement_id: str, actor_user_id: str | None):
+        return {"id": disbursement_id, "status": "approved"}
+
+    def pay(self, disbursement_id: str, actor_user_id: str | None):
+        return {"id": disbursement_id, "status": "paid"}
 
 
 def _build_client():
@@ -169,3 +217,131 @@ def test_outputs_drafts_allowed_for_auditor():
 
     assert response.status_code == 200
     assert isinstance(response.get_json()["items"], list)
+
+
+def test_cash_window_line_forbidden_for_auditor():
+    client = _build_client()
+
+    response = client.post(
+        "/cash-window/line",
+        data={"service_date": "2026-05-08", "denomination_value": "20", "denomination_type": "bill", "quantity": "1"},
+        headers={"X-User-Role": "auditor", "X-User-Id": "audit-user"},
+    )
+
+    assert response.status_code == 403
+
+
+def test_cash_window_line_allows_treasurer():
+    client = _build_client()
+
+    response = client.post(
+        "/cash-window/line",
+        data={"service_date": "2026-05-08", "denomination_value": "20", "denomination_type": "bill", "quantity": "2"},
+        headers={"X-User-Role": "treasurer", "X-User-Id": "treasurer-user"},
+    )
+
+    assert response.status_code == 200
+    assert response.get_json()["counted_cash_total"] == 40.0
+
+
+def test_cash_window_close_allows_treasurer():
+    client = _build_client()
+
+    response = client.post(
+        "/cash-window/close",
+        data={"service_date": "2026-05-08", "notes": "close"},
+        headers={"X-User-Role": "treasurer", "X-User-Id": "treasurer-user"},
+    )
+
+    assert response.status_code == 200
+    assert response.get_json()["session_status"] == "closed"
+
+
+def test_cash_window_reopen_forbidden_for_treasurer():
+    client = _build_client()
+
+    response = client.post(
+        "/cash-window/reopen",
+        data={"service_date": "2026-05-08", "reason": "fix"},
+        headers={"X-User-Role": "treasurer", "X-User-Id": "treasurer-user"},
+    )
+
+    assert response.status_code == 403
+
+
+def test_cash_window_reopen_allowed_for_admin():
+    client = _build_client()
+
+    response = client.post(
+        "/cash-window/reopen",
+        data={"service_date": "2026-05-08", "reason": "fix"},
+        headers={"X-User-Role": "admin", "X-User-Id": "admin-user"},
+    )
+
+    assert response.status_code == 200
+    assert response.get_json()["session_status"] == "open"
+
+
+def test_outputs_submit_forbidden_for_auditor():
+    client = _build_client()
+
+    response = client.post(
+        "/outputs/disb-1/submit",
+        headers={"X-User-Role": "auditor", "X-User-Id": "audit-user"},
+    )
+
+    assert response.status_code == 403
+
+
+def test_outputs_submit_allows_treasurer():
+    client = _build_client()
+
+    response = client.post(
+        "/outputs/disb-1/submit",
+        headers={"X-User-Role": "treasurer", "X-User-Id": "treasurer-user"},
+    )
+
+    assert response.status_code == 200
+    assert response.get_json()["status"] == "submitted"
+
+
+def test_outputs_approve_forbidden_for_treasurer():
+    client = _build_client()
+
+    response = client.post(
+        "/outputs/disb-1/approve",
+        headers={"X-User-Role": "treasurer", "X-User-Id": "treasurer-user"},
+    )
+
+    assert response.status_code == 403
+
+
+def test_outputs_approve_and_pay_allowed_for_admin():
+    client = _build_client()
+
+    approve_response = client.post(
+        "/outputs/disb-1/approve",
+        headers={"X-User-Role": "admin", "X-User-Id": "admin-user"},
+    )
+    pay_response = client.post(
+        "/outputs/disb-1/pay",
+        headers={"X-User-Role": "admin", "X-User-Id": "admin-user"},
+    )
+
+    assert approve_response.status_code == 200
+    assert approve_response.get_json()["status"] == "approved"
+    assert pay_response.status_code == 200
+    assert pay_response.get_json()["status"] == "paid"
+
+
+def test_outputs_update_draft_allows_admin():
+    client = _build_client()
+
+    response = client.post(
+        "/outputs/disb-1/update",
+        data={"description": "Updated description"},
+        headers={"X-User-Role": "admin", "X-User-Id": "admin-user"},
+    )
+
+    assert response.status_code == 200
+    assert response.get_json()["status"] == "draft"

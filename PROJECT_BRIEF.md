@@ -129,11 +129,12 @@ DevOps (Dash, on demand):
 ## 7. Sprint Status (updated every sprint)
 
 Current sprint: Sprint 4 (Cash window full flow and outputs approvals)
-Status: In progress
+Status: Ready for merge
 Branch target: feature/sprint-4
-Start criteria:
-- Sprint 4 plan and tracker initialized
-- Sprint 3 merged to main with QA sign-off and handoff artifacts
+Completion criteria met:
+- Cash workflow transitions implemented (line/recalculate/close/reopen)
+- Outputs workflow transitions implemented (submit/approve/pay)
+- Automated tests passing and Sprint 4 QA sign-off published
 
 ## 8. Current State (rewritten every sprint)
 
@@ -156,11 +157,12 @@ Technical baseline:
 - Cash window and outputs now have first executable service/repository/route skeletons.
 - Regression suite currently passes with Sprint 3 increments.
 - Next target is full workflow transitions for cash sessions and outputs approvals.
+- Cash and outputs transition workflows are now implemented with event logging.
+- Regression suite currently passes with Sprint 4 increments.
 
 Immediate next move:
-- Implement cash session line update/recalculate/close/reopen transitions.
-- Implement outputs submit/approve/paid transitions with event logging.
-- Add transition tests and complete Sprint 4 QA playthrough.
+- Merge `feature/sprint-4` into `main`.
+- Complete `docs/sprint-4/done.md` with delivery and validation evidence.
 
 ## 9. Security Rules
 
