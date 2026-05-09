@@ -475,10 +475,17 @@ def create_app(
 
                                     <div id="capture-tab">
                                         <form action="/process" method="post" enctype="multipart/form-data">
-                                            <label>Imagen del sobre</label>
-                                            <input type="file" name="image" accept="image/*" capture="environment" required>
-                                            <p class="hint">En celular se abrira la camara para tomar la foto del sobre.</p>
-                                            <button type="submit">Procesar captura</button>
+                                            <label for="image-input">Imagen del sobre</label>
+                                            <input 
+                                                id="image-input"
+                                                type="file" 
+                                                name="image" 
+                                                accept="image/*" 
+                                                capture="environment"
+                                                required
+                                                style="width: 100%; padding: 8px; border: 1px solid rgba(31, 42, 55, 0.24); border-radius: 12px;">
+                                            <p class="hint" style="margin-top: 6px;">En celular se abrira la camara para tomar la foto del sobre. (Toca el campo para activar).</p>
+                                            <button type="submit" style="width: 100%; margin-top: 12px; padding: 11px 12px; border: 0; border-radius: 12px; color: #fff; font-weight: 800; background: linear-gradient(125deg, #15616d 0%, #1f7a7a 100%); cursor: pointer;">Procesar captura</button>
                                         </form>
                                     </div>
 
@@ -486,32 +493,32 @@ def create_app(
                                         <form method="post" action="/process-manual">
                                             <div style="display: grid; grid-template-columns: 1fr; gap: 8px;">
                                                 <div>
-                                                    <label>Nombre</label>
-                                                    <input name="member_name" required>
+                                                    <label>Nombre*</label>
+                                                    <input name="member_name" required style="width: 100%; font: inherit; border: 1px solid rgba(31, 42, 55, 0.24); border-radius: 12px; padding: 11px 12px; background: #fff;">
                                                 </div>
                                                 <div>
                                                     <label>Diezmo</label>
-                                                    <input name="diezmo" type="number" step="0.01">
+                                                    <input name="diezmo" type="number" step="0.01" style="width: 100%; font: inherit; border: 1px solid rgba(31, 42, 55, 0.24); border-radius: 12px; padding: 11px 12px; background: #fff;">
                                                 </div>
                                                 <div>
                                                     <label>Ofrenda</label>
-                                                    <input name="ofrenda" type="number" step="0.01">
+                                                    <input name="ofrenda" type="number" step="0.01" style="width: 100%; font: inherit; border: 1px solid rgba(31, 42, 55, 0.24); border-radius: 12px; padding: 11px 12px; background: #fff;">
                                                 </div>
                                                 <div>
                                                     <label>Primicias</label>
-                                                    <input name="primicias" type="number" step="0.01">
+                                                    <input name="primicias" type="number" step="0.01" style="width: 100%; font: inherit; border: 1px solid rgba(31, 42, 55, 0.24); border-radius: 12px; padding: 11px 12px; background: #fff;">
                                                 </div>
                                                 <div>
                                                     <label>Pro templo</label>
-                                                    <input name="pro_templo" type="number" step="0.01">
+                                                    <input name="pro_templo" type="number" step="0.01" style="width: 100%; font: inherit; border: 1px solid rgba(31, 42, 55, 0.24); border-radius: 12px; padding: 11px 12px; background: #fff;">
                                                 </div>
                                                 <div>
                                                     <label>Ofrenda misionera</label>
-                                                    <input name="ofrenda_misionera" type="number" step="0.01">
+                                                    <input name="ofrenda_misionera" type="number" step="0.01" style="width: 100%; font: inherit; border: 1px solid rgba(31, 42, 55, 0.24); border-radius: 12px; padding: 11px 12px; background: #fff;">
                                                 </div>
                                                 <div>
                                                     <label>Ofrenda pastoral</label>
-                                                    <input name="ofrenda_pastoral" type="number" step="0.01">
+                                                    <input name="ofrenda_pastoral" type="number" step="0.01" style="width: 100%; font: inherit; border: 1px solid rgba(31, 42, 55, 0.24); border-radius: 12px; padding: 11px 12px; background: #fff;">
                                                 </div>
                                                 <div>
                                                     <label>Metodo de pago</label>
@@ -522,7 +529,7 @@ def create_app(
                                                     </select>
                                                 </div>
                                             </div>
-                                            <button type="submit">Crear sobre</button>
+                                            <button type="submit" style="width: 100%; margin-top: 12px; padding: 11px 12px; border: 0; border-radius: 12px; color: #fff; font-weight: 800; background: linear-gradient(125deg, #15616d 0%, #1f7a7a 100%); cursor: pointer;">Crear sobre</button>
                                         </form>
                                     </div>
                                 </article>
@@ -713,10 +720,19 @@ def create_app(
                 "payment_method",
             ]
         }
+        # Normalize user ID to UUID or None
+        actor_user_id = getattr(g, "auth_user_id", None)
+        if actor_user_id:
+            from uuid import UUID
+            try:
+                actor_user_id = str(UUID(actor_user_id))
+            except (ValueError, TypeError):
+                actor_user_id = None
+        
         ok = storage.update_offering_fields(
             offering_id=offering_id,
             updates=updates,
-            changed_by_user_id=getattr(g, "auth_user_id", None),
+            changed_by_user_id=actor_user_id,
             reason=request.form.get("reason"),
         )
         if not ok:
