@@ -153,11 +153,32 @@ class PostgreSQLRepo(IStorageRepo):
         if not updates:
             return True
 
+        def _to_number(value: Any) -> float:
+            try:
+                return float(value or 0)
+            except (TypeError, ValueError):
+                return 0.0
+
         with self._connect() as conn:
             with conn.cursor() as cur:
                 current = self.get_offering(offering_id)
                 if not current:
                     return False
+
+                amount_fields = [
+                    "diezmo",
+                    "ofrenda",
+                    "primicias",
+                    "pro_templo",
+                    "ofrenda_misionera",
+                    "ofrenda_pastoral",
+                ]
+                if any(field in updates for field in amount_fields):
+                    merged_amounts = {
+                        field: _to_number(updates.get(field, current.get(field, 0)))
+                        for field in amount_fields
+                    }
+                    updates["total"] = f"{sum(merged_amounts.values()):.2f}"
 
                 for field_name, new_value in updates.items():
                     old_value = current.get(field_name)
