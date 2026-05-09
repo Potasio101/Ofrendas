@@ -9,7 +9,14 @@ COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
+RUN pip install --no-cache-dir -e .
+
+RUN useradd --create-home --shell /usr/sbin/nologin appuser \
+	&& mkdir -p /app/data \
+	&& chown -R appuser:appuser /app
+
+USER appuser
 
 EXPOSE 5000
 
-CMD ["python", "main.py"]
+CMD ["gunicorn", "--workers", "2", "--threads", "4", "--bind", "0.0.0.0:5000", "wsgi:app"]

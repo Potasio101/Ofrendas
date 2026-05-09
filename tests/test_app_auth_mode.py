@@ -19,6 +19,9 @@ class DummyService:
     def process_image(self, image_path: str):
         return {}
 
+    def should_fallback_to_manual(self, data):
+        return False
+
     def build_offering_from_form(self, form, actor):
         return {}
 
@@ -181,3 +184,38 @@ def test_proxy_signed_allows_valid_signature():
     response = client.get("/day-log", headers=headers)
 
     assert response.status_code == 200
+
+
+def test_production_rejects_local_dev_auth_mode(monkeypatch):
+    monkeypatch.setenv("APP_ENV", "production")
+    monkeypatch.setenv("APP_AUTH_MODE", "local-dev")
+
+    try:
+        create_app(service=DummyService(), storage=DummyStorage(), upload_path="/tmp")
+        assert False, "expected startup validation error"
+    except ValueError as exc:
+        assert "Invalid APP_AUTH_MODE for production" in str(exc)
+
+
+def test_production_proxy_token_requires_secret(monkeypatch):
+    monkeypatch.setenv("APP_ENV", "production")
+    monkeypatch.setenv("APP_AUTH_MODE", "proxy-token")
+    monkeypatch.delenv("APP_AUTH_PROXY_TOKEN", raising=False)
+
+    try:
+        create_app(service=DummyService(), storage=DummyStorage(), upload_path="/tmp")
+        assert False, "expected startup validation error"
+    except ValueError as exc:
+        assert "APP_AUTH_PROXY_TOKEN is required" in str(exc)
+
+
+def test_production_proxy_signed_requires_signing_secret(monkeypatch):
+    monkeypatch.setenv("APP_ENV", "production")
+    monkeypatch.setenv("APP_AUTH_MODE", "proxy-signed")
+    monkeypatch.delenv("APP_AUTH_PROXY_SIGNING_SECRET", raising=False)
+
+    try:
+        create_app(service=DummyService(), storage=DummyStorage(), upload_path="/tmp")
+        assert False, "expected startup validation error"
+    except ValueError as exc:
+        assert "APP_AUTH_PROXY_SIGNING_SECRET is required" in str(exc)

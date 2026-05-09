@@ -40,6 +40,17 @@ services:
       UPLOAD_PATH: /app/data/uploads
     ports:
       - "5001:5000"
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "python",
+          "-c",
+          "import urllib.request,sys; sys.exit(0 if urllib.request.urlopen('http://127.0.0.1:5000/healthz').getcode()==200 else 1)",
+        ]
+      interval: 15s
+      timeout: 5s
+      retries: 5
     volumes:
       - app_data:/app/data
 

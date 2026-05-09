@@ -1,0 +1,2372 @@
+{
+  "nodes": [
+    {
+      "id": "docs_architecture_adr_006_postgresql_reporting_with_sharepoint_complement_md",
+      "label": "ADR-006-postgresql-reporting-with-sharepoint-complement.md",
+      "file_type": "document",
+      "source_file": "docs/architecture/ADR-006-postgresql-reporting-with-sharepoint-complement.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "architecture_adr_006_postgresql_reporting_with_sharepoint_complement_adr_006_postgresql_as_single_source_of_truth_for_app_operations_and_reporting",
+      "label": "ADR-006: PostgreSQL as Single Source of Truth for App Operations and Reporting",
+      "file_type": "document",
+      "source_file": "docs/architecture/ADR-006-postgresql-reporting-with-sharepoint-complement.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "architecture_adr_006_postgresql_reporting_with_sharepoint_complement_context",
+      "label": "Context",
+      "file_type": "document",
+      "source_file": "docs/architecture/ADR-006-postgresql-reporting-with-sharepoint-complement.md",
+      "source_location": "L6"
+    },
+    {
+      "id": "architecture_adr_006_postgresql_reporting_with_sharepoint_complement_decision_drivers",
+      "label": "Decision Drivers",
+      "file_type": "document",
+      "source_file": "docs/architecture/ADR-006-postgresql-reporting-with-sharepoint-complement.md",
+      "source_location": "L10"
+    },
+    {
+      "id": "architecture_adr_006_postgresql_reporting_with_sharepoint_complement_options_considered",
+      "label": "Options Considered",
+      "file_type": "document",
+      "source_file": "docs/architecture/ADR-006-postgresql-reporting-with-sharepoint-complement.md",
+      "source_location": "L17"
+    },
+    {
+      "id": "architecture_adr_006_postgresql_reporting_with_sharepoint_complement_decision",
+      "label": "Decision",
+      "file_type": "document",
+      "source_file": "docs/architecture/ADR-006-postgresql-reporting-with-sharepoint-complement.md",
+      "source_location": "L23"
+    },
+    {
+      "id": "architecture_adr_006_postgresql_reporting_with_sharepoint_complement_rationale",
+      "label": "Rationale",
+      "file_type": "document",
+      "source_file": "docs/architecture/ADR-006-postgresql-reporting-with-sharepoint-complement.md",
+      "source_location": "L32"
+    },
+    {
+      "id": "architecture_adr_006_postgresql_reporting_with_sharepoint_complement_consequences",
+      "label": "Consequences",
+      "file_type": "document",
+      "source_file": "docs/architecture/ADR-006-postgresql-reporting-with-sharepoint-complement.md",
+      "source_location": "L36"
+    },
+    {
+      "id": "architecture_adr_006_postgresql_reporting_with_sharepoint_complement_implementation_notes",
+      "label": "Implementation Notes",
+      "file_type": "document",
+      "source_file": "docs/architecture/ADR-006-postgresql-reporting-with-sharepoint-complement.md",
+      "source_location": "L46"
+    },
+    {
+      "id": "docs_architecture_adr_009_cash_window_and_daily_close_audit_md",
+      "label": "ADR-009-cash-window-and-daily-close-audit.md",
+      "file_type": "document",
+      "source_file": "docs/architecture/ADR-009-cash-window-and-daily-close-audit.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "architecture_adr_009_cash_window_and_daily_close_audit_adr_009_cash_window_with_daily_close_and_audit_trail",
+      "label": "ADR-009: Cash Window with Daily Close and Audit Trail",
+      "file_type": "document",
+      "source_file": "docs/architecture/ADR-009-cash-window-and-daily-close-audit.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "architecture_adr_009_cash_window_and_daily_close_audit_context",
+      "label": "Context",
+      "file_type": "document",
+      "source_file": "docs/architecture/ADR-009-cash-window-and-daily-close-audit.md",
+      "source_location": "L6"
+    },
+    {
+      "id": "architecture_adr_009_cash_window_and_daily_close_audit_decision_drivers",
+      "label": "Decision Drivers",
+      "file_type": "document",
+      "source_file": "docs/architecture/ADR-009-cash-window-and-daily-close-audit.md",
+      "source_location": "L10"
+    },
+    {
+      "id": "architecture_adr_009_cash_window_and_daily_close_audit_options_considered",
+      "label": "Options Considered",
+      "file_type": "document",
+      "source_file": "docs/architecture/ADR-009-cash-window-and-daily-close-audit.md",
+      "source_location": "L16"
+    },
+    {
+      "id": "architecture_adr_009_cash_window_and_daily_close_audit_decision",
+      "label": "Decision",
+      "file_type": "document",
+      "source_file": "docs/architecture/ADR-009-cash-window-and-daily-close-audit.md",
+      "source_location": "L22"
+    },
+    {
+      "id": "architecture_adr_009_cash_window_and_daily_close_audit_rationale",
+      "label": "Rationale",
+      "file_type": "document",
+      "source_file": "docs/architecture/ADR-009-cash-window-and-daily-close-audit.md",
+      "source_location": "L31"
+    },
+    {
+      "id": "architecture_adr_009_cash_window_and_daily_close_audit_consequences",
+      "label": "Consequences",
+      "file_type": "document",
+      "source_file": "docs/architecture/ADR-009-cash-window-and-daily-close-audit.md",
+      "source_location": "L35"
+    },
+    {
+      "id": "architecture_adr_009_cash_window_and_daily_close_audit_implementation_notes",
+      "label": "Implementation Notes",
+      "file_type": "document",
+      "source_file": "docs/architecture/ADR-009-cash-window-and-daily-close-audit.md",
+      "source_location": "L45"
+    },
+    {
+      "id": "docs_architecture_adr_004_cloudflare_tunnel_low_cost_ingress_md",
+      "label": "ADR-004-cloudflare-tunnel-low-cost-ingress.md",
+      "file_type": "document",
+      "source_file": "docs/architecture/ADR-004-cloudflare-tunnel-low-cost-ingress.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "architecture_adr_004_cloudflare_tunnel_low_cost_ingress_adr_004_secure_ingress_with_cloudflare_tunnel_for_low_cost_hosting",
+      "label": "ADR-004: Secure Ingress with Cloudflare Tunnel for Low-Cost Hosting",
+      "file_type": "document",
+      "source_file": "docs/architecture/ADR-004-cloudflare-tunnel-low-cost-ingress.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "architecture_adr_004_cloudflare_tunnel_low_cost_ingress_context",
+      "label": "Context",
+      "file_type": "document",
+      "source_file": "docs/architecture/ADR-004-cloudflare-tunnel-low-cost-ingress.md",
+      "source_location": "L6"
+    },
+    {
+      "id": "architecture_adr_004_cloudflare_tunnel_low_cost_ingress_decision_drivers",
+      "label": "Decision Drivers",
+      "file_type": "document",
+      "source_file": "docs/architecture/ADR-004-cloudflare-tunnel-low-cost-ingress.md",
+      "source_location": "L10"
+    },
+    {
+      "id": "architecture_adr_004_cloudflare_tunnel_low_cost_ingress_options_considered",
+      "label": "Options Considered",
+      "file_type": "document",
+      "source_file": "docs/architecture/ADR-004-cloudflare-tunnel-low-cost-ingress.md",
+      "source_location": "L17"
+    },
+    {
+      "id": "architecture_adr_004_cloudflare_tunnel_low_cost_ingress_decision",
+      "label": "Decision",
+      "file_type": "document",
+      "source_file": "docs/architecture/ADR-004-cloudflare-tunnel-low-cost-ingress.md",
+      "source_location": "L23"
+    },
+    {
+      "id": "architecture_adr_004_cloudflare_tunnel_low_cost_ingress_rationale",
+      "label": "Rationale",
+      "file_type": "document",
+      "source_file": "docs/architecture/ADR-004-cloudflare-tunnel-low-cost-ingress.md",
+      "source_location": "L31"
+    },
+    {
+      "id": "architecture_adr_004_cloudflare_tunnel_low_cost_ingress_consequences",
+      "label": "Consequences",
+      "file_type": "document",
+      "source_file": "docs/architecture/ADR-004-cloudflare-tunnel-low-cost-ingress.md",
+      "source_location": "L35"
+    },
+    {
+      "id": "architecture_adr_004_cloudflare_tunnel_low_cost_ingress_implementation_notes",
+      "label": "Implementation Notes",
+      "file_type": "document",
+      "source_file": "docs/architecture/ADR-004-cloudflare-tunnel-low-cost-ingress.md",
+      "source_location": "L45"
+    },
+    {
+      "id": "docs_architecture_adr_002_storage_resilience_sharepoint_fallback_md",
+      "label": "ADR-002-storage-resilience-sharepoint-fallback.md",
+      "file_type": "document",
+      "source_file": "docs/architecture/ADR-002-storage-resilience-sharepoint-fallback.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "architecture_adr_002_storage_resilience_sharepoint_fallback_adr_002_postgresql_as_primary_operational_storage_sharepoint_deferred",
+      "label": "ADR-002: PostgreSQL as Primary Operational Storage (SharePoint Deferred)",
+      "file_type": "document",
+      "source_file": "docs/architecture/ADR-002-storage-resilience-sharepoint-fallback.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "architecture_adr_002_storage_resilience_sharepoint_fallback_context",
+      "label": "Context",
+      "file_type": "document",
+      "source_file": "docs/architecture/ADR-002-storage-resilience-sharepoint-fallback.md",
+      "source_location": "L6"
+    },
+    {
+      "id": "architecture_adr_002_storage_resilience_sharepoint_fallback_decision_drivers",
+      "label": "Decision Drivers",
+      "file_type": "document",
+      "source_file": "docs/architecture/ADR-002-storage-resilience-sharepoint-fallback.md",
+      "source_location": "L10"
+    },
+    {
+      "id": "architecture_adr_002_storage_resilience_sharepoint_fallback_options_considered",
+      "label": "Options Considered",
+      "file_type": "document",
+      "source_file": "docs/architecture/ADR-002-storage-resilience-sharepoint-fallback.md",
+      "source_location": "L17"
+    },
+    {
+      "id": "architecture_adr_002_storage_resilience_sharepoint_fallback_decision",
+      "label": "Decision",
+      "file_type": "document",
+      "source_file": "docs/architecture/ADR-002-storage-resilience-sharepoint-fallback.md",
+      "source_location": "L23"
+    },
+    {
+      "id": "architecture_adr_002_storage_resilience_sharepoint_fallback_rationale",
+      "label": "Rationale",
+      "file_type": "document",
+      "source_file": "docs/architecture/ADR-002-storage-resilience-sharepoint-fallback.md",
+      "source_location": "L32"
+    },
+    {
+      "id": "architecture_adr_002_storage_resilience_sharepoint_fallback_consequences",
+      "label": "Consequences",
+      "file_type": "document",
+      "source_file": "docs/architecture/ADR-002-storage-resilience-sharepoint-fallback.md",
+      "source_location": "L36"
+    },
+    {
+      "id": "architecture_adr_002_storage_resilience_sharepoint_fallback_implementation_notes",
+      "label": "Implementation Notes",
+      "file_type": "document",
+      "source_file": "docs/architecture/ADR-002-storage-resilience-sharepoint-fallback.md",
+      "source_location": "L46"
+    },
+    {
+      "id": "docs_architecture_adr_008_deferred_correction_and_field_audit_md",
+      "label": "ADR-008-deferred-correction-and-field-audit.md",
+      "file_type": "document",
+      "source_file": "docs/architecture/ADR-008-deferred-correction-and-field-audit.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "architecture_adr_008_deferred_correction_and_field_audit_adr_008_deferred_correction_workflow_and_field_level_audit_in_ui",
+      "label": "ADR-008: Deferred Correction Workflow and Field-Level Audit in UI",
+      "file_type": "document",
+      "source_file": "docs/architecture/ADR-008-deferred-correction-and-field-audit.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "architecture_adr_008_deferred_correction_and_field_audit_context",
+      "label": "Context",
+      "file_type": "document",
+      "source_file": "docs/architecture/ADR-008-deferred-correction-and-field-audit.md",
+      "source_location": "L6"
+    },
+    {
+      "id": "architecture_adr_008_deferred_correction_and_field_audit_decision_drivers",
+      "label": "Decision Drivers",
+      "file_type": "document",
+      "source_file": "docs/architecture/ADR-008-deferred-correction-and-field-audit.md",
+      "source_location": "L10"
+    },
+    {
+      "id": "architecture_adr_008_deferred_correction_and_field_audit_options_considered",
+      "label": "Options Considered",
+      "file_type": "document",
+      "source_file": "docs/architecture/ADR-008-deferred-correction-and-field-audit.md",
+      "source_location": "L16"
+    },
+    {
+      "id": "architecture_adr_008_deferred_correction_and_field_audit_decision",
+      "label": "Decision",
+      "file_type": "document",
+      "source_file": "docs/architecture/ADR-008-deferred-correction-and-field-audit.md",
+      "source_location": "L22"
+    },
+    {
+      "id": "architecture_adr_008_deferred_correction_and_field_audit_rationale",
+      "label": "Rationale",
+      "file_type": "document",
+      "source_file": "docs/architecture/ADR-008-deferred-correction-and-field-audit.md",
+      "source_location": "L31"
+    },
+    {
+      "id": "architecture_adr_008_deferred_correction_and_field_audit_consequences",
+      "label": "Consequences",
+      "file_type": "document",
+      "source_file": "docs/architecture/ADR-008-deferred-correction-and-field-audit.md",
+      "source_location": "L35"
+    },
+    {
+      "id": "architecture_adr_008_deferred_correction_and_field_audit_implementation_notes",
+      "label": "Implementation Notes",
+      "file_type": "document",
+      "source_file": "docs/architecture/ADR-008-deferred-correction-and-field-audit.md",
+      "source_location": "L45"
+    },
+    {
+      "id": "docs_architecture_adr_010_kiosk_pos_cash_zelle_custom_items_md",
+      "label": "ADR-010-kiosk-pos-cash-zelle-custom-items.md",
+      "file_type": "document",
+      "source_file": "docs/architecture/ADR-010-kiosk-pos-cash-zelle-custom-items.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "architecture_adr_010_kiosk_pos_cash_zelle_custom_items_adr_010_kiosk_pos_mode_with_cash_zelle_and_custom_items",
+      "label": "ADR-010: Kiosk POS Mode with Cash/Zelle and Custom Items",
+      "file_type": "document",
+      "source_file": "docs/architecture/ADR-010-kiosk-pos-cash-zelle-custom-items.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "architecture_adr_010_kiosk_pos_cash_zelle_custom_items_context",
+      "label": "Context",
+      "file_type": "document",
+      "source_file": "docs/architecture/ADR-010-kiosk-pos-cash-zelle-custom-items.md",
+      "source_location": "L6"
+    },
+    {
+      "id": "architecture_adr_010_kiosk_pos_cash_zelle_custom_items_decision_drivers",
+      "label": "Decision Drivers",
+      "file_type": "document",
+      "source_file": "docs/architecture/ADR-010-kiosk-pos-cash-zelle-custom-items.md",
+      "source_location": "L10"
+    },
+    {
+      "id": "architecture_adr_010_kiosk_pos_cash_zelle_custom_items_options_considered",
+      "label": "Options Considered",
+      "file_type": "document",
+      "source_file": "docs/architecture/ADR-010-kiosk-pos-cash-zelle-custom-items.md",
+      "source_location": "L17"
+    },
+    {
+      "id": "architecture_adr_010_kiosk_pos_cash_zelle_custom_items_decision",
+      "label": "Decision",
+      "file_type": "document",
+      "source_file": "docs/architecture/ADR-010-kiosk-pos-cash-zelle-custom-items.md",
+      "source_location": "L23"
+    },
+    {
+      "id": "architecture_adr_010_kiosk_pos_cash_zelle_custom_items_rationale",
+      "label": "Rationale",
+      "file_type": "document",
+      "source_file": "docs/architecture/ADR-010-kiosk-pos-cash-zelle-custom-items.md",
+      "source_location": "L32"
+    },
+    {
+      "id": "architecture_adr_010_kiosk_pos_cash_zelle_custom_items_consequences",
+      "label": "Consequences",
+      "file_type": "document",
+      "source_file": "docs/architecture/ADR-010-kiosk-pos-cash-zelle-custom-items.md",
+      "source_location": "L36"
+    },
+    {
+      "id": "architecture_adr_010_kiosk_pos_cash_zelle_custom_items_implementation_notes",
+      "label": "Implementation Notes",
+      "file_type": "document",
+      "source_file": "docs/architecture/ADR-010-kiosk-pos-cash-zelle-custom-items.md",
+      "source_location": "L46"
+    },
+    {
+      "id": "docs_architecture_adr_007_schema_driven_csv_mapping_md",
+      "label": "ADR-007-schema-driven-csv-mapping.md",
+      "file_type": "document",
+      "source_file": "docs/architecture/ADR-007-schema-driven-csv-mapping.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "architecture_adr_007_schema_driven_csv_mapping_adr_007_schema_driven_csv_mapping_for_accounting_exports",
+      "label": "ADR-007: Schema-Driven CSV Mapping for Accounting Exports",
+      "file_type": "document",
+      "source_file": "docs/architecture/ADR-007-schema-driven-csv-mapping.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "architecture_adr_007_schema_driven_csv_mapping_context",
+      "label": "Context",
+      "file_type": "document",
+      "source_file": "docs/architecture/ADR-007-schema-driven-csv-mapping.md",
+      "source_location": "L6"
+    },
+    {
+      "id": "architecture_adr_007_schema_driven_csv_mapping_decision_drivers",
+      "label": "Decision Drivers",
+      "file_type": "document",
+      "source_file": "docs/architecture/ADR-007-schema-driven-csv-mapping.md",
+      "source_location": "L10"
+    },
+    {
+      "id": "architecture_adr_007_schema_driven_csv_mapping_options_considered",
+      "label": "Options Considered",
+      "file_type": "document",
+      "source_file": "docs/architecture/ADR-007-schema-driven-csv-mapping.md",
+      "source_location": "L17"
+    },
+    {
+      "id": "architecture_adr_007_schema_driven_csv_mapping_decision",
+      "label": "Decision",
+      "file_type": "document",
+      "source_file": "docs/architecture/ADR-007-schema-driven-csv-mapping.md",
+      "source_location": "L23"
+    },
+    {
+      "id": "architecture_adr_007_schema_driven_csv_mapping_rationale",
+      "label": "Rationale",
+      "file_type": "document",
+      "source_file": "docs/architecture/ADR-007-schema-driven-csv-mapping.md",
+      "source_location": "L32"
+    },
+    {
+      "id": "architecture_adr_007_schema_driven_csv_mapping_consequences",
+      "label": "Consequences",
+      "file_type": "document",
+      "source_file": "docs/architecture/ADR-007-schema-driven-csv-mapping.md",
+      "source_location": "L36"
+    },
+    {
+      "id": "architecture_adr_007_schema_driven_csv_mapping_implementation_notes",
+      "label": "Implementation Notes",
+      "file_type": "document",
+      "source_file": "docs/architecture/ADR-007-schema-driven-csv-mapping.md",
+      "source_location": "L46"
+    },
+    {
+      "id": "docs_sprint_4_progress_md",
+      "label": "progress.md",
+      "file_type": "document",
+      "source_file": "docs/sprint-4/progress.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "sprint_4_progress_sprint_4_progress_tracker",
+      "label": "Sprint 4 Progress Tracker",
+      "file_type": "document",
+      "source_file": "docs/sprint-4/progress.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "sprint_4_progress_checklist",
+      "label": "Checklist",
+      "file_type": "document",
+      "source_file": "docs/sprint-4/progress.md",
+      "source_location": "L6"
+    },
+    {
+      "id": "sprint_4_progress_phase_notes",
+      "label": "Phase Notes",
+      "file_type": "document",
+      "source_file": "docs/sprint-4/progress.md",
+      "source_location": "L18"
+    },
+    {
+      "id": "sprint_4_progress_open_blockers",
+      "label": "Open Blockers",
+      "file_type": "document",
+      "source_file": "docs/sprint-4/progress.md",
+      "source_location": "L41"
+    },
+    {
+      "id": "sprint_4_progress_related_issues",
+      "label": "Related Issues",
+      "file_type": "document",
+      "source_file": "docs/sprint-4/progress.md",
+      "source_location": "L45"
+    },
+    {
+      "id": "docs_sprint_4_done_md",
+      "label": "done.md",
+      "file_type": "document",
+      "source_file": "docs/sprint-4/done.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "sprint_4_done_sprint_4_done_handoff",
+      "label": "Sprint 4 Done Handoff",
+      "file_type": "document",
+      "source_file": "docs/sprint-4/done.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "sprint_4_done_what_was_delivered",
+      "label": "What Was Delivered",
+      "file_type": "document",
+      "source_file": "docs/sprint-4/done.md",
+      "source_location": "L5"
+    },
+    {
+      "id": "sprint_4_done_validation_summary",
+      "label": "Validation Summary",
+      "file_type": "document",
+      "source_file": "docs/sprint-4/done.md",
+      "source_location": "L14"
+    },
+    {
+      "id": "sprint_4_done_issues_found_and_resolved",
+      "label": "Issues Found and Resolved",
+      "file_type": "document",
+      "source_file": "docs/sprint-4/done.md",
+      "source_location": "L23"
+    },
+    {
+      "id": "sprint_4_done_remaining_risks",
+      "label": "Remaining Risks",
+      "file_type": "document",
+      "source_file": "docs/sprint-4/done.md",
+      "source_location": "L29"
+    },
+    {
+      "id": "sprint_4_done_next_sprint_inputs",
+      "label": "Next Sprint Inputs",
+      "file_type": "document",
+      "source_file": "docs/sprint-4/done.md",
+      "source_location": "L35"
+    },
+    {
+      "id": "sprint_4_done_handoff_commands",
+      "label": "Handoff Commands",
+      "file_type": "document",
+      "source_file": "docs/sprint-4/done.md",
+      "source_location": "L41"
+    },
+    {
+      "id": "docs_sprint_4_plan_md",
+      "label": "plan.md",
+      "file_type": "document",
+      "source_file": "docs/sprint-4/plan.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "sprint_4_plan_sprint_4_plan_cash_window_full_flow_and_outputs_approval_workflow",
+      "label": "Sprint 4 Plan - Cash Window Full Flow and Outputs Approval Workflow",
+      "file_type": "document",
+      "source_file": "docs/sprint-4/plan.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "sprint_4_plan_sprint_goal",
+      "label": "Sprint Goal",
+      "file_type": "document",
+      "source_file": "docs/sprint-4/plan.md",
+      "source_location": "L9"
+    },
+    {
+      "id": "sprint_4_plan_in_scope",
+      "label": "In Scope",
+      "file_type": "document",
+      "source_file": "docs/sprint-4/plan.md",
+      "source_location": "L13"
+    },
+    {
+      "id": "sprint_4_plan_out_of_scope",
+      "label": "Out of Scope",
+      "file_type": "document",
+      "source_file": "docs/sprint-4/plan.md",
+      "source_location": "L35"
+    },
+    {
+      "id": "sprint_4_plan_acceptance_criteria",
+      "label": "Acceptance Criteria",
+      "file_type": "document",
+      "source_file": "docs/sprint-4/plan.md",
+      "source_location": "L41"
+    },
+    {
+      "id": "sprint_4_plan_work_breakdown",
+      "label": "Work Breakdown",
+      "file_type": "document",
+      "source_file": "docs/sprint-4/plan.md",
+      "source_location": "L58"
+    },
+    {
+      "id": "sprint_4_plan_definition_of_done",
+      "label": "Definition of Done",
+      "file_type": "document",
+      "source_file": "docs/sprint-4/plan.md",
+      "source_location": "L76"
+    },
+    {
+      "id": "docs_sprint_3_progress_md",
+      "label": "progress.md",
+      "file_type": "document",
+      "source_file": "docs/sprint-3/progress.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "sprint_3_progress_sprint_3_progress_tracker",
+      "label": "Sprint 3 Progress Tracker",
+      "file_type": "document",
+      "source_file": "docs/sprint-3/progress.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "sprint_3_progress_checklist",
+      "label": "Checklist",
+      "file_type": "document",
+      "source_file": "docs/sprint-3/progress.md",
+      "source_location": "L6"
+    },
+    {
+      "id": "sprint_3_progress_phase_notes",
+      "label": "Phase Notes",
+      "file_type": "document",
+      "source_file": "docs/sprint-3/progress.md",
+      "source_location": "L19"
+    },
+    {
+      "id": "sprint_3_progress_open_blockers",
+      "label": "Open Blockers",
+      "file_type": "document",
+      "source_file": "docs/sprint-3/progress.md",
+      "source_location": "L46"
+    },
+    {
+      "id": "sprint_3_progress_related_issues",
+      "label": "Related Issues",
+      "file_type": "document",
+      "source_file": "docs/sprint-3/progress.md",
+      "source_location": "L50"
+    },
+    {
+      "id": "docs_sprint_3_done_md",
+      "label": "done.md",
+      "file_type": "document",
+      "source_file": "docs/sprint-3/done.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "sprint_3_done_sprint_3_done_handoff",
+      "label": "Sprint 3 Done Handoff",
+      "file_type": "document",
+      "source_file": "docs/sprint-3/done.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "sprint_3_done_what_was_delivered",
+      "label": "What Was Delivered",
+      "file_type": "document",
+      "source_file": "docs/sprint-3/done.md",
+      "source_location": "L5"
+    },
+    {
+      "id": "sprint_3_done_validation_summary",
+      "label": "Validation Summary",
+      "file_type": "document",
+      "source_file": "docs/sprint-3/done.md",
+      "source_location": "L15"
+    },
+    {
+      "id": "sprint_3_done_issues_found_and_resolved",
+      "label": "Issues Found and Resolved",
+      "file_type": "document",
+      "source_file": "docs/sprint-3/done.md",
+      "source_location": "L26"
+    },
+    {
+      "id": "sprint_3_done_remaining_risks",
+      "label": "Remaining Risks",
+      "file_type": "document",
+      "source_file": "docs/sprint-3/done.md",
+      "source_location": "L31"
+    },
+    {
+      "id": "sprint_3_done_next_sprint_inputs",
+      "label": "Next Sprint Inputs",
+      "file_type": "document",
+      "source_file": "docs/sprint-3/done.md",
+      "source_location": "L37"
+    },
+    {
+      "id": "sprint_3_done_handoff_commands",
+      "label": "Handoff Commands",
+      "file_type": "document",
+      "source_file": "docs/sprint-3/done.md",
+      "source_location": "L44"
+    },
+    {
+      "id": "docs_sprint_3_plan_md",
+      "label": "plan.md",
+      "file_type": "document",
+      "source_file": "docs/sprint-3/plan.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "sprint_3_plan_sprint_3_plan_authentication_hardening_and_module_expansion_start",
+      "label": "Sprint 3 Plan - Authentication Hardening and Module Expansion Start",
+      "file_type": "document",
+      "source_file": "docs/sprint-3/plan.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "sprint_3_plan_sprint_goal",
+      "label": "Sprint Goal",
+      "file_type": "document",
+      "source_file": "docs/sprint-3/plan.md",
+      "source_location": "L9"
+    },
+    {
+      "id": "sprint_3_plan_in_scope",
+      "label": "In Scope",
+      "file_type": "document",
+      "source_file": "docs/sprint-3/plan.md",
+      "source_location": "L13"
+    },
+    {
+      "id": "sprint_3_plan_out_of_scope",
+      "label": "Out of Scope",
+      "file_type": "document",
+      "source_file": "docs/sprint-3/plan.md",
+      "source_location": "L40"
+    },
+    {
+      "id": "sprint_3_plan_acceptance_criteria",
+      "label": "Acceptance Criteria",
+      "file_type": "document",
+      "source_file": "docs/sprint-3/plan.md",
+      "source_location": "L47"
+    },
+    {
+      "id": "sprint_3_plan_work_breakdown",
+      "label": "Work Breakdown",
+      "file_type": "document",
+      "source_file": "docs/sprint-3/plan.md",
+      "source_location": "L64"
+    },
+    {
+      "id": "sprint_3_plan_definition_of_done",
+      "label": "Definition of Done",
+      "file_type": "document",
+      "source_file": "docs/sprint-3/plan.md",
+      "source_location": "L82"
+    },
+    {
+      "id": "docs_sprint_2_progress_md",
+      "label": "progress.md",
+      "file_type": "document",
+      "source_file": "docs/sprint-2/progress.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "sprint_2_progress_sprint_2_progress_tracker",
+      "label": "Sprint 2 Progress Tracker",
+      "file_type": "document",
+      "source_file": "docs/sprint-2/progress.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "sprint_2_progress_checklist",
+      "label": "Checklist",
+      "file_type": "document",
+      "source_file": "docs/sprint-2/progress.md",
+      "source_location": "L6"
+    },
+    {
+      "id": "sprint_2_progress_phase_notes",
+      "label": "Phase Notes",
+      "file_type": "document",
+      "source_file": "docs/sprint-2/progress.md",
+      "source_location": "L18"
+    },
+    {
+      "id": "sprint_2_progress_open_blockers",
+      "label": "Open Blockers",
+      "file_type": "document",
+      "source_file": "docs/sprint-2/progress.md",
+      "source_location": "L53"
+    },
+    {
+      "id": "sprint_2_progress_related_issues",
+      "label": "Related Issues",
+      "file_type": "document",
+      "source_file": "docs/sprint-2/progress.md",
+      "source_location": "L57"
+    },
+    {
+      "id": "docs_sprint_2_done_md",
+      "label": "done.md",
+      "file_type": "document",
+      "source_file": "docs/sprint-2/done.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "sprint_2_done_sprint_2_done_handoff",
+      "label": "Sprint 2 Done Handoff",
+      "file_type": "document",
+      "source_file": "docs/sprint-2/done.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "sprint_2_done_what_was_delivered",
+      "label": "What Was Delivered",
+      "file_type": "document",
+      "source_file": "docs/sprint-2/done.md",
+      "source_location": "L5"
+    },
+    {
+      "id": "sprint_2_done_validation_summary",
+      "label": "Validation Summary",
+      "file_type": "document",
+      "source_file": "docs/sprint-2/done.md",
+      "source_location": "L15"
+    },
+    {
+      "id": "sprint_2_done_issues_found_and_resolved",
+      "label": "Issues Found and Resolved",
+      "file_type": "document",
+      "source_file": "docs/sprint-2/done.md",
+      "source_location": "L26"
+    },
+    {
+      "id": "sprint_2_done_remaining_risks",
+      "label": "Remaining Risks",
+      "file_type": "document",
+      "source_file": "docs/sprint-2/done.md",
+      "source_location": "L31"
+    },
+    {
+      "id": "sprint_2_done_next_sprint_inputs",
+      "label": "Next Sprint Inputs",
+      "file_type": "document",
+      "source_file": "docs/sprint-2/done.md",
+      "source_location": "L37"
+    },
+    {
+      "id": "sprint_2_done_handoff_commands",
+      "label": "Handoff Commands",
+      "file_type": "document",
+      "source_file": "docs/sprint-2/done.md",
+      "source_location": "L44"
+    },
+    {
+      "id": "docs_sprint_2_plan_md",
+      "label": "plan.md",
+      "file_type": "document",
+      "source_file": "docs/sprint-2/plan.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "sprint_2_plan_sprint_2_plan_auth_rbac_hardening_and_timezone_normalization",
+      "label": "Sprint 2 Plan - Auth/RBAC Hardening and Timezone Normalization",
+      "file_type": "document",
+      "source_file": "docs/sprint-2/plan.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "sprint_2_plan_sprint_goal",
+      "label": "Sprint Goal",
+      "file_type": "document",
+      "source_file": "docs/sprint-2/plan.md",
+      "source_location": "L9"
+    },
+    {
+      "id": "sprint_2_plan_in_scope",
+      "label": "In Scope",
+      "file_type": "document",
+      "source_file": "docs/sprint-2/plan.md",
+      "source_location": "L16"
+    },
+    {
+      "id": "sprint_2_plan_out_of_scope",
+      "label": "Out of Scope",
+      "file_type": "document",
+      "source_file": "docs/sprint-2/plan.md",
+      "source_location": "L42"
+    },
+    {
+      "id": "sprint_2_plan_acceptance_criteria",
+      "label": "Acceptance Criteria",
+      "file_type": "document",
+      "source_file": "docs/sprint-2/plan.md",
+      "source_location": "L49"
+    },
+    {
+      "id": "sprint_2_plan_work_breakdown",
+      "label": "Work Breakdown",
+      "file_type": "document",
+      "source_file": "docs/sprint-2/plan.md",
+      "source_location": "L66"
+    },
+    {
+      "id": "sprint_2_plan_definition_of_done",
+      "label": "Definition of Done",
+      "file_type": "document",
+      "source_file": "docs/sprint-2/plan.md",
+      "source_location": "L84"
+    },
+    {
+      "id": "docs_sprint_5_progress_md",
+      "label": "progress.md",
+      "file_type": "document",
+      "source_file": "docs/sprint-5/progress.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "sprint_5_progress_sprint_5_progress_tracker",
+      "label": "Sprint 5 Progress Tracker",
+      "file_type": "document",
+      "source_file": "docs/sprint-5/progress.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "sprint_5_progress_checklist",
+      "label": "Checklist",
+      "file_type": "document",
+      "source_file": "docs/sprint-5/progress.md",
+      "source_location": "L6"
+    },
+    {
+      "id": "sprint_5_progress_phase_notes",
+      "label": "Phase Notes",
+      "file_type": "document",
+      "source_file": "docs/sprint-5/progress.md",
+      "source_location": "L17"
+    },
+    {
+      "id": "sprint_5_progress_open_blockers",
+      "label": "Open Blockers",
+      "file_type": "document",
+      "source_file": "docs/sprint-5/progress.md",
+      "source_location": "L41"
+    },
+    {
+      "id": "sprint_5_progress_related_issues",
+      "label": "Related Issues",
+      "file_type": "document",
+      "source_file": "docs/sprint-5/progress.md",
+      "source_location": "L45"
+    },
+    {
+      "id": "docs_sprint_5_done_md",
+      "label": "done.md",
+      "file_type": "document",
+      "source_file": "docs/sprint-5/done.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "sprint_5_done_sprint_5_done_handoff",
+      "label": "Sprint 5 Done Handoff",
+      "file_type": "document",
+      "source_file": "docs/sprint-5/done.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "sprint_5_done_what_was_delivered",
+      "label": "What Was Delivered",
+      "file_type": "document",
+      "source_file": "docs/sprint-5/done.md",
+      "source_location": "L5"
+    },
+    {
+      "id": "sprint_5_done_validation_summary",
+      "label": "Validation Summary",
+      "file_type": "document",
+      "source_file": "docs/sprint-5/done.md",
+      "source_location": "L15"
+    },
+    {
+      "id": "sprint_5_done_issues_found_and_resolved",
+      "label": "Issues Found and Resolved",
+      "file_type": "document",
+      "source_file": "docs/sprint-5/done.md",
+      "source_location": "L28"
+    },
+    {
+      "id": "sprint_5_done_remaining_risks",
+      "label": "Remaining Risks",
+      "file_type": "document",
+      "source_file": "docs/sprint-5/done.md",
+      "source_location": "L33"
+    },
+    {
+      "id": "sprint_5_done_next_sprint_inputs",
+      "label": "Next Sprint Inputs",
+      "file_type": "document",
+      "source_file": "docs/sprint-5/done.md",
+      "source_location": "L39"
+    },
+    {
+      "id": "sprint_5_done_handoff_commands",
+      "label": "Handoff Commands",
+      "file_type": "document",
+      "source_file": "docs/sprint-5/done.md",
+      "source_location": "L45"
+    },
+    {
+      "id": "docs_sprint_5_plan_md",
+      "label": "plan.md",
+      "file_type": "document",
+      "source_file": "docs/sprint-5/plan.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "sprint_5_plan_sprint_5_plan_identity_provider_integration_and_workflow_ux_hardening",
+      "label": "Sprint 5 Plan - Identity Provider Integration and Workflow UX Hardening",
+      "file_type": "document",
+      "source_file": "docs/sprint-5/plan.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "sprint_5_plan_sprint_goal",
+      "label": "Sprint Goal",
+      "file_type": "document",
+      "source_file": "docs/sprint-5/plan.md",
+      "source_location": "L9"
+    },
+    {
+      "id": "sprint_5_plan_in_scope",
+      "label": "In Scope",
+      "file_type": "document",
+      "source_file": "docs/sprint-5/plan.md",
+      "source_location": "L13"
+    },
+    {
+      "id": "sprint_5_plan_out_of_scope",
+      "label": "Out of Scope",
+      "file_type": "document",
+      "source_file": "docs/sprint-5/plan.md",
+      "source_location": "L35"
+    },
+    {
+      "id": "sprint_5_plan_acceptance_criteria",
+      "label": "Acceptance Criteria",
+      "file_type": "document",
+      "source_file": "docs/sprint-5/plan.md",
+      "source_location": "L41"
+    },
+    {
+      "id": "sprint_5_plan_work_breakdown",
+      "label": "Work Breakdown",
+      "file_type": "document",
+      "source_file": "docs/sprint-5/plan.md",
+      "source_location": "L57"
+    },
+    {
+      "id": "sprint_5_plan_definition_of_done",
+      "label": "Definition of Done",
+      "file_type": "document",
+      "source_file": "docs/sprint-5/plan.md",
+      "source_location": "L75"
+    },
+    {
+      "id": "db_migrations_readme_md",
+      "label": "README.md",
+      "file_type": "document",
+      "source_file": "db/migrations/README.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "migrations_readme_postgresql_migrations",
+      "label": "PostgreSQL migrations",
+      "file_type": "document",
+      "source_file": "db/migrations/README.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "migrations_readme_files",
+      "label": "Files",
+      "file_type": "document",
+      "source_file": "db/migrations/README.md",
+      "source_location": "L5"
+    },
+    {
+      "id": "migrations_readme_run_with_psql",
+      "label": "Run with psql",
+      "file_type": "document",
+      "source_file": "db/migrations/README.md",
+      "source_location": "L17"
+    },
+    {
+      "id": "migrations_readme_codeblock_1",
+      "label": "code:bash (export DATABASE_URL=\"postgresql://ofrendas:ofrendas@localhos)",
+      "file_type": "document",
+      "source_file": "db/migrations/README.md",
+      "source_location": "L21"
+    },
+    {
+      "id": "migrations_readme_run_against_docker_postgres",
+      "label": "Run against Docker postgres",
+      "file_type": "document",
+      "source_file": "db/migrations/README.md",
+      "source_location": "L32"
+    },
+    {
+      "id": "migrations_readme_codeblock_2",
+      "label": "code:bash (docker exec -i postgres psql -U ofrendas -d ofrendas -v ON_E)",
+      "file_type": "document",
+      "source_file": "db/migrations/README.md",
+      "source_location": "L36"
+    },
+    {
+      "id": "migrations_readme_notes",
+      "label": "Notes",
+      "file_type": "document",
+      "source_file": "db/migrations/README.md",
+      "source_location": "L46"
+    }
+  ],
+  "edges": [
+    {
+      "source": "docs_architecture_adr_006_postgresql_reporting_with_sharepoint_complement_md",
+      "target": "architecture_adr_006_postgresql_reporting_with_sharepoint_complement_adr_006_postgresql_as_single_source_of_truth_for_app_operations_and_reporting",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/architecture/ADR-006-postgresql-reporting-with-sharepoint-complement.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "architecture_adr_006_postgresql_reporting_with_sharepoint_complement_adr_006_postgresql_as_single_source_of_truth_for_app_operations_and_reporting",
+      "target": "architecture_adr_006_postgresql_reporting_with_sharepoint_complement_context",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/architecture/ADR-006-postgresql-reporting-with-sharepoint-complement.md",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "architecture_adr_006_postgresql_reporting_with_sharepoint_complement_adr_006_postgresql_as_single_source_of_truth_for_app_operations_and_reporting",
+      "target": "architecture_adr_006_postgresql_reporting_with_sharepoint_complement_decision_drivers",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/architecture/ADR-006-postgresql-reporting-with-sharepoint-complement.md",
+      "source_location": "L10",
+      "weight": 1.0
+    },
+    {
+      "source": "architecture_adr_006_postgresql_reporting_with_sharepoint_complement_adr_006_postgresql_as_single_source_of_truth_for_app_operations_and_reporting",
+      "target": "architecture_adr_006_postgresql_reporting_with_sharepoint_complement_options_considered",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/architecture/ADR-006-postgresql-reporting-with-sharepoint-complement.md",
+      "source_location": "L17",
+      "weight": 1.0
+    },
+    {
+      "source": "architecture_adr_006_postgresql_reporting_with_sharepoint_complement_adr_006_postgresql_as_single_source_of_truth_for_app_operations_and_reporting",
+      "target": "architecture_adr_006_postgresql_reporting_with_sharepoint_complement_decision",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/architecture/ADR-006-postgresql-reporting-with-sharepoint-complement.md",
+      "source_location": "L23",
+      "weight": 1.0
+    },
+    {
+      "source": "architecture_adr_006_postgresql_reporting_with_sharepoint_complement_adr_006_postgresql_as_single_source_of_truth_for_app_operations_and_reporting",
+      "target": "architecture_adr_006_postgresql_reporting_with_sharepoint_complement_rationale",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/architecture/ADR-006-postgresql-reporting-with-sharepoint-complement.md",
+      "source_location": "L32",
+      "weight": 1.0
+    },
+    {
+      "source": "architecture_adr_006_postgresql_reporting_with_sharepoint_complement_adr_006_postgresql_as_single_source_of_truth_for_app_operations_and_reporting",
+      "target": "architecture_adr_006_postgresql_reporting_with_sharepoint_complement_consequences",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/architecture/ADR-006-postgresql-reporting-with-sharepoint-complement.md",
+      "source_location": "L36",
+      "weight": 1.0
+    },
+    {
+      "source": "architecture_adr_006_postgresql_reporting_with_sharepoint_complement_adr_006_postgresql_as_single_source_of_truth_for_app_operations_and_reporting",
+      "target": "architecture_adr_006_postgresql_reporting_with_sharepoint_complement_implementation_notes",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/architecture/ADR-006-postgresql-reporting-with-sharepoint-complement.md",
+      "source_location": "L46",
+      "weight": 1.0
+    },
+    {
+      "source": "docs_architecture_adr_009_cash_window_and_daily_close_audit_md",
+      "target": "architecture_adr_009_cash_window_and_daily_close_audit_adr_009_cash_window_with_daily_close_and_audit_trail",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/architecture/ADR-009-cash-window-and-daily-close-audit.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "architecture_adr_009_cash_window_and_daily_close_audit_adr_009_cash_window_with_daily_close_and_audit_trail",
+      "target": "architecture_adr_009_cash_window_and_daily_close_audit_context",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/architecture/ADR-009-cash-window-and-daily-close-audit.md",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "architecture_adr_009_cash_window_and_daily_close_audit_adr_009_cash_window_with_daily_close_and_audit_trail",
+      "target": "architecture_adr_009_cash_window_and_daily_close_audit_decision_drivers",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/architecture/ADR-009-cash-window-and-daily-close-audit.md",
+      "source_location": "L10",
+      "weight": 1.0
+    },
+    {
+      "source": "architecture_adr_009_cash_window_and_daily_close_audit_adr_009_cash_window_with_daily_close_and_audit_trail",
+      "target": "architecture_adr_009_cash_window_and_daily_close_audit_options_considered",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/architecture/ADR-009-cash-window-and-daily-close-audit.md",
+      "source_location": "L16",
+      "weight": 1.0
+    },
+    {
+      "source": "architecture_adr_009_cash_window_and_daily_close_audit_adr_009_cash_window_with_daily_close_and_audit_trail",
+      "target": "architecture_adr_009_cash_window_and_daily_close_audit_decision",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/architecture/ADR-009-cash-window-and-daily-close-audit.md",
+      "source_location": "L22",
+      "weight": 1.0
+    },
+    {
+      "source": "architecture_adr_009_cash_window_and_daily_close_audit_adr_009_cash_window_with_daily_close_and_audit_trail",
+      "target": "architecture_adr_009_cash_window_and_daily_close_audit_rationale",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/architecture/ADR-009-cash-window-and-daily-close-audit.md",
+      "source_location": "L31",
+      "weight": 1.0
+    },
+    {
+      "source": "architecture_adr_009_cash_window_and_daily_close_audit_adr_009_cash_window_with_daily_close_and_audit_trail",
+      "target": "architecture_adr_009_cash_window_and_daily_close_audit_consequences",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/architecture/ADR-009-cash-window-and-daily-close-audit.md",
+      "source_location": "L35",
+      "weight": 1.0
+    },
+    {
+      "source": "architecture_adr_009_cash_window_and_daily_close_audit_adr_009_cash_window_with_daily_close_and_audit_trail",
+      "target": "architecture_adr_009_cash_window_and_daily_close_audit_implementation_notes",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/architecture/ADR-009-cash-window-and-daily-close-audit.md",
+      "source_location": "L45",
+      "weight": 1.0
+    },
+    {
+      "source": "docs_architecture_adr_004_cloudflare_tunnel_low_cost_ingress_md",
+      "target": "architecture_adr_004_cloudflare_tunnel_low_cost_ingress_adr_004_secure_ingress_with_cloudflare_tunnel_for_low_cost_hosting",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/architecture/ADR-004-cloudflare-tunnel-low-cost-ingress.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "architecture_adr_004_cloudflare_tunnel_low_cost_ingress_adr_004_secure_ingress_with_cloudflare_tunnel_for_low_cost_hosting",
+      "target": "architecture_adr_004_cloudflare_tunnel_low_cost_ingress_context",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/architecture/ADR-004-cloudflare-tunnel-low-cost-ingress.md",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "architecture_adr_004_cloudflare_tunnel_low_cost_ingress_adr_004_secure_ingress_with_cloudflare_tunnel_for_low_cost_hosting",
+      "target": "architecture_adr_004_cloudflare_tunnel_low_cost_ingress_decision_drivers",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/architecture/ADR-004-cloudflare-tunnel-low-cost-ingress.md",
+      "source_location": "L10",
+      "weight": 1.0
+    },
+    {
+      "source": "architecture_adr_004_cloudflare_tunnel_low_cost_ingress_adr_004_secure_ingress_with_cloudflare_tunnel_for_low_cost_hosting",
+      "target": "architecture_adr_004_cloudflare_tunnel_low_cost_ingress_options_considered",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/architecture/ADR-004-cloudflare-tunnel-low-cost-ingress.md",
+      "source_location": "L17",
+      "weight": 1.0
+    },
+    {
+      "source": "architecture_adr_004_cloudflare_tunnel_low_cost_ingress_adr_004_secure_ingress_with_cloudflare_tunnel_for_low_cost_hosting",
+      "target": "architecture_adr_004_cloudflare_tunnel_low_cost_ingress_decision",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/architecture/ADR-004-cloudflare-tunnel-low-cost-ingress.md",
+      "source_location": "L23",
+      "weight": 1.0
+    },
+    {
+      "source": "architecture_adr_004_cloudflare_tunnel_low_cost_ingress_adr_004_secure_ingress_with_cloudflare_tunnel_for_low_cost_hosting",
+      "target": "architecture_adr_004_cloudflare_tunnel_low_cost_ingress_rationale",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/architecture/ADR-004-cloudflare-tunnel-low-cost-ingress.md",
+      "source_location": "L31",
+      "weight": 1.0
+    },
+    {
+      "source": "architecture_adr_004_cloudflare_tunnel_low_cost_ingress_adr_004_secure_ingress_with_cloudflare_tunnel_for_low_cost_hosting",
+      "target": "architecture_adr_004_cloudflare_tunnel_low_cost_ingress_consequences",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/architecture/ADR-004-cloudflare-tunnel-low-cost-ingress.md",
+      "source_location": "L35",
+      "weight": 1.0
+    },
+    {
+      "source": "architecture_adr_004_cloudflare_tunnel_low_cost_ingress_adr_004_secure_ingress_with_cloudflare_tunnel_for_low_cost_hosting",
+      "target": "architecture_adr_004_cloudflare_tunnel_low_cost_ingress_implementation_notes",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/architecture/ADR-004-cloudflare-tunnel-low-cost-ingress.md",
+      "source_location": "L45",
+      "weight": 1.0
+    },
+    {
+      "source": "docs_architecture_adr_002_storage_resilience_sharepoint_fallback_md",
+      "target": "architecture_adr_002_storage_resilience_sharepoint_fallback_adr_002_postgresql_as_primary_operational_storage_sharepoint_deferred",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/architecture/ADR-002-storage-resilience-sharepoint-fallback.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "architecture_adr_002_storage_resilience_sharepoint_fallback_adr_002_postgresql_as_primary_operational_storage_sharepoint_deferred",
+      "target": "architecture_adr_002_storage_resilience_sharepoint_fallback_context",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/architecture/ADR-002-storage-resilience-sharepoint-fallback.md",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "architecture_adr_002_storage_resilience_sharepoint_fallback_adr_002_postgresql_as_primary_operational_storage_sharepoint_deferred",
+      "target": "architecture_adr_002_storage_resilience_sharepoint_fallback_decision_drivers",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/architecture/ADR-002-storage-resilience-sharepoint-fallback.md",
+      "source_location": "L10",
+      "weight": 1.0
+    },
+    {
+      "source": "architecture_adr_002_storage_resilience_sharepoint_fallback_adr_002_postgresql_as_primary_operational_storage_sharepoint_deferred",
+      "target": "architecture_adr_002_storage_resilience_sharepoint_fallback_options_considered",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/architecture/ADR-002-storage-resilience-sharepoint-fallback.md",
+      "source_location": "L17",
+      "weight": 1.0
+    },
+    {
+      "source": "architecture_adr_002_storage_resilience_sharepoint_fallback_adr_002_postgresql_as_primary_operational_storage_sharepoint_deferred",
+      "target": "architecture_adr_002_storage_resilience_sharepoint_fallback_decision",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/architecture/ADR-002-storage-resilience-sharepoint-fallback.md",
+      "source_location": "L23",
+      "weight": 1.0
+    },
+    {
+      "source": "architecture_adr_002_storage_resilience_sharepoint_fallback_adr_002_postgresql_as_primary_operational_storage_sharepoint_deferred",
+      "target": "architecture_adr_002_storage_resilience_sharepoint_fallback_rationale",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/architecture/ADR-002-storage-resilience-sharepoint-fallback.md",
+      "source_location": "L32",
+      "weight": 1.0
+    },
+    {
+      "source": "architecture_adr_002_storage_resilience_sharepoint_fallback_adr_002_postgresql_as_primary_operational_storage_sharepoint_deferred",
+      "target": "architecture_adr_002_storage_resilience_sharepoint_fallback_consequences",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/architecture/ADR-002-storage-resilience-sharepoint-fallback.md",
+      "source_location": "L36",
+      "weight": 1.0
+    },
+    {
+      "source": "architecture_adr_002_storage_resilience_sharepoint_fallback_adr_002_postgresql_as_primary_operational_storage_sharepoint_deferred",
+      "target": "architecture_adr_002_storage_resilience_sharepoint_fallback_implementation_notes",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/architecture/ADR-002-storage-resilience-sharepoint-fallback.md",
+      "source_location": "L46",
+      "weight": 1.0
+    },
+    {
+      "source": "docs_architecture_adr_008_deferred_correction_and_field_audit_md",
+      "target": "architecture_adr_008_deferred_correction_and_field_audit_adr_008_deferred_correction_workflow_and_field_level_audit_in_ui",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/architecture/ADR-008-deferred-correction-and-field-audit.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "architecture_adr_008_deferred_correction_and_field_audit_adr_008_deferred_correction_workflow_and_field_level_audit_in_ui",
+      "target": "architecture_adr_008_deferred_correction_and_field_audit_context",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/architecture/ADR-008-deferred-correction-and-field-audit.md",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "architecture_adr_008_deferred_correction_and_field_audit_adr_008_deferred_correction_workflow_and_field_level_audit_in_ui",
+      "target": "architecture_adr_008_deferred_correction_and_field_audit_decision_drivers",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/architecture/ADR-008-deferred-correction-and-field-audit.md",
+      "source_location": "L10",
+      "weight": 1.0
+    },
+    {
+      "source": "architecture_adr_008_deferred_correction_and_field_audit_adr_008_deferred_correction_workflow_and_field_level_audit_in_ui",
+      "target": "architecture_adr_008_deferred_correction_and_field_audit_options_considered",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/architecture/ADR-008-deferred-correction-and-field-audit.md",
+      "source_location": "L16",
+      "weight": 1.0
+    },
+    {
+      "source": "architecture_adr_008_deferred_correction_and_field_audit_adr_008_deferred_correction_workflow_and_field_level_audit_in_ui",
+      "target": "architecture_adr_008_deferred_correction_and_field_audit_decision",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/architecture/ADR-008-deferred-correction-and-field-audit.md",
+      "source_location": "L22",
+      "weight": 1.0
+    },
+    {
+      "source": "architecture_adr_008_deferred_correction_and_field_audit_adr_008_deferred_correction_workflow_and_field_level_audit_in_ui",
+      "target": "architecture_adr_008_deferred_correction_and_field_audit_rationale",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/architecture/ADR-008-deferred-correction-and-field-audit.md",
+      "source_location": "L31",
+      "weight": 1.0
+    },
+    {
+      "source": "architecture_adr_008_deferred_correction_and_field_audit_adr_008_deferred_correction_workflow_and_field_level_audit_in_ui",
+      "target": "architecture_adr_008_deferred_correction_and_field_audit_consequences",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/architecture/ADR-008-deferred-correction-and-field-audit.md",
+      "source_location": "L35",
+      "weight": 1.0
+    },
+    {
+      "source": "architecture_adr_008_deferred_correction_and_field_audit_adr_008_deferred_correction_workflow_and_field_level_audit_in_ui",
+      "target": "architecture_adr_008_deferred_correction_and_field_audit_implementation_notes",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/architecture/ADR-008-deferred-correction-and-field-audit.md",
+      "source_location": "L45",
+      "weight": 1.0
+    },
+    {
+      "source": "docs_architecture_adr_010_kiosk_pos_cash_zelle_custom_items_md",
+      "target": "architecture_adr_010_kiosk_pos_cash_zelle_custom_items_adr_010_kiosk_pos_mode_with_cash_zelle_and_custom_items",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/architecture/ADR-010-kiosk-pos-cash-zelle-custom-items.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "architecture_adr_010_kiosk_pos_cash_zelle_custom_items_adr_010_kiosk_pos_mode_with_cash_zelle_and_custom_items",
+      "target": "architecture_adr_010_kiosk_pos_cash_zelle_custom_items_context",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/architecture/ADR-010-kiosk-pos-cash-zelle-custom-items.md",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "architecture_adr_010_kiosk_pos_cash_zelle_custom_items_adr_010_kiosk_pos_mode_with_cash_zelle_and_custom_items",
+      "target": "architecture_adr_010_kiosk_pos_cash_zelle_custom_items_decision_drivers",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/architecture/ADR-010-kiosk-pos-cash-zelle-custom-items.md",
+      "source_location": "L10",
+      "weight": 1.0
+    },
+    {
+      "source": "architecture_adr_010_kiosk_pos_cash_zelle_custom_items_adr_010_kiosk_pos_mode_with_cash_zelle_and_custom_items",
+      "target": "architecture_adr_010_kiosk_pos_cash_zelle_custom_items_options_considered",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/architecture/ADR-010-kiosk-pos-cash-zelle-custom-items.md",
+      "source_location": "L17",
+      "weight": 1.0
+    },
+    {
+      "source": "architecture_adr_010_kiosk_pos_cash_zelle_custom_items_adr_010_kiosk_pos_mode_with_cash_zelle_and_custom_items",
+      "target": "architecture_adr_010_kiosk_pos_cash_zelle_custom_items_decision",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/architecture/ADR-010-kiosk-pos-cash-zelle-custom-items.md",
+      "source_location": "L23",
+      "weight": 1.0
+    },
+    {
+      "source": "architecture_adr_010_kiosk_pos_cash_zelle_custom_items_adr_010_kiosk_pos_mode_with_cash_zelle_and_custom_items",
+      "target": "architecture_adr_010_kiosk_pos_cash_zelle_custom_items_rationale",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/architecture/ADR-010-kiosk-pos-cash-zelle-custom-items.md",
+      "source_location": "L32",
+      "weight": 1.0
+    },
+    {
+      "source": "architecture_adr_010_kiosk_pos_cash_zelle_custom_items_adr_010_kiosk_pos_mode_with_cash_zelle_and_custom_items",
+      "target": "architecture_adr_010_kiosk_pos_cash_zelle_custom_items_consequences",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/architecture/ADR-010-kiosk-pos-cash-zelle-custom-items.md",
+      "source_location": "L36",
+      "weight": 1.0
+    },
+    {
+      "source": "architecture_adr_010_kiosk_pos_cash_zelle_custom_items_adr_010_kiosk_pos_mode_with_cash_zelle_and_custom_items",
+      "target": "architecture_adr_010_kiosk_pos_cash_zelle_custom_items_implementation_notes",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/architecture/ADR-010-kiosk-pos-cash-zelle-custom-items.md",
+      "source_location": "L46",
+      "weight": 1.0
+    },
+    {
+      "source": "docs_architecture_adr_007_schema_driven_csv_mapping_md",
+      "target": "architecture_adr_007_schema_driven_csv_mapping_adr_007_schema_driven_csv_mapping_for_accounting_exports",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/architecture/ADR-007-schema-driven-csv-mapping.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "architecture_adr_007_schema_driven_csv_mapping_adr_007_schema_driven_csv_mapping_for_accounting_exports",
+      "target": "architecture_adr_007_schema_driven_csv_mapping_context",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/architecture/ADR-007-schema-driven-csv-mapping.md",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "architecture_adr_007_schema_driven_csv_mapping_adr_007_schema_driven_csv_mapping_for_accounting_exports",
+      "target": "architecture_adr_007_schema_driven_csv_mapping_decision_drivers",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/architecture/ADR-007-schema-driven-csv-mapping.md",
+      "source_location": "L10",
+      "weight": 1.0
+    },
+    {
+      "source": "architecture_adr_007_schema_driven_csv_mapping_adr_007_schema_driven_csv_mapping_for_accounting_exports",
+      "target": "architecture_adr_007_schema_driven_csv_mapping_options_considered",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/architecture/ADR-007-schema-driven-csv-mapping.md",
+      "source_location": "L17",
+      "weight": 1.0
+    },
+    {
+      "source": "architecture_adr_007_schema_driven_csv_mapping_adr_007_schema_driven_csv_mapping_for_accounting_exports",
+      "target": "architecture_adr_007_schema_driven_csv_mapping_decision",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/architecture/ADR-007-schema-driven-csv-mapping.md",
+      "source_location": "L23",
+      "weight": 1.0
+    },
+    {
+      "source": "architecture_adr_007_schema_driven_csv_mapping_adr_007_schema_driven_csv_mapping_for_accounting_exports",
+      "target": "architecture_adr_007_schema_driven_csv_mapping_rationale",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/architecture/ADR-007-schema-driven-csv-mapping.md",
+      "source_location": "L32",
+      "weight": 1.0
+    },
+    {
+      "source": "architecture_adr_007_schema_driven_csv_mapping_adr_007_schema_driven_csv_mapping_for_accounting_exports",
+      "target": "architecture_adr_007_schema_driven_csv_mapping_consequences",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/architecture/ADR-007-schema-driven-csv-mapping.md",
+      "source_location": "L36",
+      "weight": 1.0
+    },
+    {
+      "source": "architecture_adr_007_schema_driven_csv_mapping_adr_007_schema_driven_csv_mapping_for_accounting_exports",
+      "target": "architecture_adr_007_schema_driven_csv_mapping_implementation_notes",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/architecture/ADR-007-schema-driven-csv-mapping.md",
+      "source_location": "L46",
+      "weight": 1.0
+    },
+    {
+      "source": "docs_sprint_4_progress_md",
+      "target": "sprint_4_progress_sprint_4_progress_tracker",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/sprint-4/progress.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "sprint_4_progress_sprint_4_progress_tracker",
+      "target": "sprint_4_progress_checklist",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/sprint-4/progress.md",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "sprint_4_progress_sprint_4_progress_tracker",
+      "target": "sprint_4_progress_phase_notes",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/sprint-4/progress.md",
+      "source_location": "L18",
+      "weight": 1.0
+    },
+    {
+      "source": "sprint_4_progress_sprint_4_progress_tracker",
+      "target": "sprint_4_progress_open_blockers",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/sprint-4/progress.md",
+      "source_location": "L41",
+      "weight": 1.0
+    },
+    {
+      "source": "sprint_4_progress_sprint_4_progress_tracker",
+      "target": "sprint_4_progress_related_issues",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/sprint-4/progress.md",
+      "source_location": "L45",
+      "weight": 1.0
+    },
+    {
+      "source": "docs_sprint_4_done_md",
+      "target": "sprint_4_done_sprint_4_done_handoff",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/sprint-4/done.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "sprint_4_done_sprint_4_done_handoff",
+      "target": "sprint_4_done_what_was_delivered",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/sprint-4/done.md",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "sprint_4_done_sprint_4_done_handoff",
+      "target": "sprint_4_done_validation_summary",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/sprint-4/done.md",
+      "source_location": "L14",
+      "weight": 1.0
+    },
+    {
+      "source": "sprint_4_done_sprint_4_done_handoff",
+      "target": "sprint_4_done_issues_found_and_resolved",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/sprint-4/done.md",
+      "source_location": "L23",
+      "weight": 1.0
+    },
+    {
+      "source": "sprint_4_done_sprint_4_done_handoff",
+      "target": "sprint_4_done_remaining_risks",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/sprint-4/done.md",
+      "source_location": "L29",
+      "weight": 1.0
+    },
+    {
+      "source": "sprint_4_done_sprint_4_done_handoff",
+      "target": "sprint_4_done_next_sprint_inputs",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/sprint-4/done.md",
+      "source_location": "L35",
+      "weight": 1.0
+    },
+    {
+      "source": "sprint_4_done_sprint_4_done_handoff",
+      "target": "sprint_4_done_handoff_commands",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/sprint-4/done.md",
+      "source_location": "L41",
+      "weight": 1.0
+    },
+    {
+      "source": "docs_sprint_4_plan_md",
+      "target": "sprint_4_plan_sprint_4_plan_cash_window_full_flow_and_outputs_approval_workflow",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/sprint-4/plan.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "sprint_4_plan_sprint_4_plan_cash_window_full_flow_and_outputs_approval_workflow",
+      "target": "sprint_4_plan_sprint_goal",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/sprint-4/plan.md",
+      "source_location": "L9",
+      "weight": 1.0
+    },
+    {
+      "source": "sprint_4_plan_sprint_4_plan_cash_window_full_flow_and_outputs_approval_workflow",
+      "target": "sprint_4_plan_in_scope",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/sprint-4/plan.md",
+      "source_location": "L13",
+      "weight": 1.0
+    },
+    {
+      "source": "sprint_4_plan_sprint_4_plan_cash_window_full_flow_and_outputs_approval_workflow",
+      "target": "sprint_4_plan_out_of_scope",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/sprint-4/plan.md",
+      "source_location": "L35",
+      "weight": 1.0
+    },
+    {
+      "source": "sprint_4_plan_sprint_4_plan_cash_window_full_flow_and_outputs_approval_workflow",
+      "target": "sprint_4_plan_acceptance_criteria",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/sprint-4/plan.md",
+      "source_location": "L41",
+      "weight": 1.0
+    },
+    {
+      "source": "sprint_4_plan_sprint_4_plan_cash_window_full_flow_and_outputs_approval_workflow",
+      "target": "sprint_4_plan_work_breakdown",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/sprint-4/plan.md",
+      "source_location": "L58",
+      "weight": 1.0
+    },
+    {
+      "source": "sprint_4_plan_sprint_4_plan_cash_window_full_flow_and_outputs_approval_workflow",
+      "target": "sprint_4_plan_definition_of_done",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/sprint-4/plan.md",
+      "source_location": "L76",
+      "weight": 1.0
+    },
+    {
+      "source": "docs_sprint_3_progress_md",
+      "target": "sprint_3_progress_sprint_3_progress_tracker",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/sprint-3/progress.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "sprint_3_progress_sprint_3_progress_tracker",
+      "target": "sprint_3_progress_checklist",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/sprint-3/progress.md",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "sprint_3_progress_sprint_3_progress_tracker",
+      "target": "sprint_3_progress_phase_notes",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/sprint-3/progress.md",
+      "source_location": "L19",
+      "weight": 1.0
+    },
+    {
+      "source": "sprint_3_progress_sprint_3_progress_tracker",
+      "target": "sprint_3_progress_open_blockers",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/sprint-3/progress.md",
+      "source_location": "L46",
+      "weight": 1.0
+    },
+    {
+      "source": "sprint_3_progress_sprint_3_progress_tracker",
+      "target": "sprint_3_progress_related_issues",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/sprint-3/progress.md",
+      "source_location": "L50",
+      "weight": 1.0
+    },
+    {
+      "source": "docs_sprint_3_done_md",
+      "target": "sprint_3_done_sprint_3_done_handoff",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/sprint-3/done.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "sprint_3_done_sprint_3_done_handoff",
+      "target": "sprint_3_done_what_was_delivered",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/sprint-3/done.md",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "sprint_3_done_sprint_3_done_handoff",
+      "target": "sprint_3_done_validation_summary",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/sprint-3/done.md",
+      "source_location": "L15",
+      "weight": 1.0
+    },
+    {
+      "source": "sprint_3_done_sprint_3_done_handoff",
+      "target": "sprint_3_done_issues_found_and_resolved",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/sprint-3/done.md",
+      "source_location": "L26",
+      "weight": 1.0
+    },
+    {
+      "source": "sprint_3_done_sprint_3_done_handoff",
+      "target": "sprint_3_done_remaining_risks",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/sprint-3/done.md",
+      "source_location": "L31",
+      "weight": 1.0
+    },
+    {
+      "source": "sprint_3_done_sprint_3_done_handoff",
+      "target": "sprint_3_done_next_sprint_inputs",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/sprint-3/done.md",
+      "source_location": "L37",
+      "weight": 1.0
+    },
+    {
+      "source": "sprint_3_done_sprint_3_done_handoff",
+      "target": "sprint_3_done_handoff_commands",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/sprint-3/done.md",
+      "source_location": "L44",
+      "weight": 1.0
+    },
+    {
+      "source": "docs_sprint_3_plan_md",
+      "target": "sprint_3_plan_sprint_3_plan_authentication_hardening_and_module_expansion_start",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/sprint-3/plan.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "sprint_3_plan_sprint_3_plan_authentication_hardening_and_module_expansion_start",
+      "target": "sprint_3_plan_sprint_goal",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/sprint-3/plan.md",
+      "source_location": "L9",
+      "weight": 1.0
+    },
+    {
+      "source": "sprint_3_plan_sprint_3_plan_authentication_hardening_and_module_expansion_start",
+      "target": "sprint_3_plan_in_scope",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/sprint-3/plan.md",
+      "source_location": "L13",
+      "weight": 1.0
+    },
+    {
+      "source": "sprint_3_plan_sprint_3_plan_authentication_hardening_and_module_expansion_start",
+      "target": "sprint_3_plan_out_of_scope",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/sprint-3/plan.md",
+      "source_location": "L40",
+      "weight": 1.0
+    },
+    {
+      "source": "sprint_3_plan_sprint_3_plan_authentication_hardening_and_module_expansion_start",
+      "target": "sprint_3_plan_acceptance_criteria",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/sprint-3/plan.md",
+      "source_location": "L47",
+      "weight": 1.0
+    },
+    {
+      "source": "sprint_3_plan_sprint_3_plan_authentication_hardening_and_module_expansion_start",
+      "target": "sprint_3_plan_work_breakdown",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/sprint-3/plan.md",
+      "source_location": "L64",
+      "weight": 1.0
+    },
+    {
+      "source": "sprint_3_plan_sprint_3_plan_authentication_hardening_and_module_expansion_start",
+      "target": "sprint_3_plan_definition_of_done",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/sprint-3/plan.md",
+      "source_location": "L82",
+      "weight": 1.0
+    },
+    {
+      "source": "docs_sprint_2_progress_md",
+      "target": "sprint_2_progress_sprint_2_progress_tracker",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/sprint-2/progress.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "sprint_2_progress_sprint_2_progress_tracker",
+      "target": "sprint_2_progress_checklist",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/sprint-2/progress.md",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "sprint_2_progress_sprint_2_progress_tracker",
+      "target": "sprint_2_progress_phase_notes",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/sprint-2/progress.md",
+      "source_location": "L18",
+      "weight": 1.0
+    },
+    {
+      "source": "sprint_2_progress_sprint_2_progress_tracker",
+      "target": "sprint_2_progress_open_blockers",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/sprint-2/progress.md",
+      "source_location": "L53",
+      "weight": 1.0
+    },
+    {
+      "source": "sprint_2_progress_sprint_2_progress_tracker",
+      "target": "sprint_2_progress_related_issues",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/sprint-2/progress.md",
+      "source_location": "L57",
+      "weight": 1.0
+    },
+    {
+      "source": "docs_sprint_2_done_md",
+      "target": "sprint_2_done_sprint_2_done_handoff",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/sprint-2/done.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "sprint_2_done_sprint_2_done_handoff",
+      "target": "sprint_2_done_what_was_delivered",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/sprint-2/done.md",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "sprint_2_done_sprint_2_done_handoff",
+      "target": "sprint_2_done_validation_summary",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/sprint-2/done.md",
+      "source_location": "L15",
+      "weight": 1.0
+    },
+    {
+      "source": "sprint_2_done_sprint_2_done_handoff",
+      "target": "sprint_2_done_issues_found_and_resolved",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/sprint-2/done.md",
+      "source_location": "L26",
+      "weight": 1.0
+    },
+    {
+      "source": "sprint_2_done_sprint_2_done_handoff",
+      "target": "sprint_2_done_remaining_risks",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/sprint-2/done.md",
+      "source_location": "L31",
+      "weight": 1.0
+    },
+    {
+      "source": "sprint_2_done_sprint_2_done_handoff",
+      "target": "sprint_2_done_next_sprint_inputs",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/sprint-2/done.md",
+      "source_location": "L37",
+      "weight": 1.0
+    },
+    {
+      "source": "sprint_2_done_sprint_2_done_handoff",
+      "target": "sprint_2_done_handoff_commands",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/sprint-2/done.md",
+      "source_location": "L44",
+      "weight": 1.0
+    },
+    {
+      "source": "docs_sprint_2_plan_md",
+      "target": "sprint_2_plan_sprint_2_plan_auth_rbac_hardening_and_timezone_normalization",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/sprint-2/plan.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "sprint_2_plan_sprint_2_plan_auth_rbac_hardening_and_timezone_normalization",
+      "target": "sprint_2_plan_sprint_goal",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/sprint-2/plan.md",
+      "source_location": "L9",
+      "weight": 1.0
+    },
+    {
+      "source": "sprint_2_plan_sprint_2_plan_auth_rbac_hardening_and_timezone_normalization",
+      "target": "sprint_2_plan_in_scope",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/sprint-2/plan.md",
+      "source_location": "L16",
+      "weight": 1.0
+    },
+    {
+      "source": "sprint_2_plan_sprint_2_plan_auth_rbac_hardening_and_timezone_normalization",
+      "target": "sprint_2_plan_out_of_scope",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/sprint-2/plan.md",
+      "source_location": "L42",
+      "weight": 1.0
+    },
+    {
+      "source": "sprint_2_plan_sprint_2_plan_auth_rbac_hardening_and_timezone_normalization",
+      "target": "sprint_2_plan_acceptance_criteria",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/sprint-2/plan.md",
+      "source_location": "L49",
+      "weight": 1.0
+    },
+    {
+      "source": "sprint_2_plan_sprint_2_plan_auth_rbac_hardening_and_timezone_normalization",
+      "target": "sprint_2_plan_work_breakdown",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/sprint-2/plan.md",
+      "source_location": "L66",
+      "weight": 1.0
+    },
+    {
+      "source": "sprint_2_plan_sprint_2_plan_auth_rbac_hardening_and_timezone_normalization",
+      "target": "sprint_2_plan_definition_of_done",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/sprint-2/plan.md",
+      "source_location": "L84",
+      "weight": 1.0
+    },
+    {
+      "source": "docs_sprint_5_progress_md",
+      "target": "sprint_5_progress_sprint_5_progress_tracker",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/sprint-5/progress.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "sprint_5_progress_sprint_5_progress_tracker",
+      "target": "sprint_5_progress_checklist",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/sprint-5/progress.md",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "sprint_5_progress_sprint_5_progress_tracker",
+      "target": "sprint_5_progress_phase_notes",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/sprint-5/progress.md",
+      "source_location": "L17",
+      "weight": 1.0
+    },
+    {
+      "source": "sprint_5_progress_sprint_5_progress_tracker",
+      "target": "sprint_5_progress_open_blockers",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/sprint-5/progress.md",
+      "source_location": "L41",
+      "weight": 1.0
+    },
+    {
+      "source": "sprint_5_progress_sprint_5_progress_tracker",
+      "target": "sprint_5_progress_related_issues",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/sprint-5/progress.md",
+      "source_location": "L45",
+      "weight": 1.0
+    },
+    {
+      "source": "docs_sprint_5_done_md",
+      "target": "sprint_5_done_sprint_5_done_handoff",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/sprint-5/done.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "sprint_5_done_sprint_5_done_handoff",
+      "target": "sprint_5_done_what_was_delivered",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/sprint-5/done.md",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "sprint_5_done_sprint_5_done_handoff",
+      "target": "sprint_5_done_validation_summary",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/sprint-5/done.md",
+      "source_location": "L15",
+      "weight": 1.0
+    },
+    {
+      "source": "sprint_5_done_sprint_5_done_handoff",
+      "target": "sprint_5_done_issues_found_and_resolved",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/sprint-5/done.md",
+      "source_location": "L28",
+      "weight": 1.0
+    },
+    {
+      "source": "sprint_5_done_sprint_5_done_handoff",
+      "target": "sprint_5_done_remaining_risks",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/sprint-5/done.md",
+      "source_location": "L33",
+      "weight": 1.0
+    },
+    {
+      "source": "sprint_5_done_sprint_5_done_handoff",
+      "target": "sprint_5_done_next_sprint_inputs",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/sprint-5/done.md",
+      "source_location": "L39",
+      "weight": 1.0
+    },
+    {
+      "source": "sprint_5_done_sprint_5_done_handoff",
+      "target": "sprint_5_done_handoff_commands",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/sprint-5/done.md",
+      "source_location": "L45",
+      "weight": 1.0
+    },
+    {
+      "source": "docs_sprint_5_plan_md",
+      "target": "sprint_5_plan_sprint_5_plan_identity_provider_integration_and_workflow_ux_hardening",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/sprint-5/plan.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "sprint_5_plan_sprint_5_plan_identity_provider_integration_and_workflow_ux_hardening",
+      "target": "sprint_5_plan_sprint_goal",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/sprint-5/plan.md",
+      "source_location": "L9",
+      "weight": 1.0
+    },
+    {
+      "source": "sprint_5_plan_sprint_5_plan_identity_provider_integration_and_workflow_ux_hardening",
+      "target": "sprint_5_plan_in_scope",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/sprint-5/plan.md",
+      "source_location": "L13",
+      "weight": 1.0
+    },
+    {
+      "source": "sprint_5_plan_sprint_5_plan_identity_provider_integration_and_workflow_ux_hardening",
+      "target": "sprint_5_plan_out_of_scope",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/sprint-5/plan.md",
+      "source_location": "L35",
+      "weight": 1.0
+    },
+    {
+      "source": "sprint_5_plan_sprint_5_plan_identity_provider_integration_and_workflow_ux_hardening",
+      "target": "sprint_5_plan_acceptance_criteria",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/sprint-5/plan.md",
+      "source_location": "L41",
+      "weight": 1.0
+    },
+    {
+      "source": "sprint_5_plan_sprint_5_plan_identity_provider_integration_and_workflow_ux_hardening",
+      "target": "sprint_5_plan_work_breakdown",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/sprint-5/plan.md",
+      "source_location": "L57",
+      "weight": 1.0
+    },
+    {
+      "source": "sprint_5_plan_sprint_5_plan_identity_provider_integration_and_workflow_ux_hardening",
+      "target": "sprint_5_plan_definition_of_done",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/sprint-5/plan.md",
+      "source_location": "L75",
+      "weight": 1.0
+    },
+    {
+      "source": "db_migrations_readme_md",
+      "target": "migrations_readme_postgresql_migrations",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "db/migrations/README.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "migrations_readme_postgresql_migrations",
+      "target": "migrations_readme_files",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "db/migrations/README.md",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "migrations_readme_postgresql_migrations",
+      "target": "migrations_readme_run_with_psql",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "db/migrations/README.md",
+      "source_location": "L17",
+      "weight": 1.0
+    },
+    {
+      "source": "migrations_readme_run_with_psql",
+      "target": "migrations_readme_codeblock_1",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "db/migrations/README.md",
+      "source_location": "L21",
+      "weight": 1.0
+    },
+    {
+      "source": "migrations_readme_postgresql_migrations",
+      "target": "migrations_readme_run_against_docker_postgres",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "db/migrations/README.md",
+      "source_location": "L32",
+      "weight": 1.0
+    },
+    {
+      "source": "migrations_readme_run_against_docker_postgres",
+      "target": "migrations_readme_codeblock_2",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "db/migrations/README.md",
+      "source_location": "L36",
+      "weight": 1.0
+    },
+    {
+      "source": "migrations_readme_postgresql_migrations",
+      "target": "migrations_readme_notes",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "db/migrations/README.md",
+      "source_location": "L46",
+      "weight": 1.0
+    }
+  ],
+  "input_tokens": 0,
+  "output_tokens": 0
+}

@@ -1,0 +1,358 @@
+{
+  "/Volumes/orico 1/projecto/Ofrendas/create_image.py": {
+    "mtime": 1778298353.4397407,
+    "hash": "519c030de2285a9ac1a58fe00ba9972d"
+  },
+  "/Volumes/orico 1/projecto/Ofrendas/main.py": {
+    "mtime": 1778298353.4448206,
+    "hash": "85aaa4b3643cd70333084d030d69f9c6"
+  },
+  "/Volumes/orico 1/projecto/Ofrendas/tests/test_app_rbac.py": {
+    "mtime": 1778299093.7799451,
+    "hash": "14ebc961acf3b8863f31bfb0fdc16cf5"
+  },
+  "/Volumes/orico 1/projecto/Ofrendas/tests/test_integration_postgresql_repo.py": {
+    "mtime": 1778298353.4496074,
+    "hash": "7ca9fcdcda50aa32a62926396be9a56a"
+  },
+  "/Volumes/orico 1/projecto/Ofrendas/tests/test_app_timezone.py": {
+    "mtime": 1778299093.7800403,
+    "hash": "514ba649a67ce954449ef17f26821dc2"
+  },
+  "/Volumes/orico 1/projecto/Ofrendas/tests/test_offering_service.py": {
+    "mtime": 1778299234.061183,
+    "hash": "da44671fc98d9f2a228bd90923548755"
+  },
+  "/Volumes/orico 1/projecto/Ofrendas/tests/test_app_auth_mode.py": {
+    "mtime": 1778348089.9424663,
+    "hash": "0e5782df76e016d26d75fb171a779c93"
+  },
+  "/Volumes/orico 1/projecto/Ofrendas/tests/test_fuzzy_correction.py": {
+    "mtime": 1778298353.4492352,
+    "hash": "ec161e3abcef4de45b4b06f9596bebde"
+  },
+  "/Volumes/orico 1/projecto/Ofrendas/tests/test_app_workflow_views.py": {
+    "mtime": 1778349499.9249475,
+    "hash": "ac48eaf1999439454cbda64cdc71c655"
+  },
+  "/Volumes/orico 1/projecto/Ofrendas/tests/test_offering_model.py": {
+    "mtime": 1778298353.4497368,
+    "hash": "dfd828e797d3d2fc6a4a71e107a268cd"
+  },
+  "/Volumes/orico 1/projecto/Ofrendas/tests/test_app_modules.py": {
+    "mtime": 1778349499.9069102,
+    "hash": "dd53ca903f71b5cb988267a953f650c5"
+  },
+  "/Volumes/orico 1/projecto/Ofrendas/db/migrations/0005_cash_window_and_counting.sql": {
+    "mtime": 1778298353.440355,
+    "hash": "c071806146020e689cd43d8824e4c597"
+  },
+  "/Volumes/orico 1/projecto/Ofrendas/db/migrations/0002_audit_and_exports.sql": {
+    "mtime": 1778298353.440024,
+    "hash": "12fc8510231451692c8884927c1d8d60"
+  },
+  "/Volumes/orico 1/projecto/Ofrendas/db/migrations/0004_review_queue_and_field_history.sql": {
+    "mtime": 1778298353.4402497,
+    "hash": "61cce95f4e9ccd495d8dd3b40b22570d"
+  },
+  "/Volumes/orico 1/projecto/Ofrendas/db/migrations/0006_kiosk_pos_mode.sql": {
+    "mtime": 1778298353.440461,
+    "hash": "c18ce5cc6ba8936b7a7e6461f555737b"
+  },
+  "/Volumes/orico 1/projecto/Ofrendas/db/migrations/0003_export_mapping_profiles.sql": {
+    "mtime": 1778298353.440135,
+    "hash": "c8a71197303bc81b07cb564bb469de83"
+  },
+  "/Volumes/orico 1/projecto/Ofrendas/db/migrations/0007_outputs_and_disbursements.sql": {
+    "mtime": 1778298353.4405818,
+    "hash": "e2ffebab230a0e762057f9f36fb59a0a"
+  },
+  "/Volumes/orico 1/projecto/Ofrendas/db/migrations/0001_init_core.sql": {
+    "mtime": 1778298353.4399102,
+    "hash": "506620040d14cc04871087360df69ad6"
+  },
+  "/Volumes/orico 1/projecto/Ofrendas/offering_app/config.py": {
+    "mtime": 1778298353.4451818,
+    "hash": "a59b98dad38342f5bfd8bf097b7160e6"
+  },
+  "/Volumes/orico 1/projecto/Ofrendas/offering_app/__init__.py": {
+    "mtime": 1778298353.4450307,
+    "hash": "fa692eb5bb4a4354b73f8b43bed8518d"
+  },
+  "/Volumes/orico 1/projecto/Ofrendas/offering_app/ui/__init__.py": {
+    "mtime": 1778298353.448514,
+    "hash": "c060c6efdfbde4c348e234e216e83d79"
+  },
+  "/Volumes/orico 1/projecto/Ofrendas/offering_app/ui/app.py": {
+    "mtime": 1778352767.7140954,
+    "hash": "f1f7a74f35067378e8727e09c3bb24bb"
+  },
+  "/Volumes/orico 1/projecto/Ofrendas/offering_app/strategies/fuzzy_correction.py": {
+    "mtime": 1778298353.4480698,
+    "hash": "1477234fd93df6fd452163088f38b57f"
+  },
+  "/Volumes/orico 1/projecto/Ofrendas/offering_app/strategies/__init__.py": {
+    "mtime": 1778298353.4477885,
+    "hash": "fe30e45b59f5406378f5fdbf6728be08"
+  },
+  "/Volumes/orico 1/projecto/Ofrendas/offering_app/strategies/easyocr_strategy.py": {
+    "mtime": 1778298353.447924,
+    "hash": "6db70c58841240818cb027c597f9f7fc"
+  },
+  "/Volumes/orico 1/projecto/Ofrendas/offering_app/strategies/trained_correction.py": {
+    "mtime": 1778298353.4481895,
+    "hash": "779582ac13c15e6fecb92074b20c824e"
+  },
+  "/Volumes/orico 1/projecto/Ofrendas/offering_app/repositories/local_export_repo.py": {
+    "mtime": 1778298353.4465091,
+    "hash": "51c016c0ea516fbff979742f966c9bac"
+  },
+  "/Volumes/orico 1/projecto/Ofrendas/offering_app/repositories/training_repo.py": {
+    "mtime": 1778298353.446776,
+    "hash": "9d6a9842a75b100f18d926d79eaa8449"
+  },
+  "/Volumes/orico 1/projecto/Ofrendas/offering_app/repositories/__init__.py": {
+    "mtime": 1778298353.4463825,
+    "hash": "62074ef6474bfbad162ec1e2473b99cd"
+  },
+  "/Volumes/orico 1/projecto/Ofrendas/offering_app/repositories/postgresql_repo.py": {
+    "mtime": 1778352770.7192998,
+    "hash": "2d815d18d2a4acc0790bea0403500364"
+  },
+  "/Volumes/orico 1/projecto/Ofrendas/offering_app/models/__init__.py": {
+    "mtime": 1778298353.4459758,
+    "hash": "acb3f5c7843b693821484d4626943cce"
+  },
+  "/Volumes/orico 1/projecto/Ofrendas/offering_app/models/correction.py": {
+    "mtime": 1778298353.44609,
+    "hash": "c701248da136fd534e33a9b928414713"
+  },
+  "/Volumes/orico 1/projecto/Ofrendas/offering_app/models/offering.py": {
+    "mtime": 1778298353.4462113,
+    "hash": "f57cbbde07e9128439abbc6762ccee3b"
+  },
+  "/Volumes/orico 1/projecto/Ofrendas/offering_app/services/image_processor.py": {
+    "mtime": 1778298353.4472544,
+    "hash": "9c76232801b484dc5df64342c75de15e"
+  },
+  "/Volumes/orico 1/projecto/Ofrendas/offering_app/services/kiosk_pos_service.py": {
+    "mtime": 1778349499.906916,
+    "hash": "bdb9e79c933784e5c68c812f9da07132"
+  },
+  "/Volumes/orico 1/projecto/Ofrendas/offering_app/services/outputs_service.py": {
+    "mtime": 1778300041.6952937,
+    "hash": "6402f0236f93c7aafc4033819e04fd10"
+  },
+  "/Volumes/orico 1/projecto/Ofrendas/offering_app/services/offering_service.py": {
+    "mtime": 1778352770.1774673,
+    "hash": "2233eec4b3416d6279bcbb4f87ef79d2"
+  },
+  "/Volumes/orico 1/projecto/Ofrendas/offering_app/services/__init__.py": {
+    "mtime": 1778298353.446924,
+    "hash": "4f2cec223026cf4ed7d7c4ee6194a8e7"
+  },
+  "/Volumes/orico 1/projecto/Ofrendas/offering_app/services/cash_window_service.py": {
+    "mtime": 1778300041.6951303,
+    "hash": "97e9bc0cbef37c26ce6aa4c7fc4ebcce"
+  },
+  "/Volumes/orico 1/projecto/Ofrendas/offering_app/interfaces/__init__.py": {
+    "mtime": 1778298353.4453402,
+    "hash": "9683fee7025502392d3bd56dcf68db46"
+  },
+  "/Volumes/orico 1/projecto/Ofrendas/offering_app/interfaces/i_correction_strategy.py": {
+    "mtime": 1778298353.4454596,
+    "hash": "337c4b0e739bd514155fa9ba01de36f0"
+  },
+  "/Volumes/orico 1/projecto/Ofrendas/offering_app/interfaces/i_ocr_strategy.py": {
+    "mtime": 1778298353.4455707,
+    "hash": "0be72037fae0cf91179630ee860f7019"
+  },
+  "/Volumes/orico 1/projecto/Ofrendas/offering_app/interfaces/i_training_repo.py": {
+    "mtime": 1778298353.4458213,
+    "hash": "1afc03de3542354a65a4b4a04316cbff"
+  },
+  "/Volumes/orico 1/projecto/Ofrendas/offering_app/interfaces/i_storage_repo.py": {
+    "mtime": 1778298353.445691,
+    "hash": "5699e4af10a5206ef5b970baf7f28f61"
+  },
+  "/Volumes/orico 1/projecto/Ofrendas/PROJECT_BRIEF.md": {
+    "mtime": 1778348089.9423308,
+    "hash": "32bbd669e82efc8e788afe3aa7cb3507"
+  },
+  "/Volumes/orico 1/projecto/Ofrendas/requirements.txt": {
+    "mtime": 1778298353.4490674,
+    "hash": "dab5322f54676305f4a250826d59b2a1"
+  },
+  "/Volumes/orico 1/projecto/Ofrendas/README.md": {
+    "mtime": 1778298675.3824463,
+    "hash": "ce0809283d9385c3101530165f89abf6"
+  },
+  "/Volumes/orico 1/projecto/Ofrendas/docker-compose.yml": {
+    "mtime": 1778298353.4407861,
+    "hash": "9efd38ed3006a64048678f8cc7e7e86e"
+  },
+  "/Volumes/orico 1/projecto/Ofrendas/Ofrenda.md": {
+    "mtime": 1778298353.4385335,
+    "hash": "5bcf5e4e233b8868b6fe322ed93f6f9f"
+  },
+  "/Volumes/orico 1/projecto/Ofrendas/docs/developer-task-list.md": {
+    "mtime": 1778352720.081683,
+    "hash": "c5d145eb4e83bcec98b08278c797eca9"
+  },
+  "/Volumes/orico 1/projecto/Ofrendas/docs/sprint-6/progress.md": {
+    "mtime": 1778348089.9424338,
+    "hash": "9a3769b40506cba512e09f2e2d40071f"
+  },
+  "/Volumes/orico 1/projecto/Ofrendas/docs/sprint-6/done.md": {
+    "mtime": 1778302340.6097739,
+    "hash": "66e0dfe7f6fabdf1b158cb78bb56ed75"
+  },
+  "/Volumes/orico 1/projecto/Ofrendas/docs/sprint-6/plan.md": {
+    "mtime": 1778348089.9878836,
+    "hash": "99c2ca341a9bd77c6eb6c8afbcec389a"
+  },
+  "/Volumes/orico 1/projecto/Ofrendas/docs/sprint-1/progress.md": {
+    "mtime": 1778298675.3825004,
+    "hash": "1ce5e553100715a3eaf361f495bb5cf4"
+  },
+  "/Volumes/orico 1/projecto/Ofrendas/docs/sprint-1/done.md": {
+    "mtime": 1778299093.7786582,
+    "hash": "9e41ad81aeb92416d48aaf7c5b06579c"
+  },
+  "/Volumes/orico 1/projecto/Ofrendas/docs/sprint-1/plan.md": {
+    "mtime": 1778298353.443942,
+    "hash": "b9c69cf46aec2cf4e02bde9260712f61"
+  },
+  "/Volumes/orico 1/projecto/Ofrendas/docs/brainstorm/brainstorm-001.md": {
+    "mtime": 1778298353.443336,
+    "hash": "b5eed20fd02f8de3d5b1c29d69e76c3b"
+  },
+  "/Volumes/orico 1/projecto/Ofrendas/docs/qa/sprint-5-signoff.md": {
+    "mtime": 1778301711.289811,
+    "hash": "e55298e952c94881b81835c6c308133d"
+  },
+  "/Volumes/orico 1/projecto/Ofrendas/docs/qa/sprint-2-signoff.md": {
+    "mtime": 1778299093.7783275,
+    "hash": "5c313815df4e75ca577319dbf76b3329"
+  },
+  "/Volumes/orico 1/projecto/Ofrendas/docs/qa/sprint-1-signoff.md": {
+    "mtime": 1778298353.4435048,
+    "hash": "3bae79ee68de9b59f0b1a2ab8c5cb878"
+  },
+  "/Volumes/orico 1/projecto/Ofrendas/docs/qa/sprint-4-signoff.md": {
+    "mtime": 1778300041.69428,
+    "hash": "27126f00453c0ab45f4865afe427388f"
+  },
+  "/Volumes/orico 1/projecto/Ofrendas/docs/qa/sprint-3-signoff.md": {
+    "mtime": 1778299476.7629654,
+    "hash": "84387bbb9dd8d5050b7638e08565c737"
+  },
+  "/Volumes/orico 1/projecto/Ofrendas/docs/qa/sprint-6-signoff.md": {
+    "mtime": 1778302340.6096334,
+    "hash": "92094a45391807af29321d2852c7c03c"
+  },
+  "/Volumes/orico 1/projecto/Ofrendas/docs/ux/ofrendas-core-flow.md": {
+    "mtime": 1778298353.4444551,
+    "hash": "378d4d12061bfd3e73c2a757877ec326"
+  },
+  "/Volumes/orico 1/projecto/Ofrendas/docs/ux/ofrendas-core-journey.md": {
+    "mtime": 1778298353.44458,
+    "hash": "4e2715e877d93b503a1a29f7ddbaaee4"
+  },
+  "/Volumes/orico 1/projecto/Ofrendas/docs/ux/ofrendas-core-jtbd.md": {
+    "mtime": 1778298353.4447021,
+    "hash": "9f7fcb69a5e7e26f2a379d26e59dc2b2"
+  },
+  "/Volumes/orico 1/projecto/Ofrendas/docs/architecture/ADR-001-runtime-and-deployment-topology.md": {
+    "mtime": 1778298353.4409559,
+    "hash": "c491bf56bea54410124d25207def0b3b"
+  },
+  "/Volumes/orico 1/projecto/Ofrendas/docs/architecture/ADR-005-accounting-exports-multi-provider.md": {
+    "mtime": 1778298353.4416847,
+    "hash": "f5b5fd5624a2e05453b8a0e3e92cd932"
+  },
+  "/Volumes/orico 1/projecto/Ofrendas/docs/architecture/ADR-011-outputs-fund-source-and-approval.md": {
+    "mtime": 1778298353.4431224,
+    "hash": "0400f40721ae47ed7f151c83258afff8"
+  },
+  "/Volumes/orico 1/projecto/Ofrendas/docs/architecture/ADR-006-postgresql-reporting-with-sharepoint-complement.md": {
+    "mtime": 1778298353.4419217,
+    "hash": "d69edf018164ea956f0e639282505f88"
+  },
+  "/Volumes/orico 1/projecto/Ofrendas/docs/architecture/ADR-009-cash-window-and-daily-close-audit.md": {
+    "mtime": 1778298353.4423814,
+    "hash": "6fc974150402e819babca0a7b4c54164"
+  },
+  "/Volumes/orico 1/projecto/Ofrendas/docs/architecture/ADR-004-cloudflare-tunnel-low-cost-ingress.md": {
+    "mtime": 1778298353.441569,
+    "hash": "1837b3a94a70938179abc77b37af1bc0"
+  },
+  "/Volumes/orico 1/projecto/Ofrendas/docs/architecture/ADR-002-storage-resilience-sharepoint-fallback.md": {
+    "mtime": 1778298353.441337,
+    "hash": "4de4e2ecef9cf34d0d68e347d73edcf8"
+  },
+  "/Volumes/orico 1/projecto/Ofrendas/docs/architecture/ADR-008-deferred-correction-and-field-audit.md": {
+    "mtime": 1778298353.4421802,
+    "hash": "1c129b442a1c3c177f833411f485724c"
+  },
+  "/Volumes/orico 1/projecto/Ofrendas/docs/architecture/ADR-010-kiosk-pos-cash-zelle-custom-items.md": {
+    "mtime": 1778298353.4426327,
+    "hash": "77e3248d70ba9385fb003b16c36ae66e"
+  },
+  "/Volumes/orico 1/projecto/Ofrendas/docs/architecture/ADR-007-schema-driven-csv-mapping.md": {
+    "mtime": 1778298353.442045,
+    "hash": "b762123e64112f7b92399f44d08e1b73"
+  },
+  "/Volumes/orico 1/projecto/Ofrendas/docs/sprint-4/progress.md": {
+    "mtime": 1778348089.9424093,
+    "hash": "673f72f5547e415818511a7026892cf4"
+  },
+  "/Volumes/orico 1/projecto/Ofrendas/docs/sprint-4/done.md": {
+    "mtime": 1778348089.942414,
+    "hash": "1972746091b58f3372bf3ee58a686351"
+  },
+  "/Volumes/orico 1/projecto/Ofrendas/docs/sprint-4/plan.md": {
+    "mtime": 1778300041.6947205,
+    "hash": "419c6b09d63a747c34d7d6afa544942a"
+  },
+  "/Volumes/orico 1/projecto/Ofrendas/docs/sprint-3/progress.md": {
+    "mtime": 1778299877.3290098,
+    "hash": "d7ba2ea8d507203f8fceee9427a7ee9d"
+  },
+  "/Volumes/orico 1/projecto/Ofrendas/docs/sprint-3/done.md": {
+    "mtime": 1778299877.329005,
+    "hash": "6906ec9571583731d751bdc7e2ab57cf"
+  },
+  "/Volumes/orico 1/projecto/Ofrendas/docs/sprint-3/plan.md": {
+    "mtime": 1778299476.7635942,
+    "hash": "7aa725c03d27a0c25b973bcd116b7dea"
+  },
+  "/Volumes/orico 1/projecto/Ofrendas/docs/sprint-2/progress.md": {
+    "mtime": 1778299234.0612009,
+    "hash": "4599cabf0df98c0447f8229a3713259d"
+  },
+  "/Volumes/orico 1/projecto/Ofrendas/docs/sprint-2/done.md": {
+    "mtime": 1778299234.0612073,
+    "hash": "02273ab6403c28fa64e787f2c587fe1a"
+  },
+  "/Volumes/orico 1/projecto/Ofrendas/docs/sprint-2/plan.md": {
+    "mtime": 1778299093.7791076,
+    "hash": "c800648b3633ea85dcbbacf81c71d771"
+  },
+  "/Volumes/orico 1/projecto/Ofrendas/docs/sprint-5/progress.md": {
+    "mtime": 1778348089.9424267,
+    "hash": "694c9b4345f636e42f0db552faa6e9be"
+  },
+  "/Volumes/orico 1/projecto/Ofrendas/docs/sprint-5/done.md": {
+    "mtime": 1778348089.9424186,
+    "hash": "c61b7438681471ace63e3c52e88687cd"
+  },
+  "/Volumes/orico 1/projecto/Ofrendas/docs/sprint-5/plan.md": {
+    "mtime": 1778301711.2900987,
+    "hash": "0bd41cd611d33d12f69790e43e11dd06"
+  },
+  "/Volumes/orico 1/projecto/Ofrendas/db/migrations/README.md": {
+    "mtime": 1778298353.440685,
+    "hash": "3e7ef0923b5c88815955942259e9d164"
+  }
+}

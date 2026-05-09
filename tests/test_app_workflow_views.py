@@ -16,6 +16,9 @@ class DummyService:
     def process_image(self, image_path: str):
         return {}
 
+    def should_fallback_to_manual(self, data):
+        return False
+
     def build_offering_from_form(self, form, actor):
         return {}
 

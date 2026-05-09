@@ -16,6 +16,14 @@ class PostgreSQLRepo(IStorageRepo):
     def _connect(self):
         return psycopg.connect(self.database_url, row_factory=dict_row)
 
+    def list_active_member_names(self) -> list[str]:
+        query = "SELECT full_name FROM users WHERE is_active = TRUE ORDER BY full_name"
+        with self._connect() as conn:
+            with conn.cursor() as cur:
+                cur.execute(query)
+                rows = cur.fetchall()
+                return [str(row["full_name"]) for row in rows if row.get("full_name")]
+
     def get_current_service_date(self, timezone_name: str) -> str:
         query = "SELECT (NOW() AT TIME ZONE %(timezone)s)::date AS service_date"
         with self._connect() as conn:

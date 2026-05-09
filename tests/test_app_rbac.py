@@ -30,6 +30,9 @@ class DummyService:
             "image_path": image_path,
         }
 
+    def should_fallback_to_manual(self, data):
+        return False
+
     def build_offering_from_form(self, form, actor):
         return {"actor": actor}
 

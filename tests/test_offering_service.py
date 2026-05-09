@@ -71,3 +71,29 @@ def test_build_offering_from_form_normalizes_invalid_actor_user_id_to_none():
 
     assert offering.captured_by_user_id is None
     assert offering.confirmed_by_user_id is None
+
+
+def test_should_fallback_to_manual_when_low_confidence_and_zero_amounts():
+    service = OfferingService(
+        ocr=DummyOCR(),
+        corrector=DummyCorrector(),
+        storage=DummyStorage(),
+        training=DummyTraining(),
+        processor=DummyProcessor(),
+        members=[],
+    )
+
+    should_fallback = service.should_fallback_to_manual(
+        {
+            "member_name": "Persona valida",
+            "diezmo": "0",
+            "ofrenda": "0",
+            "primicias": "0",
+            "pro_templo": "0",
+            "ofrenda_misionera": "0",
+            "ofrenda_pastoral": "0",
+            "ocr_confidence": "0.4",
+        }
+    )
+
+    assert should_fallback is True

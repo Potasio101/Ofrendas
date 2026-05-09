@@ -1,8 +1,9 @@
 Flask==3.0.3
 python-dotenv==1.0.1
-psycopg[binary]==3.2.1
-numpy==2.1.1
+psycopg[binary]>=3.2.0
+numpy>=2.0.0
 opencv-python-headless==4.10.0.84
 rapidfuzz==3.9.7
 APScheduler==3.10.4
+gunicorn==22.0.0
 pytest==8.3.3

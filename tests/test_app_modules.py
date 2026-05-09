@@ -1,4 +1,5 @@
 from dataclasses import dataclass
+from io import BytesIO
 
 from offering_app.ui.app import create_app
 
@@ -15,6 +16,9 @@ class DummyService:
 
     def process_image(self, image_path: str):
         return {}
+
+    def should_fallback_to_manual(self, data):
+        return False
 
     def build_offering_from_form(self, form, actor):
         return {}
@@ -190,6 +194,19 @@ class DummyKioskPOSService:
 def _build_client():
     app = create_app(
         service=DummyService(),
+        storage=DummyStorage(),
+        upload_path="/tmp",
+        cash_window_service=DummyCashWindowService(),
+        outputs_service=DummyOutputsService(),
+        kiosk_pos_service=DummyKioskPOSService(),
+    )
+    app.config["TESTING"] = True
+    return app.test_client()
+
+
+def _build_client_with(service):
+    app = create_app(
+        service=service,
         storage=DummyStorage(),
         upload_path="/tmp",
         cash_window_service=DummyCashWindowService(),
@@ -474,3 +491,61 @@ def test_kiosk_pay_zelle_requires_payer_name():
     )
 
     assert response.status_code == 400
+
+
+def test_process_manual_redirects_with_manual_saved_notice():
+    client = _build_client()
+
+    response = client.post(
+        "/process-manual",
+        data={"member_name": "Manual Person", "diezmo": "10", "ofrenda": "5"},
+        headers={"X-User-Role": "treasurer", "X-User-Id": "treasurer-user"},
+        follow_redirects=False,
+    )
+
+    assert response.status_code == 302
+    assert "notice=manual_saved" in response.headers["Location"]
+
+
+def test_day_log_shows_manual_saved_notice():
+    client = _build_client()
+
+    response = client.get(
+        "/day-log?notice=manual_saved",
+        headers={"X-User-Role": "auditor", "X-User-Id": "audit-user"},
+    )
+
+    assert response.status_code == 200
+    assert b"Sobre manual guardado" in response.data
+
+
+def test_process_shows_manual_warning_on_low_confidence_fallback():
+    class FallbackService(DummyService):
+        def process_image(self, image_path: str):
+            return {
+                "member_name": "Recognized",
+                "diezmo": 0,
+                "ofrenda": 0,
+                "primicias": 0,
+                "pro_templo": 0,
+                "ofrenda_misionera": 0,
+                "ofrenda_pastoral": 0,
+                "payment_method": "cash",
+                "ocr_confidence": 0.2,
+                "image_path": image_path,
+            }
+
+        def should_fallback_to_manual(self, data):
+            return True
+
+    client = _build_client_with(FallbackService())
+
+    response = client.post(
+        "/process",
+        data={"image": (BytesIO(b"fake-jpg"), "envelope.jpg")},
+        content_type="multipart/form-data",
+        headers={"X-User-Role": "treasurer", "X-User-Id": "treasurer-user"},
+    )
+
+    assert response.status_code == 200
+    assert b"El OCR no pudo leer la foto con precision" in response.data

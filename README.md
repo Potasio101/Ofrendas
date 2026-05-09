@@ -16,6 +16,30 @@ Documentacion de arquitectura y plan de implementacion para la app de digitaliza
 - Decisiones formales de arquitectura: `docs/architecture/`
 - Migraciones PostgreSQL: `db/migrations/`
 
+## Matriz de autenticacion por entorno
+
+### APP_ENV=local
+
+- `APP_AUTH_MODE=local-dev` (default): permitido para desarrollo local.
+- `APP_AUTH_MODE=header-strict`: permitido para pruebas con headers de identidad.
+- `APP_AUTH_MODE=proxy-token`: permitido si `APP_AUTH_PROXY_TOKEN` esta configurado.
+- `APP_AUTH_MODE=proxy-signed`: permitido si `APP_AUTH_PROXY_SIGNING_SECRET` esta configurado.
+
+### APP_ENV=production
+
+- `APP_AUTH_MODE=local-dev`: no permitido. La app falla en startup.
+- `APP_AUTH_MODE=header-strict`: permitido.
+- `APP_AUTH_MODE=proxy-token`: permitido solo si `APP_AUTH_PROXY_TOKEN` existe.
+- `APP_AUTH_MODE=proxy-signed`: permitido solo si `APP_AUTH_PROXY_SIGNING_SECRET` existe.
+
+Variables relevantes:
+
+- `APP_ENV`: `local` o `production`.
+- `APP_AUTH_MODE`: `local-dev`, `header-strict`, `proxy-token`, `proxy-signed`.
+- `APP_AUTH_PROXY_TOKEN`: requerido en production con `proxy-token`.
+- `APP_AUTH_PROXY_SIGNING_SECRET`: requerido en production con `proxy-signed`.
+- `APP_AUTH_PROXY_MAX_AGE_SECONDS`: ventana de frescura para `proxy-signed`.
+
 ## Inicio de construccion (orquestacion)
 
 1. Leer `PROJECT_BRIEF.md` completo.

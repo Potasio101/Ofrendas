@@ -52,6 +52,21 @@ class OfferingService:
         corrected["image_path"] = str(Path(image_path))
         return corrected
 
+    def should_fallback_to_manual(self, data: dict[str, Any]) -> bool:
+        name = str(data.get("member_name") or "").strip().lower()
+        unknown_names = {"", "miembro desconocido", "unknown", "desconocido"}
+        amount_fields = [
+            "diezmo",
+            "ofrenda",
+            "primicias",
+            "pro_templo",
+            "ofrenda_misionera",
+            "ofrenda_pastoral",
+        ]
+        all_zero = all(self._to_float(data.get(field)) == 0.0 for field in amount_fields)
+        low_confidence = self._to_float(data.get("ocr_confidence")) < 0.6
+        return all_zero and (name in unknown_names or low_confidence)
+
     def confirm(
         self,
         offering: Offering,
@@ -105,6 +120,13 @@ class OfferingService:
             return str(UUID(candidate))
         except (ValueError, TypeError):
             return None
+
+    @staticmethod
+    def _to_float(value: Any) -> float:
+        try:
+            return float(value or 0)
+        except (TypeError, ValueError):
+            return 0.0
 
     def build_corrections_from_form(self, form: dict[str, str]) -> list[Correction]:
         fields = [

@@ -44,8 +44,20 @@ def test_postgresql_repo_save_get_and_field_history_integration():
     )
     assert ok is True
 
+    ok_amounts = repo.update_offering_fields(
+        offering_id=offering_id,
+        updates={"diezmo": "20.0", "ofrenda": "5.0"},
+        changed_by_user_id=None,
+        reason="integration total recalculation",
+    )
+    assert ok_amounts is True
+
     with psycopg.connect(_database_url()) as conn:
         with conn.cursor() as cur:
+            cur.execute("SELECT total FROM offerings WHERE id = %s", (offering_id,))
+            total_value = float(cur.fetchone()[0])
+            assert total_value == 35.0
+
             cur.execute(
                 """
                 SELECT count(*)

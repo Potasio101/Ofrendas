@@ -1,0 +1,4697 @@
+{
+  "nodes": [
+    {
+      "id": "project_brief_md",
+      "label": "PROJECT_BRIEF.md",
+      "file_type": "document",
+      "source_file": "PROJECT_BRIEF.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "ofrendas_project_brief_project_brief",
+      "label": "PROJECT_BRIEF",
+      "file_type": "document",
+      "source_file": "PROJECT_BRIEF.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "ofrendas_project_brief_1_project_overview",
+      "label": "1. Project Overview",
+      "file_type": "document",
+      "source_file": "PROJECT_BRIEF.md",
+      "source_location": "L3"
+    },
+    {
+      "id": "ofrendas_project_brief_2_concept_product_description",
+      "label": "2. Concept / Product Description",
+      "file_type": "document",
+      "source_file": "PROJECT_BRIEF.md",
+      "source_location": "L17"
+    },
+    {
+      "id": "ofrendas_project_brief_3_tech_stack",
+      "label": "3. Tech Stack",
+      "file_type": "document",
+      "source_file": "PROJECT_BRIEF.md",
+      "source_location": "L36"
+    },
+    {
+      "id": "ofrendas_project_brief_4_architecture_ascii_diagram",
+      "label": "4. Architecture (ASCII diagram)",
+      "file_type": "document",
+      "source_file": "PROJECT_BRIEF.md",
+      "source_location": "L57"
+    },
+    {
+      "id": "ofrendas_project_brief_codeblock_1",
+      "label": "code:text (Mobile/User UI)",
+      "file_type": "document",
+      "source_file": "PROJECT_BRIEF.md",
+      "source_location": "L59"
+    },
+    {
+      "id": "ofrendas_project_brief_5_key_files_map",
+      "label": "5. Key Files Map",
+      "file_type": "document",
+      "source_file": "PROJECT_BRIEF.md",
+      "source_location": "L87"
+    },
+    {
+      "id": "ofrendas_project_brief_6_team_roles",
+      "label": "6. Team Roles",
+      "file_type": "document",
+      "source_file": "PROJECT_BRIEF.md",
+      "source_location": "L118"
+    },
+    {
+      "id": "ofrendas_project_brief_7_sprint_status_updated_every_sprint",
+      "label": "7. Sprint Status (updated every sprint)",
+      "file_type": "document",
+      "source_file": "PROJECT_BRIEF.md",
+      "source_location": "L135"
+    },
+    {
+      "id": "ofrendas_project_brief_8_current_state_rewritten_every_sprint",
+      "label": "8. Current State (rewritten every sprint)",
+      "file_type": "document",
+      "source_file": "PROJECT_BRIEF.md",
+      "source_location": "L144"
+    },
+    {
+      "id": "ofrendas_project_brief_9_security_rules",
+      "label": "9. Security Rules",
+      "file_type": "document",
+      "source_file": "PROJECT_BRIEF.md",
+      "source_location": "L181"
+    },
+    {
+      "id": "ofrendas_project_brief_10_how_to_run_locally",
+      "label": "10. How to Run Locally",
+      "file_type": "document",
+      "source_file": "PROJECT_BRIEF.md",
+      "source_location": "L198"
+    },
+    {
+      "id": "ofrendas_project_brief_11_how_to_deploy",
+      "label": "11. How to Deploy",
+      "file_type": "document",
+      "source_file": "PROJECT_BRIEF.md",
+      "source_location": "L225"
+    },
+    {
+      "id": "ofrendas_project_brief_12_cross_chat_handoff_protocol",
+      "label": "12. Cross-Chat Handoff Protocol",
+      "file_type": "document",
+      "source_file": "PROJECT_BRIEF.md",
+      "source_location": "L242"
+    },
+    {
+      "id": "ofrendas_project_brief_13_bug_fix_tracking",
+      "label": "13. Bug & Fix Tracking",
+      "file_type": "document",
+      "source_file": "PROJECT_BRIEF.md",
+      "source_location": "L262"
+    },
+    {
+      "id": "ofrendas_project_brief_14_multi_repo_setup",
+      "label": "14. Multi-Repo Setup",
+      "file_type": "document",
+      "source_file": "PROJECT_BRIEF.md",
+      "source_location": "L275"
+    },
+    {
+      "id": "readme_md",
+      "label": "README.md",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "ofrendas_readme_ofrendas",
+      "label": "Ofrendas",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "ofrendas_readme_alcance_actual",
+      "label": "Alcance actual",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L5"
+    },
+    {
+      "id": "ofrendas_readme_documentos",
+      "label": "Documentos",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L12"
+    },
+    {
+      "id": "ofrendas_readme_inicio_de_construccion_orquestacion",
+      "label": "Inicio de construccion (orquestacion)",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L19"
+    },
+    {
+      "id": "ofrendas_readme_glosario_operativo_onboarding_rapido",
+      "label": "Glosario operativo (onboarding rapido)",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L29"
+    },
+    {
+      "id": "ofrendas_readme_adrs",
+      "label": "ADRs",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L38"
+    },
+    {
+      "id": "ofrendas_readme_base_de_datos",
+      "label": "Base de datos",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L52"
+    },
+    {
+      "id": "ofrendas_readme_postgresql_con_docker",
+      "label": "PostgreSQL con Docker",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L63"
+    },
+    {
+      "id": "ofrendas_readme_codeblock_1",
+      "label": "code:bash (docker compose up -d postgres)",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L67"
+    },
+    {
+      "id": "ofrendas_readme_codeblock_2",
+      "label": "code:bash (for f in db/migrations/000[1-7]*.sql; do)",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L74"
+    },
+    {
+      "id": "ofrendas_readme_codeblock_3",
+      "label": "code:env (DATABASE_URL=postgresql://ofrendas:ofrendas@localhost:5432/o)",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L82"
+    },
+    {
+      "id": "ofrendas_readme_app_postgresql_con_docker",
+      "label": "App + PostgreSQL con Docker",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L86"
+    },
+    {
+      "id": "ofrendas_readme_codeblock_4",
+      "label": "code:bash (docker compose up -d --build app)",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L90"
+    },
+    {
+      "id": "ofrendas_readme_codeblock_5",
+      "label": "code:bash (curl http://localhost:5001/healthz)",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L97"
+    },
+    {
+      "id": "ofrendas_readme_codeblock_6",
+      "label": "code:bash (docker compose run --rm app python -m pytest -q)",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L104"
+    },
+    {
+      "id": "ofrendas_readme_codeblock_7",
+      "label": "code:bash (docker compose build app)",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L110"
+    },
+    {
+      "id": "ofrendas_readme_codeblock_8",
+      "label": "code:bash (docker exec -i ofrendas-app date +%F)",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L123"
+    },
+    {
+      "id": "ofrendas_readme_ux_figma_handoff",
+      "label": "UX / Figma Handoff",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L127"
+    },
+    {
+      "id": "ofrenda_md",
+      "label": "Ofrenda.md",
+      "file_type": "document",
+      "source_file": "Ofrenda.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "ofrendas_ofrenda_app_de_ofrendas_llm_prompt_plan_v1_0",
+      "label": "App de Ofrendas \u2014 LLM Prompt Plan v1.0",
+      "file_type": "document",
+      "source_file": "Ofrenda.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "ofrendas_ofrenda_por_qu_solid_strategy",
+      "label": "\u00bfPor qu\u00e9 SOLID + Strategy?",
+      "file_type": "document",
+      "source_file": "Ofrenda.md",
+      "source_location": "L8"
+    },
+    {
+      "id": "ofrendas_ofrenda_principios_solid_aplicados",
+      "label": "Principios SOLID Aplicados",
+      "file_type": "document",
+      "source_file": "Ofrenda.md",
+      "source_location": "L14"
+    },
+    {
+      "id": "ofrendas_ofrenda_s_single_responsibility",
+      "label": "S \u2014 Single Responsibility",
+      "file_type": "document",
+      "source_file": "Ofrenda.md",
+      "source_location": "L16"
+    },
+    {
+      "id": "ofrendas_ofrenda_codeblock_1",
+      "label": "code:block1 (ImageProcessor  \u2192 solo limpia imagen)",
+      "file_type": "document",
+      "source_file": "Ofrenda.md",
+      "source_location": "L18"
+    },
+    {
+      "id": "ofrendas_ofrenda_o_open_closed",
+      "label": "O \u2014 Open/Closed",
+      "file_type": "document",
+      "source_file": "Ofrenda.md",
+      "source_location": "L24"
+    },
+    {
+      "id": "ofrendas_ofrenda_codeblock_2",
+      "label": "code:block2 (TitheStrategy, OfferingStrategy, TalentoStrategy, OfrendaDeA)",
+      "file_type": "document",
+      "source_file": "Ofrenda.md",
+      "source_location": "L26"
+    },
+    {
+      "id": "ofrendas_ofrenda_l_liskov_substitution",
+      "label": "L \u2014 Liskov Substitution",
+      "file_type": "document",
+      "source_file": "Ofrenda.md",
+      "source_location": "L31"
+    },
+    {
+      "id": "ofrendas_ofrenda_codeblock_3",
+      "label": "code:block3 (OCRStrategy \u2192 EasyOCRStrategy)",
+      "file_type": "document",
+      "source_file": "Ofrenda.md",
+      "source_location": "L33"
+    },
+    {
+      "id": "ofrendas_ofrenda_i_interface_segregation",
+      "label": "I \u2014 Interface Segregation",
+      "file_type": "document",
+      "source_file": "Ofrenda.md",
+      "source_location": "L39"
+    },
+    {
+      "id": "ofrendas_ofrenda_codeblock_4",
+      "label": "code:block4 (IReader     \u2192 solo read())",
+      "file_type": "document",
+      "source_file": "Ofrenda.md",
+      "source_location": "L41"
+    },
+    {
+      "id": "ofrendas_ofrenda_d_dependency_inversion",
+      "label": "D \u2014 Dependency Inversion",
+      "file_type": "document",
+      "source_file": "Ofrenda.md",
+      "source_location": "L47"
+    },
+    {
+      "id": "ofrendas_ofrenda_codeblock_5",
+      "label": "code:block5 (OfferingService(repo: IStorage))",
+      "file_type": "document",
+      "source_file": "Ofrenda.md",
+      "source_location": "L49"
+    },
+    {
+      "id": "ofrendas_ofrenda_strategy_pattern_el_coraz_n_del_sistema",
+      "label": "Strategy Pattern \u2014 El Coraz\u00f3n del Sistema",
+      "file_type": "document",
+      "source_file": "Ofrenda.md",
+      "source_location": "L57"
+    },
+    {
+      "id": "ofrendas_ofrenda_arquitectura",
+      "label": "Arquitectura",
+      "file_type": "document",
+      "source_file": "Ofrenda.md",
+      "source_location": "L69"
+    },
+    {
+      "id": "ofrendas_ofrenda_codeblock_6",
+      "label": "code:block6 (\ud83d\udcf1 UI Flask)",
+      "file_type": "document",
+      "source_file": "Ofrenda.md",
+      "source_location": "L71"
+    },
+    {
+      "id": "ofrendas_ofrenda_estructura_de_carpetas",
+      "label": "Estructura de Carpetas",
+      "file_type": "document",
+      "source_file": "Ofrenda.md",
+      "source_location": "L85"
+    },
+    {
+      "id": "ofrendas_ofrenda_codeblock_7",
+      "label": "code:block7 (offering_app/)",
+      "file_type": "document",
+      "source_file": "Ofrenda.md",
+      "source_location": "L87"
+    },
+    {
+      "id": "ofrendas_ofrenda_prompts_para_claude_paso_a_paso",
+      "label": "Prompts para Claude \u2014 Paso a Paso",
+      "file_type": "document",
+      "source_file": "Ofrenda.md",
+      "source_location": "L128"
+    },
+    {
+      "id": "ofrendas_ofrenda_prompt_1_interfaces_y_modelos",
+      "label": "PROMPT 1 \u2014 Interfaces y Modelos",
+      "file_type": "document",
+      "source_file": "Ofrenda.md",
+      "source_location": "L134"
+    },
+    {
+      "id": "ofrendas_ofrenda_codeblock_8",
+      "label": "code:block8 (Eres un arquitecto de software senior. Crea las interfaces y)",
+      "file_type": "document",
+      "source_file": "Ofrenda.md",
+      "source_location": "L136"
+    },
+    {
+      "id": "ofrendas_ofrenda_prompt_2_strategy_ocr_correcci_n",
+      "label": "PROMPT 2 \u2014 Strategy: OCR + Correcci\u00f3n",
+      "file_type": "document",
+      "source_file": "Ofrenda.md",
+      "source_location": "L172"
+    },
+    {
+      "id": "ofrendas_ofrenda_codeblock_9",
+      "label": "code:block9 (Usando las interfaces del paso anterior, crea las implementa)",
+      "file_type": "document",
+      "source_file": "Ofrenda.md",
+      "source_location": "L174"
+    },
+    {
+      "id": "ofrendas_ofrenda_prompt_3_imageprocessor_coordenadas",
+      "label": "PROMPT 3 \u2014 ImageProcessor + Coordenadas",
+      "file_type": "document",
+      "source_file": "Ofrenda.md",
+      "source_location": "L199"
+    },
+    {
+      "id": "ofrendas_ofrenda_codeblock_10",
+      "label": "code:block10 (Crea services/image_processor.py siguiendo Single Responsibi)",
+      "file_type": "document",
+      "source_file": "Ofrenda.md",
+      "source_location": "L201"
+    },
+    {
+      "id": "ofrendas_ofrenda_prompt_4_repositories",
+      "label": "PROMPT 4 \u2014 Repositories",
+      "file_type": "document",
+      "source_file": "Ofrenda.md",
+      "source_location": "L228"
+    },
+    {
+      "id": "ofrendas_ofrenda_codeblock_11",
+      "label": "code:block11 (Crea los repositorios implementando IStorageRepo e ITraining)",
+      "file_type": "document",
+      "source_file": "Ofrenda.md",
+      "source_location": "L230"
+    },
+    {
+      "id": "ofrendas_ofrenda_prompt_5_offeringservice_orquestador",
+      "label": "PROMPT 5 \u2014 OfferingService (Orquestador)",
+      "file_type": "document",
+      "source_file": "Ofrenda.md",
+      "source_location": "L254"
+    },
+    {
+      "id": "ofrendas_ofrenda_codeblock_12",
+      "label": "code:block12 (Crea services/offering_service.py \u2014 el orquestador central.)",
+      "file_type": "document",
+      "source_file": "Ofrenda.md",
+      "source_location": "L256"
+    },
+    {
+      "id": "ofrendas_ofrenda_prompt_6_flask_ui_del_tesorero",
+      "label": "PROMPT 6 \u2014 Flask UI del Tesorero",
+      "file_type": "document",
+      "source_file": "Ofrenda.md",
+      "source_location": "L289"
+    },
+    {
+      "id": "ofrendas_ofrenda_codeblock_13",
+      "label": "code:block13 (Crea ui/app.py con Flask y el HTML completo de la app del te)",
+      "file_type": "document",
+      "source_file": "Ofrenda.md",
+      "source_location": "L291"
+    },
+    {
+      "id": "ofrendas_ofrenda_prompt_7_job_nocturno_de_training",
+      "label": "PROMPT 7 \u2014 Job Nocturno de Training",
+      "file_type": "document",
+      "source_file": "Ofrenda.md",
+      "source_location": "L400"
+    },
+    {
+      "id": "ofrendas_ofrenda_codeblock_14",
+      "label": "code:block14 (Crea services/training_job.py \u2014 el job nocturno que corre a )",
+      "file_type": "document",
+      "source_file": "Ofrenda.md",
+      "source_location": "L402"
+    },
+    {
+      "id": "ofrendas_ofrenda_prompt_8_wiring_main_py",
+      "label": "PROMPT 8 \u2014 Wiring + main.py",
+      "file_type": "document",
+      "source_file": "Ofrenda.md",
+      "source_location": "L421"
+    },
+    {
+      "id": "ofrendas_ofrenda_codeblock_15",
+      "label": "code:block15 (Crea main.py \u2014 el punto de entrada que conecta todo usando)",
+      "file_type": "document",
+      "source_file": "Ofrenda.md",
+      "source_location": "L423"
+    },
+    {
+      "id": "ofrendas_ofrenda_orden_de_ejecuci_n",
+      "label": "Orden de Ejecuci\u00f3n",
+      "file_type": "document",
+      "source_file": "Ofrenda.md",
+      "source_location": "L447"
+    },
+    {
+      "id": "ofrendas_ofrenda_lo_que_demuestra_que_el_strategy_pattern_funciona",
+      "label": "Lo que demuestra que el Strategy Pattern funciona",
+      "file_type": "document",
+      "source_file": "Ofrenda.md",
+      "source_location": "L462"
+    },
+    {
+      "id": "ofrendas_ofrenda_codeblock_16",
+      "label": "code:python (# main.py \u2014 Cambiar de EasyOCR a Tesseract en UNA l\u00ednea:)",
+      "file_type": "document",
+      "source_file": "Ofrenda.md",
+      "source_location": "L464"
+    },
+    {
+      "id": "ofrendas_ofrenda_review_de_arquitectura_local_ahora_produccion_futuro",
+      "label": "Review de Arquitectura (Local Ahora, Produccion Futuro)",
+      "file_type": "document",
+      "source_file": "Ofrenda.md",
+      "source_location": "L479"
+    },
+    {
+      "id": "ofrendas_ofrenda_hallazgos_criticos",
+      "label": "Hallazgos Criticos",
+      "file_type": "document",
+      "source_file": "Ofrenda.md",
+      "source_location": "L481"
+    },
+    {
+      "id": "ofrendas_ofrenda_supuestos_de_escala_para_decisiones_actuales",
+      "label": "Supuestos de Escala (para decisiones actuales)",
+      "file_type": "document",
+      "source_file": "Ofrenda.md",
+      "source_location": "L489"
+    },
+    {
+      "id": "ofrendas_ofrenda_decision_de_contexto_confirmado_mayo_2026",
+      "label": "Decision de Contexto Confirmado (Mayo 2026)",
+      "file_type": "document",
+      "source_file": "Ofrenda.md",
+      "source_location": "L497"
+    },
+    {
+      "id": "ofrendas_ofrenda_runbook_de_desarrollo_local",
+      "label": "Runbook de Desarrollo Local",
+      "file_type": "document",
+      "source_file": "Ofrenda.md",
+      "source_location": "L510"
+    },
+    {
+      "id": "ofrendas_ofrenda_objetivo",
+      "label": "Objetivo",
+      "file_type": "document",
+      "source_file": "Ofrenda.md",
+      "source_location": "L512"
+    },
+    {
+      "id": "ofrendas_ofrenda_perfil_de_ejecucion_local",
+      "label": "Perfil de ejecucion local",
+      "file_type": "document",
+      "source_file": "Ofrenda.md",
+      "source_location": "L516"
+    },
+    {
+      "id": "ofrendas_ofrenda_variables_de_entorno_local",
+      "label": "Variables de entorno (local)",
+      "file_type": "document",
+      "source_file": "Ofrenda.md",
+      "source_location": "L524"
+    },
+    {
+      "id": "ofrendas_ofrenda_codeblock_17",
+      "label": "code:env (APP_ENV=local)",
+      "file_type": "document",
+      "source_file": "Ofrenda.md",
+      "source_location": "L528"
+    },
+    {
+      "id": "ofrendas_ofrenda_comandos_recomendados",
+      "label": "Comandos recomendados",
+      "file_type": "document",
+      "source_file": "Ofrenda.md",
+      "source_location": "L545"
+    },
+    {
+      "id": "ofrendas_ofrenda_codeblock_18",
+      "label": "code:bash (python -m venv .venv)",
+      "file_type": "document",
+      "source_file": "Ofrenda.md",
+      "source_location": "L547"
+    },
+    {
+      "id": "ofrendas_ofrenda_alternativa_local_recomendada_con_docker",
+      "label": "Alternativa local recomendada con Docker",
+      "file_type": "document",
+      "source_file": "Ofrenda.md",
+      "source_location": "L555"
+    },
+    {
+      "id": "ofrendas_ofrenda_codeblock_19",
+      "label": "code:bash (docker compose up --build)",
+      "file_type": "document",
+      "source_file": "Ofrenda.md",
+      "source_location": "L557"
+    },
+    {
+      "id": "ofrendas_ofrenda_validacion_minima_local",
+      "label": "Validacion minima local",
+      "file_type": "document",
+      "source_file": "Ofrenda.md",
+      "source_location": "L563"
+    },
+    {
+      "id": "ofrendas_ofrenda_runbook_de_produccion_roadmap",
+      "label": "Runbook de Produccion (Roadmap)",
+      "file_type": "document",
+      "source_file": "Ofrenda.md",
+      "source_location": "L572"
+    },
+    {
+      "id": "ofrendas_ofrenda_objetivo_574",
+      "label": "Objetivo",
+      "file_type": "document",
+      "source_file": "Ofrenda.md",
+      "source_location": "L574"
+    },
+    {
+      "id": "ofrendas_ofrenda_topologia_objetivo_fase_1",
+      "label": "Topologia objetivo (fase 1)",
+      "file_type": "document",
+      "source_file": "Ofrenda.md",
+      "source_location": "L578"
+    },
+    {
+      "id": "ofrendas_ofrenda_codeblock_20",
+      "label": "code:text (Usuario movil)",
+      "file_type": "document",
+      "source_file": "Ofrenda.md",
+      "source_location": "L580"
+    },
+    {
+      "id": "ofrendas_ofrenda_perfil_de_ejecucion_produccion",
+      "label": "Perfil de ejecucion produccion",
+      "file_type": "document",
+      "source_file": "Ofrenda.md",
+      "source_location": "L594"
+    },
+    {
+      "id": "ofrendas_ofrenda_controles_de_seguridad_minimos",
+      "label": "Controles de seguridad minimos",
+      "file_type": "document",
+      "source_file": "Ofrenda.md",
+      "source_location": "L604"
+    },
+    {
+      "id": "ofrendas_ofrenda_confiabilidad_y_fallback",
+      "label": "Confiabilidad y fallback",
+      "file_type": "document",
+      "source_file": "Ofrenda.md",
+      "source_location": "L613"
+    },
+    {
+      "id": "ofrendas_ofrenda_observabilidad_minima",
+      "label": "Observabilidad minima",
+      "file_type": "document",
+      "source_file": "Ofrenda.md",
+      "source_location": "L620"
+    },
+    {
+      "id": "ofrendas_ofrenda_capacidad_objetivo_para_esta_fase",
+      "label": "Capacidad objetivo para esta fase",
+      "file_type": "document",
+      "source_file": "Ofrenda.md",
+      "source_location": "L632"
+    },
+    {
+      "id": "ofrendas_ofrenda_cadencia_operativa_recomendada",
+      "label": "Cadencia operativa recomendada",
+      "file_type": "document",
+      "source_file": "Ofrenda.md",
+      "source_location": "L638"
+    },
+    {
+      "id": "ofrendas_ofrenda_roles_y_permisos_confirmado",
+      "label": "Roles y Permisos (Confirmado)",
+      "file_type": "document",
+      "source_file": "Ofrenda.md",
+      "source_location": "L647"
+    },
+    {
+      "id": "ofrendas_ofrenda_control_de_salidas_outputs",
+      "label": "Control de Salidas (Outputs)",
+      "file_type": "document",
+      "source_file": "Ofrenda.md",
+      "source_location": "L666"
+    },
+    {
+      "id": "ofrendas_ofrenda_objetivo_668",
+      "label": "Objetivo",
+      "file_type": "document",
+      "source_file": "Ofrenda.md",
+      "source_location": "L668"
+    },
+    {
+      "id": "ofrendas_ofrenda_casos_comunes",
+      "label": "Casos comunes",
+      "file_type": "document",
+      "source_file": "Ofrenda.md",
+      "source_location": "L673"
+    },
+    {
+      "id": "ofrendas_ofrenda_campos_minimos_por_salida",
+      "label": "Campos minimos por salida",
+      "file_type": "document",
+      "source_file": "Ofrenda.md",
+      "source_location": "L679"
+    },
+    {
+      "id": "ofrendas_ofrenda_politica_de_fondos_flexible",
+      "label": "Politica de fondos (flexible)",
+      "file_type": "document",
+      "source_file": "Ofrenda.md",
+      "source_location": "L690"
+    },
+    {
+      "id": "ofrendas_ofrenda_reglas_de_negocio",
+      "label": "Reglas de negocio",
+      "file_type": "document",
+      "source_file": "Ofrenda.md",
+      "source_location": "L701"
+    },
+    {
+      "id": "ofrendas_ofrenda_estrategia_de_exportaciones_contables",
+      "label": "Estrategia de Exportaciones Contables",
+      "file_type": "document",
+      "source_file": "Ofrenda.md",
+      "source_location": "L711"
+    },
+    {
+      "id": "ofrendas_ofrenda_objetivo_713",
+      "label": "Objetivo",
+      "file_type": "document",
+      "source_file": "Ofrenda.md",
+      "source_location": "L713"
+    },
+    {
+      "id": "ofrendas_ofrenda_patron_recomendado",
+      "label": "Patron recomendado",
+      "file_type": "document",
+      "source_file": "Ofrenda.md",
+      "source_location": "L717"
+    },
+    {
+      "id": "ofrendas_ofrenda_codeblock_21",
+      "label": "code:text (IExportStrategy)",
+      "file_type": "document",
+      "source_file": "Ofrenda.md",
+      "source_location": "L721"
+    },
+    {
+      "id": "ofrendas_ofrenda_formatos_de_salida_iniciales",
+      "label": "Formatos de salida iniciales",
+      "file_type": "document",
+      "source_file": "Ofrenda.md",
+      "source_location": "L730"
+    },
+    {
+      "id": "ofrendas_ofrenda_flujo_recomendado",
+      "label": "Flujo recomendado",
+      "file_type": "document",
+      "source_file": "Ofrenda.md",
+      "source_location": "L737"
+    },
+    {
+      "id": "ofrendas_ofrenda_modo_smart_upload_de_esquema_csv_mapping_dinamico",
+      "label": "Modo smart: upload de esquema CSV + mapping dinamico",
+      "file_type": "document",
+      "source_file": "Ofrenda.md",
+      "source_location": "L745"
+    },
+    {
+      "id": "ofrendas_ofrenda_contrato_sugerido_para_export",
+      "label": "Contrato sugerido para export",
+      "file_type": "document",
+      "source_file": "Ofrenda.md",
+      "source_location": "L779"
+    },
+    {
+      "id": "ofrendas_ofrenda_codeblock_22",
+      "label": "code:python (class IExportStrategy(ABC):)",
+      "file_type": "document",
+      "source_file": "Ofrenda.md",
+      "source_location": "L781"
+    },
+    {
+      "id": "ofrendas_ofrenda_kiosk_mode_pos_tiendita",
+      "label": "Kiosk Mode (POS) - Tiendita",
+      "file_type": "document",
+      "source_file": "Ofrenda.md",
+      "source_location": "L790"
+    },
+    {
+      "id": "ofrendas_ofrenda_objetivo_792",
+      "label": "Objetivo",
+      "file_type": "document",
+      "source_file": "Ofrenda.md",
+      "source_location": "L792"
+    },
+    {
+      "id": "ofrendas_ofrenda_flujo_base",
+      "label": "Flujo base",
+      "file_type": "document",
+      "source_file": "Ofrenda.md",
+      "source_location": "L797"
+    },
+    {
+      "id": "ofrendas_ofrenda_campos_minimos_por_ticket",
+      "label": "Campos minimos por ticket",
+      "file_type": "document",
+      "source_file": "Ofrenda.md",
+      "source_location": "L807"
+    },
+    {
+      "id": "ofrendas_ofrenda_items_custom",
+      "label": "Items custom",
+      "file_type": "document",
+      "source_file": "Ofrenda.md",
+      "source_location": "L816"
+    },
+    {
+      "id": "ofrendas_ofrenda_reglas_de_negocio_822",
+      "label": "Reglas de negocio",
+      "file_type": "document",
+      "source_file": "Ofrenda.md",
+      "source_location": "L822"
+    },
+    {
+      "id": "ofrendas_ofrenda_modelo_de_datos_postgresql_export_opcional",
+      "label": "Modelo de Datos (PostgreSQL + Export Opcional)",
+      "file_type": "document",
+      "source_file": "Ofrenda.md",
+      "source_location": "L831"
+    },
+    {
+      "id": "ofrendas_ofrenda_decision",
+      "label": "Decision",
+      "file_type": "document",
+      "source_file": "Ofrenda.md",
+      "source_location": "L833"
+    },
+    {
+      "id": "ofrendas_ofrenda_matriz_de_source_of_truth_alineada_con_adr_002_y_adr_006",
+      "label": "Matriz de source-of-truth (alineada con ADR-002 y ADR-006)",
+      "file_type": "document",
+      "source_file": "Ofrenda.md",
+      "source_location": "L839"
+    },
+    {
+      "id": "ofrendas_ofrenda_ventajas",
+      "label": "Ventajas",
+      "file_type": "document",
+      "source_file": "Ofrenda.md",
+      "source_location": "L848"
+    },
+    {
+      "id": "ofrendas_ofrenda_riesgos_y_mitigaciones",
+      "label": "Riesgos y mitigaciones",
+      "file_type": "document",
+      "source_file": "Ofrenda.md",
+      "source_location": "L855"
+    },
+    {
+      "id": "ofrendas_ofrenda_pipeline_de_entrega_ci_cd_recomendado",
+      "label": "Pipeline de Entrega (CI/CD recomendado)",
+      "file_type": "document",
+      "source_file": "Ofrenda.md",
+      "source_location": "L864"
+    },
+    {
+      "id": "ofrendas_ofrenda_checklist_de_preparacion_para_produccion",
+      "label": "Checklist de Preparacion para Produccion",
+      "file_type": "document",
+      "source_file": "Ofrenda.md",
+      "source_location": "L878"
+    },
+    {
+      "id": "ofrendas_ofrenda_adrs_asociados",
+      "label": "ADRs Asociados",
+      "file_type": "document",
+      "source_file": "Ofrenda.md",
+      "source_location": "L911"
+    },
+    {
+      "id": "docs_developer_task_list_md",
+      "label": "developer-task-list.md",
+      "file_type": "document",
+      "source_file": "docs/developer-task-list.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "docs_developer_task_list_developer_task_list_ofrendas",
+      "label": "Developer Task List - Ofrendas",
+      "file_type": "document",
+      "source_file": "docs/developer-task-list.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "docs_developer_task_list_task_1_extraer_logica_de_ocr_fallback_fuera_de_ui",
+      "label": "Task 1 - Extraer logica de OCR fallback fuera de UI",
+      "file_type": "document",
+      "source_file": "docs/developer-task-list.md",
+      "source_location": "L5"
+    },
+    {
+      "id": "docs_developer_task_list_task_2_eliminar_sql_directo_desde_main",
+      "label": "Task 2 - Eliminar SQL directo desde main",
+      "file_type": "document",
+      "source_file": "docs/developer-task-list.md",
+      "source_location": "L28"
+    },
+    {
+      "id": "docs_developer_task_list_task_3_harden_de_auth_por_entorno",
+      "label": "Task 3 - Harden de auth por entorno",
+      "file_type": "document",
+      "source_file": "docs/developer-task-list.md",
+      "source_location": "L51"
+    },
+    {
+      "id": "docs_developer_task_list_task_4_docker_runtime_para_produccion",
+      "label": "Task 4 - Docker runtime para produccion",
+      "file_type": "document",
+      "source_file": "docs/developer-task-list.md",
+      "source_location": "L75"
+    },
+    {
+      "id": "docs_developer_task_list_task_5_dividir_ui_monolitica_en_modulos",
+      "label": "Task 5 - Dividir UI monolitica en modulos",
+      "file_type": "document",
+      "source_file": "docs/developer-task-list.md",
+      "source_location": "L100"
+    },
+    {
+      "id": "docs_developer_task_list_task_6_cobertura_de_pruebas_de_regresion_clave",
+      "label": "Task 6 - Cobertura de pruebas de regresion clave",
+      "file_type": "document",
+      "source_file": "docs/developer-task-list.md",
+      "source_location": "L123"
+    },
+    {
+      "id": "docs_developer_task_list_orden_recomendado_de_ejecucion",
+      "label": "Orden recomendado de ejecucion",
+      "file_type": "document",
+      "source_file": "docs/developer-task-list.md",
+      "source_location": "L147"
+    },
+    {
+      "id": "docs_developer_task_list_definition_of_done_global",
+      "label": "Definition of Done global",
+      "file_type": "document",
+      "source_file": "docs/developer-task-list.md",
+      "source_location": "L155"
+    },
+    {
+      "id": "docs_sprint_6_progress_md",
+      "label": "progress.md",
+      "file_type": "document",
+      "source_file": "docs/sprint-6/progress.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "sprint_6_progress_sprint_6_progress_tracker",
+      "label": "Sprint 6 Progress Tracker",
+      "file_type": "document",
+      "source_file": "docs/sprint-6/progress.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "sprint_6_progress_checklist",
+      "label": "Checklist",
+      "file_type": "document",
+      "source_file": "docs/sprint-6/progress.md",
+      "source_location": "L6"
+    },
+    {
+      "id": "sprint_6_progress_phase_notes",
+      "label": "Phase Notes",
+      "file_type": "document",
+      "source_file": "docs/sprint-6/progress.md",
+      "source_location": "L17"
+    },
+    {
+      "id": "sprint_6_progress_open_blockers",
+      "label": "Open Blockers",
+      "file_type": "document",
+      "source_file": "docs/sprint-6/progress.md",
+      "source_location": "L38"
+    },
+    {
+      "id": "sprint_6_progress_related_issues",
+      "label": "Related Issues",
+      "file_type": "document",
+      "source_file": "docs/sprint-6/progress.md",
+      "source_location": "L42"
+    },
+    {
+      "id": "docs_sprint_6_done_md",
+      "label": "done.md",
+      "file_type": "document",
+      "source_file": "docs/sprint-6/done.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "sprint_6_done_sprint_6_done_handoff",
+      "label": "Sprint 6 Done Handoff",
+      "file_type": "document",
+      "source_file": "docs/sprint-6/done.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "sprint_6_done_what_was_delivered",
+      "label": "What Was Delivered",
+      "file_type": "document",
+      "source_file": "docs/sprint-6/done.md",
+      "source_location": "L5"
+    },
+    {
+      "id": "sprint_6_done_validation_summary",
+      "label": "Validation Summary",
+      "file_type": "document",
+      "source_file": "docs/sprint-6/done.md",
+      "source_location": "L16"
+    },
+    {
+      "id": "sprint_6_done_issues_found_and_resolved",
+      "label": "Issues Found and Resolved",
+      "file_type": "document",
+      "source_file": "docs/sprint-6/done.md",
+      "source_location": "L23"
+    },
+    {
+      "id": "sprint_6_done_remaining_risks",
+      "label": "Remaining Risks",
+      "file_type": "document",
+      "source_file": "docs/sprint-6/done.md",
+      "source_location": "L28"
+    },
+    {
+      "id": "sprint_6_done_next_sprint_inputs",
+      "label": "Next Sprint Inputs",
+      "file_type": "document",
+      "source_file": "docs/sprint-6/done.md",
+      "source_location": "L33"
+    },
+    {
+      "id": "sprint_6_done_handoff_commands",
+      "label": "Handoff Commands",
+      "file_type": "document",
+      "source_file": "docs/sprint-6/done.md",
+      "source_location": "L39"
+    },
+    {
+      "id": "docs_sprint_6_plan_md",
+      "label": "plan.md",
+      "file_type": "document",
+      "source_file": "docs/sprint-6/plan.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "sprint_6_plan_sprint_6_plan_proxy_signed_identity_and_workflow_ui_foundations",
+      "label": "Sprint 6 Plan - Proxy Signed Identity and Workflow UI Foundations",
+      "file_type": "document",
+      "source_file": "docs/sprint-6/plan.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "sprint_6_plan_sprint_goal",
+      "label": "Sprint Goal",
+      "file_type": "document",
+      "source_file": "docs/sprint-6/plan.md",
+      "source_location": "L9"
+    },
+    {
+      "id": "sprint_6_plan_in_scope",
+      "label": "In Scope",
+      "file_type": "document",
+      "source_file": "docs/sprint-6/plan.md",
+      "source_location": "L13"
+    },
+    {
+      "id": "sprint_6_plan_out_of_scope",
+      "label": "Out of Scope",
+      "file_type": "document",
+      "source_file": "docs/sprint-6/plan.md",
+      "source_location": "L35"
+    },
+    {
+      "id": "sprint_6_plan_acceptance_criteria",
+      "label": "Acceptance Criteria",
+      "file_type": "document",
+      "source_file": "docs/sprint-6/plan.md",
+      "source_location": "L41"
+    },
+    {
+      "id": "sprint_6_plan_definition_of_done",
+      "label": "Definition of Done",
+      "file_type": "document",
+      "source_file": "docs/sprint-6/plan.md",
+      "source_location": "L57"
+    },
+    {
+      "id": "docs_sprint_1_progress_md",
+      "label": "progress.md",
+      "file_type": "document",
+      "source_file": "docs/sprint-1/progress.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "sprint_1_progress_sprint_1_progress_tracker",
+      "label": "Sprint 1 Progress Tracker",
+      "file_type": "document",
+      "source_file": "docs/sprint-1/progress.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "sprint_1_progress_checklist",
+      "label": "Checklist",
+      "file_type": "document",
+      "source_file": "docs/sprint-1/progress.md",
+      "source_location": "L6"
+    },
+    {
+      "id": "sprint_1_progress_phase_notes",
+      "label": "Phase Notes",
+      "file_type": "document",
+      "source_file": "docs/sprint-1/progress.md",
+      "source_location": "L18"
+    },
+    {
+      "id": "sprint_1_progress_open_blockers",
+      "label": "Open Blockers",
+      "file_type": "document",
+      "source_file": "docs/sprint-1/progress.md",
+      "source_location": "L45"
+    },
+    {
+      "id": "sprint_1_progress_related_issues",
+      "label": "Related Issues",
+      "file_type": "document",
+      "source_file": "docs/sprint-1/progress.md",
+      "source_location": "L49"
+    },
+    {
+      "id": "docs_sprint_1_done_md",
+      "label": "done.md",
+      "file_type": "document",
+      "source_file": "docs/sprint-1/done.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "sprint_1_done_sprint_1_done_handoff",
+      "label": "Sprint 1 Done Handoff",
+      "file_type": "document",
+      "source_file": "docs/sprint-1/done.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "sprint_1_done_what_was_delivered",
+      "label": "What Was Delivered",
+      "file_type": "document",
+      "source_file": "docs/sprint-1/done.md",
+      "source_location": "L5"
+    },
+    {
+      "id": "sprint_1_done_validation_summary",
+      "label": "Validation Summary",
+      "file_type": "document",
+      "source_file": "docs/sprint-1/done.md",
+      "source_location": "L16"
+    },
+    {
+      "id": "sprint_1_done_issues_found_and_resolved",
+      "label": "Issues Found and Resolved",
+      "file_type": "document",
+      "source_file": "docs/sprint-1/done.md",
+      "source_location": "L26"
+    },
+    {
+      "id": "sprint_1_done_remaining_risks",
+      "label": "Remaining Risks",
+      "file_type": "document",
+      "source_file": "docs/sprint-1/done.md",
+      "source_location": "L31"
+    },
+    {
+      "id": "sprint_1_done_next_sprint_inputs",
+      "label": "Next Sprint Inputs",
+      "file_type": "document",
+      "source_file": "docs/sprint-1/done.md",
+      "source_location": "L37"
+    },
+    {
+      "id": "sprint_1_done_handoff_commands",
+      "label": "Handoff Commands",
+      "file_type": "document",
+      "source_file": "docs/sprint-1/done.md",
+      "source_location": "L44"
+    },
+    {
+      "id": "docs_sprint_1_plan_md",
+      "label": "plan.md",
+      "file_type": "document",
+      "source_file": "docs/sprint-1/plan.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "sprint_1_plan_sprint_1_plan_foundation_and_first_vertical_slice",
+      "label": "Sprint 1 Plan - Foundation and First Vertical Slice",
+      "file_type": "document",
+      "source_file": "docs/sprint-1/plan.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "sprint_1_plan_sprint_goal",
+      "label": "Sprint Goal",
+      "file_type": "document",
+      "source_file": "docs/sprint-1/plan.md",
+      "source_location": "L9"
+    },
+    {
+      "id": "sprint_1_plan_in_scope",
+      "label": "In Scope",
+      "file_type": "document",
+      "source_file": "docs/sprint-1/plan.md",
+      "source_location": "L18"
+    },
+    {
+      "id": "sprint_1_plan_out_of_scope",
+      "label": "Out of Scope",
+      "file_type": "document",
+      "source_file": "docs/sprint-1/plan.md",
+      "source_location": "L50"
+    },
+    {
+      "id": "sprint_1_plan_acceptance_criteria",
+      "label": "Acceptance Criteria",
+      "file_type": "document",
+      "source_file": "docs/sprint-1/plan.md",
+      "source_location": "L57"
+    },
+    {
+      "id": "sprint_1_plan_work_breakdown",
+      "label": "Work Breakdown",
+      "file_type": "document",
+      "source_file": "docs/sprint-1/plan.md",
+      "source_location": "L75"
+    },
+    {
+      "id": "sprint_1_plan_definition_of_done",
+      "label": "Definition of Done",
+      "file_type": "document",
+      "source_file": "docs/sprint-1/plan.md",
+      "source_location": "L92"
+    },
+    {
+      "id": "docs_brainstorm_brainstorm_001_md",
+      "label": "brainstorm-001.md",
+      "file_type": "document",
+      "source_file": "docs/brainstorm/brainstorm-001.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "brainstorm_brainstorm_001_brainstorm_001_ofrendas_build_kickoff",
+      "label": "Brainstorm 001 - Ofrendas Build Kickoff",
+      "file_type": "document",
+      "source_file": "docs/brainstorm/brainstorm-001.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "brainstorm_brainstorm_001_prompt_used",
+      "label": "Prompt Used",
+      "file_type": "document",
+      "source_file": "docs/brainstorm/brainstorm-001.md",
+      "source_location": "L7"
+    },
+    {
+      "id": "brainstorm_brainstorm_001_agent_positions",
+      "label": "Agent Positions",
+      "file_type": "document",
+      "source_file": "docs/brainstorm/brainstorm-001.md",
+      "source_location": "L11"
+    },
+    {
+      "id": "brainstorm_brainstorm_001_real_disagreements",
+      "label": "Real Disagreements",
+      "file_type": "document",
+      "source_file": "docs/brainstorm/brainstorm-001.md",
+      "source_location": "L43"
+    },
+    {
+      "id": "brainstorm_brainstorm_001_decisions",
+      "label": "Decisions",
+      "file_type": "document",
+      "source_file": "docs/brainstorm/brainstorm-001.md",
+      "source_location": "L55"
+    },
+    {
+      "id": "brainstorm_brainstorm_001_risks_and_mitigations",
+      "label": "Risks and Mitigations",
+      "file_type": "document",
+      "source_file": "docs/brainstorm/brainstorm-001.md",
+      "source_location": "L62"
+    },
+    {
+      "id": "docs_qa_sprint_5_signoff_md",
+      "label": "sprint-5-signoff.md",
+      "file_type": "document",
+      "source_file": "docs/qa/sprint-5-signoff.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "qa_sprint_5_signoff_qa_sign_off_sprint_5",
+      "label": "QA Sign-off - Sprint 5",
+      "file_type": "document",
+      "source_file": "docs/qa/sprint-5-signoff.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "qa_sprint_5_signoff_scope_validated",
+      "label": "Scope Validated",
+      "file_type": "document",
+      "source_file": "docs/qa/sprint-5-signoff.md",
+      "source_location": "L7"
+    },
+    {
+      "id": "qa_sprint_5_signoff_evidence_summary",
+      "label": "Evidence Summary",
+      "file_type": "document",
+      "source_file": "docs/qa/sprint-5-signoff.md",
+      "source_location": "L14"
+    },
+    {
+      "id": "qa_sprint_5_signoff_notes",
+      "label": "Notes",
+      "file_type": "document",
+      "source_file": "docs/qa/sprint-5-signoff.md",
+      "source_location": "L27"
+    },
+    {
+      "id": "qa_sprint_5_signoff_open_issues",
+      "label": "Open Issues",
+      "file_type": "document",
+      "source_file": "docs/qa/sprint-5-signoff.md",
+      "source_location": "L32"
+    },
+    {
+      "id": "qa_sprint_5_signoff_recommendation",
+      "label": "Recommendation",
+      "file_type": "document",
+      "source_file": "docs/qa/sprint-5-signoff.md",
+      "source_location": "L36"
+    },
+    {
+      "id": "docs_qa_sprint_2_signoff_md",
+      "label": "sprint-2-signoff.md",
+      "file_type": "document",
+      "source_file": "docs/qa/sprint-2-signoff.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "qa_sprint_2_signoff_qa_sign_off_sprint_2",
+      "label": "QA Sign-off - Sprint 2",
+      "file_type": "document",
+      "source_file": "docs/qa/sprint-2-signoff.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "qa_sprint_2_signoff_scope_validated",
+      "label": "Scope Validated",
+      "file_type": "document",
+      "source_file": "docs/qa/sprint-2-signoff.md",
+      "source_location": "L7"
+    },
+    {
+      "id": "qa_sprint_2_signoff_evidence_summary",
+      "label": "Evidence Summary",
+      "file_type": "document",
+      "source_file": "docs/qa/sprint-2-signoff.md",
+      "source_location": "L16"
+    },
+    {
+      "id": "qa_sprint_2_signoff_notes",
+      "label": "Notes",
+      "file_type": "document",
+      "source_file": "docs/qa/sprint-2-signoff.md",
+      "source_location": "L32"
+    },
+    {
+      "id": "qa_sprint_2_signoff_open_issues",
+      "label": "Open Issues",
+      "file_type": "document",
+      "source_file": "docs/qa/sprint-2-signoff.md",
+      "source_location": "L37"
+    },
+    {
+      "id": "qa_sprint_2_signoff_recommendation",
+      "label": "Recommendation",
+      "file_type": "document",
+      "source_file": "docs/qa/sprint-2-signoff.md",
+      "source_location": "L41"
+    },
+    {
+      "id": "docs_qa_sprint_1_signoff_md",
+      "label": "sprint-1-signoff.md",
+      "file_type": "document",
+      "source_file": "docs/qa/sprint-1-signoff.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "qa_sprint_1_signoff_qa_sign_off_sprint_1",
+      "label": "QA Sign-off - Sprint 1",
+      "file_type": "document",
+      "source_file": "docs/qa/sprint-1-signoff.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "qa_sprint_1_signoff_scope_validated",
+      "label": "Scope Validated",
+      "file_type": "document",
+      "source_file": "docs/qa/sprint-1-signoff.md",
+      "source_location": "L7"
+    },
+    {
+      "id": "qa_sprint_1_signoff_evidence_summary",
+      "label": "Evidence Summary",
+      "file_type": "document",
+      "source_file": "docs/qa/sprint-1-signoff.md",
+      "source_location": "L14"
+    },
+    {
+      "id": "qa_sprint_1_signoff_notes",
+      "label": "Notes",
+      "file_type": "document",
+      "source_file": "docs/qa/sprint-1-signoff.md",
+      "source_location": "L22"
+    },
+    {
+      "id": "qa_sprint_1_signoff_open_issues",
+      "label": "Open Issues",
+      "file_type": "document",
+      "source_file": "docs/qa/sprint-1-signoff.md",
+      "source_location": "L28"
+    },
+    {
+      "id": "qa_sprint_1_signoff_recommendation",
+      "label": "Recommendation",
+      "file_type": "document",
+      "source_file": "docs/qa/sprint-1-signoff.md",
+      "source_location": "L32"
+    },
+    {
+      "id": "docs_qa_sprint_4_signoff_md",
+      "label": "sprint-4-signoff.md",
+      "file_type": "document",
+      "source_file": "docs/qa/sprint-4-signoff.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "qa_sprint_4_signoff_qa_sign_off_sprint_4",
+      "label": "QA Sign-off - Sprint 4",
+      "file_type": "document",
+      "source_file": "docs/qa/sprint-4-signoff.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "qa_sprint_4_signoff_scope_validated",
+      "label": "Scope Validated",
+      "file_type": "document",
+      "source_file": "docs/qa/sprint-4-signoff.md",
+      "source_location": "L7"
+    },
+    {
+      "id": "qa_sprint_4_signoff_evidence_summary",
+      "label": "Evidence Summary",
+      "file_type": "document",
+      "source_file": "docs/qa/sprint-4-signoff.md",
+      "source_location": "L15"
+    },
+    {
+      "id": "qa_sprint_4_signoff_notes",
+      "label": "Notes",
+      "file_type": "document",
+      "source_file": "docs/qa/sprint-4-signoff.md",
+      "source_location": "L29"
+    },
+    {
+      "id": "qa_sprint_4_signoff_open_issues",
+      "label": "Open Issues",
+      "file_type": "document",
+      "source_file": "docs/qa/sprint-4-signoff.md",
+      "source_location": "L34"
+    },
+    {
+      "id": "qa_sprint_4_signoff_recommendation",
+      "label": "Recommendation",
+      "file_type": "document",
+      "source_file": "docs/qa/sprint-4-signoff.md",
+      "source_location": "L38"
+    },
+    {
+      "id": "docs_qa_sprint_3_signoff_md",
+      "label": "sprint-3-signoff.md",
+      "file_type": "document",
+      "source_file": "docs/qa/sprint-3-signoff.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "qa_sprint_3_signoff_qa_sign_off_sprint_3",
+      "label": "QA Sign-off - Sprint 3",
+      "file_type": "document",
+      "source_file": "docs/qa/sprint-3-signoff.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "qa_sprint_3_signoff_scope_validated",
+      "label": "Scope Validated",
+      "file_type": "document",
+      "source_file": "docs/qa/sprint-3-signoff.md",
+      "source_location": "L7"
+    },
+    {
+      "id": "qa_sprint_3_signoff_evidence_summary",
+      "label": "Evidence Summary",
+      "file_type": "document",
+      "source_file": "docs/qa/sprint-3-signoff.md",
+      "source_location": "L15"
+    },
+    {
+      "id": "qa_sprint_3_signoff_notes",
+      "label": "Notes",
+      "file_type": "document",
+      "source_file": "docs/qa/sprint-3-signoff.md",
+      "source_location": "L31"
+    },
+    {
+      "id": "qa_sprint_3_signoff_open_issues",
+      "label": "Open Issues",
+      "file_type": "document",
+      "source_file": "docs/qa/sprint-3-signoff.md",
+      "source_location": "L36"
+    },
+    {
+      "id": "qa_sprint_3_signoff_recommendation",
+      "label": "Recommendation",
+      "file_type": "document",
+      "source_file": "docs/qa/sprint-3-signoff.md",
+      "source_location": "L40"
+    },
+    {
+      "id": "docs_qa_sprint_6_signoff_md",
+      "label": "sprint-6-signoff.md",
+      "file_type": "document",
+      "source_file": "docs/qa/sprint-6-signoff.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "qa_sprint_6_signoff_qa_sign_off_sprint_6",
+      "label": "QA Sign-off - Sprint 6",
+      "file_type": "document",
+      "source_file": "docs/qa/sprint-6-signoff.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "qa_sprint_6_signoff_scope_validated",
+      "label": "Scope Validated",
+      "file_type": "document",
+      "source_file": "docs/qa/sprint-6-signoff.md",
+      "source_location": "L7"
+    },
+    {
+      "id": "qa_sprint_6_signoff_evidence_summary",
+      "label": "Evidence Summary",
+      "file_type": "document",
+      "source_file": "docs/qa/sprint-6-signoff.md",
+      "source_location": "L14"
+    },
+    {
+      "id": "qa_sprint_6_signoff_notes",
+      "label": "Notes",
+      "file_type": "document",
+      "source_file": "docs/qa/sprint-6-signoff.md",
+      "source_location": "L28"
+    },
+    {
+      "id": "qa_sprint_6_signoff_open_issues",
+      "label": "Open Issues",
+      "file_type": "document",
+      "source_file": "docs/qa/sprint-6-signoff.md",
+      "source_location": "L33"
+    },
+    {
+      "id": "qa_sprint_6_signoff_recommendation",
+      "label": "Recommendation",
+      "file_type": "document",
+      "source_file": "docs/qa/sprint-6-signoff.md",
+      "source_location": "L37"
+    },
+    {
+      "id": "docs_ux_ofrendas_core_flow_md",
+      "label": "ofrendas-core-flow.md",
+      "file_type": "document",
+      "source_file": "docs/ux/ofrendas-core-flow.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "ux_ofrendas_core_flow_flow_specification_ofrendas_core_figma_ready",
+      "label": "Flow Specification - Ofrendas Core (Figma Ready)",
+      "file_type": "document",
+      "source_file": "docs/ux/ofrendas-core-flow.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "ux_ofrendas_core_flow_entry_points",
+      "label": "Entry Points",
+      "file_type": "document",
+      "source_file": "docs/ux/ofrendas-core-flow.md",
+      "source_location": "L3"
+    },
+    {
+      "id": "ux_ofrendas_core_flow_global_design_principles",
+      "label": "Global Design Principles",
+      "file_type": "document",
+      "source_file": "docs/ux/ofrendas-core-flow.md",
+      "source_location": "L13"
+    },
+    {
+      "id": "ux_ofrendas_core_flow_screen_flow_1_envelope_capture",
+      "label": "Screen Flow 1 - Envelope Capture",
+      "file_type": "document",
+      "source_file": "docs/ux/ofrendas-core-flow.md",
+      "source_location": "L21"
+    },
+    {
+      "id": "ux_ofrendas_core_flow_screen_flow_2_day_log_and_deferred_correction",
+      "label": "Screen Flow 2 - Day Log And Deferred Correction",
+      "file_type": "document",
+      "source_file": "docs/ux/ofrendas-core-flow.md",
+      "source_location": "L36"
+    },
+    {
+      "id": "ux_ofrendas_core_flow_screen_flow_3_cash_window",
+      "label": "Screen Flow 3 - Cash Window",
+      "file_type": "document",
+      "source_file": "docs/ux/ofrendas-core-flow.md",
+      "source_location": "L50"
+    },
+    {
+      "id": "ux_ofrendas_core_flow_screen_flow_4_outputs",
+      "label": "Screen Flow 4 - Outputs",
+      "file_type": "document",
+      "source_file": "docs/ux/ofrendas-core-flow.md",
+      "source_location": "L63"
+    },
+    {
+      "id": "ux_ofrendas_core_flow_screen_flow_5_fund_source_management",
+      "label": "Screen Flow 5 - Fund Source Management",
+      "file_type": "document",
+      "source_file": "docs/ux/ofrendas-core-flow.md",
+      "source_location": "L76"
+    },
+    {
+      "id": "ux_ofrendas_core_flow_screen_flow_6_kiosk_pos",
+      "label": "Screen Flow 6 - Kiosk POS",
+      "file_type": "document",
+      "source_file": "docs/ux/ofrendas-core-flow.md",
+      "source_location": "L88"
+    },
+    {
+      "id": "ux_ofrendas_core_flow_screen_flow_7_export_configuration_and_execution",
+      "label": "Screen Flow 7 - Export Configuration And Execution",
+      "file_type": "document",
+      "source_file": "docs/ux/ofrendas-core-flow.md",
+      "source_location": "L102"
+    },
+    {
+      "id": "ux_ofrendas_core_flow_key_components_for_figma_library",
+      "label": "Key Components For Figma Library",
+      "file_type": "document",
+      "source_file": "docs/ux/ofrendas-core-flow.md",
+      "source_location": "L116"
+    },
+    {
+      "id": "ux_ofrendas_core_flow_accessibility_requirements",
+      "label": "Accessibility Requirements",
+      "file_type": "document",
+      "source_file": "docs/ux/ofrendas-core-flow.md",
+      "source_location": "L127"
+    },
+    {
+      "id": "ux_ofrendas_core_flow_keyboard_navigation",
+      "label": "Keyboard Navigation",
+      "file_type": "document",
+      "source_file": "docs/ux/ofrendas-core-flow.md",
+      "source_location": "L129"
+    },
+    {
+      "id": "ux_ofrendas_core_flow_screen_reader_support",
+      "label": "Screen Reader Support",
+      "file_type": "document",
+      "source_file": "docs/ux/ofrendas-core-flow.md",
+      "source_location": "L135"
+    },
+    {
+      "id": "ux_ofrendas_core_flow_visual_accessibility",
+      "label": "Visual Accessibility",
+      "file_type": "document",
+      "source_file": "docs/ux/ofrendas-core-flow.md",
+      "source_location": "L141"
+    },
+    {
+      "id": "ux_ofrendas_core_flow_figma_handoff_notes",
+      "label": "Figma Handoff Notes",
+      "file_type": "document",
+      "source_file": "docs/ux/ofrendas-core-flow.md",
+      "source_location": "L148"
+    },
+    {
+      "id": "docs_ux_ofrendas_core_journey_md",
+      "label": "ofrendas-core-journey.md",
+      "file_type": "document",
+      "source_file": "docs/ux/ofrendas-core-journey.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "ux_ofrendas_core_journey_user_journey_ofrendas_core_workflow",
+      "label": "User Journey - Ofrendas Core Workflow",
+      "file_type": "document",
+      "source_file": "docs/ux/ofrendas-core-journey.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "ux_ofrendas_core_journey_persona",
+      "label": "Persona",
+      "file_type": "document",
+      "source_file": "docs/ux/ofrendas-core-journey.md",
+      "source_location": "L3"
+    },
+    {
+      "id": "ux_ofrendas_core_journey_stage_1_start_of_day",
+      "label": "Stage 1 - Start Of Day",
+      "file_type": "document",
+      "source_file": "docs/ux/ofrendas-core-journey.md",
+      "source_location": "L10"
+    },
+    {
+      "id": "ux_ofrendas_core_journey_stage_2_envelope_intake_rush",
+      "label": "Stage 2 - Envelope Intake Rush",
+      "file_type": "document",
+      "source_file": "docs/ux/ofrendas-core-journey.md",
+      "source_location": "L32"
+    },
+    {
+      "id": "ux_ofrendas_core_journey_stage_3_deferred_correction",
+      "label": "Stage 3 - Deferred Correction",
+      "file_type": "document",
+      "source_file": "docs/ux/ofrendas-core-journey.md",
+      "source_location": "L54"
+    },
+    {
+      "id": "ux_ofrendas_core_journey_stage_4_cash_reconciliation",
+      "label": "Stage 4 - Cash Reconciliation",
+      "file_type": "document",
+      "source_file": "docs/ux/ofrendas-core-journey.md",
+      "source_location": "L76"
+    },
+    {
+      "id": "ux_ofrendas_core_journey_stage_5_outputs_and_approvals",
+      "label": "Stage 5 - Outputs And Approvals",
+      "file_type": "document",
+      "source_file": "docs/ux/ofrendas-core-journey.md",
+      "source_location": "L98"
+    },
+    {
+      "id": "ux_ofrendas_core_journey_stage_6_kiosk_sales_if_active",
+      "label": "Stage 6 - Kiosk Sales (If Active)",
+      "file_type": "document",
+      "source_file": "docs/ux/ofrendas-core-journey.md",
+      "source_location": "L120"
+    },
+    {
+      "id": "ux_ofrendas_core_journey_stage_7_end_of_day_audit_readiness",
+      "label": "Stage 7 - End Of Day Audit Readiness",
+      "file_type": "document",
+      "source_file": "docs/ux/ofrendas-core-journey.md",
+      "source_location": "L142"
+    },
+    {
+      "id": "docs_ux_ofrendas_core_jtbd_md",
+      "label": "ofrendas-core-jtbd.md",
+      "file_type": "document",
+      "source_file": "docs/ux/ofrendas-core-jtbd.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "ux_ofrendas_core_jtbd_jtbd_ofrendas_core_operations",
+      "label": "JTBD - Ofrendas Core Operations",
+      "file_type": "document",
+      "source_file": "docs/ux/ofrendas-core-jtbd.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "ux_ofrendas_core_jtbd_scope",
+      "label": "Scope",
+      "file_type": "document",
+      "source_file": "docs/ux/ofrendas-core-jtbd.md",
+      "source_location": "L3"
+    },
+    {
+      "id": "ux_ofrendas_core_jtbd_primary_personas",
+      "label": "Primary Personas",
+      "file_type": "document",
+      "source_file": "docs/ux/ofrendas-core-jtbd.md",
+      "source_location": "L13"
+    },
+    {
+      "id": "ux_ofrendas_core_jtbd_job_statement_1_envelope_capture",
+      "label": "Job Statement 1 - Envelope Capture",
+      "file_type": "document",
+      "source_file": "docs/ux/ofrendas-core-jtbd.md",
+      "source_location": "L19"
+    },
+    {
+      "id": "ux_ofrendas_core_jtbd_current_pain_points",
+      "label": "Current Pain Points",
+      "file_type": "document",
+      "source_file": "docs/ux/ofrendas-core-jtbd.md",
+      "source_location": "L25"
+    },
+    {
+      "id": "ux_ofrendas_core_jtbd_desired_outcomes",
+      "label": "Desired Outcomes",
+      "file_type": "document",
+      "source_file": "docs/ux/ofrendas-core-jtbd.md",
+      "source_location": "L31"
+    },
+    {
+      "id": "ux_ofrendas_core_jtbd_job_statement_2_cash_control",
+      "label": "Job Statement 2 - Cash Control",
+      "file_type": "document",
+      "source_file": "docs/ux/ofrendas-core-jtbd.md",
+      "source_location": "L37"
+    },
+    {
+      "id": "ux_ofrendas_core_jtbd_current_pain_points_43",
+      "label": "Current Pain Points",
+      "file_type": "document",
+      "source_file": "docs/ux/ofrendas-core-jtbd.md",
+      "source_location": "L43"
+    },
+    {
+      "id": "ux_ofrendas_core_jtbd_desired_outcomes_49",
+      "label": "Desired Outcomes",
+      "file_type": "document",
+      "source_file": "docs/ux/ofrendas-core-jtbd.md",
+      "source_location": "L49"
+    },
+    {
+      "id": "ux_ofrendas_core_jtbd_job_statement_3_outputs_disbursements",
+      "label": "Job Statement 3 - Outputs/Disbursements",
+      "file_type": "document",
+      "source_file": "docs/ux/ofrendas-core-jtbd.md",
+      "source_location": "L55"
+    },
+    {
+      "id": "ux_ofrendas_core_jtbd_current_pain_points_61",
+      "label": "Current Pain Points",
+      "file_type": "document",
+      "source_file": "docs/ux/ofrendas-core-jtbd.md",
+      "source_location": "L61"
+    },
+    {
+      "id": "ux_ofrendas_core_jtbd_desired_outcomes_67",
+      "label": "Desired Outcomes",
+      "file_type": "document",
+      "source_file": "docs/ux/ofrendas-core-jtbd.md",
+      "source_location": "L67"
+    },
+    {
+      "id": "ux_ofrendas_core_jtbd_job_statement_4_kiosk_pos",
+      "label": "Job Statement 4 - Kiosk POS",
+      "file_type": "document",
+      "source_file": "docs/ux/ofrendas-core-jtbd.md",
+      "source_location": "L73"
+    },
+    {
+      "id": "ux_ofrendas_core_jtbd_current_pain_points_79",
+      "label": "Current Pain Points",
+      "file_type": "document",
+      "source_file": "docs/ux/ofrendas-core-jtbd.md",
+      "source_location": "L79"
+    },
+    {
+      "id": "ux_ofrendas_core_jtbd_desired_outcomes_85",
+      "label": "Desired Outcomes",
+      "file_type": "document",
+      "source_file": "docs/ux/ofrendas-core-jtbd.md",
+      "source_location": "L85"
+    },
+    {
+      "id": "ux_ofrendas_core_jtbd_job_statement_5_accounting_export",
+      "label": "Job Statement 5 - Accounting Export",
+      "file_type": "document",
+      "source_file": "docs/ux/ofrendas-core-jtbd.md",
+      "source_location": "L91"
+    },
+    {
+      "id": "ux_ofrendas_core_jtbd_current_pain_points_97",
+      "label": "Current Pain Points",
+      "file_type": "document",
+      "source_file": "docs/ux/ofrendas-core-jtbd.md",
+      "source_location": "L97"
+    },
+    {
+      "id": "ux_ofrendas_core_jtbd_desired_outcomes_102",
+      "label": "Desired Outcomes",
+      "file_type": "document",
+      "source_file": "docs/ux/ofrendas-core-jtbd.md",
+      "source_location": "L102"
+    },
+    {
+      "id": "ux_ofrendas_core_jtbd_constraints",
+      "label": "Constraints",
+      "file_type": "document",
+      "source_file": "docs/ux/ofrendas-core-jtbd.md",
+      "source_location": "L108"
+    },
+    {
+      "id": "ux_ofrendas_core_jtbd_success_metrics",
+      "label": "Success Metrics",
+      "file_type": "document",
+      "source_file": "docs/ux/ofrendas-core-jtbd.md",
+      "source_location": "L115"
+    },
+    {
+      "id": "docs_architecture_adr_001_runtime_and_deployment_topology_md",
+      "label": "ADR-001-runtime-and-deployment-topology.md",
+      "file_type": "document",
+      "source_file": "docs/architecture/ADR-001-runtime-and-deployment-topology.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "architecture_adr_001_runtime_and_deployment_topology_adr_001_runtime_and_deployment_topology",
+      "label": "ADR-001: Runtime and Deployment Topology",
+      "file_type": "document",
+      "source_file": "docs/architecture/ADR-001-runtime-and-deployment-topology.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "architecture_adr_001_runtime_and_deployment_topology_context",
+      "label": "Context",
+      "file_type": "document",
+      "source_file": "docs/architecture/ADR-001-runtime-and-deployment-topology.md",
+      "source_location": "L6"
+    },
+    {
+      "id": "architecture_adr_001_runtime_and_deployment_topology_decision_drivers",
+      "label": "Decision Drivers",
+      "file_type": "document",
+      "source_file": "docs/architecture/ADR-001-runtime-and-deployment-topology.md",
+      "source_location": "L10"
+    },
+    {
+      "id": "architecture_adr_001_runtime_and_deployment_topology_options_considered",
+      "label": "Options Considered",
+      "file_type": "document",
+      "source_file": "docs/architecture/ADR-001-runtime-and-deployment-topology.md",
+      "source_location": "L17"
+    },
+    {
+      "id": "architecture_adr_001_runtime_and_deployment_topology_decision",
+      "label": "Decision",
+      "file_type": "document",
+      "source_file": "docs/architecture/ADR-001-runtime-and-deployment-topology.md",
+      "source_location": "L23"
+    },
+    {
+      "id": "architecture_adr_001_runtime_and_deployment_topology_rationale",
+      "label": "Rationale",
+      "file_type": "document",
+      "source_file": "docs/architecture/ADR-001-runtime-and-deployment-topology.md",
+      "source_location": "L31"
+    },
+    {
+      "id": "architecture_adr_001_runtime_and_deployment_topology_consequences",
+      "label": "Consequences",
+      "file_type": "document",
+      "source_file": "docs/architecture/ADR-001-runtime-and-deployment-topology.md",
+      "source_location": "L35"
+    },
+    {
+      "id": "architecture_adr_001_runtime_and_deployment_topology_implementation_notes",
+      "label": "Implementation Notes",
+      "file_type": "document",
+      "source_file": "docs/architecture/ADR-001-runtime-and-deployment-topology.md",
+      "source_location": "L45"
+    },
+    {
+      "id": "docs_architecture_adr_005_accounting_exports_multi_provider_md",
+      "label": "ADR-005-accounting-exports-multi-provider.md",
+      "file_type": "document",
+      "source_file": "docs/architecture/ADR-005-accounting-exports-multi-provider.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "architecture_adr_005_accounting_exports_multi_provider_adr_005_multi_provider_accounting_export_architecture",
+      "label": "ADR-005: Multi-Provider Accounting Export Architecture",
+      "file_type": "document",
+      "source_file": "docs/architecture/ADR-005-accounting-exports-multi-provider.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "architecture_adr_005_accounting_exports_multi_provider_context",
+      "label": "Context",
+      "file_type": "document",
+      "source_file": "docs/architecture/ADR-005-accounting-exports-multi-provider.md",
+      "source_location": "L6"
+    },
+    {
+      "id": "architecture_adr_005_accounting_exports_multi_provider_decision_drivers",
+      "label": "Decision Drivers",
+      "file_type": "document",
+      "source_file": "docs/architecture/ADR-005-accounting-exports-multi-provider.md",
+      "source_location": "L10"
+    },
+    {
+      "id": "architecture_adr_005_accounting_exports_multi_provider_options_considered",
+      "label": "Options Considered",
+      "file_type": "document",
+      "source_file": "docs/architecture/ADR-005-accounting-exports-multi-provider.md",
+      "source_location": "L17"
+    },
+    {
+      "id": "architecture_adr_005_accounting_exports_multi_provider_decision",
+      "label": "Decision",
+      "file_type": "document",
+      "source_file": "docs/architecture/ADR-005-accounting-exports-multi-provider.md",
+      "source_location": "L23"
+    },
+    {
+      "id": "architecture_adr_005_accounting_exports_multi_provider_rationale",
+      "label": "Rationale",
+      "file_type": "document",
+      "source_file": "docs/architecture/ADR-005-accounting-exports-multi-provider.md",
+      "source_location": "L32"
+    },
+    {
+      "id": "architecture_adr_005_accounting_exports_multi_provider_consequences",
+      "label": "Consequences",
+      "file_type": "document",
+      "source_file": "docs/architecture/ADR-005-accounting-exports-multi-provider.md",
+      "source_location": "L36"
+    },
+    {
+      "id": "architecture_adr_005_accounting_exports_multi_provider_implementation_notes",
+      "label": "Implementation Notes",
+      "file_type": "document",
+      "source_file": "docs/architecture/ADR-005-accounting-exports-multi-provider.md",
+      "source_location": "L46"
+    },
+    {
+      "id": "docs_architecture_adr_011_outputs_fund_source_and_approval_md",
+      "label": "ADR-011-outputs-fund-source-and-approval.md",
+      "file_type": "document",
+      "source_file": "docs/architecture/ADR-011-outputs-fund-source-and-approval.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "architecture_adr_011_outputs_fund_source_and_approval_adr_011_outputs_control_with_fund_source_and_approval_audit",
+      "label": "ADR-011: Outputs Control with Fund Source and Approval Audit",
+      "file_type": "document",
+      "source_file": "docs/architecture/ADR-011-outputs-fund-source-and-approval.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "architecture_adr_011_outputs_fund_source_and_approval_context",
+      "label": "Context",
+      "file_type": "document",
+      "source_file": "docs/architecture/ADR-011-outputs-fund-source-and-approval.md",
+      "source_location": "L6"
+    },
+    {
+      "id": "architecture_adr_011_outputs_fund_source_and_approval_decision_drivers",
+      "label": "Decision Drivers",
+      "file_type": "document",
+      "source_file": "docs/architecture/ADR-011-outputs-fund-source-and-approval.md",
+      "source_location": "L10"
+    },
+    {
+      "id": "architecture_adr_011_outputs_fund_source_and_approval_options_considered",
+      "label": "Options Considered",
+      "file_type": "document",
+      "source_file": "docs/architecture/ADR-011-outputs-fund-source-and-approval.md",
+      "source_location": "L17"
+    },
+    {
+      "id": "architecture_adr_011_outputs_fund_source_and_approval_decision",
+      "label": "Decision",
+      "file_type": "document",
+      "source_file": "docs/architecture/ADR-011-outputs-fund-source-and-approval.md",
+      "source_location": "L23"
+    },
+    {
+      "id": "architecture_adr_011_outputs_fund_source_and_approval_rationale",
+      "label": "Rationale",
+      "file_type": "document",
+      "source_file": "docs/architecture/ADR-011-outputs-fund-source-and-approval.md",
+      "source_location": "L33"
+    },
+    {
+      "id": "architecture_adr_011_outputs_fund_source_and_approval_consequences",
+      "label": "Consequences",
+      "file_type": "document",
+      "source_file": "docs/architecture/ADR-011-outputs-fund-source-and-approval.md",
+      "source_location": "L37"
+    },
+    {
+      "id": "architecture_adr_011_outputs_fund_source_and_approval_implementation_notes",
+      "label": "Implementation Notes",
+      "file_type": "document",
+      "source_file": "docs/architecture/ADR-011-outputs-fund-source-and-approval.md",
+      "source_location": "L47"
+    }
+  ],
+  "edges": [
+    {
+      "source": "project_brief_md",
+      "target": "ofrendas_project_brief_project_brief",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PROJECT_BRIEF.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "ofrendas_project_brief_project_brief",
+      "target": "ofrendas_project_brief_1_project_overview",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PROJECT_BRIEF.md",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "ofrendas_project_brief_project_brief",
+      "target": "ofrendas_project_brief_2_concept_product_description",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PROJECT_BRIEF.md",
+      "source_location": "L17",
+      "weight": 1.0
+    },
+    {
+      "source": "ofrendas_project_brief_project_brief",
+      "target": "ofrendas_project_brief_3_tech_stack",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PROJECT_BRIEF.md",
+      "source_location": "L36",
+      "weight": 1.0
+    },
+    {
+      "source": "ofrendas_project_brief_project_brief",
+      "target": "ofrendas_project_brief_4_architecture_ascii_diagram",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PROJECT_BRIEF.md",
+      "source_location": "L57",
+      "weight": 1.0
+    },
+    {
+      "source": "ofrendas_project_brief_4_architecture_ascii_diagram",
+      "target": "ofrendas_project_brief_codeblock_1",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PROJECT_BRIEF.md",
+      "source_location": "L59",
+      "weight": 1.0
+    },
+    {
+      "source": "ofrendas_project_brief_project_brief",
+      "target": "ofrendas_project_brief_5_key_files_map",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PROJECT_BRIEF.md",
+      "source_location": "L87",
+      "weight": 1.0
+    },
+    {
+      "source": "ofrendas_project_brief_project_brief",
+      "target": "ofrendas_project_brief_6_team_roles",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PROJECT_BRIEF.md",
+      "source_location": "L118",
+      "weight": 1.0
+    },
+    {
+      "source": "ofrendas_project_brief_project_brief",
+      "target": "ofrendas_project_brief_7_sprint_status_updated_every_sprint",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PROJECT_BRIEF.md",
+      "source_location": "L135",
+      "weight": 1.0
+    },
+    {
+      "source": "ofrendas_project_brief_project_brief",
+      "target": "ofrendas_project_brief_8_current_state_rewritten_every_sprint",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PROJECT_BRIEF.md",
+      "source_location": "L144",
+      "weight": 1.0
+    },
+    {
+      "source": "ofrendas_project_brief_project_brief",
+      "target": "ofrendas_project_brief_9_security_rules",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PROJECT_BRIEF.md",
+      "source_location": "L181",
+      "weight": 1.0
+    },
+    {
+      "source": "ofrendas_project_brief_project_brief",
+      "target": "ofrendas_project_brief_10_how_to_run_locally",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PROJECT_BRIEF.md",
+      "source_location": "L198",
+      "weight": 1.0
+    },
+    {
+      "source": "ofrendas_project_brief_project_brief",
+      "target": "ofrendas_project_brief_11_how_to_deploy",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PROJECT_BRIEF.md",
+      "source_location": "L225",
+      "weight": 1.0
+    },
+    {
+      "source": "ofrendas_project_brief_project_brief",
+      "target": "ofrendas_project_brief_12_cross_chat_handoff_protocol",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PROJECT_BRIEF.md",
+      "source_location": "L242",
+      "weight": 1.0
+    },
+    {
+      "source": "ofrendas_project_brief_project_brief",
+      "target": "ofrendas_project_brief_13_bug_fix_tracking",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PROJECT_BRIEF.md",
+      "source_location": "L262",
+      "weight": 1.0
+    },
+    {
+      "source": "ofrendas_project_brief_project_brief",
+      "target": "ofrendas_project_brief_14_multi_repo_setup",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PROJECT_BRIEF.md",
+      "source_location": "L275",
+      "weight": 1.0
+    },
+    {
+      "source": "readme_md",
+      "target": "ofrendas_readme_ofrendas",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "ofrendas_readme_ofrendas",
+      "target": "ofrendas_readme_alcance_actual",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "ofrendas_readme_ofrendas",
+      "target": "ofrendas_readme_documentos",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L12",
+      "weight": 1.0
+    },
+    {
+      "source": "ofrendas_readme_ofrendas",
+      "target": "ofrendas_readme_inicio_de_construccion_orquestacion",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L19",
+      "weight": 1.0
+    },
+    {
+      "source": "ofrendas_readme_ofrendas",
+      "target": "ofrendas_readme_glosario_operativo_onboarding_rapido",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L29",
+      "weight": 1.0
+    },
+    {
+      "source": "ofrendas_readme_ofrendas",
+      "target": "ofrendas_readme_adrs",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L38",
+      "weight": 1.0
+    },
+    {
+      "source": "ofrendas_readme_ofrendas",
+      "target": "ofrendas_readme_base_de_datos",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L52",
+      "weight": 1.0
+    },
+    {
+      "source": "ofrendas_readme_ofrendas",
+      "target": "ofrendas_readme_postgresql_con_docker",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L63",
+      "weight": 1.0
+    },
+    {
+      "source": "ofrendas_readme_postgresql_con_docker",
+      "target": "ofrendas_readme_codeblock_1",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L67",
+      "weight": 1.0
+    },
+    {
+      "source": "ofrendas_readme_postgresql_con_docker",
+      "target": "ofrendas_readme_codeblock_2",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L74",
+      "weight": 1.0
+    },
+    {
+      "source": "ofrendas_readme_postgresql_con_docker",
+      "target": "ofrendas_readme_codeblock_3",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L82",
+      "weight": 1.0
+    },
+    {
+      "source": "ofrendas_readme_ofrendas",
+      "target": "ofrendas_readme_app_postgresql_con_docker",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L86",
+      "weight": 1.0
+    },
+    {
+      "source": "ofrendas_readme_app_postgresql_con_docker",
+      "target": "ofrendas_readme_codeblock_4",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L90",
+      "weight": 1.0
+    },
+    {
+      "source": "ofrendas_readme_app_postgresql_con_docker",
+      "target": "ofrendas_readme_codeblock_5",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L97",
+      "weight": 1.0
+    },
+    {
+      "source": "ofrendas_readme_app_postgresql_con_docker",
+      "target": "ofrendas_readme_codeblock_6",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L104",
+      "weight": 1.0
+    },
+    {
+      "source": "ofrendas_readme_app_postgresql_con_docker",
+      "target": "ofrendas_readme_codeblock_7",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L110",
+      "weight": 1.0
+    },
+    {
+      "source": "ofrendas_readme_app_postgresql_con_docker",
+      "target": "ofrendas_readme_codeblock_8",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L123",
+      "weight": 1.0
+    },
+    {
+      "source": "ofrendas_readme_ofrendas",
+      "target": "ofrendas_readme_ux_figma_handoff",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L127",
+      "weight": 1.0
+    },
+    {
+      "source": "ofrenda_md",
+      "target": "ofrendas_ofrenda_app_de_ofrendas_llm_prompt_plan_v1_0",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "Ofrenda.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "ofrendas_ofrenda_app_de_ofrendas_llm_prompt_plan_v1_0",
+      "target": "ofrendas_ofrenda_por_qu_solid_strategy",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "Ofrenda.md",
+      "source_location": "L8",
+      "weight": 1.0
+    },
+    {
+      "source": "ofrendas_ofrenda_app_de_ofrendas_llm_prompt_plan_v1_0",
+      "target": "ofrendas_ofrenda_principios_solid_aplicados",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "Ofrenda.md",
+      "source_location": "L14",
+      "weight": 1.0
+    },
+    {
+      "source": "ofrendas_ofrenda_principios_solid_aplicados",
+      "target": "ofrendas_ofrenda_s_single_responsibility",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "Ofrenda.md",
+      "source_location": "L16",
+      "weight": 1.0
+    },
+    {
+      "source": "ofrendas_ofrenda_s_single_responsibility",
+      "target": "ofrendas_ofrenda_codeblock_1",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "Ofrenda.md",
+      "source_location": "L18",
+      "weight": 1.0
+    },
+    {
+      "source": "ofrendas_ofrenda_principios_solid_aplicados",
+      "target": "ofrendas_ofrenda_o_open_closed",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "Ofrenda.md",
+      "source_location": "L24",
+      "weight": 1.0
+    },
+    {
+      "source": "ofrendas_ofrenda_o_open_closed",
+      "target": "ofrendas_ofrenda_codeblock_2",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "Ofrenda.md",
+      "source_location": "L26",
+      "weight": 1.0
+    },
+    {
+      "source": "ofrendas_ofrenda_principios_solid_aplicados",
+      "target": "ofrendas_ofrenda_l_liskov_substitution",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "Ofrenda.md",
+      "source_location": "L31",
+      "weight": 1.0
+    },
+    {
+      "source": "ofrendas_ofrenda_l_liskov_substitution",
+      "target": "ofrendas_ofrenda_codeblock_3",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "Ofrenda.md",
+      "source_location": "L33",
+      "weight": 1.0
+    },
+    {
+      "source": "ofrendas_ofrenda_principios_solid_aplicados",
+      "target": "ofrendas_ofrenda_i_interface_segregation",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "Ofrenda.md",
+      "source_location": "L39",
+      "weight": 1.0
+    },
+    {
+      "source": "ofrendas_ofrenda_i_interface_segregation",
+      "target": "ofrendas_ofrenda_codeblock_4",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "Ofrenda.md",
+      "source_location": "L41",
+      "weight": 1.0
+    },
+    {
+      "source": "ofrendas_ofrenda_principios_solid_aplicados",
+      "target": "ofrendas_ofrenda_d_dependency_inversion",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "Ofrenda.md",
+      "source_location": "L47",
+      "weight": 1.0
+    },
+    {
+      "source": "ofrendas_ofrenda_d_dependency_inversion",
+      "target": "ofrendas_ofrenda_codeblock_5",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "Ofrenda.md",
+      "source_location": "L49",
+      "weight": 1.0
+    },
+    {
+      "source": "ofrendas_ofrenda_app_de_ofrendas_llm_prompt_plan_v1_0",
+      "target": "ofrendas_ofrenda_strategy_pattern_el_coraz_n_del_sistema",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "Ofrenda.md",
+      "source_location": "L57",
+      "weight": 1.0
+    },
+    {
+      "source": "ofrendas_ofrenda_app_de_ofrendas_llm_prompt_plan_v1_0",
+      "target": "ofrendas_ofrenda_arquitectura",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "Ofrenda.md",
+      "source_location": "L69",
+      "weight": 1.0
+    },
+    {
+      "source": "ofrendas_ofrenda_arquitectura",
+      "target": "ofrendas_ofrenda_codeblock_6",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "Ofrenda.md",
+      "source_location": "L71",
+      "weight": 1.0
+    },
+    {
+      "source": "ofrendas_ofrenda_app_de_ofrendas_llm_prompt_plan_v1_0",
+      "target": "ofrendas_ofrenda_estructura_de_carpetas",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "Ofrenda.md",
+      "source_location": "L85",
+      "weight": 1.0
+    },
+    {
+      "source": "ofrendas_ofrenda_estructura_de_carpetas",
+      "target": "ofrendas_ofrenda_codeblock_7",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "Ofrenda.md",
+      "source_location": "L87",
+      "weight": 1.0
+    },
+    {
+      "source": "ofrendas_ofrenda_app_de_ofrendas_llm_prompt_plan_v1_0",
+      "target": "ofrendas_ofrenda_prompts_para_claude_paso_a_paso",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "Ofrenda.md",
+      "source_location": "L128",
+      "weight": 1.0
+    },
+    {
+      "source": "ofrendas_ofrenda_prompts_para_claude_paso_a_paso",
+      "target": "ofrendas_ofrenda_prompt_1_interfaces_y_modelos",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "Ofrenda.md",
+      "source_location": "L134",
+      "weight": 1.0
+    },
+    {
+      "source": "ofrendas_ofrenda_prompt_1_interfaces_y_modelos",
+      "target": "ofrendas_ofrenda_codeblock_8",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "Ofrenda.md",
+      "source_location": "L136",
+      "weight": 1.0
+    },
+    {
+      "source": "ofrendas_ofrenda_prompts_para_claude_paso_a_paso",
+      "target": "ofrendas_ofrenda_prompt_2_strategy_ocr_correcci_n",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "Ofrenda.md",
+      "source_location": "L172",
+      "weight": 1.0
+    },
+    {
+      "source": "ofrendas_ofrenda_prompt_2_strategy_ocr_correcci_n",
+      "target": "ofrendas_ofrenda_codeblock_9",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "Ofrenda.md",
+      "source_location": "L174",
+      "weight": 1.0
+    },
+    {
+      "source": "ofrendas_ofrenda_prompts_para_claude_paso_a_paso",
+      "target": "ofrendas_ofrenda_prompt_3_imageprocessor_coordenadas",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "Ofrenda.md",
+      "source_location": "L199",
+      "weight": 1.0
+    },
+    {
+      "source": "ofrendas_ofrenda_prompt_3_imageprocessor_coordenadas",
+      "target": "ofrendas_ofrenda_codeblock_10",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "Ofrenda.md",
+      "source_location": "L201",
+      "weight": 1.0
+    },
+    {
+      "source": "ofrendas_ofrenda_prompts_para_claude_paso_a_paso",
+      "target": "ofrendas_ofrenda_prompt_4_repositories",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "Ofrenda.md",
+      "source_location": "L228",
+      "weight": 1.0
+    },
+    {
+      "source": "ofrendas_ofrenda_prompt_4_repositories",
+      "target": "ofrendas_ofrenda_codeblock_11",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "Ofrenda.md",
+      "source_location": "L230",
+      "weight": 1.0
+    },
+    {
+      "source": "ofrendas_ofrenda_prompts_para_claude_paso_a_paso",
+      "target": "ofrendas_ofrenda_prompt_5_offeringservice_orquestador",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "Ofrenda.md",
+      "source_location": "L254",
+      "weight": 1.0
+    },
+    {
+      "source": "ofrendas_ofrenda_prompt_5_offeringservice_orquestador",
+      "target": "ofrendas_ofrenda_codeblock_12",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "Ofrenda.md",
+      "source_location": "L256",
+      "weight": 1.0
+    },
+    {
+      "source": "ofrendas_ofrenda_prompts_para_claude_paso_a_paso",
+      "target": "ofrendas_ofrenda_prompt_6_flask_ui_del_tesorero",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "Ofrenda.md",
+      "source_location": "L289",
+      "weight": 1.0
+    },
+    {
+      "source": "ofrendas_ofrenda_prompt_6_flask_ui_del_tesorero",
+      "target": "ofrendas_ofrenda_codeblock_13",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "Ofrenda.md",
+      "source_location": "L291",
+      "weight": 1.0
+    },
+    {
+      "source": "ofrendas_ofrenda_prompts_para_claude_paso_a_paso",
+      "target": "ofrendas_ofrenda_prompt_7_job_nocturno_de_training",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "Ofrenda.md",
+      "source_location": "L400",
+      "weight": 1.0
+    },
+    {
+      "source": "ofrendas_ofrenda_prompt_7_job_nocturno_de_training",
+      "target": "ofrendas_ofrenda_codeblock_14",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "Ofrenda.md",
+      "source_location": "L402",
+      "weight": 1.0
+    },
+    {
+      "source": "ofrendas_ofrenda_prompts_para_claude_paso_a_paso",
+      "target": "ofrendas_ofrenda_prompt_8_wiring_main_py",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "Ofrenda.md",
+      "source_location": "L421",
+      "weight": 1.0
+    },
+    {
+      "source": "ofrendas_ofrenda_prompt_8_wiring_main_py",
+      "target": "ofrendas_ofrenda_codeblock_15",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "Ofrenda.md",
+      "source_location": "L423",
+      "weight": 1.0
+    },
+    {
+      "source": "ofrendas_ofrenda_app_de_ofrendas_llm_prompt_plan_v1_0",
+      "target": "ofrendas_ofrenda_orden_de_ejecuci_n",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "Ofrenda.md",
+      "source_location": "L447",
+      "weight": 1.0
+    },
+    {
+      "source": "ofrendas_ofrenda_app_de_ofrendas_llm_prompt_plan_v1_0",
+      "target": "ofrendas_ofrenda_lo_que_demuestra_que_el_strategy_pattern_funciona",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "Ofrenda.md",
+      "source_location": "L462",
+      "weight": 1.0
+    },
+    {
+      "source": "ofrendas_ofrenda_lo_que_demuestra_que_el_strategy_pattern_funciona",
+      "target": "ofrendas_ofrenda_codeblock_16",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "Ofrenda.md",
+      "source_location": "L464",
+      "weight": 1.0
+    },
+    {
+      "source": "ofrendas_ofrenda_app_de_ofrendas_llm_prompt_plan_v1_0",
+      "target": "ofrendas_ofrenda_review_de_arquitectura_local_ahora_produccion_futuro",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "Ofrenda.md",
+      "source_location": "L479",
+      "weight": 1.0
+    },
+    {
+      "source": "ofrendas_ofrenda_review_de_arquitectura_local_ahora_produccion_futuro",
+      "target": "ofrendas_ofrenda_hallazgos_criticos",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "Ofrenda.md",
+      "source_location": "L481",
+      "weight": 1.0
+    },
+    {
+      "source": "ofrendas_ofrenda_review_de_arquitectura_local_ahora_produccion_futuro",
+      "target": "ofrendas_ofrenda_supuestos_de_escala_para_decisiones_actuales",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "Ofrenda.md",
+      "source_location": "L489",
+      "weight": 1.0
+    },
+    {
+      "source": "ofrendas_ofrenda_review_de_arquitectura_local_ahora_produccion_futuro",
+      "target": "ofrendas_ofrenda_decision_de_contexto_confirmado_mayo_2026",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "Ofrenda.md",
+      "source_location": "L497",
+      "weight": 1.0
+    },
+    {
+      "source": "ofrendas_ofrenda_app_de_ofrendas_llm_prompt_plan_v1_0",
+      "target": "ofrendas_ofrenda_runbook_de_desarrollo_local",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "Ofrenda.md",
+      "source_location": "L510",
+      "weight": 1.0
+    },
+    {
+      "source": "ofrendas_ofrenda_runbook_de_desarrollo_local",
+      "target": "ofrendas_ofrenda_objetivo",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "Ofrenda.md",
+      "source_location": "L512",
+      "weight": 1.0
+    },
+    {
+      "source": "ofrendas_ofrenda_runbook_de_desarrollo_local",
+      "target": "ofrendas_ofrenda_perfil_de_ejecucion_local",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "Ofrenda.md",
+      "source_location": "L516",
+      "weight": 1.0
+    },
+    {
+      "source": "ofrendas_ofrenda_runbook_de_desarrollo_local",
+      "target": "ofrendas_ofrenda_variables_de_entorno_local",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "Ofrenda.md",
+      "source_location": "L524",
+      "weight": 1.0
+    },
+    {
+      "source": "ofrendas_ofrenda_variables_de_entorno_local",
+      "target": "ofrendas_ofrenda_codeblock_17",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "Ofrenda.md",
+      "source_location": "L528",
+      "weight": 1.0
+    },
+    {
+      "source": "ofrendas_ofrenda_runbook_de_desarrollo_local",
+      "target": "ofrendas_ofrenda_comandos_recomendados",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "Ofrenda.md",
+      "source_location": "L545",
+      "weight": 1.0
+    },
+    {
+      "source": "ofrendas_ofrenda_comandos_recomendados",
+      "target": "ofrendas_ofrenda_codeblock_18",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "Ofrenda.md",
+      "source_location": "L547",
+      "weight": 1.0
+    },
+    {
+      "source": "ofrendas_ofrenda_runbook_de_desarrollo_local",
+      "target": "ofrendas_ofrenda_alternativa_local_recomendada_con_docker",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "Ofrenda.md",
+      "source_location": "L555",
+      "weight": 1.0
+    },
+    {
+      "source": "ofrendas_ofrenda_alternativa_local_recomendada_con_docker",
+      "target": "ofrendas_ofrenda_codeblock_19",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "Ofrenda.md",
+      "source_location": "L557",
+      "weight": 1.0
+    },
+    {
+      "source": "ofrendas_ofrenda_runbook_de_desarrollo_local",
+      "target": "ofrendas_ofrenda_validacion_minima_local",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "Ofrenda.md",
+      "source_location": "L563",
+      "weight": 1.0
+    },
+    {
+      "source": "ofrendas_ofrenda_app_de_ofrendas_llm_prompt_plan_v1_0",
+      "target": "ofrendas_ofrenda_runbook_de_produccion_roadmap",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "Ofrenda.md",
+      "source_location": "L572",
+      "weight": 1.0
+    },
+    {
+      "source": "ofrendas_ofrenda_runbook_de_produccion_roadmap",
+      "target": "ofrendas_ofrenda_objetivo_574",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "Ofrenda.md",
+      "source_location": "L574",
+      "weight": 1.0
+    },
+    {
+      "source": "ofrendas_ofrenda_runbook_de_produccion_roadmap",
+      "target": "ofrendas_ofrenda_topologia_objetivo_fase_1",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "Ofrenda.md",
+      "source_location": "L578",
+      "weight": 1.0
+    },
+    {
+      "source": "ofrendas_ofrenda_topologia_objetivo_fase_1",
+      "target": "ofrendas_ofrenda_codeblock_20",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "Ofrenda.md",
+      "source_location": "L580",
+      "weight": 1.0
+    },
+    {
+      "source": "ofrendas_ofrenda_runbook_de_produccion_roadmap",
+      "target": "ofrendas_ofrenda_perfil_de_ejecucion_produccion",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "Ofrenda.md",
+      "source_location": "L594",
+      "weight": 1.0
+    },
+    {
+      "source": "ofrendas_ofrenda_runbook_de_produccion_roadmap",
+      "target": "ofrendas_ofrenda_controles_de_seguridad_minimos",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "Ofrenda.md",
+      "source_location": "L604",
+      "weight": 1.0
+    },
+    {
+      "source": "ofrendas_ofrenda_runbook_de_produccion_roadmap",
+      "target": "ofrendas_ofrenda_confiabilidad_y_fallback",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "Ofrenda.md",
+      "source_location": "L613",
+      "weight": 1.0
+    },
+    {
+      "source": "ofrendas_ofrenda_runbook_de_produccion_roadmap",
+      "target": "ofrendas_ofrenda_observabilidad_minima",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "Ofrenda.md",
+      "source_location": "L620",
+      "weight": 1.0
+    },
+    {
+      "source": "ofrendas_ofrenda_runbook_de_produccion_roadmap",
+      "target": "ofrendas_ofrenda_capacidad_objetivo_para_esta_fase",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "Ofrenda.md",
+      "source_location": "L632",
+      "weight": 1.0
+    },
+    {
+      "source": "ofrendas_ofrenda_runbook_de_produccion_roadmap",
+      "target": "ofrendas_ofrenda_cadencia_operativa_recomendada",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "Ofrenda.md",
+      "source_location": "L638",
+      "weight": 1.0
+    },
+    {
+      "source": "ofrendas_ofrenda_app_de_ofrendas_llm_prompt_plan_v1_0",
+      "target": "ofrendas_ofrenda_roles_y_permisos_confirmado",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "Ofrenda.md",
+      "source_location": "L647",
+      "weight": 1.0
+    },
+    {
+      "source": "ofrendas_ofrenda_app_de_ofrendas_llm_prompt_plan_v1_0",
+      "target": "ofrendas_ofrenda_control_de_salidas_outputs",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "Ofrenda.md",
+      "source_location": "L666",
+      "weight": 1.0
+    },
+    {
+      "source": "ofrendas_ofrenda_control_de_salidas_outputs",
+      "target": "ofrendas_ofrenda_objetivo_668",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "Ofrenda.md",
+      "source_location": "L668",
+      "weight": 1.0
+    },
+    {
+      "source": "ofrendas_ofrenda_control_de_salidas_outputs",
+      "target": "ofrendas_ofrenda_casos_comunes",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "Ofrenda.md",
+      "source_location": "L673",
+      "weight": 1.0
+    },
+    {
+      "source": "ofrendas_ofrenda_control_de_salidas_outputs",
+      "target": "ofrendas_ofrenda_campos_minimos_por_salida",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "Ofrenda.md",
+      "source_location": "L679",
+      "weight": 1.0
+    },
+    {
+      "source": "ofrendas_ofrenda_control_de_salidas_outputs",
+      "target": "ofrendas_ofrenda_politica_de_fondos_flexible",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "Ofrenda.md",
+      "source_location": "L690",
+      "weight": 1.0
+    },
+    {
+      "source": "ofrendas_ofrenda_control_de_salidas_outputs",
+      "target": "ofrendas_ofrenda_reglas_de_negocio",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "Ofrenda.md",
+      "source_location": "L701",
+      "weight": 1.0
+    },
+    {
+      "source": "ofrendas_ofrenda_app_de_ofrendas_llm_prompt_plan_v1_0",
+      "target": "ofrendas_ofrenda_estrategia_de_exportaciones_contables",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "Ofrenda.md",
+      "source_location": "L711",
+      "weight": 1.0
+    },
+    {
+      "source": "ofrendas_ofrenda_estrategia_de_exportaciones_contables",
+      "target": "ofrendas_ofrenda_objetivo_713",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "Ofrenda.md",
+      "source_location": "L713",
+      "weight": 1.0
+    },
+    {
+      "source": "ofrendas_ofrenda_estrategia_de_exportaciones_contables",
+      "target": "ofrendas_ofrenda_patron_recomendado",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "Ofrenda.md",
+      "source_location": "L717",
+      "weight": 1.0
+    },
+    {
+      "source": "ofrendas_ofrenda_patron_recomendado",
+      "target": "ofrendas_ofrenda_codeblock_21",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "Ofrenda.md",
+      "source_location": "L721",
+      "weight": 1.0
+    },
+    {
+      "source": "ofrendas_ofrenda_estrategia_de_exportaciones_contables",
+      "target": "ofrendas_ofrenda_formatos_de_salida_iniciales",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "Ofrenda.md",
+      "source_location": "L730",
+      "weight": 1.0
+    },
+    {
+      "source": "ofrendas_ofrenda_estrategia_de_exportaciones_contables",
+      "target": "ofrendas_ofrenda_flujo_recomendado",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "Ofrenda.md",
+      "source_location": "L737",
+      "weight": 1.0
+    },
+    {
+      "source": "ofrendas_ofrenda_estrategia_de_exportaciones_contables",
+      "target": "ofrendas_ofrenda_modo_smart_upload_de_esquema_csv_mapping_dinamico",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "Ofrenda.md",
+      "source_location": "L745",
+      "weight": 1.0
+    },
+    {
+      "source": "ofrendas_ofrenda_estrategia_de_exportaciones_contables",
+      "target": "ofrendas_ofrenda_contrato_sugerido_para_export",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "Ofrenda.md",
+      "source_location": "L779",
+      "weight": 1.0
+    },
+    {
+      "source": "ofrendas_ofrenda_contrato_sugerido_para_export",
+      "target": "ofrendas_ofrenda_codeblock_22",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "Ofrenda.md",
+      "source_location": "L781",
+      "weight": 1.0
+    },
+    {
+      "source": "ofrendas_ofrenda_app_de_ofrendas_llm_prompt_plan_v1_0",
+      "target": "ofrendas_ofrenda_kiosk_mode_pos_tiendita",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "Ofrenda.md",
+      "source_location": "L790",
+      "weight": 1.0
+    },
+    {
+      "source": "ofrendas_ofrenda_kiosk_mode_pos_tiendita",
+      "target": "ofrendas_ofrenda_objetivo_792",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "Ofrenda.md",
+      "source_location": "L792",
+      "weight": 1.0
+    },
+    {
+      "source": "ofrendas_ofrenda_kiosk_mode_pos_tiendita",
+      "target": "ofrendas_ofrenda_flujo_base",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "Ofrenda.md",
+      "source_location": "L797",
+      "weight": 1.0
+    },
+    {
+      "source": "ofrendas_ofrenda_kiosk_mode_pos_tiendita",
+      "target": "ofrendas_ofrenda_campos_minimos_por_ticket",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "Ofrenda.md",
+      "source_location": "L807",
+      "weight": 1.0
+    },
+    {
+      "source": "ofrendas_ofrenda_kiosk_mode_pos_tiendita",
+      "target": "ofrendas_ofrenda_items_custom",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "Ofrenda.md",
+      "source_location": "L816",
+      "weight": 1.0
+    },
+    {
+      "source": "ofrendas_ofrenda_kiosk_mode_pos_tiendita",
+      "target": "ofrendas_ofrenda_reglas_de_negocio_822",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "Ofrenda.md",
+      "source_location": "L822",
+      "weight": 1.0
+    },
+    {
+      "source": "ofrendas_ofrenda_app_de_ofrendas_llm_prompt_plan_v1_0",
+      "target": "ofrendas_ofrenda_modelo_de_datos_postgresql_export_opcional",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "Ofrenda.md",
+      "source_location": "L831",
+      "weight": 1.0
+    },
+    {
+      "source": "ofrendas_ofrenda_modelo_de_datos_postgresql_export_opcional",
+      "target": "ofrendas_ofrenda_decision",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "Ofrenda.md",
+      "source_location": "L833",
+      "weight": 1.0
+    },
+    {
+      "source": "ofrendas_ofrenda_modelo_de_datos_postgresql_export_opcional",
+      "target": "ofrendas_ofrenda_matriz_de_source_of_truth_alineada_con_adr_002_y_adr_006",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "Ofrenda.md",
+      "source_location": "L839",
+      "weight": 1.0
+    },
+    {
+      "source": "ofrendas_ofrenda_modelo_de_datos_postgresql_export_opcional",
+      "target": "ofrendas_ofrenda_ventajas",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "Ofrenda.md",
+      "source_location": "L848",
+      "weight": 1.0
+    },
+    {
+      "source": "ofrendas_ofrenda_modelo_de_datos_postgresql_export_opcional",
+      "target": "ofrendas_ofrenda_riesgos_y_mitigaciones",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "Ofrenda.md",
+      "source_location": "L855",
+      "weight": 1.0
+    },
+    {
+      "source": "ofrendas_ofrenda_app_de_ofrendas_llm_prompt_plan_v1_0",
+      "target": "ofrendas_ofrenda_pipeline_de_entrega_ci_cd_recomendado",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "Ofrenda.md",
+      "source_location": "L864",
+      "weight": 1.0
+    },
+    {
+      "source": "ofrendas_ofrenda_app_de_ofrendas_llm_prompt_plan_v1_0",
+      "target": "ofrendas_ofrenda_checklist_de_preparacion_para_produccion",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "Ofrenda.md",
+      "source_location": "L878",
+      "weight": 1.0
+    },
+    {
+      "source": "ofrendas_ofrenda_app_de_ofrendas_llm_prompt_plan_v1_0",
+      "target": "ofrendas_ofrenda_adrs_asociados",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "Ofrenda.md",
+      "source_location": "L911",
+      "weight": 1.0
+    },
+    {
+      "source": "docs_developer_task_list_md",
+      "target": "docs_developer_task_list_developer_task_list_ofrendas",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/developer-task-list.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "docs_developer_task_list_developer_task_list_ofrendas",
+      "target": "docs_developer_task_list_task_1_extraer_logica_de_ocr_fallback_fuera_de_ui",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/developer-task-list.md",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "docs_developer_task_list_developer_task_list_ofrendas",
+      "target": "docs_developer_task_list_task_2_eliminar_sql_directo_desde_main",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/developer-task-list.md",
+      "source_location": "L28",
+      "weight": 1.0
+    },
+    {
+      "source": "docs_developer_task_list_developer_task_list_ofrendas",
+      "target": "docs_developer_task_list_task_3_harden_de_auth_por_entorno",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/developer-task-list.md",
+      "source_location": "L51",
+      "weight": 1.0
+    },
+    {
+      "source": "docs_developer_task_list_developer_task_list_ofrendas",
+      "target": "docs_developer_task_list_task_4_docker_runtime_para_produccion",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/developer-task-list.md",
+      "source_location": "L75",
+      "weight": 1.0
+    },
+    {
+      "source": "docs_developer_task_list_developer_task_list_ofrendas",
+      "target": "docs_developer_task_list_task_5_dividir_ui_monolitica_en_modulos",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/developer-task-list.md",
+      "source_location": "L100",
+      "weight": 1.0
+    },
+    {
+      "source": "docs_developer_task_list_developer_task_list_ofrendas",
+      "target": "docs_developer_task_list_task_6_cobertura_de_pruebas_de_regresion_clave",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/developer-task-list.md",
+      "source_location": "L123",
+      "weight": 1.0
+    },
+    {
+      "source": "docs_developer_task_list_developer_task_list_ofrendas",
+      "target": "docs_developer_task_list_orden_recomendado_de_ejecucion",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/developer-task-list.md",
+      "source_location": "L147",
+      "weight": 1.0
+    },
+    {
+      "source": "docs_developer_task_list_developer_task_list_ofrendas",
+      "target": "docs_developer_task_list_definition_of_done_global",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/developer-task-list.md",
+      "source_location": "L155",
+      "weight": 1.0
+    },
+    {
+      "source": "docs_sprint_6_progress_md",
+      "target": "sprint_6_progress_sprint_6_progress_tracker",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/sprint-6/progress.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "sprint_6_progress_sprint_6_progress_tracker",
+      "target": "sprint_6_progress_checklist",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/sprint-6/progress.md",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "sprint_6_progress_sprint_6_progress_tracker",
+      "target": "sprint_6_progress_phase_notes",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/sprint-6/progress.md",
+      "source_location": "L17",
+      "weight": 1.0
+    },
+    {
+      "source": "sprint_6_progress_sprint_6_progress_tracker",
+      "target": "sprint_6_progress_open_blockers",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/sprint-6/progress.md",
+      "source_location": "L38",
+      "weight": 1.0
+    },
+    {
+      "source": "sprint_6_progress_sprint_6_progress_tracker",
+      "target": "sprint_6_progress_related_issues",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/sprint-6/progress.md",
+      "source_location": "L42",
+      "weight": 1.0
+    },
+    {
+      "source": "docs_sprint_6_done_md",
+      "target": "sprint_6_done_sprint_6_done_handoff",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/sprint-6/done.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "sprint_6_done_sprint_6_done_handoff",
+      "target": "sprint_6_done_what_was_delivered",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/sprint-6/done.md",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "sprint_6_done_sprint_6_done_handoff",
+      "target": "sprint_6_done_validation_summary",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/sprint-6/done.md",
+      "source_location": "L16",
+      "weight": 1.0
+    },
+    {
+      "source": "sprint_6_done_sprint_6_done_handoff",
+      "target": "sprint_6_done_issues_found_and_resolved",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/sprint-6/done.md",
+      "source_location": "L23",
+      "weight": 1.0
+    },
+    {
+      "source": "sprint_6_done_sprint_6_done_handoff",
+      "target": "sprint_6_done_remaining_risks",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/sprint-6/done.md",
+      "source_location": "L28",
+      "weight": 1.0
+    },
+    {
+      "source": "sprint_6_done_sprint_6_done_handoff",
+      "target": "sprint_6_done_next_sprint_inputs",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/sprint-6/done.md",
+      "source_location": "L33",
+      "weight": 1.0
+    },
+    {
+      "source": "sprint_6_done_sprint_6_done_handoff",
+      "target": "sprint_6_done_handoff_commands",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/sprint-6/done.md",
+      "source_location": "L39",
+      "weight": 1.0
+    },
+    {
+      "source": "docs_sprint_6_plan_md",
+      "target": "sprint_6_plan_sprint_6_plan_proxy_signed_identity_and_workflow_ui_foundations",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/sprint-6/plan.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "sprint_6_plan_sprint_6_plan_proxy_signed_identity_and_workflow_ui_foundations",
+      "target": "sprint_6_plan_sprint_goal",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/sprint-6/plan.md",
+      "source_location": "L9",
+      "weight": 1.0
+    },
+    {
+      "source": "sprint_6_plan_sprint_6_plan_proxy_signed_identity_and_workflow_ui_foundations",
+      "target": "sprint_6_plan_in_scope",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/sprint-6/plan.md",
+      "source_location": "L13",
+      "weight": 1.0
+    },
+    {
+      "source": "sprint_6_plan_sprint_6_plan_proxy_signed_identity_and_workflow_ui_foundations",
+      "target": "sprint_6_plan_out_of_scope",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/sprint-6/plan.md",
+      "source_location": "L35",
+      "weight": 1.0
+    },
+    {
+      "source": "sprint_6_plan_sprint_6_plan_proxy_signed_identity_and_workflow_ui_foundations",
+      "target": "sprint_6_plan_acceptance_criteria",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/sprint-6/plan.md",
+      "source_location": "L41",
+      "weight": 1.0
+    },
+    {
+      "source": "sprint_6_plan_sprint_6_plan_proxy_signed_identity_and_workflow_ui_foundations",
+      "target": "sprint_6_plan_definition_of_done",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/sprint-6/plan.md",
+      "source_location": "L57",
+      "weight": 1.0
+    },
+    {
+      "source": "docs_sprint_1_progress_md",
+      "target": "sprint_1_progress_sprint_1_progress_tracker",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/sprint-1/progress.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "sprint_1_progress_sprint_1_progress_tracker",
+      "target": "sprint_1_progress_checklist",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/sprint-1/progress.md",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "sprint_1_progress_sprint_1_progress_tracker",
+      "target": "sprint_1_progress_phase_notes",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/sprint-1/progress.md",
+      "source_location": "L18",
+      "weight": 1.0
+    },
+    {
+      "source": "sprint_1_progress_sprint_1_progress_tracker",
+      "target": "sprint_1_progress_open_blockers",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/sprint-1/progress.md",
+      "source_location": "L45",
+      "weight": 1.0
+    },
+    {
+      "source": "sprint_1_progress_sprint_1_progress_tracker",
+      "target": "sprint_1_progress_related_issues",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/sprint-1/progress.md",
+      "source_location": "L49",
+      "weight": 1.0
+    },
+    {
+      "source": "docs_sprint_1_done_md",
+      "target": "sprint_1_done_sprint_1_done_handoff",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/sprint-1/done.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "sprint_1_done_sprint_1_done_handoff",
+      "target": "sprint_1_done_what_was_delivered",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/sprint-1/done.md",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "sprint_1_done_sprint_1_done_handoff",
+      "target": "sprint_1_done_validation_summary",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/sprint-1/done.md",
+      "source_location": "L16",
+      "weight": 1.0
+    },
+    {
+      "source": "sprint_1_done_sprint_1_done_handoff",
+      "target": "sprint_1_done_issues_found_and_resolved",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/sprint-1/done.md",
+      "source_location": "L26",
+      "weight": 1.0
+    },
+    {
+      "source": "sprint_1_done_sprint_1_done_handoff",
+      "target": "sprint_1_done_remaining_risks",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/sprint-1/done.md",
+      "source_location": "L31",
+      "weight": 1.0
+    },
+    {
+      "source": "sprint_1_done_sprint_1_done_handoff",
+      "target": "sprint_1_done_next_sprint_inputs",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/sprint-1/done.md",
+      "source_location": "L37",
+      "weight": 1.0
+    },
+    {
+      "source": "sprint_1_done_sprint_1_done_handoff",
+      "target": "sprint_1_done_handoff_commands",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/sprint-1/done.md",
+      "source_location": "L44",
+      "weight": 1.0
+    },
+    {
+      "source": "docs_sprint_1_plan_md",
+      "target": "sprint_1_plan_sprint_1_plan_foundation_and_first_vertical_slice",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/sprint-1/plan.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "sprint_1_plan_sprint_1_plan_foundation_and_first_vertical_slice",
+      "target": "sprint_1_plan_sprint_goal",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/sprint-1/plan.md",
+      "source_location": "L9",
+      "weight": 1.0
+    },
+    {
+      "source": "sprint_1_plan_sprint_1_plan_foundation_and_first_vertical_slice",
+      "target": "sprint_1_plan_in_scope",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/sprint-1/plan.md",
+      "source_location": "L18",
+      "weight": 1.0
+    },
+    {
+      "source": "sprint_1_plan_sprint_1_plan_foundation_and_first_vertical_slice",
+      "target": "sprint_1_plan_out_of_scope",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/sprint-1/plan.md",
+      "source_location": "L50",
+      "weight": 1.0
+    },
+    {
+      "source": "sprint_1_plan_sprint_1_plan_foundation_and_first_vertical_slice",
+      "target": "sprint_1_plan_acceptance_criteria",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/sprint-1/plan.md",
+      "source_location": "L57",
+      "weight": 1.0
+    },
+    {
+      "source": "sprint_1_plan_sprint_1_plan_foundation_and_first_vertical_slice",
+      "target": "sprint_1_plan_work_breakdown",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/sprint-1/plan.md",
+      "source_location": "L75",
+      "weight": 1.0
+    },
+    {
+      "source": "sprint_1_plan_sprint_1_plan_foundation_and_first_vertical_slice",
+      "target": "sprint_1_plan_definition_of_done",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/sprint-1/plan.md",
+      "source_location": "L92",
+      "weight": 1.0
+    },
+    {
+      "source": "docs_brainstorm_brainstorm_001_md",
+      "target": "brainstorm_brainstorm_001_brainstorm_001_ofrendas_build_kickoff",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/brainstorm/brainstorm-001.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "brainstorm_brainstorm_001_brainstorm_001_ofrendas_build_kickoff",
+      "target": "brainstorm_brainstorm_001_prompt_used",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/brainstorm/brainstorm-001.md",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "brainstorm_brainstorm_001_brainstorm_001_ofrendas_build_kickoff",
+      "target": "brainstorm_brainstorm_001_agent_positions",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/brainstorm/brainstorm-001.md",
+      "source_location": "L11",
+      "weight": 1.0
+    },
+    {
+      "source": "brainstorm_brainstorm_001_brainstorm_001_ofrendas_build_kickoff",
+      "target": "brainstorm_brainstorm_001_real_disagreements",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/brainstorm/brainstorm-001.md",
+      "source_location": "L43",
+      "weight": 1.0
+    },
+    {
+      "source": "brainstorm_brainstorm_001_brainstorm_001_ofrendas_build_kickoff",
+      "target": "brainstorm_brainstorm_001_decisions",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/brainstorm/brainstorm-001.md",
+      "source_location": "L55",
+      "weight": 1.0
+    },
+    {
+      "source": "brainstorm_brainstorm_001_brainstorm_001_ofrendas_build_kickoff",
+      "target": "brainstorm_brainstorm_001_risks_and_mitigations",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/brainstorm/brainstorm-001.md",
+      "source_location": "L62",
+      "weight": 1.0
+    },
+    {
+      "source": "docs_qa_sprint_5_signoff_md",
+      "target": "qa_sprint_5_signoff_qa_sign_off_sprint_5",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/qa/sprint-5-signoff.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "qa_sprint_5_signoff_qa_sign_off_sprint_5",
+      "target": "qa_sprint_5_signoff_scope_validated",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/qa/sprint-5-signoff.md",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "qa_sprint_5_signoff_qa_sign_off_sprint_5",
+      "target": "qa_sprint_5_signoff_evidence_summary",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/qa/sprint-5-signoff.md",
+      "source_location": "L14",
+      "weight": 1.0
+    },
+    {
+      "source": "qa_sprint_5_signoff_qa_sign_off_sprint_5",
+      "target": "qa_sprint_5_signoff_notes",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/qa/sprint-5-signoff.md",
+      "source_location": "L27",
+      "weight": 1.0
+    },
+    {
+      "source": "qa_sprint_5_signoff_qa_sign_off_sprint_5",
+      "target": "qa_sprint_5_signoff_open_issues",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/qa/sprint-5-signoff.md",
+      "source_location": "L32",
+      "weight": 1.0
+    },
+    {
+      "source": "qa_sprint_5_signoff_qa_sign_off_sprint_5",
+      "target": "qa_sprint_5_signoff_recommendation",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/qa/sprint-5-signoff.md",
+      "source_location": "L36",
+      "weight": 1.0
+    },
+    {
+      "source": "docs_qa_sprint_2_signoff_md",
+      "target": "qa_sprint_2_signoff_qa_sign_off_sprint_2",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/qa/sprint-2-signoff.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "qa_sprint_2_signoff_qa_sign_off_sprint_2",
+      "target": "qa_sprint_2_signoff_scope_validated",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/qa/sprint-2-signoff.md",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "qa_sprint_2_signoff_qa_sign_off_sprint_2",
+      "target": "qa_sprint_2_signoff_evidence_summary",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/qa/sprint-2-signoff.md",
+      "source_location": "L16",
+      "weight": 1.0
+    },
+    {
+      "source": "qa_sprint_2_signoff_qa_sign_off_sprint_2",
+      "target": "qa_sprint_2_signoff_notes",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/qa/sprint-2-signoff.md",
+      "source_location": "L32",
+      "weight": 1.0
+    },
+    {
+      "source": "qa_sprint_2_signoff_qa_sign_off_sprint_2",
+      "target": "qa_sprint_2_signoff_open_issues",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/qa/sprint-2-signoff.md",
+      "source_location": "L37",
+      "weight": 1.0
+    },
+    {
+      "source": "qa_sprint_2_signoff_qa_sign_off_sprint_2",
+      "target": "qa_sprint_2_signoff_recommendation",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/qa/sprint-2-signoff.md",
+      "source_location": "L41",
+      "weight": 1.0
+    },
+    {
+      "source": "docs_qa_sprint_1_signoff_md",
+      "target": "qa_sprint_1_signoff_qa_sign_off_sprint_1",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/qa/sprint-1-signoff.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "qa_sprint_1_signoff_qa_sign_off_sprint_1",
+      "target": "qa_sprint_1_signoff_scope_validated",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/qa/sprint-1-signoff.md",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "qa_sprint_1_signoff_qa_sign_off_sprint_1",
+      "target": "qa_sprint_1_signoff_evidence_summary",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/qa/sprint-1-signoff.md",
+      "source_location": "L14",
+      "weight": 1.0
+    },
+    {
+      "source": "qa_sprint_1_signoff_qa_sign_off_sprint_1",
+      "target": "qa_sprint_1_signoff_notes",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/qa/sprint-1-signoff.md",
+      "source_location": "L22",
+      "weight": 1.0
+    },
+    {
+      "source": "qa_sprint_1_signoff_qa_sign_off_sprint_1",
+      "target": "qa_sprint_1_signoff_open_issues",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/qa/sprint-1-signoff.md",
+      "source_location": "L28",
+      "weight": 1.0
+    },
+    {
+      "source": "qa_sprint_1_signoff_qa_sign_off_sprint_1",
+      "target": "qa_sprint_1_signoff_recommendation",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/qa/sprint-1-signoff.md",
+      "source_location": "L32",
+      "weight": 1.0
+    },
+    {
+      "source": "docs_qa_sprint_4_signoff_md",
+      "target": "qa_sprint_4_signoff_qa_sign_off_sprint_4",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/qa/sprint-4-signoff.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "qa_sprint_4_signoff_qa_sign_off_sprint_4",
+      "target": "qa_sprint_4_signoff_scope_validated",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/qa/sprint-4-signoff.md",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "qa_sprint_4_signoff_qa_sign_off_sprint_4",
+      "target": "qa_sprint_4_signoff_evidence_summary",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/qa/sprint-4-signoff.md",
+      "source_location": "L15",
+      "weight": 1.0
+    },
+    {
+      "source": "qa_sprint_4_signoff_qa_sign_off_sprint_4",
+      "target": "qa_sprint_4_signoff_notes",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/qa/sprint-4-signoff.md",
+      "source_location": "L29",
+      "weight": 1.0
+    },
+    {
+      "source": "qa_sprint_4_signoff_qa_sign_off_sprint_4",
+      "target": "qa_sprint_4_signoff_open_issues",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/qa/sprint-4-signoff.md",
+      "source_location": "L34",
+      "weight": 1.0
+    },
+    {
+      "source": "qa_sprint_4_signoff_qa_sign_off_sprint_4",
+      "target": "qa_sprint_4_signoff_recommendation",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/qa/sprint-4-signoff.md",
+      "source_location": "L38",
+      "weight": 1.0
+    },
+    {
+      "source": "docs_qa_sprint_3_signoff_md",
+      "target": "qa_sprint_3_signoff_qa_sign_off_sprint_3",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/qa/sprint-3-signoff.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "qa_sprint_3_signoff_qa_sign_off_sprint_3",
+      "target": "qa_sprint_3_signoff_scope_validated",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/qa/sprint-3-signoff.md",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "qa_sprint_3_signoff_qa_sign_off_sprint_3",
+      "target": "qa_sprint_3_signoff_evidence_summary",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/qa/sprint-3-signoff.md",
+      "source_location": "L15",
+      "weight": 1.0
+    },
+    {
+      "source": "qa_sprint_3_signoff_qa_sign_off_sprint_3",
+      "target": "qa_sprint_3_signoff_notes",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/qa/sprint-3-signoff.md",
+      "source_location": "L31",
+      "weight": 1.0
+    },
+    {
+      "source": "qa_sprint_3_signoff_qa_sign_off_sprint_3",
+      "target": "qa_sprint_3_signoff_open_issues",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/qa/sprint-3-signoff.md",
+      "source_location": "L36",
+      "weight": 1.0
+    },
+    {
+      "source": "qa_sprint_3_signoff_qa_sign_off_sprint_3",
+      "target": "qa_sprint_3_signoff_recommendation",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/qa/sprint-3-signoff.md",
+      "source_location": "L40",
+      "weight": 1.0
+    },
+    {
+      "source": "docs_qa_sprint_6_signoff_md",
+      "target": "qa_sprint_6_signoff_qa_sign_off_sprint_6",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/qa/sprint-6-signoff.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "qa_sprint_6_signoff_qa_sign_off_sprint_6",
+      "target": "qa_sprint_6_signoff_scope_validated",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/qa/sprint-6-signoff.md",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "qa_sprint_6_signoff_qa_sign_off_sprint_6",
+      "target": "qa_sprint_6_signoff_evidence_summary",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/qa/sprint-6-signoff.md",
+      "source_location": "L14",
+      "weight": 1.0
+    },
+    {
+      "source": "qa_sprint_6_signoff_qa_sign_off_sprint_6",
+      "target": "qa_sprint_6_signoff_notes",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/qa/sprint-6-signoff.md",
+      "source_location": "L28",
+      "weight": 1.0
+    },
+    {
+      "source": "qa_sprint_6_signoff_qa_sign_off_sprint_6",
+      "target": "qa_sprint_6_signoff_open_issues",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/qa/sprint-6-signoff.md",
+      "source_location": "L33",
+      "weight": 1.0
+    },
+    {
+      "source": "qa_sprint_6_signoff_qa_sign_off_sprint_6",
+      "target": "qa_sprint_6_signoff_recommendation",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/qa/sprint-6-signoff.md",
+      "source_location": "L37",
+      "weight": 1.0
+    },
+    {
+      "source": "docs_ux_ofrendas_core_flow_md",
+      "target": "ux_ofrendas_core_flow_flow_specification_ofrendas_core_figma_ready",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/ux/ofrendas-core-flow.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "ux_ofrendas_core_flow_flow_specification_ofrendas_core_figma_ready",
+      "target": "ux_ofrendas_core_flow_entry_points",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/ux/ofrendas-core-flow.md",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "ux_ofrendas_core_flow_flow_specification_ofrendas_core_figma_ready",
+      "target": "ux_ofrendas_core_flow_global_design_principles",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/ux/ofrendas-core-flow.md",
+      "source_location": "L13",
+      "weight": 1.0
+    },
+    {
+      "source": "ux_ofrendas_core_flow_flow_specification_ofrendas_core_figma_ready",
+      "target": "ux_ofrendas_core_flow_screen_flow_1_envelope_capture",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/ux/ofrendas-core-flow.md",
+      "source_location": "L21",
+      "weight": 1.0
+    },
+    {
+      "source": "ux_ofrendas_core_flow_flow_specification_ofrendas_core_figma_ready",
+      "target": "ux_ofrendas_core_flow_screen_flow_2_day_log_and_deferred_correction",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/ux/ofrendas-core-flow.md",
+      "source_location": "L36",
+      "weight": 1.0
+    },
+    {
+      "source": "ux_ofrendas_core_flow_flow_specification_ofrendas_core_figma_ready",
+      "target": "ux_ofrendas_core_flow_screen_flow_3_cash_window",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/ux/ofrendas-core-flow.md",
+      "source_location": "L50",
+      "weight": 1.0
+    },
+    {
+      "source": "ux_ofrendas_core_flow_flow_specification_ofrendas_core_figma_ready",
+      "target": "ux_ofrendas_core_flow_screen_flow_4_outputs",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/ux/ofrendas-core-flow.md",
+      "source_location": "L63",
+      "weight": 1.0
+    },
+    {
+      "source": "ux_ofrendas_core_flow_flow_specification_ofrendas_core_figma_ready",
+      "target": "ux_ofrendas_core_flow_screen_flow_5_fund_source_management",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/ux/ofrendas-core-flow.md",
+      "source_location": "L76",
+      "weight": 1.0
+    },
+    {
+      "source": "ux_ofrendas_core_flow_flow_specification_ofrendas_core_figma_ready",
+      "target": "ux_ofrendas_core_flow_screen_flow_6_kiosk_pos",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/ux/ofrendas-core-flow.md",
+      "source_location": "L88",
+      "weight": 1.0
+    },
+    {
+      "source": "ux_ofrendas_core_flow_flow_specification_ofrendas_core_figma_ready",
+      "target": "ux_ofrendas_core_flow_screen_flow_7_export_configuration_and_execution",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/ux/ofrendas-core-flow.md",
+      "source_location": "L102",
+      "weight": 1.0
+    },
+    {
+      "source": "ux_ofrendas_core_flow_flow_specification_ofrendas_core_figma_ready",
+      "target": "ux_ofrendas_core_flow_key_components_for_figma_library",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/ux/ofrendas-core-flow.md",
+      "source_location": "L116",
+      "weight": 1.0
+    },
+    {
+      "source": "ux_ofrendas_core_flow_flow_specification_ofrendas_core_figma_ready",
+      "target": "ux_ofrendas_core_flow_accessibility_requirements",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/ux/ofrendas-core-flow.md",
+      "source_location": "L127",
+      "weight": 1.0
+    },
+    {
+      "source": "ux_ofrendas_core_flow_accessibility_requirements",
+      "target": "ux_ofrendas_core_flow_keyboard_navigation",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/ux/ofrendas-core-flow.md",
+      "source_location": "L129",
+      "weight": 1.0
+    },
+    {
+      "source": "ux_ofrendas_core_flow_accessibility_requirements",
+      "target": "ux_ofrendas_core_flow_screen_reader_support",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/ux/ofrendas-core-flow.md",
+      "source_location": "L135",
+      "weight": 1.0
+    },
+    {
+      "source": "ux_ofrendas_core_flow_accessibility_requirements",
+      "target": "ux_ofrendas_core_flow_visual_accessibility",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/ux/ofrendas-core-flow.md",
+      "source_location": "L141",
+      "weight": 1.0
+    },
+    {
+      "source": "ux_ofrendas_core_flow_flow_specification_ofrendas_core_figma_ready",
+      "target": "ux_ofrendas_core_flow_figma_handoff_notes",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/ux/ofrendas-core-flow.md",
+      "source_location": "L148",
+      "weight": 1.0
+    },
+    {
+      "source": "docs_ux_ofrendas_core_journey_md",
+      "target": "ux_ofrendas_core_journey_user_journey_ofrendas_core_workflow",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/ux/ofrendas-core-journey.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "ux_ofrendas_core_journey_user_journey_ofrendas_core_workflow",
+      "target": "ux_ofrendas_core_journey_persona",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/ux/ofrendas-core-journey.md",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "ux_ofrendas_core_journey_user_journey_ofrendas_core_workflow",
+      "target": "ux_ofrendas_core_journey_stage_1_start_of_day",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/ux/ofrendas-core-journey.md",
+      "source_location": "L10",
+      "weight": 1.0
+    },
+    {
+      "source": "ux_ofrendas_core_journey_user_journey_ofrendas_core_workflow",
+      "target": "ux_ofrendas_core_journey_stage_2_envelope_intake_rush",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/ux/ofrendas-core-journey.md",
+      "source_location": "L32",
+      "weight": 1.0
+    },
+    {
+      "source": "ux_ofrendas_core_journey_user_journey_ofrendas_core_workflow",
+      "target": "ux_ofrendas_core_journey_stage_3_deferred_correction",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/ux/ofrendas-core-journey.md",
+      "source_location": "L54",
+      "weight": 1.0
+    },
+    {
+      "source": "ux_ofrendas_core_journey_user_journey_ofrendas_core_workflow",
+      "target": "ux_ofrendas_core_journey_stage_4_cash_reconciliation",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/ux/ofrendas-core-journey.md",
+      "source_location": "L76",
+      "weight": 1.0
+    },
+    {
+      "source": "ux_ofrendas_core_journey_user_journey_ofrendas_core_workflow",
+      "target": "ux_ofrendas_core_journey_stage_5_outputs_and_approvals",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/ux/ofrendas-core-journey.md",
+      "source_location": "L98",
+      "weight": 1.0
+    },
+    {
+      "source": "ux_ofrendas_core_journey_user_journey_ofrendas_core_workflow",
+      "target": "ux_ofrendas_core_journey_stage_6_kiosk_sales_if_active",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/ux/ofrendas-core-journey.md",
+      "source_location": "L120",
+      "weight": 1.0
+    },
+    {
+      "source": "ux_ofrendas_core_journey_user_journey_ofrendas_core_workflow",
+      "target": "ux_ofrendas_core_journey_stage_7_end_of_day_audit_readiness",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/ux/ofrendas-core-journey.md",
+      "source_location": "L142",
+      "weight": 1.0
+    },
+    {
+      "source": "docs_ux_ofrendas_core_jtbd_md",
+      "target": "ux_ofrendas_core_jtbd_jtbd_ofrendas_core_operations",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/ux/ofrendas-core-jtbd.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "ux_ofrendas_core_jtbd_jtbd_ofrendas_core_operations",
+      "target": "ux_ofrendas_core_jtbd_scope",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/ux/ofrendas-core-jtbd.md",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "ux_ofrendas_core_jtbd_jtbd_ofrendas_core_operations",
+      "target": "ux_ofrendas_core_jtbd_primary_personas",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/ux/ofrendas-core-jtbd.md",
+      "source_location": "L13",
+      "weight": 1.0
+    },
+    {
+      "source": "ux_ofrendas_core_jtbd_jtbd_ofrendas_core_operations",
+      "target": "ux_ofrendas_core_jtbd_job_statement_1_envelope_capture",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/ux/ofrendas-core-jtbd.md",
+      "source_location": "L19",
+      "weight": 1.0
+    },
+    {
+      "source": "ux_ofrendas_core_jtbd_job_statement_1_envelope_capture",
+      "target": "ux_ofrendas_core_jtbd_current_pain_points",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/ux/ofrendas-core-jtbd.md",
+      "source_location": "L25",
+      "weight": 1.0
+    },
+    {
+      "source": "ux_ofrendas_core_jtbd_job_statement_1_envelope_capture",
+      "target": "ux_ofrendas_core_jtbd_desired_outcomes",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/ux/ofrendas-core-jtbd.md",
+      "source_location": "L31",
+      "weight": 1.0
+    },
+    {
+      "source": "ux_ofrendas_core_jtbd_jtbd_ofrendas_core_operations",
+      "target": "ux_ofrendas_core_jtbd_job_statement_2_cash_control",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/ux/ofrendas-core-jtbd.md",
+      "source_location": "L37",
+      "weight": 1.0
+    },
+    {
+      "source": "ux_ofrendas_core_jtbd_job_statement_2_cash_control",
+      "target": "ux_ofrendas_core_jtbd_current_pain_points_43",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/ux/ofrendas-core-jtbd.md",
+      "source_location": "L43",
+      "weight": 1.0
+    },
+    {
+      "source": "ux_ofrendas_core_jtbd_job_statement_2_cash_control",
+      "target": "ux_ofrendas_core_jtbd_desired_outcomes_49",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/ux/ofrendas-core-jtbd.md",
+      "source_location": "L49",
+      "weight": 1.0
+    },
+    {
+      "source": "ux_ofrendas_core_jtbd_jtbd_ofrendas_core_operations",
+      "target": "ux_ofrendas_core_jtbd_job_statement_3_outputs_disbursements",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/ux/ofrendas-core-jtbd.md",
+      "source_location": "L55",
+      "weight": 1.0
+    },
+    {
+      "source": "ux_ofrendas_core_jtbd_job_statement_3_outputs_disbursements",
+      "target": "ux_ofrendas_core_jtbd_current_pain_points_61",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/ux/ofrendas-core-jtbd.md",
+      "source_location": "L61",
+      "weight": 1.0
+    },
+    {
+      "source": "ux_ofrendas_core_jtbd_job_statement_3_outputs_disbursements",
+      "target": "ux_ofrendas_core_jtbd_desired_outcomes_67",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/ux/ofrendas-core-jtbd.md",
+      "source_location": "L67",
+      "weight": 1.0
+    },
+    {
+      "source": "ux_ofrendas_core_jtbd_jtbd_ofrendas_core_operations",
+      "target": "ux_ofrendas_core_jtbd_job_statement_4_kiosk_pos",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/ux/ofrendas-core-jtbd.md",
+      "source_location": "L73",
+      "weight": 1.0
+    },
+    {
+      "source": "ux_ofrendas_core_jtbd_job_statement_4_kiosk_pos",
+      "target": "ux_ofrendas_core_jtbd_current_pain_points_79",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/ux/ofrendas-core-jtbd.md",
+      "source_location": "L79",
+      "weight": 1.0
+    },
+    {
+      "source": "ux_ofrendas_core_jtbd_job_statement_4_kiosk_pos",
+      "target": "ux_ofrendas_core_jtbd_desired_outcomes_85",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/ux/ofrendas-core-jtbd.md",
+      "source_location": "L85",
+      "weight": 1.0
+    },
+    {
+      "source": "ux_ofrendas_core_jtbd_jtbd_ofrendas_core_operations",
+      "target": "ux_ofrendas_core_jtbd_job_statement_5_accounting_export",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/ux/ofrendas-core-jtbd.md",
+      "source_location": "L91",
+      "weight": 1.0
+    },
+    {
+      "source": "ux_ofrendas_core_jtbd_job_statement_5_accounting_export",
+      "target": "ux_ofrendas_core_jtbd_current_pain_points_97",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/ux/ofrendas-core-jtbd.md",
+      "source_location": "L97",
+      "weight": 1.0
+    },
+    {
+      "source": "ux_ofrendas_core_jtbd_job_statement_5_accounting_export",
+      "target": "ux_ofrendas_core_jtbd_desired_outcomes_102",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/ux/ofrendas-core-jtbd.md",
+      "source_location": "L102",
+      "weight": 1.0
+    },
+    {
+      "source": "ux_ofrendas_core_jtbd_jtbd_ofrendas_core_operations",
+      "target": "ux_ofrendas_core_jtbd_constraints",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/ux/ofrendas-core-jtbd.md",
+      "source_location": "L108",
+      "weight": 1.0
+    },
+    {
+      "source": "ux_ofrendas_core_jtbd_jtbd_ofrendas_core_operations",
+      "target": "ux_ofrendas_core_jtbd_success_metrics",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/ux/ofrendas-core-jtbd.md",
+      "source_location": "L115",
+      "weight": 1.0
+    },
+    {
+      "source": "docs_architecture_adr_001_runtime_and_deployment_topology_md",
+      "target": "architecture_adr_001_runtime_and_deployment_topology_adr_001_runtime_and_deployment_topology",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/architecture/ADR-001-runtime-and-deployment-topology.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "architecture_adr_001_runtime_and_deployment_topology_adr_001_runtime_and_deployment_topology",
+      "target": "architecture_adr_001_runtime_and_deployment_topology_context",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/architecture/ADR-001-runtime-and-deployment-topology.md",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "architecture_adr_001_runtime_and_deployment_topology_adr_001_runtime_and_deployment_topology",
+      "target": "architecture_adr_001_runtime_and_deployment_topology_decision_drivers",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/architecture/ADR-001-runtime-and-deployment-topology.md",
+      "source_location": "L10",
+      "weight": 1.0
+    },
+    {
+      "source": "architecture_adr_001_runtime_and_deployment_topology_adr_001_runtime_and_deployment_topology",
+      "target": "architecture_adr_001_runtime_and_deployment_topology_options_considered",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/architecture/ADR-001-runtime-and-deployment-topology.md",
+      "source_location": "L17",
+      "weight": 1.0
+    },
+    {
+      "source": "architecture_adr_001_runtime_and_deployment_topology_adr_001_runtime_and_deployment_topology",
+      "target": "architecture_adr_001_runtime_and_deployment_topology_decision",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/architecture/ADR-001-runtime-and-deployment-topology.md",
+      "source_location": "L23",
+      "weight": 1.0
+    },
+    {
+      "source": "architecture_adr_001_runtime_and_deployment_topology_adr_001_runtime_and_deployment_topology",
+      "target": "architecture_adr_001_runtime_and_deployment_topology_rationale",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/architecture/ADR-001-runtime-and-deployment-topology.md",
+      "source_location": "L31",
+      "weight": 1.0
+    },
+    {
+      "source": "architecture_adr_001_runtime_and_deployment_topology_adr_001_runtime_and_deployment_topology",
+      "target": "architecture_adr_001_runtime_and_deployment_topology_consequences",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/architecture/ADR-001-runtime-and-deployment-topology.md",
+      "source_location": "L35",
+      "weight": 1.0
+    },
+    {
+      "source": "architecture_adr_001_runtime_and_deployment_topology_adr_001_runtime_and_deployment_topology",
+      "target": "architecture_adr_001_runtime_and_deployment_topology_implementation_notes",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/architecture/ADR-001-runtime-and-deployment-topology.md",
+      "source_location": "L45",
+      "weight": 1.0
+    },
+    {
+      "source": "docs_architecture_adr_005_accounting_exports_multi_provider_md",
+      "target": "architecture_adr_005_accounting_exports_multi_provider_adr_005_multi_provider_accounting_export_architecture",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/architecture/ADR-005-accounting-exports-multi-provider.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "architecture_adr_005_accounting_exports_multi_provider_adr_005_multi_provider_accounting_export_architecture",
+      "target": "architecture_adr_005_accounting_exports_multi_provider_context",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/architecture/ADR-005-accounting-exports-multi-provider.md",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "architecture_adr_005_accounting_exports_multi_provider_adr_005_multi_provider_accounting_export_architecture",
+      "target": "architecture_adr_005_accounting_exports_multi_provider_decision_drivers",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/architecture/ADR-005-accounting-exports-multi-provider.md",
+      "source_location": "L10",
+      "weight": 1.0
+    },
+    {
+      "source": "architecture_adr_005_accounting_exports_multi_provider_adr_005_multi_provider_accounting_export_architecture",
+      "target": "architecture_adr_005_accounting_exports_multi_provider_options_considered",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/architecture/ADR-005-accounting-exports-multi-provider.md",
+      "source_location": "L17",
+      "weight": 1.0
+    },
+    {
+      "source": "architecture_adr_005_accounting_exports_multi_provider_adr_005_multi_provider_accounting_export_architecture",
+      "target": "architecture_adr_005_accounting_exports_multi_provider_decision",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/architecture/ADR-005-accounting-exports-multi-provider.md",
+      "source_location": "L23",
+      "weight": 1.0
+    },
+    {
+      "source": "architecture_adr_005_accounting_exports_multi_provider_adr_005_multi_provider_accounting_export_architecture",
+      "target": "architecture_adr_005_accounting_exports_multi_provider_rationale",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/architecture/ADR-005-accounting-exports-multi-provider.md",
+      "source_location": "L32",
+      "weight": 1.0
+    },
+    {
+      "source": "architecture_adr_005_accounting_exports_multi_provider_adr_005_multi_provider_accounting_export_architecture",
+      "target": "architecture_adr_005_accounting_exports_multi_provider_consequences",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/architecture/ADR-005-accounting-exports-multi-provider.md",
+      "source_location": "L36",
+      "weight": 1.0
+    },
+    {
+      "source": "architecture_adr_005_accounting_exports_multi_provider_adr_005_multi_provider_accounting_export_architecture",
+      "target": "architecture_adr_005_accounting_exports_multi_provider_implementation_notes",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/architecture/ADR-005-accounting-exports-multi-provider.md",
+      "source_location": "L46",
+      "weight": 1.0
+    },
+    {
+      "source": "docs_architecture_adr_011_outputs_fund_source_and_approval_md",
+      "target": "architecture_adr_011_outputs_fund_source_and_approval_adr_011_outputs_control_with_fund_source_and_approval_audit",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/architecture/ADR-011-outputs-fund-source-and-approval.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "architecture_adr_011_outputs_fund_source_and_approval_adr_011_outputs_control_with_fund_source_and_approval_audit",
+      "target": "architecture_adr_011_outputs_fund_source_and_approval_context",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/architecture/ADR-011-outputs-fund-source-and-approval.md",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "architecture_adr_011_outputs_fund_source_and_approval_adr_011_outputs_control_with_fund_source_and_approval_audit",
+      "target": "architecture_adr_011_outputs_fund_source_and_approval_decision_drivers",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/architecture/ADR-011-outputs-fund-source-and-approval.md",
+      "source_location": "L10",
+      "weight": 1.0
+    },
+    {
+      "source": "architecture_adr_011_outputs_fund_source_and_approval_adr_011_outputs_control_with_fund_source_and_approval_audit",
+      "target": "architecture_adr_011_outputs_fund_source_and_approval_options_considered",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/architecture/ADR-011-outputs-fund-source-and-approval.md",
+      "source_location": "L17",
+      "weight": 1.0
+    },
+    {
+      "source": "architecture_adr_011_outputs_fund_source_and_approval_adr_011_outputs_control_with_fund_source_and_approval_audit",
+      "target": "architecture_adr_011_outputs_fund_source_and_approval_decision",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/architecture/ADR-011-outputs-fund-source-and-approval.md",
+      "source_location": "L23",
+      "weight": 1.0
+    },
+    {
+      "source": "architecture_adr_011_outputs_fund_source_and_approval_adr_011_outputs_control_with_fund_source_and_approval_audit",
+      "target": "architecture_adr_011_outputs_fund_source_and_approval_rationale",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/architecture/ADR-011-outputs-fund-source-and-approval.md",
+      "source_location": "L33",
+      "weight": 1.0
+    },
+    {
+      "source": "architecture_adr_011_outputs_fund_source_and_approval_adr_011_outputs_control_with_fund_source_and_approval_audit",
+      "target": "architecture_adr_011_outputs_fund_source_and_approval_consequences",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/architecture/ADR-011-outputs-fund-source-and-approval.md",
+      "source_location": "L37",
+      "weight": 1.0
+    },
+    {
+      "source": "architecture_adr_011_outputs_fund_source_and_approval_adr_011_outputs_control_with_fund_source_and_approval_audit",
+      "target": "architecture_adr_011_outputs_fund_source_and_approval_implementation_notes",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/architecture/ADR-011-outputs-fund-source-and-approval.md",
+      "source_location": "L47",
+      "weight": 1.0
+    }
+  ],
+  "input_tokens": 0,
+  "output_tokens": 0
+}
