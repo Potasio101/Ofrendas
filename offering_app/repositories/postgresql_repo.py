@@ -15,6 +15,14 @@ class PostgreSQLRepo(IStorageRepo):
     def _connect(self):
         return psycopg.connect(self.database_url, row_factory=dict_row)
 
+    def get_current_service_date(self, timezone_name: str) -> str:
+        query = "SELECT (NOW() AT TIME ZONE %(timezone)s)::date AS service_date"
+        with self._connect() as conn:
+            with conn.cursor() as cur:
+                cur.execute(query, {"timezone": timezone_name})
+                row = cur.fetchone()
+                return row["service_date"].isoformat()
+
     def save(self, offering: Offering) -> str:
         offering.compute_total()
         service_date = offering.service_date or date.today()

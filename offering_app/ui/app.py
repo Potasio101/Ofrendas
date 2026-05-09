@@ -36,6 +36,20 @@ def create_app(service: OfferingService, storage: PostgreSQLRepo, upload_path: s
 
     def _current_service_date() -> str:
         tz_name = (app.config.get("APP_TIMEZONE") or "UTC").strip() or "UTC"
+        if hasattr(storage, "get_current_service_date"):
+            try:
+                return storage.get_current_service_date(tz_name)
+            except Exception:
+                app.logger.info(
+                    json.dumps(
+                        {
+                            "event": "service_date_fallback",
+                            "source": "python",
+                            "timezone": tz_name,
+                        },
+                        ensure_ascii=True,
+                    )
+                )
         try:
             tz = ZoneInfo(tz_name)
         except Exception:
