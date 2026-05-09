@@ -1,6 +1,6 @@
 # Sprint 2 Progress Tracker
 
-Status: Ready for merge
+Status: Completed
 Last update: 2026-05-08
 
 ## Checklist
@@ -13,7 +13,7 @@ Last update: 2026-05-08
 - [x] Timezone policy documented and implemented
 - [x] Route-level RBAC regression tests added
 - [x] QA playthrough completed
-- [ ] Merge to main completed
+- [x] Merge to main completed
 
 ## Phase Notes
 
@@ -47,8 +47,8 @@ Phase 2 - Test and QA
 - QA sign-off published at `docs/qa/sprint-2-signoff.md`.
 
 Phase 3 - Merge and Handoff
-- Sprint 2 scope is merge-ready.
-- Pending only: merge branch to main and finalize sprint done handoff.
+- Sprint 2 merged to `main` and pushed to origin.
+- Sprint 2 handoff artifacts completed.
 
 ## Open Blockers
 

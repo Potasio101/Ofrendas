@@ -123,9 +123,9 @@ DevOps (Dash, on demand):
 ## 7. Sprint Status (updated every sprint)
 
 Current sprint: Sprint 2 (Auth/RBAC hardening and timezone normalization)
-Status: Ready for merge
-Branch target: feature/sprint-2
-Completion criteria met:
+Status: Completed (merged to main)
+Branch target: feature/sprint-2 (closed)
+Completion outcomes:
 - RBAC endpoint policy implemented with denial audit logging
 - Timezone service date resolved from PostgreSQL clock with fallback
 - Automated tests passing and QA sign-off published
@@ -134,7 +134,7 @@ Completion criteria met:
 
 Repository state:
 - Sprint 1 is merged to main and documented as completed.
-- Sprint 2 implementation branch contains RBAC and timezone hardening changes.
+- Sprint 2 is merged to main with complete handoff artifacts.
 - QA sign-off for Sprint 2 is published.
 
 Technical baseline:
@@ -144,10 +144,10 @@ Technical baseline:
 - RBAC enforced across critical routes with explicit endpoint policy.
 - Current service date uses PostgreSQL timezone-aware clock for day-based flows.
 - Automated regression suite and sprint QA checks are passing.
+- Confirm flow hardened against invalid actor UUID input.
 
 Immediate next move:
-- Merge `feature/sprint-2` into `main`.
-- Complete `docs/sprint-2/done.md` with delivery and validation evidence.
+- Start Sprint 3 planning for authentication source hardening and module expansion (cash window and outputs).
 
 ## 9. Security Rules
 
