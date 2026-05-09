@@ -167,11 +167,11 @@ def create_app(
     def _domain_error_response(exc: Exception):
         message = str(exc)
         if "not_found" in message:
-            return "Not found", 404
+            return jsonify({"status": "error", "error": "not_found", "message": "Not found"}), 404
         if "invalid_transition" in message or "closed" in message:
-            return "Conflict", 409
+            return jsonify({"status": "error", "error": "invalid_transition", "message": "Conflict"}), 409
         if "invalid_" in message:
-            return "Invalid payload", 400
+            return jsonify({"status": "error", "error": "invalid_payload", "message": "Invalid payload"}), 400
         app.logger.info(
             json.dumps(
                 {
@@ -183,7 +183,10 @@ def create_app(
                 ensure_ascii=True,
             )
         )
-        return "Internal error", 500
+        return jsonify({"status": "error", "error": "internal_error", "message": "Internal error"}), 500
+
+    def _ok_response(data, message: str, status_code: int = 200):
+        return jsonify({"status": "ok", "message": message, "data": _json_safe(data)}), status_code
 
     def _json_safe(value):
         if isinstance(value, dict):
@@ -382,7 +385,13 @@ def create_app(
             notes=request.form.get("notes"),
         )
         status_code = 201 if session.get("created") else 200
-        return jsonify(_json_safe(session)), status_code
+        transition = {
+            "entity": "cash_session",
+            "action": "open",
+            "from_status": "none" if session.get("created") else "open",
+            "to_status": session.get("session_status", "open"),
+        }
+        return _ok_response({"session": session, "transition": transition}, "Cash session opened", status_code)
 
     @app.get("/cash-window")
     def cash_window_get():
@@ -393,7 +402,7 @@ def create_app(
         session = cash_window_service.get_session(service_date)
         if not session:
             return jsonify({"status": "not-found", "service_date": service_date}), 404
-        return jsonify(_json_safe(session))
+        return _ok_response({"session": session}, "Cash session fetched")
 
     @app.post("/cash-window/line")
     def cash_window_line():
@@ -408,7 +417,13 @@ def create_app(
                 quantity=int(request.form.get("quantity", "0") or 0),
                 actor_user_id=getattr(g, "auth_user_id", None),
             )
-            return jsonify(_json_safe(session))
+            transition = {
+                "entity": "cash_session",
+                "action": "line_update",
+                "from_status": session.get("session_status", "open"),
+                "to_status": session.get("session_status", "open"),
+            }
+            return _ok_response({"session": session, "transition": transition}, "Cash line updated")
         except ValueError as exc:
             return _domain_error_response(exc)
 
@@ -423,7 +438,13 @@ def create_app(
                 actor_user_id=getattr(g, "auth_user_id", None),
                 notes=request.form.get("notes"),
             )
-            return jsonify(_json_safe(session))
+            transition = {
+                "entity": "cash_session",
+                "action": "close",
+                "from_status": "open",
+                "to_status": session.get("session_status", "closed"),
+            }
+            return _ok_response({"session": session, "transition": transition}, "Cash session closed")
         except ValueError as exc:
             return _domain_error_response(exc)
 
@@ -438,7 +459,13 @@ def create_app(
                 actor_user_id=getattr(g, "auth_user_id", None),
                 reason=request.form.get("reason"),
             )
-            return jsonify(_json_safe(session))
+            transition = {
+                "entity": "cash_session",
+                "action": "reopen",
+                "from_status": "closed",
+                "to_status": session.get("session_status", "open"),
+            }
+            return _ok_response({"session": session, "transition": transition}, "Cash session reopened")
         except ValueError as exc:
             return _domain_error_response(exc)
 
@@ -450,9 +477,9 @@ def create_app(
         description = request.form.get("description", "").strip()
         amount_raw = request.form.get("amount", "").strip()
         if not description:
-            return "Description is required", 400
+            return jsonify({"status": "error", "error": "invalid_payload", "message": "Description is required"}), 400
         if not amount_raw:
-            return "Amount is required", 400
+            return jsonify({"status": "error", "error": "invalid_payload", "message": "Amount is required"}), 400
         payload = {
             "output_date": request.form.get("output_date", _current_service_date()),
             "category": request.form.get("category", "other"),
@@ -465,8 +492,14 @@ def create_app(
         try:
             row = outputs_service.create_draft(payload, getattr(g, "auth_user_id", None))
         except ValueError:
-            return "Invalid draft payload", 400
-        return jsonify(_json_safe(row)), 201
+            return jsonify({"status": "error", "error": "invalid_payload", "message": "Invalid draft payload"}), 400
+        transition = {
+            "entity": "disbursement",
+            "action": "create_draft",
+            "from_status": "none",
+            "to_status": row.get("status", "draft"),
+        }
+        return _ok_response({"disbursement": row, "transition": transition}, "Disbursement draft created", 201)
 
     @app.get("/outputs/drafts")
     def outputs_list_drafts():
@@ -474,7 +507,7 @@ def create_app(
         if denied:
             return denied
         rows = outputs_service.list_drafts(request.args.get("output_date"))
-        return jsonify({"items": _json_safe(rows)})
+        return _ok_response({"items": rows}, "Disbursement drafts fetched")
 
     @app.post("/outputs/<disbursement_id>/update")
     def outputs_update_draft(disbursement_id: str):
@@ -491,7 +524,13 @@ def create_app(
         }
         try:
             row = outputs_service.update_draft(disbursement_id, payload, getattr(g, "auth_user_id", None))
-            return jsonify(_json_safe(row))
+            transition = {
+                "entity": "disbursement",
+                "action": "update_draft",
+                "from_status": "draft",
+                "to_status": row.get("status", "draft"),
+            }
+            return _ok_response({"disbursement": row, "transition": transition}, "Disbursement draft updated")
         except ValueError as exc:
             return _domain_error_response(exc)
 
@@ -502,7 +541,13 @@ def create_app(
             return denied
         try:
             row = outputs_service.submit(disbursement_id, getattr(g, "auth_user_id", None))
-            return jsonify(_json_safe(row))
+            transition = {
+                "entity": "disbursement",
+                "action": "submit",
+                "from_status": "draft",
+                "to_status": row.get("status", "submitted"),
+            }
+            return _ok_response({"disbursement": row, "transition": transition}, "Disbursement submitted")
         except ValueError as exc:
             return _domain_error_response(exc)
 
@@ -513,7 +558,13 @@ def create_app(
             return denied
         try:
             row = outputs_service.approve(disbursement_id, getattr(g, "auth_user_id", None))
-            return jsonify(_json_safe(row))
+            transition = {
+                "entity": "disbursement",
+                "action": "approve",
+                "from_status": "submitted",
+                "to_status": row.get("status", "approved"),
+            }
+            return _ok_response({"disbursement": row, "transition": transition}, "Disbursement approved")
         except ValueError as exc:
             return _domain_error_response(exc)
 
@@ -524,7 +575,13 @@ def create_app(
             return denied
         try:
             row = outputs_service.pay(disbursement_id, getattr(g, "auth_user_id", None))
-            return jsonify(_json_safe(row))
+            transition = {
+                "entity": "disbursement",
+                "action": "pay",
+                "from_status": "approved",
+                "to_status": row.get("status", "paid"),
+            }
+            return _ok_response({"disbursement": row, "transition": transition}, "Disbursement paid")
         except ValueError as exc:
             return _domain_error_response(exc)
 

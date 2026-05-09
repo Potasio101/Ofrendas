@@ -132,11 +132,12 @@ DevOps (Dash, on demand):
 ## 7. Sprint Status (updated every sprint)
 
 Current sprint: Sprint 5 (Identity provider integration and workflow UX hardening)
-Status: In progress
+Status: Ready for merge
 Branch target: feature/sprint-5
-Start criteria:
-- Sprint 5 plan and tracker initialized
-- Sprint 4 merged to main with QA sign-off and handoff artifacts
+Completion criteria met:
+- Proxy-token auth mode implemented with strict token validation
+- Workflow transition endpoints return consistent JSON response envelopes
+- Automated tests passing and Sprint 5 QA sign-off published
 
 ## 8. Current State (rewritten every sprint)
 
@@ -164,10 +165,11 @@ Technical baseline:
 - Regression suite currently passes with Sprint 4 increments.
 - Next target is non-local identity provider/proxy integration hardening.
 - Proxy-token auth mode is implemented for trusted non-local identity injection.
+- Workflow transition responses and error payloads are standardized for API consumers.
 
 Immediate next move:
-- Harden transition endpoint response and validation UX.
-- Complete Sprint 5 QA/sign-off and merge handoff.
+- Merge `feature/sprint-5` into `main`.
+- Complete `docs/sprint-5/done.md` with delivery and validation evidence.
 
 ## 9. Security Rules
 

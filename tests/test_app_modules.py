@@ -167,7 +167,9 @@ def test_cash_window_open_allows_treasurer():
     )
 
     assert response.status_code == 201
-    assert response.get_json()["session_status"] == "open"
+    body = response.get_json()
+    assert body["status"] == "ok"
+    assert body["data"]["session"]["session_status"] == "open"
 
 
 def test_outputs_draft_forbidden_for_auditor():
@@ -192,6 +194,7 @@ def test_outputs_draft_requires_description():
     )
 
     assert response.status_code == 400
+    assert response.get_json()["message"] == "Description is required"
 
 
 def test_outputs_draft_created_for_admin():
@@ -204,7 +207,9 @@ def test_outputs_draft_created_for_admin():
     )
 
     assert response.status_code == 201
-    assert response.get_json()["status"] == "draft"
+    body = response.get_json()
+    assert body["status"] == "ok"
+    assert body["data"]["disbursement"]["status"] == "draft"
 
 
 def test_outputs_drafts_allowed_for_auditor():
@@ -216,7 +221,9 @@ def test_outputs_drafts_allowed_for_auditor():
     )
 
     assert response.status_code == 200
-    assert isinstance(response.get_json()["items"], list)
+    body = response.get_json()
+    assert body["status"] == "ok"
+    assert isinstance(body["data"]["items"], list)
 
 
 def test_cash_window_line_forbidden_for_auditor():
@@ -241,7 +248,9 @@ def test_cash_window_line_allows_treasurer():
     )
 
     assert response.status_code == 200
-    assert response.get_json()["counted_cash_total"] == 40.0
+    body = response.get_json()
+    assert body["status"] == "ok"
+    assert body["data"]["session"]["counted_cash_total"] == 40.0
 
 
 def test_cash_window_close_allows_treasurer():
@@ -254,7 +263,9 @@ def test_cash_window_close_allows_treasurer():
     )
 
     assert response.status_code == 200
-    assert response.get_json()["session_status"] == "closed"
+    body = response.get_json()
+    assert body["status"] == "ok"
+    assert body["data"]["session"]["session_status"] == "closed"
 
 
 def test_cash_window_reopen_forbidden_for_treasurer():
@@ -279,7 +290,9 @@ def test_cash_window_reopen_allowed_for_admin():
     )
 
     assert response.status_code == 200
-    assert response.get_json()["session_status"] == "open"
+    body = response.get_json()
+    assert body["status"] == "ok"
+    assert body["data"]["session"]["session_status"] == "open"
 
 
 def test_outputs_submit_forbidden_for_auditor():
@@ -302,7 +315,9 @@ def test_outputs_submit_allows_treasurer():
     )
 
     assert response.status_code == 200
-    assert response.get_json()["status"] == "submitted"
+    body = response.get_json()
+    assert body["status"] == "ok"
+    assert body["data"]["disbursement"]["status"] == "submitted"
 
 
 def test_outputs_approve_forbidden_for_treasurer():
@@ -329,9 +344,13 @@ def test_outputs_approve_and_pay_allowed_for_admin():
     )
 
     assert approve_response.status_code == 200
-    assert approve_response.get_json()["status"] == "approved"
+    approve_body = approve_response.get_json()
+    assert approve_body["status"] == "ok"
+    assert approve_body["data"]["disbursement"]["status"] == "approved"
     assert pay_response.status_code == 200
-    assert pay_response.get_json()["status"] == "paid"
+    pay_body = pay_response.get_json()
+    assert pay_body["status"] == "ok"
+    assert pay_body["data"]["disbursement"]["status"] == "paid"
 
 
 def test_outputs_update_draft_allows_admin():
@@ -344,4 +363,6 @@ def test_outputs_update_draft_allows_admin():
     )
 
     assert response.status_code == 200
-    assert response.get_json()["status"] == "draft"
+    body = response.get_json()
+    assert body["status"] == "ok"
+    assert body["data"]["disbursement"]["status"] == "draft"
