@@ -242,7 +242,7 @@ def create_app(
             return value.isoformat()
         return value
 
-        def _ui_base_css() -> str:
+    def _ui_base_css() -> str:
                 return """
                 <style>
                     @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap');
@@ -391,7 +391,7 @@ def create_app(
                 </style>
                 """
 
-        def _ui_header(title: str, subtitle: str) -> str:
+    def _ui_header(title: str, subtitle: str) -> str:
                 return f"""
                 <div class="hero">
                     <h1>{title}</h1>
