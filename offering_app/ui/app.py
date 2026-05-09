@@ -481,10 +481,10 @@ def create_app(
                                                 type="file" 
                                                 name="image" 
                                                 accept="image/*" 
-                                                capture="environment"
+                                                capture
                                                 required
                                                 style="width: 100%; padding: 8px; border: 1px solid rgba(31, 42, 55, 0.24); border-radius: 12px;">
-                                            <p class="hint" style="margin-top: 6px;">En celular se abrira la camara para tomar la foto del sobre. (Toca el campo para activar).</p>
+                                            <p class="hint" style="margin-top: 8px; font-size: 0.86rem; color: #5c6675;">En iPad: Toca el campo → Elige cámara. Si no abre, usa ✍️ Manual.</p>
                                             <button type="submit" style="width: 100%; margin-top: 12px; padding: 11px 12px; border: 0; border-radius: 12px; color: #fff; font-weight: 800; background: linear-gradient(125deg, #15616d 0%, #1f7a7a 100%); cursor: pointer;">Procesar captura</button>
                                         </form>
                                     </div>
