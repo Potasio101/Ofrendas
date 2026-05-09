@@ -24,6 +24,8 @@ ROLE_POLICY = {
     "admin_config": {"admin"},
 }
 
+KNOWN_ROLES = {"treasurer", "admin", "auditor"}
+
 
 def create_app(service: OfferingService, storage: PostgreSQLRepo, upload_path: str) -> Flask:
     app = Flask(__name__)
@@ -31,20 +33,47 @@ def create_app(service: OfferingService, storage: PostgreSQLRepo, upload_path: s
     app.config["APP_TIMEZONE"] = os.getenv("APP_TIMEZONE", "UTC")
     app.config["APP_DEFAULT_ROLE"] = os.getenv("APP_DEFAULT_ROLE", "treasurer")
     app.config["APP_DEFAULT_USER_ID"] = os.getenv("APP_DEFAULT_USER_ID", "local-dev-user")
+    app.config["APP_AUTH_MODE"] = os.getenv("APP_AUTH_MODE", "local-dev")
     _configure_logging(app)
 
     @app.before_request
     def before_request():
         g._request_started_at = time.time()
-        role = (request.headers.get("X-User-Role") or "").strip().lower()
-        if not role:
-            role = (app.config.get("APP_DEFAULT_ROLE") or "treasurer").strip().lower()
-        g.auth_role = role
-        g.auth_user_id = (
-            request.headers.get("X-User-Id")
-            or request.form.get("actor_user_id")
-            or app.config.get("APP_DEFAULT_USER_ID")
+        g.auth_error = None
+        auth_mode = (app.config.get("APP_AUTH_MODE") or "local-dev").strip().lower()
+        header_role = (request.headers.get("X-User-Role") or "").strip().lower()
+        header_user_id = (request.headers.get("X-User-Id") or "").strip()
+
+        if auth_mode == "header-strict":
+            g.auth_role = header_role
+            g.auth_user_id = header_user_id
+            if not header_role or not header_user_id:
+                g.auth_error = "missing_identity"
+            elif header_role not in KNOWN_ROLES:
+                g.auth_error = "invalid_role"
+        else:
+            role = header_role or (app.config.get("APP_DEFAULT_ROLE") or "treasurer").strip().lower()
+            user_id = header_user_id or request.form.get("actor_user_id") or app.config.get("APP_DEFAULT_USER_ID")
+            g.auth_role = role
+            g.auth_user_id = user_id
+
+    def _require_authentication():
+        auth_error = getattr(g, "auth_error", None)
+        if not auth_error:
+            return None
+        app.logger.info(
+            json.dumps(
+                {
+                    "event": "authn_denied",
+                    "reason": auth_error,
+                    "auth_mode": app.config.get("APP_AUTH_MODE"),
+                    "path": request.path,
+                    "method": request.method,
+                },
+                ensure_ascii=True,
+            )
         )
+        return "Unauthorized", 401
 
     def _current_service_date() -> str:
         tz_name = (app.config.get("APP_TIMEZONE") or "UTC").strip() or "UTC"
@@ -69,6 +98,9 @@ def create_app(service: OfferingService, storage: PostgreSQLRepo, upload_path: s
         return datetime.now(tz).date().isoformat()
 
     def _require_policy(policy_key: str):
+        unauth = _require_authentication()
+        if unauth:
+            return unauth
         allowed_roles = ROLE_POLICY.get(policy_key, set())
         role = getattr(g, "auth_role", "")
         if role not in allowed_roles:

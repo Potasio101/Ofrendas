@@ -7,9 +7,9 @@ Last update: 2026-05-08
 
 - [x] Branch created: feature/sprint-3
 - [x] Sprint 3 planning docs created
-- [ ] Auth source abstraction implemented
-- [ ] Auth mode gating enforced (non-local hardening)
-- [ ] RBAC integration verified with auth source
+- [x] Auth source abstraction implemented
+- [x] Auth mode gating enforced (non-local hardening)
+- [x] RBAC integration verified with auth source
 - [ ] Cash window skeleton routes/services added
 - [ ] Outputs skeleton routes/services added
 - [ ] Tests for Sprint 3 scope passing
@@ -24,10 +24,13 @@ Phase 0 - Planning
 - Branch `feature/sprint-3` created.
 
 Phase 1 - Build
-- Pending.
+- Added `APP_AUTH_MODE` configuration with `local-dev` and `header-strict` modes.
+- Implemented strict identity validation path (required role and user headers).
+- Added structured authentication denial logs (`authn_denied`) for strict mode failures.
+- Integrated strict auth checks with existing RBAC policy guard flow.
 
 Phase 2 - Test and QA
-- Pending.
+- Added auth mode tests in `tests/test_app_auth_mode.py` for missing identity, invalid role, and valid strict-mode access.
 
 Phase 3 - Merge and Handoff
 - Pending.

@@ -148,9 +148,9 @@ Technical baseline:
 - Automated regression suite and sprint QA checks are passing.
 - Confirm flow hardened against invalid actor UUID input.
 - Next implementation target is auth source hardening and first cash/output module skeleton routes.
+- Auth mode abstraction is implemented with strict header validation mode.
 
 Immediate next move:
-- Implement auth source abstraction and non-local mode gating.
 - Implement first executable skeletons for cash window and outputs modules.
 - Add test coverage and QA matrix for Sprint 3 scope.
 
