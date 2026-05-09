@@ -1,5 +1,7 @@
 from datetime import datetime
 from decimal import Decimal
+import hashlib
+import hmac
 import json
 import logging
 import os
@@ -36,6 +38,8 @@ ROLE_POLICY = {
     "outputs_submit": {"treasurer", "admin"},
     "outputs_approve": {"admin"},
     "outputs_pay": {"admin"},
+    "workflow_cash_view": {"treasurer", "admin", "auditor"},
+    "workflow_outputs_view": {"treasurer", "admin", "auditor"},
 }
 
 KNOWN_ROLES = {"treasurer", "admin", "auditor"}
@@ -55,6 +59,8 @@ def create_app(
     app.config["APP_DEFAULT_USER_ID"] = os.getenv("APP_DEFAULT_USER_ID", "local-dev-user")
     app.config["APP_AUTH_MODE"] = os.getenv("APP_AUTH_MODE", "local-dev")
     app.config["APP_AUTH_PROXY_TOKEN"] = os.getenv("APP_AUTH_PROXY_TOKEN", "")
+    app.config["APP_AUTH_PROXY_SIGNING_SECRET"] = os.getenv("APP_AUTH_PROXY_SIGNING_SECRET", "")
+    app.config["APP_AUTH_PROXY_MAX_AGE_SECONDS"] = int(os.getenv("APP_AUTH_PROXY_MAX_AGE_SECONDS", "300"))
     _configure_logging(app)
 
     cash_window_service = cash_window_service or CashWindowService(storage)
@@ -68,7 +74,44 @@ def create_app(
         header_role = (request.headers.get("X-User-Role") or "").strip().lower()
         header_user_id = (request.headers.get("X-User-Id") or "").strip()
 
-        if auth_mode == "proxy-token":
+        if auth_mode == "proxy-signed":
+            signing_secret = str(app.config.get("APP_AUTH_PROXY_SIGNING_SECRET") or "").strip()
+            incoming_signature = (request.headers.get("X-Auth-Signature") or "").strip().lower()
+            incoming_ts = (request.headers.get("X-Auth-Timestamp") or "").strip()
+            proxy_role = (request.headers.get("X-Auth-Role") or header_role).strip().lower()
+            proxy_user_id = (request.headers.get("X-Auth-User-Id") or header_user_id).strip()
+
+            g.auth_role = proxy_role
+            g.auth_user_id = proxy_user_id
+
+            if not signing_secret:
+                g.auth_error = "proxy_signature_not_configured"
+            elif not incoming_signature or not incoming_ts:
+                g.auth_error = "missing_signature"
+            elif not proxy_role or not proxy_user_id:
+                g.auth_error = "missing_identity"
+            elif proxy_role not in KNOWN_ROLES:
+                g.auth_error = "invalid_role"
+            else:
+                try:
+                    ts_value = int(incoming_ts)
+                except ValueError:
+                    g.auth_error = "invalid_signature_timestamp"
+                else:
+                    now_ts = int(time.time())
+                    max_age = int(app.config.get("APP_AUTH_PROXY_MAX_AGE_SECONDS", 300))
+                    if abs(now_ts - ts_value) > max_age:
+                        g.auth_error = "stale_signature"
+                    else:
+                        payload = f"{proxy_role}:{proxy_user_id}:{incoming_ts}".encode("utf-8")
+                        expected_signature = hmac.new(
+                            signing_secret.encode("utf-8"),
+                            payload,
+                            hashlib.sha256,
+                        ).hexdigest()
+                        if not hmac.compare_digest(expected_signature, incoming_signature):
+                            g.auth_error = "invalid_signature"
+        elif auth_mode == "proxy-token":
             expected_token = str(app.config.get("APP_AUTH_PROXY_TOKEN") or "").strip()
             incoming_token = (request.headers.get("X-Auth-Proxy-Token") or "").strip()
             proxy_role = (request.headers.get("X-Auth-Role") or header_role).strip().lower()
@@ -238,14 +281,29 @@ def create_app(
         summary = service.get_daily_summary(_current_service_date())
         return render_template_string(
             """
+                        <style>
+                            body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; margin: 16px; }
+                            .card { border: 1px solid #d9d9d9; border-radius: 12px; padding: 12px; margin-bottom: 12px; }
+                            .actions a { display: inline-block; margin-right: 8px; margin-top: 8px; }
+                            input, button { font-size: 16px; padding: 10px; }
+                        </style>
             <h1>Ofrendas</h1>
-            <p>Sobres hoy: {{ summary.envelopes }}</p>
-            <p>Total hoy: {{ summary.total }}</p>
-            <form action="/process" method="post" enctype="multipart/form-data">
-              <input type="file" name="image" required>
-              <button type="submit">Nuevo Sobre</button>
-            </form>
-            <p><a href="/day-log">Day Log</a> | <a href="/summary">Resumen</a></p>
+                        <div class="card">
+                            <p>Sobres hoy: {{ summary.envelopes }}</p>
+                            <p>Total hoy: {{ summary.total }}</p>
+                        </div>
+                        <div class="card">
+                            <form action="/process" method="post" enctype="multipart/form-data">
+                                <input type="file" name="image" required>
+                                <button type="submit">Nuevo Sobre</button>
+                            </form>
+                        </div>
+                        <div class="actions">
+                            <a href="/day-log">Day Log</a>
+                            <a href="/summary">Resumen</a>
+                            <a href="/workflow/cash">Caja (mobile)</a>
+                            <a href="/workflow/outputs">Salidas (mobile)</a>
+                        </div>
             """,
             summary=summary,
         )
@@ -373,6 +431,77 @@ def create_app(
         if denied:
             return denied
         return jsonify({"status": "ok", "scope": "admin"})
+
+    @app.get("/workflow/cash")
+    def workflow_cash_view():
+        denied = _require_policy("workflow_cash_view")
+        if denied:
+            return denied
+        service_date = _current_service_date()
+        return render_template_string(
+            """
+            <style>
+              body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; margin: 14px; }
+              form { border: 1px solid #d9d9d9; border-radius: 10px; padding: 10px; margin-bottom: 10px; }
+              input, button { width: 100%; box-sizing: border-box; margin: 6px 0; font-size: 16px; padding: 10px; }
+            </style>
+            <h1>Cash Workflow</h1>
+            <p>Fecha de servicio: {{ service_date }}</p>
+            <form method="post" action="/cash-window/open">
+              <input type="hidden" name="service_date" value="{{ service_date }}">
+              <input name="notes" placeholder="Notas apertura">
+              <button type="submit">Abrir sesion</button>
+            </form>
+            <form method="post" action="/cash-window/line">
+              <input type="hidden" name="service_date" value="{{ service_date }}">
+              <input name="denomination_value" value="20">
+              <input name="denomination_type" value="bill">
+              <input name="quantity" value="1">
+              <button type="submit">Actualizar linea</button>
+            </form>
+            <form method="post" action="/cash-window/close">
+              <input type="hidden" name="service_date" value="{{ service_date }}">
+              <input name="notes" placeholder="Notas cierre">
+              <button type="submit">Cerrar sesion</button>
+            </form>
+            <form method="post" action="/cash-window/reopen">
+              <input type="hidden" name="service_date" value="{{ service_date }}">
+              <input name="reason" placeholder="Motivo reapertura">
+              <button type="submit">Reabrir sesion (admin)</button>
+            </form>
+            <a href="/">Volver</a>
+            """,
+            service_date=service_date,
+        )
+
+    @app.get("/workflow/outputs")
+    def workflow_outputs_view():
+        denied = _require_policy("workflow_outputs_view")
+        if denied:
+            return denied
+        output_date = _current_service_date()
+        return render_template_string(
+            """
+            <style>
+              body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; margin: 14px; }
+              form { border: 1px solid #d9d9d9; border-radius: 10px; padding: 10px; margin-bottom: 10px; }
+              input, button { width: 100%; box-sizing: border-box; margin: 6px 0; font-size: 16px; padding: 10px; }
+            </style>
+            <h1>Outputs Workflow</h1>
+            <p>Fecha de salida: {{ output_date }}</p>
+            <form method="post" action="/outputs/draft">
+              <input type="hidden" name="output_date" value="{{ output_date }}">
+              <input name="category" value="other">
+              <input name="description" value="Pago servicio">
+              <input name="amount" value="10">
+              <input name="fund_source_code" value="other">
+              <button type="submit">Crear draft</button>
+            </form>
+            <p>Transiciones submit/approve/pay usan rutas API con id del draft.</p>
+            <a href="/">Volver</a>
+            """,
+            output_date=output_date,
+        )
 
     @app.post("/cash-window/open")
     def cash_window_open():

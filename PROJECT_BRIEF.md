@@ -111,6 +111,9 @@ New orchestration docs:
 - docs/sprint-5/plan.md: sprint tasks and acceptance criteria
 - docs/sprint-5/progress.md: live tracker for context recovery
 - docs/sprint-5/done.md: sprint closure handoff
+- docs/sprint-6/plan.md: sprint tasks and acceptance criteria
+- docs/sprint-6/progress.md: live tracker for context recovery
+- docs/sprint-6/done.md: sprint closure handoff
 
 ## 6. Team Roles
 
@@ -131,13 +134,12 @@ DevOps (Dash, on demand):
 
 ## 7. Sprint Status (updated every sprint)
 
-Current sprint: Sprint 5 (Identity provider integration and workflow UX hardening)
-Status: Completed (merged to main)
-Branch target: feature/sprint-5 (closed)
-Completion outcomes:
-- Proxy-token auth mode implemented with strict token validation
-- Workflow transition endpoints return consistent JSON response envelopes
-- Automated tests passing and Sprint 5 QA sign-off published
+Current sprint: Sprint 6 (Proxy signed identity and workflow UI foundations)
+Status: Ready for merge
+Branch target: feature/sprint-6
+Start criteria:
+- Sprint 6 plan and tracker initialized
+- Sprint 5 merged to main with QA sign-off and handoff artifacts
 
 ## 8. Current State (rewritten every sprint)
 
@@ -147,6 +149,7 @@ Repository state:
 - Sprint 3 is merged to main with complete handoff artifacts.
 - Sprint 4 is merged to main with complete handoff artifacts.
 - Sprint 5 is merged to main with complete handoff artifacts.
+- Sprint 6 branch is implemented and validated; pending merge to main.
 
 Technical baseline:
 - PostgreSQL schema migrations exist through 0007.
@@ -166,9 +169,14 @@ Technical baseline:
 - Next target is non-local identity provider/proxy integration hardening.
 - Proxy-token auth mode is implemented for trusted non-local identity injection.
 - Workflow transition responses and error payloads are standardized for API consumers.
+- Next target is stronger signed non-local identity verification.
+- Proxy-signed auth mode is implemented with timestamp freshness validation.
+- Mobile-first workflow foundation views exist for cash and outputs operations.
+- Regression suite passes with Sprint 6 increments (42 tests).
 
 Immediate next move:
-- Start Sprint 6 planning for identity provider/OIDC integration and workflow UI screens.
+- Commit feature/sprint-6 and merge to main.
+- Mark Sprint 6 artifacts as completed after merge.
 
 ## 9. Security Rules
 
