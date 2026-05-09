@@ -242,6 +242,163 @@ def create_app(
             return value.isoformat()
         return value
 
+        def _ui_base_css() -> str:
+                return """
+                <style>
+                    @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap');
+                    :root {
+                        --ink: #1f2a37;
+                        --muted: #5c6675;
+                        --paper: #fffef8;
+                        --card: rgba(255, 255, 255, 0.88);
+                        --line: rgba(31, 42, 55, 0.14);
+                        --brand: #15616d;
+                        --brand-strong: #0f4a53;
+                        --accent: #f4a261;
+                        --danger: #bc4749;
+                        --radius: 18px;
+                        --shadow: 0 14px 35px rgba(21, 97, 109, 0.16);
+                    }
+                    * { box-sizing: border-box; }
+                    body {
+                        margin: 0;
+                        min-height: 100vh;
+                        color: var(--ink);
+                        font-family: 'Manrope', 'Avenir Next', sans-serif;
+                        background:
+                            radial-gradient(circle at 10% -10%, rgba(244, 162, 97, 0.22), transparent 45%),
+                            radial-gradient(circle at 100% 0%, rgba(21, 97, 109, 0.22), transparent 45%),
+                            linear-gradient(145deg, #fffdf4 0%, #f5fbfb 48%, #f0f6f7 100%);
+                    }
+                    .app-shell { max-width: 980px; margin: 0 auto; padding: 18px 14px 28px; }
+                    .hero {
+                        border-radius: calc(var(--radius) + 6px);
+                        background: linear-gradient(130deg, var(--brand) 0%, #1d7874 58%, #2a9d8f 100%);
+                        color: #fff;
+                        padding: 20px 18px;
+                        box-shadow: var(--shadow);
+                        margin-bottom: 14px;
+                    }
+                    h1 {
+                        margin: 0;
+                        font-size: clamp(1.45rem, 5vw, 2rem);
+                        font-family: 'Fraunces', Georgia, serif;
+                        letter-spacing: 0.2px;
+                        line-height: 1.15;
+                    }
+                    .hero p { margin: 8px 0 0; color: rgba(255, 255, 255, 0.9); }
+                    .section-grid {
+                        display: grid;
+                        grid-template-columns: 1fr;
+                        gap: 12px;
+                    }
+                    .card {
+                        background: var(--card);
+                        border: 1px solid var(--line);
+                        border-radius: var(--radius);
+                        padding: 14px;
+                        box-shadow: 0 8px 26px rgba(10, 23, 45, 0.08);
+                        backdrop-filter: blur(2px);
+                    }
+                    .card h2 {
+                        margin: 0 0 8px;
+                        font-size: 1.05rem;
+                        color: var(--brand-strong);
+                    }
+                    .metric-row {
+                        display: grid;
+                        grid-template-columns: repeat(2, minmax(0, 1fr));
+                        gap: 10px;
+                    }
+                    .metric {
+                        background: rgba(21, 97, 109, 0.08);
+                        border-radius: 12px;
+                        padding: 10px;
+                    }
+                    .metric-label { display: block; font-size: 0.78rem; color: var(--muted); }
+                    .metric-value { display: block; margin-top: 3px; font-size: 1.2rem; font-weight: 800; }
+                    .nav-grid {
+                        display: grid;
+                        gap: 8px;
+                        grid-template-columns: repeat(2, minmax(0, 1fr));
+                    }
+                    .nav-pill {
+                        display: inline-block;
+                        width: 100%;
+                        text-align: center;
+                        text-decoration: none;
+                        color: var(--brand-strong);
+                        background: rgba(21, 97, 109, 0.1);
+                        border: 1px solid rgba(21, 97, 109, 0.22);
+                        border-radius: 999px;
+                        padding: 10px 12px;
+                        font-weight: 700;
+                        font-size: 0.92rem;
+                    }
+                    form { margin: 0; }
+                    label {
+                        display: block;
+                        margin: 10px 0 5px;
+                        font-size: 0.83rem;
+                        font-weight: 700;
+                        color: var(--brand-strong);
+                    }
+                    input, button {
+                        width: 100%;
+                        font: inherit;
+                        border-radius: 12px;
+                        border: 1px solid rgba(31, 42, 55, 0.2);
+                        padding: 11px 12px;
+                        background: #fff;
+                    }
+                    input:focus {
+                        outline: 2px solid rgba(21, 97, 109, 0.18);
+                        border-color: var(--brand);
+                    }
+                    button {
+                        margin-top: 12px;
+                        border: 0;
+                        font-weight: 800;
+                        color: #fff;
+                        background: linear-gradient(125deg, var(--brand) 0%, #1f7a7a 100%);
+                        box-shadow: 0 8px 18px rgba(21, 97, 109, 0.28);
+                    }
+                    .btn-danger {
+                        background: linear-gradient(125deg, var(--danger) 0%, #d9534f 100%);
+                    }
+                    .hint { margin-top: 8px; color: var(--muted); font-size: 0.86rem; }
+                    .list-clean { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+                    .row-item {
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-between;
+                        gap: 10px;
+                        border: 1px solid var(--line);
+                        border-radius: 12px;
+                        padding: 10px;
+                        background: rgba(255, 255, 255, 0.76);
+                    }
+                    .row-main { min-width: 0; }
+                    .row-title { font-weight: 700; }
+                    .row-meta { color: var(--muted); font-size: 0.85rem; }
+                    .inline-link { color: var(--brand-strong); text-decoration: none; font-weight: 700; }
+                    .stack { display: grid; gap: 12px; }
+                    @media (min-width: 720px) {
+                        .app-shell { padding: 26px 22px 36px; }
+                        .section-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+                        .section-grid.full { grid-template-columns: 1fr; }
+                    }
+                </style>
+                """
+
+        def _ui_header(title: str, subtitle: str) -> str:
+                return f"""
+                <div class="hero">
+                    <h1>{title}</h1>
+                    <p>{subtitle}</p>
+                </div>
+                """
+
     @app.after_request
     def after_request(response):
         started = getattr(g, "_request_started_at", time.time())
@@ -281,31 +438,49 @@ def create_app(
         summary = service.get_daily_summary(_current_service_date())
         return render_template_string(
             """
-                        <style>
-                            body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; margin: 16px; }
-                            .card { border: 1px solid #d9d9d9; border-radius: 12px; padding: 12px; margin-bottom: 12px; }
-                            .actions a { display: inline-block; margin-right: 8px; margin-top: 8px; }
-                            input, button { font-size: 16px; padding: 10px; }
-                        </style>
-            <h1>Ofrendas</h1>
-                        <div class="card">
-                            <p>Sobres hoy: {{ summary.envelopes }}</p>
-                            <p>Total hoy: {{ summary.total }}</p>
-                        </div>
-                        <div class="card">
-                            <form action="/process" method="post" enctype="multipart/form-data">
-                                <input type="file" name="image" required>
-                                <button type="submit">Nuevo Sobre</button>
-                            </form>
-                        </div>
-                        <div class="actions">
-                            <a href="/day-log">Day Log</a>
-                            <a href="/summary">Resumen</a>
-                            <a href="/workflow/cash">Caja (mobile)</a>
-                            <a href="/workflow/outputs">Salidas (mobile)</a>
-                        </div>
+                        {{ ui_css|safe }}
+                        <main class="app-shell">
+                            {{ ui_header|safe }}
+                            <section class="section-grid">
+                                <article class="card">
+                                    <h2>Panorama del dia</h2>
+                                    <div class="metric-row">
+                                        <div class="metric">
+                                            <span class="metric-label">Sobres</span>
+                                            <span class="metric-value">{{ summary.envelopes }}</span>
+                                        </div>
+                                        <div class="metric">
+                                            <span class="metric-label">Total</span>
+                                            <span class="metric-value">{{ summary.total }}</span>
+                                        </div>
+                                    </div>
+                                    <p class="hint">Registro rapido para momentos de alta afluencia.</p>
+                                </article>
+
+                                <article class="card">
+                                    <h2>Nuevo sobre</h2>
+                                    <form action="/process" method="post" enctype="multipart/form-data">
+                                        <label>Imagen del sobre</label>
+                                        <input type="file" name="image" required>
+                                        <button type="submit">Procesar captura</button>
+                                    </form>
+                                </article>
+                            </section>
+
+                            <section class="card" style="margin-top:12px;">
+                                <h2>Navegacion</h2>
+                                <div class="nav-grid">
+                                    <a class="nav-pill" href="/day-log">Day Log</a>
+                                    <a class="nav-pill" href="/summary">Resumen</a>
+                                    <a class="nav-pill" href="/workflow/cash">Caja</a>
+                                    <a class="nav-pill" href="/workflow/outputs">Salidas</a>
+                                </div>
+                            </section>
+                        </main>
             """,
             summary=summary,
+                        ui_css=_ui_base_css(),
+                        ui_header=_ui_header("Ofrendas", "Operacion diaria con enfoque mobile-first y auditoria visible."),
         )
 
     @app.post("/process")
@@ -351,11 +526,27 @@ def create_app(
         data = service.get_daily_summary(_current_service_date())
         return render_template_string(
             """
-            <h1>Resumen del dia</h1>
-            <pre>{{ data }}</pre>
-            <a href="/">Volver</a>
+                        {{ ui_css|safe }}
+                        <main class="app-shell">
+                            {{ ui_header|safe }}
+                            <section class="card stack">
+                                <div class="metric-row">
+                                    <div class="metric">
+                                        <span class="metric-label">Sobres</span>
+                                        <span class="metric-value">{{ data.envelopes }}</span>
+                                    </div>
+                                    <div class="metric">
+                                        <span class="metric-label">Total</span>
+                                        <span class="metric-value">{{ data.total }}</span>
+                                    </div>
+                                </div>
+                                <a class="inline-link" href="/">Volver al inicio</a>
+                            </section>
+                        </main>
             """,
             data=data,
+                        ui_css=_ui_base_css(),
+                        ui_header=_ui_header("Resumen del dia", "Vista rapida para tesoreria y auditoria."),
         )
 
     @app.get("/day-log")
@@ -366,18 +557,37 @@ def create_app(
         rows = storage.get_by_date(_current_service_date())
         return render_template_string(
             """
-            <h1>Day Log</h1>
-            <ul>
-            {% for row in rows %}
-              <li>
-                {{ row.member_name }} - {{ row.total }}
-                <a href="/review/{{ row.id }}">Revisar</a>
-              </li>
-            {% endfor %}
-            </ul>
-            <a href="/">Volver</a>
+                        {{ ui_css|safe }}
+                        <main class="app-shell">
+                            {{ ui_header|safe }}
+                            <section class="card">
+                                <ul class="list-clean">
+                                {% for row in rows %}
+                                    <li class="row-item">
+                                        <div class="row-main">
+                                            <div class="row-title">{{ row.member_name or 'Sin nombre' }}</div>
+                                            <div class="row-meta">Total: {{ row.total }}</div>
+                                        </div>
+                                        <a class="inline-link" href="/review/{{ row.id }}">Revisar</a>
+                                    </li>
+                                {% endfor %}
+                                {% if not rows %}
+                                    <li class="row-item">
+                                        <div class="row-main">
+                                            <div class="row-title">Sin registros aun</div>
+                                            <div class="row-meta">Empieza capturando un nuevo sobre.</div>
+                                        </div>
+                                    </li>
+                                {% endif %}
+                                </ul>
+                                <p class="hint">Cada fila conserva trazabilidad para correccion diferida.</p>
+                                <a class="inline-link" href="/">Volver al inicio</a>
+                            </section>
+                        </main>
             """,
             rows=rows,
+                        ui_css=_ui_base_css(),
+                        ui_header=_ui_header("Day Log", "Cola de revision y correccion post-captura."),
         )
 
     @app.get("/review/<offering_id>")
@@ -440,38 +650,53 @@ def create_app(
         service_date = _current_service_date()
         return render_template_string(
             """
-            <style>
-              body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; margin: 14px; }
-              form { border: 1px solid #d9d9d9; border-radius: 10px; padding: 10px; margin-bottom: 10px; }
-              input, button { width: 100%; box-sizing: border-box; margin: 6px 0; font-size: 16px; padding: 10px; }
-            </style>
-            <h1>Cash Workflow</h1>
-            <p>Fecha de servicio: {{ service_date }}</p>
-            <form method="post" action="/cash-window/open">
-              <input type="hidden" name="service_date" value="{{ service_date }}">
-              <input name="notes" placeholder="Notas apertura">
-              <button type="submit">Abrir sesion</button>
-            </form>
-            <form method="post" action="/cash-window/line">
-              <input type="hidden" name="service_date" value="{{ service_date }}">
-              <input name="denomination_value" value="20">
-              <input name="denomination_type" value="bill">
-              <input name="quantity" value="1">
-              <button type="submit">Actualizar linea</button>
-            </form>
-            <form method="post" action="/cash-window/close">
-              <input type="hidden" name="service_date" value="{{ service_date }}">
-              <input name="notes" placeholder="Notas cierre">
-              <button type="submit">Cerrar sesion</button>
-            </form>
-            <form method="post" action="/cash-window/reopen">
-              <input type="hidden" name="service_date" value="{{ service_date }}">
-              <input name="reason" placeholder="Motivo reapertura">
-              <button type="submit">Reabrir sesion (admin)</button>
-            </form>
-            <a href="/">Volver</a>
+                        {{ ui_css|safe }}
+                        <main class="app-shell">
+                            {{ ui_header|safe }}
+                            <section class="section-grid full">
+                                <article class="card stack">
+                                    <h2>Apertura y cierre</h2>
+                                    <p class="hint">Fecha de servicio: {{ service_date }}</p>
+                                    <form method="post" action="/cash-window/open">
+                                        <input type="hidden" name="service_date" value="{{ service_date }}">
+                                        <label>Notas de apertura</label>
+                                        <input name="notes" placeholder="Notas apertura">
+                                        <button type="submit">Abrir sesion</button>
+                                    </form>
+                                    <form method="post" action="/cash-window/close">
+                                        <input type="hidden" name="service_date" value="{{ service_date }}">
+                                        <label>Notas de cierre</label>
+                                        <input name="notes" placeholder="Notas cierre">
+                                        <button type="submit">Cerrar sesion</button>
+                                    </form>
+                                </article>
+
+                                <article class="card stack">
+                                    <h2>Conteo por denominacion</h2>
+                                    <form method="post" action="/cash-window/line">
+                                        <input type="hidden" name="service_date" value="{{ service_date }}">
+                                        <label>Valor</label>
+                                        <input name="denomination_value" value="20">
+                                        <label>Tipo</label>
+                                        <input name="denomination_type" value="bill">
+                                        <label>Cantidad</label>
+                                        <input name="quantity" value="1">
+                                        <button type="submit">Actualizar linea</button>
+                                    </form>
+                                    <form method="post" action="/cash-window/reopen">
+                                        <input type="hidden" name="service_date" value="{{ service_date }}">
+                                        <label>Motivo reapertura</label>
+                                        <input name="reason" placeholder="Motivo reapertura">
+                                        <button class="btn-danger" type="submit">Reabrir sesion (admin)</button>
+                                    </form>
+                                </article>
+                            </section>
+                            <a class="inline-link" href="/">Volver al inicio</a>
+                        </main>
             """,
             service_date=service_date,
+                        ui_css=_ui_base_css(),
+                        ui_header=_ui_header("Cash Workflow", "Control de caja por flujo guiado y listo para movil."),
         )
 
     @app.get("/workflow/outputs")
@@ -482,25 +707,34 @@ def create_app(
         output_date = _current_service_date()
         return render_template_string(
             """
-            <style>
-              body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; margin: 14px; }
-              form { border: 1px solid #d9d9d9; border-radius: 10px; padding: 10px; margin-bottom: 10px; }
-              input, button { width: 100%; box-sizing: border-box; margin: 6px 0; font-size: 16px; padding: 10px; }
-            </style>
-            <h1>Outputs Workflow</h1>
-            <p>Fecha de salida: {{ output_date }}</p>
-            <form method="post" action="/outputs/draft">
-              <input type="hidden" name="output_date" value="{{ output_date }}">
-              <input name="category" value="other">
-              <input name="description" value="Pago servicio">
-              <input name="amount" value="10">
-              <input name="fund_source_code" value="other">
-              <button type="submit">Crear draft</button>
-            </form>
-            <p>Transiciones submit/approve/pay usan rutas API con id del draft.</p>
-            <a href="/">Volver</a>
+                        {{ ui_css|safe }}
+                        <main class="app-shell">
+                            {{ ui_header|safe }}
+                            <section class="section-grid full">
+                                <article class="card">
+                                    <h2>Crear salida</h2>
+                                    <p class="hint">Fecha de salida: {{ output_date }}</p>
+                                    <form method="post" action="/outputs/draft">
+                                        <input type="hidden" name="output_date" value="{{ output_date }}">
+                                        <label>Categoria</label>
+                                        <input name="category" value="other">
+                                        <label>Descripcion</label>
+                                        <input name="description" value="Pago servicio">
+                                        <label>Monto</label>
+                                        <input name="amount" value="10">
+                                        <label>Fuente de fondo</label>
+                                        <input name="fund_source_code" value="other">
+                                        <button type="submit">Crear draft</button>
+                                    </form>
+                                    <p class="hint">Las transiciones submit, approve y pay usan los endpoints API por id.</p>
+                                </article>
+                            </section>
+                            <a class="inline-link" href="/">Volver al inicio</a>
+                        </main>
             """,
             output_date=output_date,
+                        ui_css=_ui_base_css(),
+                        ui_header=_ui_header("Outputs Workflow", "Registro de salidas con base operativa y control de estados."),
         )
 
     @app.post("/cash-window/open")
@@ -719,25 +953,135 @@ def create_app(
 
 def _review_template() -> str:
     return """
-    <h1>{{ title }}</h1>
-    <form method="post" action="{{ action }}">
-      <input type="hidden" name="image_path" value="{{ data.image_path or '' }}">
-      <input type="hidden" name="ocr_confidence" value="{{ data.ocr_confidence or 0.5 }}">
-      <label>Nombre</label><input name="member_name" value="{{ data.member_name or '' }}"><br>
-      <label>Diezmo</label><input name="diezmo" value="{{ data.diezmo or 0 }}"><br>
-      <label>Ofrenda</label><input name="ofrenda" value="{{ data.ofrenda or 0 }}"><br>
-      <label>Primicias</label><input name="primicias" value="{{ data.primicias or 0 }}"><br>
-      <label>Pro templo</label><input name="pro_templo" value="{{ data.pro_templo or 0 }}"><br>
-      <label>Ofrenda misionera</label><input name="ofrenda_misionera" value="{{ data.ofrenda_misionera or 0 }}"><br>
-      <label>Ofrenda pastoral</label><input name="ofrenda_pastoral" value="{{ data.ofrenda_pastoral or 0 }}"><br>
-      <label>Fecha</label><input name="service_date" value="{{ data.service_date or '' }}"><br>
-      <label>Metodo de pago</label><input name="payment_method" value="{{ data.payment_method or 'cash' }}"><br>
-      {% if offering_id %}
-      <label>Motivo</label><input name="reason" value=""><br>
-      {% endif %}
-      <button type="submit">Guardar</button>
-    </form>
-    <a href="/">Volver</a>
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap');
+            :root {
+                --ink: #1f2a37;
+                --muted: #5c6675;
+                --brand: #15616d;
+                --card: rgba(255, 255, 255, 0.9);
+                --line: rgba(31, 42, 55, 0.14);
+            }
+            * { box-sizing: border-box; }
+            body {
+                margin: 0;
+                min-height: 100vh;
+                color: var(--ink);
+                font-family: 'Manrope', 'Avenir Next', sans-serif;
+                background:
+                    radial-gradient(circle at 0 0, rgba(21, 97, 109, 0.2), transparent 34%),
+                    linear-gradient(150deg, #fffdf4 0%, #f4fbfb 100%);
+            }
+            .shell { max-width: 920px; margin: 0 auto; padding: 18px 14px 26px; }
+            .hero {
+                border-radius: 20px;
+                background: linear-gradient(130deg, #15616d 0%, #2a9d8f 100%);
+                color: #fff;
+                padding: 18px;
+                margin-bottom: 12px;
+            }
+            h1 {
+                margin: 0;
+                font-family: 'Fraunces', Georgia, serif;
+                font-size: clamp(1.3rem, 5vw, 1.9rem);
+            }
+            .hero p { margin: 8px 0 0; color: rgba(255, 255, 255, 0.88); }
+            .card {
+                background: var(--card);
+                border: 1px solid var(--line);
+                border-radius: 16px;
+                padding: 14px;
+            }
+            .grid { display: grid; grid-template-columns: 1fr; gap: 10px; }
+            @media (min-width: 760px) { .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+            label {
+                display: block;
+                margin: 2px 0 5px;
+                font-size: 0.83rem;
+                font-weight: 700;
+                color: #0f4a53;
+            }
+            input, button {
+                width: 100%;
+                font: inherit;
+                border: 1px solid rgba(31, 42, 55, 0.24);
+                border-radius: 12px;
+                padding: 11px 12px;
+                background: #fff;
+            }
+            button {
+                margin-top: 12px;
+                border: 0;
+                color: #fff;
+                font-weight: 800;
+                background: linear-gradient(125deg, #15616d 0%, #1f7a7a 100%);
+            }
+            .meta { margin: 8px 0 0; color: var(--muted); font-size: 0.86rem; }
+            .inline-link { display: inline-block; margin-top: 12px; color: #0f4a53; font-weight: 700; text-decoration: none; }
+        </style>
+
+        <main class="shell">
+            <section class="hero">
+                <h1>{{ title }}</h1>
+                <p>Ajusta montos, valida metodo de pago y guarda con trazabilidad.</p>
+            </section>
+
+            <section class="card">
+                <form method="post" action="{{ action }}">
+                    <input type="hidden" name="image_path" value="{{ data.image_path or '' }}">
+                    <input type="hidden" name="ocr_confidence" value="{{ data.ocr_confidence or 0.5 }}">
+
+                    <div class="grid">
+                        <div>
+                            <label>Nombre</label>
+                            <input name="member_name" value="{{ data.member_name or '' }}">
+                        </div>
+                        <div>
+                            <label>Fecha</label>
+                            <input name="service_date" value="{{ data.service_date or '' }}">
+                        </div>
+                        <div>
+                            <label>Diezmo</label>
+                            <input name="diezmo" value="{{ data.diezmo or 0 }}">
+                        </div>
+                        <div>
+                            <label>Ofrenda</label>
+                            <input name="ofrenda" value="{{ data.ofrenda or 0 }}">
+                        </div>
+                        <div>
+                            <label>Primicias</label>
+                            <input name="primicias" value="{{ data.primicias or 0 }}">
+                        </div>
+                        <div>
+                            <label>Pro templo</label>
+                            <input name="pro_templo" value="{{ data.pro_templo or 0 }}">
+                        </div>
+                        <div>
+                            <label>Ofrenda misionera</label>
+                            <input name="ofrenda_misionera" value="{{ data.ofrenda_misionera or 0 }}">
+                        </div>
+                        <div>
+                            <label>Ofrenda pastoral</label>
+                            <input name="ofrenda_pastoral" value="{{ data.ofrenda_pastoral or 0 }}">
+                        </div>
+                        <div>
+                            <label>Metodo de pago</label>
+                            <input name="payment_method" value="{{ data.payment_method or 'cash' }}">
+                        </div>
+                        {% if offering_id %}
+                        <div>
+                            <label>Motivo</label>
+                            <input name="reason" value="">
+                        </div>
+                        {% endif %}
+                    </div>
+
+                    <button type="submit">Guardar</button>
+                    <p class="meta">OCR confidence: {{ data.ocr_confidence or 0.5 }}</p>
+                </form>
+                <a class="inline-link" href="/">Volver al inicio</a>
+            </section>
+        </main>
     """
 
 
