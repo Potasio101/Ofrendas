@@ -1,6 +1,6 @@
 # Sprint 2 Progress Tracker
 
-Status: In progress
+Status: Ready for merge
 Last update: 2026-05-08
 
 ## Checklist
@@ -12,7 +12,7 @@ Last update: 2026-05-08
 - [x] RBAC enforced on critical routes
 - [x] Timezone policy documented and implemented
 - [x] Route-level RBAC regression tests added
-- [ ] QA playthrough completed
+- [x] QA playthrough completed
 - [ ] Merge to main completed
 
 ## Phase Notes
@@ -44,9 +44,11 @@ Phase 2 - Test and QA
 	- `/admin/config`: admin 200, treasurer 403, auditor 403
 	- `/confirm`: auditor 403, treasurer 302
 	- `/day-log`: auditor 200
+- QA sign-off published at `docs/qa/sprint-2-signoff.md`.
 
 Phase 3 - Merge and Handoff
-- Pending.
+- Sprint 2 scope is merge-ready.
+- Pending only: merge branch to main and finalize sprint done handoff.
 
 ## Open Blockers
 
