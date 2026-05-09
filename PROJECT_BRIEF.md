@@ -129,9 +129,9 @@ DevOps (Dash, on demand):
 ## 7. Sprint Status (updated every sprint)
 
 Current sprint: Sprint 4 (Cash window full flow and outputs approvals)
-Status: Ready for merge
-Branch target: feature/sprint-4
-Completion criteria met:
+Status: Completed (merged to main)
+Branch target: feature/sprint-4 (closed)
+Completion outcomes:
 - Cash workflow transitions implemented (line/recalculate/close/reopen)
 - Outputs workflow transitions implemented (submit/approve/pay)
 - Automated tests passing and Sprint 4 QA sign-off published
@@ -142,7 +142,7 @@ Repository state:
 - Sprint 1 is merged to main and documented as completed.
 - Sprint 2 is merged to main with complete handoff artifacts.
 - Sprint 3 is merged to main with complete handoff artifacts.
-- Sprint 4 branch is active with planning artifacts initialized.
+- Sprint 4 is merged to main with complete handoff artifacts.
 
 Technical baseline:
 - PostgreSQL schema migrations exist through 0007.
@@ -161,8 +161,7 @@ Technical baseline:
 - Regression suite currently passes with Sprint 4 increments.
 
 Immediate next move:
-- Merge `feature/sprint-4` into `main`.
-- Complete `docs/sprint-4/done.md` with delivery and validation evidence.
+- Start Sprint 5 planning for identity provider integration and workflow UX hardening.
 
 ## 9. Security Rules
 

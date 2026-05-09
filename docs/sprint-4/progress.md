@@ -1,6 +1,6 @@
 # Sprint 4 Progress Tracker
 
-Status: Ready for merge
+Status: Completed
 Last update: 2026-05-08
 
 ## Checklist
@@ -13,7 +13,7 @@ Last update: 2026-05-08
 - [x] Transition audit events verified
 - [x] Tests for Sprint 4 scope passing
 - [x] QA playthrough completed
-- [ ] Merge to main completed
+- [x] Merge to main completed
 
 ## Phase Notes
 
@@ -35,8 +35,8 @@ Phase 2 - Test and QA
 - QA sign-off published at `docs/qa/sprint-4-signoff.md`.
 
 Phase 3 - Merge and Handoff
-- Sprint 4 scope is merge-ready.
-- Pending only: merge branch to main and finalize sprint done handoff.
+- Sprint 4 merged to `main` and pushed to origin.
+- Sprint 4 handoff artifacts completed.
 
 ## Open Blockers
 
