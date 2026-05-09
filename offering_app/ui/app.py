@@ -489,11 +489,6 @@ def create_app(
 
                                 <article class="card">
                                     <h2>Nuevo sobre</h2>
-                                    <div style="display: flex; gap: 8px; margin-bottom: 12px;">
-                                        <button type="button" onclick="document.getElementById('capture-tab').style.display='block'; document.getElementById('manual-tab').style.display='none'; this.style.fontWeight='800'; document.querySelector('[onclick*=manual]').style.fontWeight='400';" style="flex: 1; padding: 8px; border: 1px solid #15616d; border-radius: 8px; background: #fff; cursor: pointer; font-weight: 800;">📷 Capturar</button>
-                                        <button type="button" onclick="document.getElementById('manual-tab').style.display='block'; document.getElementById('capture-tab').style.display='none'; this.style.fontWeight='800'; document.querySelector('[onclick*=capture]').style.fontWeight='400';" style="flex: 1; padding: 8px; border: 1px solid #15616d; border-radius: 8px; background: #fff; cursor: pointer;">✍️ Manual</button>
-                                    </div>
-
                                     <div id="capture-tab">
                                         <form action="/process" method="post" enctype="multipart/form-data">
                                             <label style="display: block; margin: 2px 0 5px; font-size: 0.83rem; font-weight: 700; color: #0f4a53;">Imagen del sobre</label>
@@ -504,12 +499,12 @@ def create_app(
                                                 accept="image/*"
                                                 capture="environment"
                                                 required
-                                                onchange="const submitBtn=document.getElementById('camera-submit'); const status=document.getElementById('camera-status'); if (this.files && this.files.length > 0) { submitBtn.disabled=false; status.textContent='Foto lista para procesar'; }"
+                                                onchange="const status=document.getElementById('camera-status'); if (this.files && this.files.length > 0) { status.textContent='Procesando captura...'; this.form.submit(); }"
                                                 style="position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0;">
                                             <button type="button" onclick="document.getElementById('image-input').click();" style="width: 100%; margin-top: 4px; padding: 11px 12px; border: 0; border-radius: 12px; color: #fff; font-weight: 800; background: linear-gradient(125deg, #1d4ed8 0%, #2563eb 100%); cursor: pointer;">Abrir camara</button>
                                             <p id="camera-status" class="hint" style="margin-top: 8px; font-size: 0.86rem; color: #5c6675;">Toca Abrir camara para tomar la foto.</p>
-                                            <button id="camera-submit" type="submit" disabled style="width: 100%; margin-top: 12px; padding: 11px 12px; border: 0; border-radius: 12px; color: #fff; font-weight: 800; background: linear-gradient(125deg, #15616d 0%, #1f7a7a 100%); cursor: pointer; opacity: 0.8;">Procesar captura</button>
                                         </form>
+                                        <button type="button" onclick="document.getElementById('manual-tab').style.display='block'; this.style.display='none';" style="width: 100%; margin-top: 12px; padding: 11px 12px; border: 0; border-radius: 12px; color: #fff; font-weight: 800; background: linear-gradient(125deg, #475569 0%, #334155 100%); cursor: pointer;">Manual</button>
                                     </div>
 
                                     <div id="manual-tab" style="display: none;">
