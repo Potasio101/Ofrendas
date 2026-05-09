@@ -54,6 +54,7 @@ def create_app(
     app.config["APP_DEFAULT_ROLE"] = os.getenv("APP_DEFAULT_ROLE", "treasurer")
     app.config["APP_DEFAULT_USER_ID"] = os.getenv("APP_DEFAULT_USER_ID", "local-dev-user")
     app.config["APP_AUTH_MODE"] = os.getenv("APP_AUTH_MODE", "local-dev")
+    app.config["APP_AUTH_PROXY_TOKEN"] = os.getenv("APP_AUTH_PROXY_TOKEN", "")
     _configure_logging(app)
 
     cash_window_service = cash_window_service or CashWindowService(storage)
@@ -67,7 +68,26 @@ def create_app(
         header_role = (request.headers.get("X-User-Role") or "").strip().lower()
         header_user_id = (request.headers.get("X-User-Id") or "").strip()
 
-        if auth_mode == "header-strict":
+        if auth_mode == "proxy-token":
+            expected_token = str(app.config.get("APP_AUTH_PROXY_TOKEN") or "").strip()
+            incoming_token = (request.headers.get("X-Auth-Proxy-Token") or "").strip()
+            proxy_role = (request.headers.get("X-Auth-Role") or header_role).strip().lower()
+            proxy_user_id = (request.headers.get("X-Auth-User-Id") or header_user_id).strip()
+
+            g.auth_role = proxy_role
+            g.auth_user_id = proxy_user_id
+
+            if not expected_token:
+                g.auth_error = "proxy_token_not_configured"
+            elif not incoming_token:
+                g.auth_error = "missing_proxy_token"
+            elif incoming_token != expected_token:
+                g.auth_error = "invalid_proxy_token"
+            elif not proxy_role or not proxy_user_id:
+                g.auth_error = "missing_identity"
+            elif proxy_role not in KNOWN_ROLES:
+                g.auth_error = "invalid_role"
+        elif auth_mode == "header-strict":
             g.auth_role = header_role
             g.auth_user_id = header_user_id
             if not header_role or not header_user_id:

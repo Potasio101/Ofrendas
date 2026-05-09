@@ -108,6 +108,9 @@ New orchestration docs:
 - docs/sprint-4/plan.md: sprint tasks and acceptance criteria
 - docs/sprint-4/progress.md: live tracker for context recovery
 - docs/sprint-4/done.md: sprint closure handoff
+- docs/sprint-5/plan.md: sprint tasks and acceptance criteria
+- docs/sprint-5/progress.md: live tracker for context recovery
+- docs/sprint-5/done.md: sprint closure handoff
 
 ## 6. Team Roles
 
@@ -128,13 +131,12 @@ DevOps (Dash, on demand):
 
 ## 7. Sprint Status (updated every sprint)
 
-Current sprint: Sprint 4 (Cash window full flow and outputs approvals)
-Status: Completed (merged to main)
-Branch target: feature/sprint-4 (closed)
-Completion outcomes:
-- Cash workflow transitions implemented (line/recalculate/close/reopen)
-- Outputs workflow transitions implemented (submit/approve/pay)
-- Automated tests passing and Sprint 4 QA sign-off published
+Current sprint: Sprint 5 (Identity provider integration and workflow UX hardening)
+Status: In progress
+Branch target: feature/sprint-5
+Start criteria:
+- Sprint 5 plan and tracker initialized
+- Sprint 4 merged to main with QA sign-off and handoff artifacts
 
 ## 8. Current State (rewritten every sprint)
 
@@ -143,6 +145,7 @@ Repository state:
 - Sprint 2 is merged to main with complete handoff artifacts.
 - Sprint 3 is merged to main with complete handoff artifacts.
 - Sprint 4 is merged to main with complete handoff artifacts.
+- Sprint 5 branch is active with planning artifacts initialized.
 
 Technical baseline:
 - PostgreSQL schema migrations exist through 0007.
@@ -159,9 +162,12 @@ Technical baseline:
 - Next target is full workflow transitions for cash sessions and outputs approvals.
 - Cash and outputs transition workflows are now implemented with event logging.
 - Regression suite currently passes with Sprint 4 increments.
+- Next target is non-local identity provider/proxy integration hardening.
+- Proxy-token auth mode is implemented for trusted non-local identity injection.
 
 Immediate next move:
-- Start Sprint 5 planning for identity provider integration and workflow UX hardening.
+- Harden transition endpoint response and validation UX.
+- Complete Sprint 5 QA/sign-off and merge handoff.
 
 ## 9. Security Rules
 

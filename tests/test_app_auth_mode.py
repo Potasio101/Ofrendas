@@ -47,6 +47,7 @@ def _build_client(auth_mode: str):
     app = create_app(service=DummyService(), storage=DummyStorage(), upload_path="/tmp")
     app.config["TESTING"] = True
     app.config["APP_AUTH_MODE"] = auth_mode
+    app.config["APP_AUTH_PROXY_TOKEN"] = "proxy-secret"
     return app.test_client()
 
 
@@ -78,3 +79,44 @@ def test_header_strict_denies_invalid_role_header():
     )
 
     assert response.status_code == 401
+
+
+def test_proxy_token_denies_missing_token_header():
+    client = _build_client("proxy-token")
+
+    response = client.get(
+        "/day-log",
+        headers={"X-Auth-Role": "auditor", "X-Auth-User-Id": "audit-user"},
+    )
+
+    assert response.status_code == 401
+
+
+def test_proxy_token_denies_invalid_token_header():
+    client = _build_client("proxy-token")
+
+    response = client.get(
+        "/day-log",
+        headers={
+            "X-Auth-Proxy-Token": "wrong-token",
+            "X-Auth-Role": "auditor",
+            "X-Auth-User-Id": "audit-user",
+        },
+    )
+
+    assert response.status_code == 401
+
+
+def test_proxy_token_allows_valid_token_and_identity():
+    client = _build_client("proxy-token")
+
+    response = client.get(
+        "/day-log",
+        headers={
+            "X-Auth-Proxy-Token": "proxy-secret",
+            "X-Auth-Role": "auditor",
+            "X-Auth-User-Id": "audit-user",
+        },
+    )
+
+    assert response.status_code == 200
