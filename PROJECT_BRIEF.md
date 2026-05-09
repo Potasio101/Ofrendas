@@ -105,6 +105,9 @@ New orchestration docs:
 - docs/sprint-3/plan.md: sprint tasks and acceptance criteria
 - docs/sprint-3/progress.md: live tracker for context recovery
 - docs/sprint-3/done.md: sprint closure handoff
+- docs/sprint-4/plan.md: sprint tasks and acceptance criteria
+- docs/sprint-4/progress.md: live tracker for context recovery
+- docs/sprint-4/done.md: sprint closure handoff
 
 ## 6. Team Roles
 
@@ -125,13 +128,12 @@ DevOps (Dash, on demand):
 
 ## 7. Sprint Status (updated every sprint)
 
-Current sprint: Sprint 3 (Authentication hardening and module expansion start)
-Status: Completed (merged to main)
-Branch target: feature/sprint-3 (closed)
-Completion outcomes:
-- Auth mode abstraction implemented with strict identity checks
-- Cash window and outputs skeleton routes/services/repository operations implemented
-- Automated tests passing and Sprint 3 QA sign-off published
+Current sprint: Sprint 4 (Cash window full flow and outputs approvals)
+Status: In progress
+Branch target: feature/sprint-4
+Start criteria:
+- Sprint 4 plan and tracker initialized
+- Sprint 3 merged to main with QA sign-off and handoff artifacts
 
 ## 8. Current State (rewritten every sprint)
 
@@ -139,6 +141,7 @@ Repository state:
 - Sprint 1 is merged to main and documented as completed.
 - Sprint 2 is merged to main with complete handoff artifacts.
 - Sprint 3 is merged to main with complete handoff artifacts.
+- Sprint 4 branch is active with planning artifacts initialized.
 
 Technical baseline:
 - PostgreSQL schema migrations exist through 0007.
@@ -152,9 +155,12 @@ Technical baseline:
 - Auth mode abstraction is implemented with strict header validation mode.
 - Cash window and outputs now have first executable service/repository/route skeletons.
 - Regression suite currently passes with Sprint 3 increments.
+- Next target is full workflow transitions for cash sessions and outputs approvals.
 
 Immediate next move:
-- Start Sprint 4 planning for full workflow implementation of cash window and outputs approvals.
+- Implement cash session line update/recalculate/close/reopen transitions.
+- Implement outputs submit/approve/paid transitions with event logging.
+- Add transition tests and complete Sprint 4 QA playthrough.
 
 ## 9. Security Rules
 
