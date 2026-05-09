@@ -629,7 +629,7 @@ def create_app(
         }
         offering = service.build_offering_from_form(manual_payload, actor)
         service.confirm(offering, [])
-        return redirect(url_for("day_log"))
+        return redirect(url_for("day_log", notice="manual_saved"))
 
     @app.get("/summary")
     def summary():
@@ -668,11 +668,29 @@ def create_app(
         if denied:
             return denied
         rows = storage.get_by_date(_current_service_date())
+        notice = (request.args.get("notice") or "").strip().lower()
         return render_template_string(
             """
                         {{ ui_css|safe }}
                         <main class="app-shell">
                             {{ ui_header|safe }}
+                            {% if notice == 'manual_saved' %}
+                            <div id="toast-manual-saved" style="position: sticky; top: 12px; z-index: 40; margin-bottom: 12px;">
+                                <div style="background: linear-gradient(125deg, #0f766e 0%, #0d9488 100%); color: #fff; border-radius: 12px; padding: 10px 12px; font-weight: 700; box-shadow: 0 8px 20px rgba(15, 118, 110, 0.35);">
+                                    Sobre manual guardado
+                                </div>
+                            </div>
+                            <script>
+                                window.setTimeout(function () {
+                                    var toast = document.getElementById('toast-manual-saved');
+                                    if (toast) {
+                                        toast.style.opacity = '0';
+                                        toast.style.transition = 'opacity 220ms ease';
+                                        window.setTimeout(function () { toast.remove(); }, 260);
+                                    }
+                                }, 2500);
+                            </script>
+                            {% endif %}
                             <section class="card">
                                 <ul class="list-clean">
                                 {% for row in rows %}
@@ -699,6 +717,7 @@ def create_app(
                         </main>
             """,
             rows=rows,
+            notice=notice,
                         ui_css=_ui_base_css(),
                         ui_header=_ui_header("Day Log", "Cola de revision y correccion post-captura."),
         )
