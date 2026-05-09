@@ -102,6 +102,9 @@ New orchestration docs:
 - docs/sprint-2/plan.md: sprint tasks and acceptance criteria
 - docs/sprint-2/progress.md: live tracker for context recovery
 - docs/sprint-2/done.md: sprint closure handoff
+- docs/sprint-3/plan.md: sprint tasks and acceptance criteria
+- docs/sprint-3/progress.md: live tracker for context recovery
+- docs/sprint-3/done.md: sprint closure handoff
 
 ## 6. Team Roles
 
@@ -122,20 +125,19 @@ DevOps (Dash, on demand):
 
 ## 7. Sprint Status (updated every sprint)
 
-Current sprint: Sprint 2 (Auth/RBAC hardening and timezone normalization)
-Status: Completed (merged to main)
-Branch target: feature/sprint-2 (closed)
-Completion outcomes:
-- RBAC endpoint policy implemented with denial audit logging
-- Timezone service date resolved from PostgreSQL clock with fallback
-- Automated tests passing and QA sign-off published
+Current sprint: Sprint 3 (Authentication hardening and module expansion start)
+Status: In progress
+Branch target: feature/sprint-3
+Start criteria:
+- Sprint 3 plan and tracker initialized
+- Sprint 2 merged to main with QA sign-off and handoff artifacts
 
 ## 8. Current State (rewritten every sprint)
 
 Repository state:
 - Sprint 1 is merged to main and documented as completed.
 - Sprint 2 is merged to main with complete handoff artifacts.
-- QA sign-off for Sprint 2 is published.
+- Sprint 3 branch is active with initial planning artifacts.
 
 Technical baseline:
 - PostgreSQL schema migrations exist through 0007.
@@ -145,9 +147,12 @@ Technical baseline:
 - Current service date uses PostgreSQL timezone-aware clock for day-based flows.
 - Automated regression suite and sprint QA checks are passing.
 - Confirm flow hardened against invalid actor UUID input.
+- Next implementation target is auth source hardening and first cash/output module skeleton routes.
 
 Immediate next move:
-- Start Sprint 3 planning for authentication source hardening and module expansion (cash window and outputs).
+- Implement auth source abstraction and non-local mode gating.
+- Implement first executable skeletons for cash window and outputs modules.
+- Add test coverage and QA matrix for Sprint 3 scope.
 
 ## 9. Security Rules
 
