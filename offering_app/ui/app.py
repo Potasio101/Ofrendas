@@ -75,6 +75,27 @@ def create_app(
     outputs_service = outputs_service or OutputsService(storage)
     kiosk_pos_service = kiosk_pos_service or KioskPOSService(storage)
 
+    def _to_float(value: object) -> float:
+        try:
+            return float(value or 0)
+        except (TypeError, ValueError):
+            return 0.0
+
+    def _ocr_needs_manual_fallback(data: dict[str, object]) -> bool:
+        name = str(data.get("member_name") or "").strip().lower()
+        unknown_names = {"", "miembro desconocido", "unknown", "desconocido"}
+        amount_fields = [
+            "diezmo",
+            "ofrenda",
+            "primicias",
+            "pro_templo",
+            "ofrenda_misionera",
+            "ofrenda_pastoral",
+        ]
+        all_zero = all(_to_float(data.get(field)) == 0.0 for field in amount_fields)
+        low_confidence = _to_float(data.get("ocr_confidence")) < 0.6
+        return all_zero and (name in unknown_names or low_confidence)
+
     @app.before_request
     def before_request():
         g._request_started_at = time.time()
@@ -475,17 +496,19 @@ def create_app(
 
                                     <div id="capture-tab">
                                         <form action="/process" method="post" enctype="multipart/form-data">
-                                            <label for="image-input">Imagen del sobre</label>
-                                            <input 
+                                            <label style="display: block; margin: 2px 0 5px; font-size: 0.83rem; font-weight: 700; color: #0f4a53;">Imagen del sobre</label>
+                                            <input
                                                 id="image-input"
-                                                type="file" 
-                                                name="image" 
-                                                accept="image/*" 
-                                                capture
+                                                type="file"
+                                                name="image"
+                                                accept="image/*"
+                                                capture="environment"
                                                 required
-                                                style="width: 100%; padding: 8px; border: 1px solid rgba(31, 42, 55, 0.24); border-radius: 12px;">
-                                            <p class="hint" style="margin-top: 8px; font-size: 0.86rem; color: #5c6675;">En iPad: Toca el campo → Elige cámara. Si no abre, usa ✍️ Manual.</p>
-                                            <button type="submit" style="width: 100%; margin-top: 12px; padding: 11px 12px; border: 0; border-radius: 12px; color: #fff; font-weight: 800; background: linear-gradient(125deg, #15616d 0%, #1f7a7a 100%); cursor: pointer;">Procesar captura</button>
+                                                onchange="const submitBtn=document.getElementById('camera-submit'); const status=document.getElementById('camera-status'); if (this.files && this.files.length > 0) { submitBtn.disabled=false; status.textContent='Foto lista para procesar'; }"
+                                                style="position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0;">
+                                            <button type="button" onclick="document.getElementById('image-input').click();" style="width: 100%; margin-top: 4px; padding: 11px 12px; border: 0; border-radius: 12px; color: #fff; font-weight: 800; background: linear-gradient(125deg, #1d4ed8 0%, #2563eb 100%); cursor: pointer;">Abrir camara</button>
+                                            <p id="camera-status" class="hint" style="margin-top: 8px; font-size: 0.86rem; color: #5c6675;">Toca Abrir camara para tomar la foto.</p>
+                                            <button id="camera-submit" type="submit" disabled style="width: 100%; margin-top: 12px; padding: 11px 12px; border: 0; border-radius: 12px; color: #fff; font-weight: 800; background: linear-gradient(125deg, #15616d 0%, #1f7a7a 100%); cursor: pointer; opacity: 0.8;">Procesar captura</button>
                                         </form>
                                     </div>
 
@@ -567,6 +590,9 @@ def create_app(
         file.save(target)
 
         data = service.process_image(str(target))
+        if _ocr_needs_manual_fallback(data):
+            data["member_name"] = ""
+            data["ocr_manual_fallback"] = True
         data["service_date"] = _current_service_date()
         return render_template_string(
             _review_template(),
@@ -1367,12 +1393,13 @@ def _review_template() -> str:
             <section class="card">
                 <div id="empty-warning" class="warning-box">
                     <strong>⚠️ La captura no tiene datos</strong><br/>
-                    El OCR no pudo leer la foto. Puedes rellenar los campos manualmente:
+                    El OCR no pudo leer la foto con precision. Puedes rellenar los campos manualmente.<br/>
+                    <span style="font-size: 0.82rem;">OCR confidence detectada: {{ data.ocr_confidence or 0.5 }}</span>
                 </div>
 
                 <form id="empty-form" method="post" action="/confirm">
                     <input type="hidden" name="image_path" value="{{ data.image_path or '' }}">
-                    <input type="hidden" name="ocr_confidence" value="1.0">
+                    <input type="hidden" name="ocr_confidence" value="{{ data.ocr_confidence or 0.5 }}">
 
                     <div class="grid">
                         <div>
