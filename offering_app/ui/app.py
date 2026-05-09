@@ -461,7 +461,8 @@ def create_app(
                                     <h2>Nuevo sobre</h2>
                                     <form action="/process" method="post" enctype="multipart/form-data">
                                         <label>Imagen del sobre</label>
-                                        <input type="file" name="image" required>
+                                        <input type="file" name="image" accept="image/*" capture="environment" required>
+                                        <p class="hint">En celular se abrira la camara para tomar la foto del sobre.</p>
                                         <button type="submit">Procesar captura</button>
                                     </form>
                                 </article>
