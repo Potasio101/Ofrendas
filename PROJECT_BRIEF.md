@@ -120,8 +120,8 @@ DevOps (Dash, on demand):
 ## 7. Sprint Status (updated every sprint)
 
 Current sprint: Sprint 1 (Foundation and vertical slice)
-Status: Ready for merge
-Branch target: feature/sprint-1
+Status: Completed (merged to main)
+Branch target: feature/sprint-1 (closed)
 Completion criteria met:
 - Core vertical slice implemented and validated
 - Unit + integration tests passing in Docker
@@ -142,7 +142,6 @@ Technical baseline:
 - Core QA and automated tests are passing.
 
 Immediate next move:
-- Merge Sprint 1 branch and publish handoff artifacts.
 - Start Sprint 2 with auth/RBAC hardening, timezone normalization, and next module expansion.
 
 ## 9. Security Rules

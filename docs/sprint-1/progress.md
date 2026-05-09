@@ -1,11 +1,11 @@
 # Sprint 1 Progress Tracker
 
-Status: Ready for merge
+Status: Completed
 Last update: 2026-05-08
 
 ## Checklist
 
-- [ ] Branch created: feature/sprint-1
+- [x] Branch created: feature/sprint-1
 - [x] App scaffold created
 - [x] DB connectivity + migrations validated
 - [x] Core routes implemented
@@ -13,7 +13,7 @@ Last update: 2026-05-08
 - [x] Health/readiness + logging baseline implemented
 - [x] Unit + integration tests passing
 - [x] QA playthrough completed
-- [ ] Merge to main completed
+- [x] Merge to main completed
 
 ## Phase Notes
 
@@ -39,7 +39,8 @@ Phase 2 - Test and QA
 
 Phase 3 - Merge and Handoff
 - Sprint 1 handoff completed in docs/sprint-1/done.md.
-- Waiting only for branch/PR merge workflow.
+- Branch `feature/sprint-1` published to origin.
+- Fast-forward merge completed into `main` and pushed to origin.
 
 ## Open Blockers
 
