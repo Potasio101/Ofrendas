@@ -705,7 +705,10 @@ def create_app(
                                     <li class="row-item">
                                         <div class="row-main">
                                             <div class="row-title">{{ row.member_name or 'Sin nombre' }}</div>
-                                            <div class="row-meta">Total: {{ row.total }}</div>
+                                            <div class="row-meta">Fecha: {{ row.service_date }} | Total: {{ row.total }}</div>
+                                            <div class="row-meta">Ofrenda: {{ row.ofrenda or 0 }} | Diezmo: {{ row.diezmo or 0 }} | Primicias: {{ row.primicias or 0 }}</div>
+                                            <div class="row-meta">Pro Templo: {{ row.pro_templo or 0 }} | Misionera: {{ row.ofrenda_misionera or 0 }} | Pastoral: {{ row.ofrenda_pastoral or 0 }}</div>
+                                            <div class="row-meta">Metodo de pago: {{ row.payment_method or 'N/A' }}</div>
                                         </div>
                                         <a class="inline-link" href="/review/{{ row.id }}">Revisar</a>
                                     </li>

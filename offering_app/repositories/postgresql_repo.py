@@ -109,7 +109,20 @@ class PostgreSQLRepo(IStorageRepo):
 
     def get_by_date(self, service_date: str) -> list[dict[str, Any]]:
         query = """
-            SELECT id, service_date, member_name, total, review_status, created_at
+            SELECT
+                id,
+                service_date,
+                member_name,
+                total,
+                diezmo,
+                ofrenda,
+                primicias,
+                pro_templo,
+                ofrenda_misionera,
+                ofrenda_pastoral,
+                payment_method,
+                review_status,
+                created_at
             FROM offerings
             WHERE service_date = %(service_date)s
             ORDER BY created_at DESC;
