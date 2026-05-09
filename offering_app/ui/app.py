@@ -13,6 +13,18 @@ from offering_app.repositories.postgresql_repo import PostgreSQLRepo
 from offering_app.services.offering_service import OfferingService
 
 
+ROLE_POLICY = {
+    "home": {"treasurer", "admin", "auditor"},
+    "process_image": {"treasurer", "admin"},
+    "confirm": {"treasurer", "admin"},
+    "summary": {"treasurer", "admin", "auditor"},
+    "day_log": {"treasurer", "admin", "auditor"},
+    "review_existing": {"treasurer", "admin", "auditor"},
+    "save_review": {"treasurer", "admin"},
+    "admin_config": {"admin"},
+}
+
+
 def create_app(service: OfferingService, storage: PostgreSQLRepo, upload_path: str) -> Flask:
     app = Flask(__name__)
     app.config["UPLOAD_PATH"] = upload_path
@@ -56,8 +68,24 @@ def create_app(service: OfferingService, storage: PostgreSQLRepo, upload_path: s
             tz = ZoneInfo("UTC")
         return datetime.now(tz).date().isoformat()
 
-    def _require_roles(allowed_roles: set[str]):
-        if getattr(g, "auth_role", "") not in allowed_roles:
+    def _require_policy(policy_key: str):
+        allowed_roles = ROLE_POLICY.get(policy_key, set())
+        role = getattr(g, "auth_role", "")
+        if role not in allowed_roles:
+            app.logger.info(
+                json.dumps(
+                    {
+                        "event": "authz_denied",
+                        "policy": policy_key,
+                        "allowed_roles": sorted(allowed_roles),
+                        "auth_role": role,
+                        "auth_user_id": getattr(g, "auth_user_id", None),
+                        "path": request.path,
+                        "method": request.method,
+                    },
+                    ensure_ascii=True,
+                )
+            )
             return "Forbidden", 403
         return None
 
@@ -94,7 +122,7 @@ def create_app(service: OfferingService, storage: PostgreSQLRepo, upload_path: s
 
     @app.get("/")
     def home():
-        denied = _require_roles({"treasurer", "admin", "auditor"})
+        denied = _require_policy("home")
         if denied:
             return denied
         summary = service.get_daily_summary(_current_service_date())
@@ -114,7 +142,7 @@ def create_app(service: OfferingService, storage: PostgreSQLRepo, upload_path: s
 
     @app.post("/process")
     def process_image():
-        denied = _require_roles({"treasurer", "admin"})
+        denied = _require_policy("process_image")
         if denied:
             return denied
         file = request.files.get("image")
@@ -138,7 +166,7 @@ def create_app(service: OfferingService, storage: PostgreSQLRepo, upload_path: s
 
     @app.post("/confirm")
     def confirm():
-        denied = _require_roles({"treasurer", "admin"})
+        denied = _require_policy("confirm")
         if denied:
             return denied
         actor = getattr(g, "auth_user_id", None)
@@ -149,7 +177,7 @@ def create_app(service: OfferingService, storage: PostgreSQLRepo, upload_path: s
 
     @app.get("/summary")
     def summary():
-        denied = _require_roles({"treasurer", "admin", "auditor"})
+        denied = _require_policy("summary")
         if denied:
             return denied
         data = service.get_daily_summary(_current_service_date())
@@ -164,7 +192,7 @@ def create_app(service: OfferingService, storage: PostgreSQLRepo, upload_path: s
 
     @app.get("/day-log")
     def day_log():
-        denied = _require_roles({"treasurer", "admin", "auditor"})
+        denied = _require_policy("day_log")
         if denied:
             return denied
         rows = storage.get_by_date(_current_service_date())
@@ -186,7 +214,7 @@ def create_app(service: OfferingService, storage: PostgreSQLRepo, upload_path: s
 
     @app.get("/review/<offering_id>")
     def review_existing(offering_id: str):
-        denied = _require_roles({"treasurer", "admin", "auditor"})
+        denied = _require_policy("review_existing")
         if denied:
             return denied
         row = storage.get_offering(offering_id)
@@ -203,7 +231,7 @@ def create_app(service: OfferingService, storage: PostgreSQLRepo, upload_path: s
 
     @app.post("/review/<offering_id>/save")
     def save_review(offering_id: str):
-        denied = _require_roles({"treasurer", "admin"})
+        denied = _require_policy("save_review")
         if denied:
             return denied
         updates = {
@@ -228,6 +256,13 @@ def create_app(service: OfferingService, storage: PostgreSQLRepo, upload_path: s
         if not ok:
             return "Not found", 404
         return redirect(url_for("day_log"))
+
+    @app.get("/admin/config")
+    def admin_config():
+        denied = _require_policy("admin_config")
+        if denied:
+            return denied
+        return jsonify({"status": "ok", "scope": "admin"})
 
     return app
 

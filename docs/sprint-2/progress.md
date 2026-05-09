@@ -28,11 +28,16 @@ Phase 1 - Build
 - Read paths (`/`, `/summary`, `/day-log`, `/review/<offering_id>`) constrained to known roles.
 - Day-based route queries now use timezone-aware current date derived from `APP_TIMEZONE`.
 - Current service date now resolves from PostgreSQL clock with configured timezone, with Python fallback only if storage resolver fails.
+- Role policy centralized by endpoint key with consistent authorization checks.
+- Authorization denials now emit structured audit logs (`authz_denied`) with policy, role, path, and user context.
+- Added admin-only placeholder endpoint (`/admin/config`) as first strict admin gate.
 
 Phase 2 - Test and QA
 - Added route-level RBAC tests in `tests/test_app_rbac.py`.
 - Docker test run after rebuild: 8 passed.
 - Added timezone route tests in `tests/test_app_timezone.py` to validate DB-backed date resolution path.
+- Expanded RBAC tests for write-path denial and admin-only endpoint behavior.
+- Docker test run after RBAC policy refactor: 13 passed.
 
 Phase 3 - Merge and Handoff
 - Pending.

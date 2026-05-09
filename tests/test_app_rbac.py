@@ -105,3 +105,38 @@ def test_day_log_allowed_for_auditor_role():
     response = client.get("/day-log", headers={"X-User-Role": "auditor", "X-User-Id": "audit-user"})
 
     assert response.status_code == 200
+
+
+def test_save_review_forbidden_for_auditor_role():
+    client, _ = _build_client()
+
+    response = client.post(
+        "/review/00000000-0000-0000-0000-000000000001/save",
+        data={"member_name": "X", "reason": "audit-check"},
+        headers={"X-User-Role": "auditor", "X-User-Id": "audit-user"},
+    )
+
+    assert response.status_code == 403
+
+
+def test_admin_config_forbidden_for_treasurer_role():
+    client, _ = _build_client()
+
+    response = client.get(
+        "/admin/config",
+        headers={"X-User-Role": "treasurer", "X-User-Id": "treasurer-user"},
+    )
+
+    assert response.status_code == 403
+
+
+def test_admin_config_allowed_for_admin_role():
+    client, _ = _build_client()
+
+    response = client.get(
+        "/admin/config",
+        headers={"X-User-Role": "admin", "X-User-Id": "admin-user"},
+    )
+
+    assert response.status_code == 200
+    assert response.get_json()["scope"] == "admin"
