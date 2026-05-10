@@ -19,7 +19,16 @@ class FuzzyCorrection(ICorrectionStrategy):
     def correct(self, text: str, field: str, members: list[str]) -> Tuple[str, float]:
         value = (text or "").strip()
         if field in self.AMOUNT_FIELDS:
-            cleaned = re.sub(r"[^0-9.]", "", value)
+            spaced = re.sub(r"[^0-9.\s]", "", value)
+            spaced = re.sub(r"\s+", " ", spaced).strip()
+            if "." not in spaced:
+                decimal_match = re.search(r"(\d+)\s+(\d{1,2})$", spaced)
+                if decimal_match:
+                    whole = decimal_match.group(1)
+                    cents = decimal_match.group(2)
+                    return f"{whole}.{cents}", 0.85
+
+            cleaned = re.sub(r"[^0-9.]", "", spaced)
             if cleaned.count(".") > 1:
                 first = cleaned.find(".")
                 cleaned = cleaned[: first + 1] + cleaned[first + 1 :].replace(".", "")

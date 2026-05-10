@@ -18,3 +18,12 @@ def test_member_name_is_matched_to_closest_known_member():
 
     assert value == "Maria Lopez"
     assert confidence > 0.6
+
+
+def test_amount_field_handles_spaced_decimal_digits():
+    strategy = FuzzyCorrection()
+
+    value, confidence = strategy.correct("55 6e", "ofrenda", [])
+
+    assert value == "55.6"
+    assert confidence >= 0.8

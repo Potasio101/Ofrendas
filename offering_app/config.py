@@ -30,15 +30,15 @@ class AppConfig:
 
 
 FIELD_COORDS: dict[str, tuple[float, float, float, float]] = {
-    "member_name": (0.08, 0.11, 0.84, 0.08),
-    "diezmo": (0.08, 0.25, 0.25, 0.08),
-    "ofrenda": (0.37, 0.25, 0.25, 0.08),
-    "primicias": (0.66, 0.25, 0.25, 0.08),
-    "pro_templo": (0.08, 0.36, 0.25, 0.08),
-    "ofrenda_misionera": (0.37, 0.36, 0.25, 0.08),
-    "ofrenda_pastoral": (0.66, 0.36, 0.25, 0.08),
-    "service_date": (0.08, 0.47, 0.35, 0.08),
-    "payment_method": (0.66, 0.47, 0.25, 0.08),
+    "member_name": (0.20, 0.43, 0.42, 0.08),
+    "diezmo": (0.84, 0.43, 0.12, 0.08),
+    "ofrenda": (0.19, 0.49, 0.18, 0.08),
+    "primicias": (0.54, 0.49, 0.15, 0.08),
+    "pro_templo": (0.15, 0.58, 0.22, 0.08),
+    "ofrenda_misionera": (0.54, 0.58, 0.16, 0.08),
+    "ofrenda_pastoral": (0.23, 0.67, 0.23, 0.08),
+    "service_date": (0.79, 0.49, 0.17, 0.08),
+    "payment_method": (0.79, 0.77, 0.17, 0.08),
 }
 
 

@@ -37,6 +37,9 @@ class DummyOCR:
 
 
 class PopulatedOCR:
+    def read(self, image):
+        return "", 0.5
+
     def read_fields(self, field_images):
         return {
             "member_name": ("Ana Perez", 0.91),
@@ -68,6 +71,44 @@ class ProcessorWithRois(DummyProcessor):
             "diezmo": np.zeros((10, 20), dtype=np.uint8),
             "ofrenda": np.zeros((10, 20), dtype=np.uint8),
         }
+
+
+class AdaptiveProcessor(DummyProcessor):
+    def clean(self, image):
+        return np.zeros((40, 40), dtype=np.uint8)
+
+    def crop_all_fields(self, image):
+        return {
+            "member_name": np.full((2, 2), 10, dtype=np.uint8),
+            "ofrenda": np.full((2, 2), 20, dtype=np.uint8),
+        }
+
+    def crop_field_variant(self, image, field_name, offset):
+        if field_name == "member_name" and offset[1] > 0:
+            return np.full((2, 2), 11, dtype=np.uint8)
+        if field_name == "ofrenda" and offset[0] > 0:
+            return np.full((2, 2), 21, dtype=np.uint8)
+        return np.zeros((2, 2), dtype=np.uint8)
+
+
+class AdaptiveOCR:
+    def read_fields(self, field_images):
+        return {
+            "member_name": ("hecnos Ias bienaventurado es dar", 0.5),
+            "ofrenda": ("a s_55 6e", 0.55),
+        }
+
+    def read(self, image):
+        marker = int(image[0, 0])
+        if marker == 11:
+            return "Ana Perez", 0.95
+        if marker == 21:
+            return "55.60", 0.97
+        if marker == 10:
+            return "hecnos Ias bienaventurado es dar", 0.5
+        if marker == 20:
+            return "a s_55 6e", 0.55
+        return "", 0.5
 
 
 def test_get_daily_summary_uses_storage_totals_when_available():
@@ -322,3 +363,20 @@ def test_process_image_tolerates_debug_write_failures(monkeypatch, tmp_path, cap
 
     assert result["member_name"] == "Ana Perez"
     assert any("ocr_debug_write_failed" in rec.getMessage() for rec in caplog.records)
+
+
+def test_process_image_refines_member_name_and_ofrenda_with_roi_candidates(monkeypatch):
+    monkeypatch.setattr("offering_app.services.image_processor.ImageProcessor.load", staticmethod(lambda *_: object()))
+    service = OfferingService(
+        ocr=AdaptiveOCR(),
+        corrector=DummyCorrector(),
+        storage=DummyStorage(),
+        training=DummyTraining(),
+        processor=AdaptiveProcessor(),
+        members=["Ana Perez"],
+    )
+
+    result = service.process_image("/tmp/envelope.jpg")
+
+    assert result["raw_member_name"] == "Ana Perez"
+    assert result["raw_ofrenda"] == "55.60"

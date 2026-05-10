@@ -1,5 +1,6 @@
 from datetime import date, datetime
 from pathlib import Path
+import re
 import time
 from typing import Any
 from uuid import UUID, uuid4
@@ -26,6 +27,38 @@ class OfferingService:
         "service_date",
         "payment_method",
     ]
+    MEMBER_NAME_ROI_OFFSETS = [
+        (0.0, 0.0, 0.0, 0.0),
+        (0.0, 0.06, 0.0, 0.0),
+        (0.0, 0.1, 0.0, 0.0),
+        (0.02, 0.06, 0.0, 0.0),
+        (-0.02, 0.06, 0.0, 0.0),
+    ]
+    OFRENDA_ROI_OFFSETS = [
+        (0.0, 0.0, 0.0, 0.0),
+        (0.03, 0.0, 0.0, 0.0),
+        (-0.03, 0.0, 0.0, 0.0),
+        (0.0, 0.02, 0.0, 0.0),
+    ]
+    NON_NAME_TERMS = {
+        "bienaventurado",
+        "dar",
+        "dios",
+        "ama",
+        "hechos",
+        "dador",
+        "alegre",
+        "recibireis",
+    }
+    AMOUNT_TERMS = {
+        "diezmo",
+        "ofrenda",
+        "primicias",
+        "templo",
+        "misionera",
+        "pastoral",
+        "total",
+    }
 
     def __init__(
         self,
@@ -54,8 +87,15 @@ class OfferingService:
         image = ImageProcessor.load(image_path)
         timings["load_ms"] = round((time.perf_counter() - load_started) * 1000, 2)
 
+        normalize_started = time.perf_counter()
+        if hasattr(self.processor, "normalize_document"):
+            normalized = self.processor.normalize_document(image)
+        else:
+            normalized = image
+        timings["normalize_ms"] = round((time.perf_counter() - normalize_started) * 1000, 2)
+
         preprocess_started = time.perf_counter()
-        cleaned = self.processor.clean(image)
+        cleaned = self.processor.clean(normalized)
         timings["preprocess_ms"] = round((time.perf_counter() - preprocess_started) * 1000, 2)
 
         crop_started = time.perf_counter()
@@ -64,6 +104,7 @@ class OfferingService:
 
         ocr_started = time.perf_counter()
         raw_values = self.ocr.read_fields(field_images)
+        raw_values = self._refine_field_rois(cleaned, raw_values)
         timings["ocr_ms"] = round((time.perf_counter() - ocr_started) * 1000, 2)
 
         corrected: dict[str, Any] = {}
@@ -98,6 +139,96 @@ class OfferingService:
                 },
             )
         return corrected
+
+    def _refine_field_rois(
+        self,
+        image: Any,
+        raw_values: dict[str, tuple[str, float]],
+    ) -> dict[str, tuple[str, float]]:
+        if not hasattr(self.processor, "crop_field_variant"):
+            return raw_values
+
+        refined = dict(raw_values)
+        if "member_name" in refined and self.members:
+            refined["member_name"] = self._best_roi_read(
+                image=image,
+                field_name="member_name",
+                offsets=self.MEMBER_NAME_ROI_OFFSETS,
+                score=self._score_member_name_candidate,
+            )
+        if "ofrenda" in refined:
+            refined["ofrenda"] = self._best_roi_read(
+                image=image,
+                field_name="ofrenda",
+                offsets=self.OFRENDA_ROI_OFFSETS,
+                score=self._score_amount_candidate,
+            )
+        return refined
+
+    def _best_roi_read(
+        self,
+        image: Any,
+        field_name: str,
+        offsets: list[tuple[float, float, float, float]],
+        score,
+    ) -> tuple[str, float]:
+        candidates: list[tuple[str, float]] = []
+        for offset in offsets:
+            roi = self.processor.crop_field_variant(image, field_name, offset)
+            if roi is None or getattr(roi, "size", 0) == 0:
+                continue
+            candidates.append(self.ocr.read(roi))
+        if not candidates:
+            return "", 0.5
+        return max(candidates, key=score)
+
+    def _score_member_name_candidate(self, candidate: tuple[str, float]) -> float:
+        text, confidence = candidate
+        value = str(text or "").strip()
+        if not value:
+            return -1.0
+        lowered = value.lower()
+        score = float(confidence)
+        if any(term in lowered for term in self.NON_NAME_TERMS):
+            score -= 1.0
+        if any(term in lowered for term in self.AMOUNT_TERMS):
+            score -= 1.5
+        if "$" in lowered:
+            score -= 1.0
+        alpha_chars = sum(char.isalpha() for char in value)
+        score += (alpha_chars / max(len(value), 1)) * 0.2
+        word_count = len(re.findall(r"[A-Za-zÁÉÍÓÚÑáéíóúñ]+", value))
+        if 1 <= word_count <= 4:
+            score += 0.25
+        else:
+            score -= 0.2
+        digit_count = sum(char.isdigit() for char in value)
+        if digit_count:
+            score -= min(0.4 + (digit_count / 8.0), 1.0)
+        if len(value) > 40:
+            score -= 0.2
+        return score
+
+    @staticmethod
+    def _score_amount_candidate(candidate: tuple[str, float]) -> float:
+        text, confidence = candidate
+        value = str(text or "").strip()
+        if not value:
+            return -1.0
+        digits = sum(char.isdigit() for char in value)
+        letters = sum(char.isalpha() for char in value)
+        score = float(confidence)
+        if digits == 0:
+            score -= 1.0
+        else:
+            score += min(digits / 6.0, 0.4)
+        if letters:
+            score -= min(letters / 8.0, 0.5)
+        if re.search(r"\d+[.,]\d{1,2}", value):
+            score += 0.25
+        if len(value) <= 12:
+            score += 0.1
+        return score
 
     def should_fallback_to_manual(self, data: dict[str, Any]) -> bool:
         name = str(data.get("member_name") or "").strip().lower()
