@@ -6,6 +6,7 @@ from offering_app.config import AppConfig, ensure_data_dirs
 from offering_app.repositories.postgresql_repo import PostgreSQLRepo
 from offering_app.repositories.training_repo import TrainingRepo
 from offering_app.services.image_processor import ImageProcessor
+from offering_app.services.ocr_debug_service import OcrDebugService
 from offering_app.services.offering_service import OfferingService
 from offering_app.strategies.easyocr_strategy import EasyOCRStrategy
 from offering_app.strategies.fuzzy_correction import FuzzyCorrection
@@ -35,6 +36,12 @@ def build_app():
     storage = PostgreSQLRepo(config.database_url)
     training = TrainingRepo(config.training_path)
     processor = ImageProcessor()
+    ocr_debug = OcrDebugService(
+        base_path=config.ocr_debug_path,
+        enabled=config.ocr_debug_enabled,
+        retention_days=config.ocr_debug_retention_days,
+        max_sessions=config.ocr_debug_max_sessions,
+    )
     members = load_members(storage)
 
     service = OfferingService(
@@ -44,8 +51,12 @@ def build_app():
         training=training,
         processor=processor,
         members=members,
+        ocr_debug=ocr_debug,
     )
-    return create_app(service=service, storage=storage, upload_path=config.upload_path), config
+    return (
+        create_app(service=service, storage=storage, upload_path=config.upload_path, ocr_debug_service=ocr_debug),
+        config,
+    )
 
 
 if __name__ == "__main__":

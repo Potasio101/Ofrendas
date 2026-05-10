@@ -1,9 +1,8 @@
 from datetime import date, datetime
 from pathlib import Path
+import time
 from typing import Any
-from uuid import UUID
-
-import cv2
+from uuid import UUID, uuid4
 
 from offering_app.interfaces.i_correction_strategy import ICorrectionStrategy
 from offering_app.interfaces.i_ocr_strategy import IOCRStrategy
@@ -12,9 +11,22 @@ from offering_app.interfaces.i_training_repo import ITrainingRepo
 from offering_app.models.correction import Correction
 from offering_app.models.offering import Offering
 from offering_app.services.image_processor import ImageProcessor
+from offering_app.services.ocr_debug_service import OcrDebugService
 
 
 class OfferingService:
+    TRAINING_FIELDS = [
+        "member_name",
+        "diezmo",
+        "ofrenda",
+        "primicias",
+        "pro_templo",
+        "ofrenda_misionera",
+        "ofrenda_pastoral",
+        "service_date",
+        "payment_method",
+    ]
+
     def __init__(
         self,
         ocr: IOCRStrategy,
@@ -23,6 +35,7 @@ class OfferingService:
         training: ITrainingRepo,
         processor: ImageProcessor,
         members: list[str],
+        ocr_debug: OcrDebugService | None = None,
     ) -> None:
         self.ocr = ocr
         self.corrector = corrector
@@ -30,26 +43,60 @@ class OfferingService:
         self.training = training
         self.processor = processor
         self.members = members
+        self.ocr_debug = ocr_debug
 
     def process_image(self, image_path: str) -> dict[str, Any]:
-        image = cv2.imread(image_path)
-        if image is None:
-            raise ValueError("Invalid image file")
+        started = time.perf_counter()
+        request_id = uuid4().hex
+        timings: dict[str, float] = {}
 
+        load_started = time.perf_counter()
+        image = ImageProcessor.load(image_path)
+        timings["load_ms"] = round((time.perf_counter() - load_started) * 1000, 2)
+
+        preprocess_started = time.perf_counter()
         cleaned = self.processor.clean(image)
+        timings["preprocess_ms"] = round((time.perf_counter() - preprocess_started) * 1000, 2)
+
+        crop_started = time.perf_counter()
         field_images = self.processor.crop_all_fields(cleaned)
+        timings["crop_fields_ms"] = round((time.perf_counter() - crop_started) * 1000, 2)
+
+        ocr_started = time.perf_counter()
         raw_values = self.ocr.read_fields(field_images)
+        timings["ocr_ms"] = round((time.perf_counter() - ocr_started) * 1000, 2)
 
         corrected: dict[str, Any] = {}
         confidences: list[float] = []
+        correction_started = time.perf_counter()
         for field, (raw_text, raw_conf) in raw_values.items():
             value, corr_conf = self.corrector.correct(raw_text, field, self.members)
             corrected[field] = value
+            corrected[f"raw_{field}"] = str(raw_text or "")
             confidences.append(min(raw_conf, corr_conf))
+        timings["correction_ms"] = round((time.perf_counter() - correction_started) * 1000, 2)
 
         avg_conf = round(sum(confidences) / len(confidences), 4) if confidences else 0.5
         corrected["ocr_confidence"] = avg_conf
         corrected["image_path"] = str(Path(image_path))
+        corrected["ocr_request_id"] = request_id
+        timings["total_ms"] = round((time.perf_counter() - started) * 1000, 2)
+
+        if self.ocr_debug and self.ocr_debug.is_enabled():
+            self.ocr_debug.write_session(
+                request_id=request_id,
+                input_image_path=image_path,
+                preprocessed_image=cleaned,
+                field_images=field_images,
+                ocr_raw=raw_values,
+                parsed_fields=corrected,
+                timings=timings,
+                meta={
+                    "request_id": request_id,
+                    "created_at": datetime.utcnow().isoformat() + "Z",
+                    "image_path": str(Path(image_path)),
+                },
+            )
         return corrected
 
     def should_fallback_to_manual(self, data: dict[str, Any]) -> bool:
@@ -129,19 +176,8 @@ class OfferingService:
             return 0.0
 
     def build_corrections_from_form(self, form: dict[str, str]) -> list[Correction]:
-        fields = [
-            "member_name",
-            "diezmo",
-            "ofrenda",
-            "primicias",
-            "pro_templo",
-            "ofrenda_misionera",
-            "ofrenda_pastoral",
-            "service_date",
-            "payment_method",
-        ]
         corrections: list[Correction] = []
-        for field in fields:
+        for field in self.TRAINING_FIELDS:
             value = form.get(field, "")
             corrections.append(
                 Correction(

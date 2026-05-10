@@ -23,6 +23,10 @@ class AppConfig:
     training_path: str = os.getenv("TRAINING_PATH", "./data/training")
     local_export_path: str = os.getenv("LOCAL_EXPORT_PATH", "./data/exports")
     upload_path: str = os.getenv("UPLOAD_PATH", "./data/uploads")
+    ocr_debug_enabled: bool = os.getenv("OCR_DEBUG_ENABLED", "false").strip().lower() == "true"
+    ocr_debug_retention_days: int = int(os.getenv("OCR_DEBUG_RETENTION_DAYS", "7"))
+    ocr_debug_max_sessions: int = int(os.getenv("OCR_DEBUG_MAX_SESSIONS", "500"))
+    ocr_debug_path: str = os.getenv("OCR_DEBUG_PATH", "/app/data/ocr-debug")
 
 
 FIELD_COORDS: dict[str, tuple[float, float, float, float]] = {
@@ -42,6 +46,7 @@ def ensure_data_dirs(config: AppConfig) -> None:
     Path(config.training_path).mkdir(parents=True, exist_ok=True)
     Path(config.local_export_path).mkdir(parents=True, exist_ok=True)
     Path(config.upload_path).mkdir(parents=True, exist_ok=True)
+    Path(config.ocr_debug_path).mkdir(parents=True, exist_ok=True)
 
 
 def validate_auth_configuration(
