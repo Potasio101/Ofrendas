@@ -215,3 +215,57 @@ def test_training_promote_and_rollback_admin_actions():
     assert actions.get_json()["data"]["limit"] == 1
     assert training.promote_calls == 1
     assert training.rollback_calls == 1
+
+
+def test_admin_page_requires_admin_role():
+    client, _ = _build_client()
+
+    denied = client.get(
+        "/admin",
+        headers={"X-User-Role": "treasurer", "X-User-Id": "treasurer-user"},
+    )
+
+    assert denied.status_code == 403
+
+
+def test_admin_page_renders_dashboard_for_admin():
+    client, _ = _build_client()
+
+    response = client.get(
+        "/admin",
+        headers={"X-User-Role": "admin", "X-User-Id": "admin-user"},
+    )
+
+    assert response.status_code == 200
+    body = response.get_data(as_text=True)
+    assert "Panel Admin" in body
+    assert "Forzar entrenamiento" in body
+    assert "Registro de acciones" in body
+
+
+def test_admin_web_actions_redirect_and_call_service():
+    client, training = _build_client()
+
+    force = client.post(
+        "/admin/training/force/web",
+        headers={"X-User-Role": "admin", "X-User-Id": "admin-user"},
+    )
+    promote = client.post(
+        "/admin/training/promote/web",
+        data={"artifact_id": "artifact-9"},
+        headers={"X-User-Role": "admin", "X-User-Id": "admin-user"},
+    )
+    rollback = client.post(
+        "/admin/training/rollback/web",
+        headers={"X-User-Role": "admin", "X-User-Id": "admin-user"},
+    )
+
+    assert force.status_code == 302
+    assert "/admin?" in force.headers["Location"]
+    assert promote.status_code == 302
+    assert "/admin?" in promote.headers["Location"]
+    assert rollback.status_code == 302
+    assert "/admin?" in rollback.headers["Location"]
+    assert training.force_calls == 1
+    assert training.promote_calls == 1
+    assert training.rollback_calls == 1

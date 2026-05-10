@@ -20,7 +20,7 @@ Goal: Model promotion, rollback, and ongoing operations.
   - Risks: None.
 - Day 4:
   - Planned: Add endpoint/UI integration and regression tests.
-  - Done: Added admin APIs `POST /admin/training/promote`, `POST /admin/training/rollback`, `GET /admin/training/actions`; expanded `admin/config` response for model/action visibility; added/updated endpoint and service tests.
+  - Done: Added admin APIs `POST /admin/training/promote`, `POST /admin/training/rollback`, `GET /admin/training/actions`; expanded `admin/config` response for model/action visibility; delivered visual admin page `GET /admin` with force/promote/rollback controls and activity blocks; added/updated endpoint and service tests including admin page coverage.
   - Risks: None.
 - Day 5:
   - Planned: Close QA and finalize sprint artifacts.
@@ -31,6 +31,7 @@ Goal: Model promotion, rollback, and ongoing operations.
 
 - [x] Model registry states implemented.
 - [x] Promote/rollback APIs implemented with RBAC.
+- [x] Admin dashboard page implemented for training controls.
 - [x] Promotion gates enforced.
 - [x] Nightly scheduler with thresholds and cooldown.
 - [x] Regression and control-plane tests passing.

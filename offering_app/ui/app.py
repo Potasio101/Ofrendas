@@ -53,11 +53,15 @@ ROLE_POLICY = {
     "kiosk_add_custom_line": {"treasurer", "admin"},
     "kiosk_pay_order": {"treasurer", "admin"},
     "training_force": {"admin"},
+    "training_force_web": {"admin"},
     "training_status": {"admin"},
     "training_jobs": {"admin"},
     "training_promote": {"admin"},
+    "training_promote_web": {"admin"},
     "training_rollback": {"admin"},
+    "training_rollback_web": {"admin"},
     "training_actions": {"admin"},
+    "admin_page": {"admin"},
 }
 
 KNOWN_ROLES = {"treasurer", "admin", "auditor"}
@@ -353,6 +357,7 @@ def create_app(
         if denied:
             return denied
         summary = service.get_daily_summary(_current_service_date())
+        show_admin = getattr(g, "auth_role", "") == "admin"
         return render_template_string(
             """
                         {{ ui_css|safe }}
@@ -456,11 +461,15 @@ def create_app(
                                     <a class="nav-pill" href="/workflow/cash">Caja</a>
                                     <a class="nav-pill" href="/workflow/outputs">Salidas</a>
                                     <a class="nav-pill" href="/workflow/kiosk">Kiosk POS</a>
+                                    {% if show_admin %}
+                                        <a class="nav-pill" href="/admin">Admin</a>
+                                    {% endif %}
                                 </div>
                             </section>
                         </main>
             """,
             summary=summary,
+            show_admin=show_admin,
                         ui_css=_ui_base_css(),
                         ui_header=_ui_header("Ofrendas", "Operacion diaria con enfoque mobile-first y auditoria visible."),
         )
@@ -729,6 +738,128 @@ def create_app(
                 },
             }
         )
+
+    @app.get("/admin")
+    def admin_page():
+        denied = _require_policy("admin_page")
+        if denied:
+            return denied
+        status_data = training_job_service.get_status()
+        jobs = training_job_service.list_jobs(limit=10)
+        actions = training_job_service.list_actions(limit=10)
+        return render_template_string(
+            """
+            {{ ui_css|safe }}
+            <main class="app-shell">
+                {{ ui_header|safe }}
+                {% if notice %}
+                    <section class="card" style="margin-bottom:12px;">
+                        <p class="hint" style="margin: 0; color: #065f46; font-weight: 700;">{{ notice }}</p>
+                    </section>
+                {% endif %}
+
+                <section class="section-grid">
+                    <article class="card">
+                        <h2>Modelos</h2>
+                        <p class="hint">Estado general: <strong>{{ status_data.state or "unknown" }}</strong></p>
+                        {% if status_data.active_model %}
+                            <p style="margin:8px 0 0;"><strong>Activo:</strong> {{ status_data.active_model.id }} ({{ status_data.active_model.model_status }})</p>
+                        {% else %}
+                            <p style="margin:8px 0 0;">No hay modelo activo.</p>
+                        {% endif %}
+                        {% if status_data.candidate_model %}
+                            <p style="margin:8px 0 0;"><strong>Candidato:</strong> {{ status_data.candidate_model.id }} ({{ status_data.candidate_model.model_status }})</p>
+                        {% else %}
+                            <p style="margin:8px 0 0;">No hay modelo candidato.</p>
+                        {% endif %}
+                    </article>
+
+                    <article class="card">
+                        <h2>Acciones rapidas</h2>
+                        <form method="post" action="{{ url_for('admin_training_force_web') }}" style="display:flex; gap:8px; margin-bottom:8px;">
+                            <button type="submit" style="border:0; border-radius:10px; padding:10px 12px; color:#fff; font-weight:700; background:#1d4ed8; cursor:pointer;">Forzar entrenamiento</button>
+                        </form>
+                        <form method="post" action="{{ url_for('admin_training_promote_web') }}" style="display:flex; gap:8px; margin-bottom:8px;">
+                            <input name="artifact_id" placeholder="artifact_id (opcional)" style="flex:1; font:inherit; border:1px solid rgba(31,42,55,0.24); border-radius:10px; padding:10px 12px; background:#fff;">
+                            <button type="submit" style="border:0; border-radius:10px; padding:10px 12px; color:#fff; font-weight:700; background:#15616d; cursor:pointer;">Promover</button>
+                        </form>
+                        <form method="post" action="{{ url_for('admin_training_rollback_web') }}" onsubmit="return confirm('Confirmar rollback del modelo activo?');" style="display:flex; gap:8px;">
+                            <button type="submit" style="border:0; border-radius:10px; padding:10px 12px; color:#fff; font-weight:700; background:#b91c1c; cursor:pointer;">Rollback activo</button>
+                        </form>
+                    </article>
+                </section>
+
+                <section class="card" style="margin-top:12px;">
+                    <h2>Ultimos jobs</h2>
+                    {% if jobs %}
+                        <div style="display:grid; gap:8px;">
+                            {% for job in jobs %}
+                                <div style="border:1px solid rgba(31,42,55,0.12); border-radius:10px; padding:10px 12px; background:#fff;">
+                                    <strong>{{ job.id }}</strong> - {{ job.status }}
+                                </div>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        <p>No hay jobs registrados.</p>
+                    {% endif %}
+                </section>
+
+                <section class="card" style="margin-top:12px;">
+                    <h2>Registro de acciones</h2>
+                    {% if actions %}
+                        <div style="display:grid; gap:8px;">
+                            {% for action in actions %}
+                                <div style="border:1px solid rgba(31,42,55,0.12); border-radius:10px; padding:10px 12px; background:#fff;">
+                                    <strong>{{ action.action_type }}</strong>
+                                    {% if action.artifact_id %} - {{ action.artifact_id }}{% endif %}
+                                    {% if action.action_result %} - {{ action.action_result }}{% endif %}
+                                </div>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        <p>No hay acciones registradas.</p>
+                    {% endif %}
+                </section>
+            </main>
+            """,
+            ui_css=_ui_base_css(),
+            ui_header=_ui_header("Panel Admin", "Control de entrenamiento, promocion y rollback."),
+            status_data=status_data,
+            jobs=jobs,
+            actions=actions,
+            notice=(request.args.get("notice") or "").strip(),
+        )
+
+    @app.post("/admin/training/force/web")
+    def admin_training_force_web():
+        denied = _require_policy("training_force_web")
+        if denied:
+            return denied
+        actor = getattr(g, "auth_user_id", None)
+        result = training_job_service.force_training(actor)
+        notice = "Entrenamiento encolado." if result.get("enqueued") else f"No encolado: {result.get('reason', 'sin detalle')}"
+        return redirect(url_for("admin_page", notice=notice))
+
+    @app.post("/admin/training/promote/web")
+    def admin_training_promote_web():
+        denied = _require_policy("training_promote_web")
+        if denied:
+            return denied
+        actor = getattr(g, "auth_user_id", None)
+        artifact_id = (request.form.get("artifact_id") or "").strip() or None
+        result = training_job_service.promote_candidate(actor_user_id=actor, artifact_id=artifact_id)
+        notice = "Modelo promovido." if result.get("promoted") else f"No promovido: {result.get('reason', 'sin detalle')}"
+        return redirect(url_for("admin_page", notice=notice))
+
+    @app.post("/admin/training/rollback/web")
+    def admin_training_rollback_web():
+        denied = _require_policy("training_rollback_web")
+        if denied:
+            return denied
+        actor = getattr(g, "auth_user_id", None)
+        result = training_job_service.rollback_active_model(actor_user_id=actor)
+        notice = "Rollback completado." if result.get("rolled_back") else f"Rollback omitido: {result.get('reason', 'sin detalle')}"
+        return redirect(url_for("admin_page", notice=notice))
 
     @app.post("/admin/training/force")
     def admin_training_force():
