@@ -11,6 +11,8 @@ This folder contains versioned SQL migrations for the offerings app.
 - 0005_cash_window_and_counting.sql
 - 0006_kiosk_pos_mode.sql
 - 0007_outputs_and_disbursements.sql
+- 0008_training_jobs_and_model_artifacts.sql
+- 0009_training_model_promotion_and_actions.sql
 
 Apply in numeric order.
 
@@ -27,6 +29,8 @@ psql "$DATABASE_URL" -v ON_ERROR_STOP=1 -f db/migrations/0004_review_queue_and_f
 psql "$DATABASE_URL" -v ON_ERROR_STOP=1 -f db/migrations/0005_cash_window_and_counting.sql
 psql "$DATABASE_URL" -v ON_ERROR_STOP=1 -f db/migrations/0006_kiosk_pos_mode.sql
 psql "$DATABASE_URL" -v ON_ERROR_STOP=1 -f db/migrations/0007_outputs_and_disbursements.sql
+psql "$DATABASE_URL" -v ON_ERROR_STOP=1 -f db/migrations/0008_training_jobs_and_model_artifacts.sql
+psql "$DATABASE_URL" -v ON_ERROR_STOP=1 -f db/migrations/0009_training_model_promotion_and_actions.sql
 ```
 
 ## Run against Docker postgres
@@ -41,6 +45,8 @@ docker exec -i postgres psql -U ofrendas -d ofrendas -v ON_ERROR_STOP=1 < db/mig
 docker exec -i postgres psql -U ofrendas -d ofrendas -v ON_ERROR_STOP=1 < db/migrations/0005_cash_window_and_counting.sql
 docker exec -i postgres psql -U ofrendas -d ofrendas -v ON_ERROR_STOP=1 < db/migrations/0006_kiosk_pos_mode.sql
 docker exec -i postgres psql -U ofrendas -d ofrendas -v ON_ERROR_STOP=1 < db/migrations/0007_outputs_and_disbursements.sql
+docker exec -i postgres psql -U ofrendas -d ofrendas -v ON_ERROR_STOP=1 < db/migrations/0008_training_jobs_and_model_artifacts.sql
+docker exec -i postgres psql -U ofrendas -d ofrendas -v ON_ERROR_STOP=1 < db/migrations/0009_training_model_promotion_and_actions.sql
 ```
 
 ## Notes

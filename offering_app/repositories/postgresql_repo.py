@@ -1,4 +1,5 @@
 from datetime import date
+import json
 from typing import Any
 from uuid import UUID
 
@@ -1375,3 +1376,436 @@ class PostgreSQLRepo(IStorageRepo):
         }
         row["line_count"] = line_count
         return row
+
+    def create_training_job(
+        self,
+        trigger_type: str,
+        requested_by_user_id: str | None,
+    ) -> dict[str, Any]:
+        safe_user_id = self._normalize_uuid(requested_by_user_id)
+        with self._connect() as conn:
+            with conn.cursor() as cur:
+                cur.execute(
+                    """
+                    INSERT INTO training_jobs (trigger_type, status, requested_by_user_id, metadata)
+                    VALUES (%(trigger_type)s, 'queued', %(requested_by_user_id)s, '{}'::jsonb)
+                    RETURNING id, trigger_type, status, requested_by_user_id, started_at, finished_at, failure_reason, trace_ref, metadata, created_at
+                    """,
+                    {
+                        "trigger_type": trigger_type,
+                        "requested_by_user_id": safe_user_id,
+                    },
+                )
+                row = cur.fetchone()
+                conn.commit()
+                if not row:
+                    raise RuntimeError("failed_create_training_job")
+                return dict(row)
+
+    def get_active_training_job(self) -> dict[str, Any] | None:
+        query = """
+            SELECT id, trigger_type, status, requested_by_user_id, started_at, finished_at, failure_reason, trace_ref, metadata, created_at
+            FROM training_jobs
+            WHERE status IN ('queued', 'running')
+            ORDER BY created_at DESC
+            LIMIT 1
+        """
+        with self._connect() as conn:
+            with conn.cursor() as cur:
+                cur.execute(query)
+                row = cur.fetchone()
+                return dict(row) if row else None
+
+    def get_latest_training_job(self) -> dict[str, Any] | None:
+        query = """
+            SELECT id, trigger_type, status, requested_by_user_id, started_at, finished_at, failure_reason, trace_ref, metadata, created_at
+            FROM training_jobs
+            ORDER BY created_at DESC
+            LIMIT 1
+        """
+        with self._connect() as conn:
+            with conn.cursor() as cur:
+                cur.execute(query)
+                row = cur.fetchone()
+                return dict(row) if row else None
+
+    def list_training_jobs(self, limit: int = 20) -> list[dict[str, Any]]:
+        query = """
+            SELECT id, trigger_type, status, requested_by_user_id, started_at, finished_at, failure_reason, trace_ref, metadata, created_at
+            FROM training_jobs
+            ORDER BY created_at DESC
+            LIMIT %(limit)s
+        """
+        with self._connect() as conn:
+            with conn.cursor() as cur:
+                cur.execute(query, {"limit": limit})
+                return [dict(row) for row in cur.fetchall()]
+
+    def mark_training_job_running(self, job_id: str) -> dict[str, Any]:
+        with self._connect() as conn:
+            with conn.cursor() as cur:
+                cur.execute(
+                    """
+                    UPDATE training_jobs
+                    SET status = 'running', started_at = NOW(), updated_at = NOW(), failure_reason = NULL, trace_ref = NULL
+                    WHERE id = %(job_id)s
+                    RETURNING id, trigger_type, status, requested_by_user_id, started_at, finished_at, failure_reason, trace_ref, metadata, created_at
+                    """,
+                    {"job_id": job_id},
+                )
+                row = cur.fetchone()
+                conn.commit()
+                if not row:
+                    raise ValueError("training_job_not_found")
+                return dict(row)
+
+    def mark_training_job_succeeded(self, job_id: str, metadata: dict[str, Any]) -> dict[str, Any]:
+        with self._connect() as conn:
+            with conn.cursor() as cur:
+                cur.execute(
+                    """
+                    UPDATE training_jobs
+                    SET
+                        status = 'succeeded',
+                        finished_at = NOW(),
+                        updated_at = NOW(),
+                        metadata = %(metadata)s::jsonb,
+                        failure_reason = NULL,
+                        trace_ref = NULL
+                    WHERE id = %(job_id)s
+                    RETURNING id, trigger_type, status, requested_by_user_id, started_at, finished_at, failure_reason, trace_ref, metadata, created_at
+                    """,
+                    {
+                        "job_id": job_id,
+                        "metadata": json.dumps(metadata, ensure_ascii=True),
+                    },
+                )
+                row = cur.fetchone()
+                conn.commit()
+                if not row:
+                    raise ValueError("training_job_not_found")
+                return dict(row)
+
+    def mark_training_job_failed(
+        self,
+        job_id: str,
+        failure_reason: str,
+        trace_ref: str | None,
+        metadata: dict[str, Any] | None = None,
+    ) -> dict[str, Any]:
+        payload = metadata or {}
+        with self._connect() as conn:
+            with conn.cursor() as cur:
+                cur.execute(
+                    """
+                    UPDATE training_jobs
+                    SET
+                        status = 'failed',
+                        finished_at = NOW(),
+                        updated_at = NOW(),
+                        failure_reason = %(failure_reason)s,
+                        trace_ref = %(trace_ref)s,
+                        metadata = %(metadata)s::jsonb
+                    WHERE id = %(job_id)s
+                    RETURNING id, trigger_type, status, requested_by_user_id, started_at, finished_at, failure_reason, trace_ref, metadata, created_at
+                    """,
+                    {
+                        "job_id": job_id,
+                        "failure_reason": failure_reason,
+                        "trace_ref": trace_ref,
+                        "metadata": json.dumps(payload, ensure_ascii=True),
+                    },
+                )
+                row = cur.fetchone()
+                conn.commit()
+                if not row:
+                    raise ValueError("training_job_not_found")
+                return dict(row)
+
+    def mark_training_job_canceled(self, job_id: str, reason: str | None) -> dict[str, Any]:
+        with self._connect() as conn:
+            with conn.cursor() as cur:
+                cur.execute(
+                    """
+                    UPDATE training_jobs
+                    SET
+                        status = 'canceled',
+                        finished_at = NOW(),
+                        updated_at = NOW(),
+                        failure_reason = %(reason)s
+                    WHERE id = %(job_id)s
+                    RETURNING id, trigger_type, status, requested_by_user_id, started_at, finished_at, failure_reason, trace_ref, metadata, created_at
+                    """,
+                    {
+                        "job_id": job_id,
+                        "reason": reason,
+                    },
+                )
+                row = cur.fetchone()
+                conn.commit()
+                if not row:
+                    raise ValueError("training_job_not_found")
+                return dict(row)
+
+    def create_training_model_artifact(
+        self,
+        job_id: str,
+        artifact_version: str,
+        artifact_path: str,
+        dataset_hash: str,
+        train_size: int,
+        validation_size: int,
+        metrics: dict[str, Any],
+    ) -> dict[str, Any]:
+        with self._connect() as conn:
+            with conn.cursor() as cur:
+                cur.execute(
+                    """
+                    INSERT INTO training_model_artifacts (
+                        training_job_id,
+                        artifact_version,
+                        artifact_path,
+                        dataset_hash,
+                        train_size,
+                        validation_size,
+                        metrics,
+                        metadata,
+                        model_status
+                    )
+                    VALUES (
+                        %(training_job_id)s,
+                        %(artifact_version)s,
+                        %(artifact_path)s,
+                        %(dataset_hash)s,
+                        %(train_size)s,
+                        %(validation_size)s,
+                        %(metrics)s::jsonb,
+                        '{}'::jsonb,
+                        'candidate'
+                    )
+                    RETURNING id, training_job_id, artifact_version, artifact_path, dataset_hash, train_size, validation_size, metrics, model_status, promoted_at, archived_at, promoted_by_user_id, created_at
+                    """,
+                    {
+                        "training_job_id": job_id,
+                        "artifact_version": artifact_version,
+                        "artifact_path": artifact_path,
+                        "dataset_hash": dataset_hash,
+                        "train_size": train_size,
+                        "validation_size": validation_size,
+                        "metrics": json.dumps(metrics, ensure_ascii=True),
+                    },
+                )
+                artifact = cur.fetchone()
+                cur.execute(
+                    """
+                    UPDATE training_jobs
+                    SET updated_at = NOW(), metadata = COALESCE(metadata, '{}'::jsonb) || jsonb_build_object('artifact_path', %(artifact_path)s::text)
+                    WHERE id = %(job_id)s
+                    """,
+                    {
+                        "job_id": job_id,
+                        "artifact_path": artifact_path,
+                    },
+                )
+                conn.commit()
+                if not artifact:
+                    raise RuntimeError("failed_create_training_model_artifact")
+                return dict(artifact)
+
+    def get_latest_training_model_artifact(self) -> dict[str, Any] | None:
+        query = """
+            SELECT id, training_job_id, artifact_version, artifact_path, dataset_hash, train_size, validation_size, metrics, model_status, promoted_at, archived_at, promoted_by_user_id, created_at
+            FROM training_model_artifacts
+            ORDER BY created_at DESC
+            LIMIT 1
+        """
+        with self._connect() as conn:
+            with conn.cursor() as cur:
+                cur.execute(query)
+                row = cur.fetchone()
+                return dict(row) if row else None
+
+    def get_training_model_artifact(self, artifact_id: str) -> dict[str, Any] | None:
+        query = """
+            SELECT id, training_job_id, artifact_version, artifact_path, dataset_hash, train_size, validation_size, metrics, model_status, promoted_at, archived_at, promoted_by_user_id, created_at
+            FROM training_model_artifacts
+            WHERE id = %(artifact_id)s
+            LIMIT 1
+        """
+        with self._connect() as conn:
+            with conn.cursor() as cur:
+                cur.execute(query, {"artifact_id": artifact_id})
+                row = cur.fetchone()
+                return dict(row) if row else None
+
+    def get_latest_candidate_training_model_artifact(self) -> dict[str, Any] | None:
+        query = """
+            SELECT id, training_job_id, artifact_version, artifact_path, dataset_hash, train_size, validation_size, metrics, model_status, promoted_at, archived_at, promoted_by_user_id, created_at
+            FROM training_model_artifacts
+            WHERE model_status = 'candidate'
+            ORDER BY created_at DESC
+            LIMIT 1
+        """
+        with self._connect() as conn:
+            with conn.cursor() as cur:
+                cur.execute(query)
+                row = cur.fetchone()
+                return dict(row) if row else None
+
+    def get_active_training_model_artifact(self) -> dict[str, Any] | None:
+        query = """
+            SELECT id, training_job_id, artifact_version, artifact_path, dataset_hash, train_size, validation_size, metrics, model_status, promoted_at, archived_at, promoted_by_user_id, created_at
+            FROM training_model_artifacts
+            WHERE model_status = 'active'
+            ORDER BY promoted_at DESC NULLS LAST, created_at DESC
+            LIMIT 1
+        """
+        with self._connect() as conn:
+            with conn.cursor() as cur:
+                cur.execute(query)
+                row = cur.fetchone()
+                return dict(row) if row else None
+
+    def promote_training_model_artifact(
+        self,
+        artifact_id: str,
+        actor_user_id: str | None,
+        gate_results: dict[str, Any],
+    ) -> dict[str, Any]:
+        safe_user_id = self._normalize_uuid(actor_user_id)
+        with self._connect() as conn:
+            with conn.cursor() as cur:
+                cur.execute(
+                    """
+                    UPDATE training_model_artifacts
+                    SET model_status = 'archived', archived_at = NOW()
+                    WHERE model_status = 'active'
+                    """
+                )
+                cur.execute(
+                    """
+                    UPDATE training_model_artifacts
+                    SET
+                        model_status = 'active',
+                        promoted_at = NOW(),
+                        archived_at = NULL,
+                        promoted_by_user_id = %(actor_user_id)s,
+                        metadata = COALESCE(metadata, '{}'::jsonb) || jsonb_build_object('promotion_gates', %(gate_results)s::jsonb)
+                    WHERE id = %(artifact_id)s AND model_status = 'candidate'
+                    RETURNING id, training_job_id, artifact_version, artifact_path, dataset_hash, train_size, validation_size, metrics, model_status, promoted_at, archived_at, promoted_by_user_id, created_at
+                    """,
+                    {
+                        "artifact_id": artifact_id,
+                        "actor_user_id": safe_user_id,
+                        "gate_results": json.dumps(gate_results, ensure_ascii=True),
+                    },
+                )
+                row = cur.fetchone()
+                conn.commit()
+                if not row:
+                    raise ValueError("training_candidate_not_found")
+                return dict(row)
+
+    def rollback_training_model(self, actor_user_id: str | None) -> dict[str, Any]:
+        safe_user_id = self._normalize_uuid(actor_user_id)
+        with self._connect() as conn:
+            with conn.cursor() as cur:
+                cur.execute(
+                    """
+                    SELECT id
+                    FROM training_model_artifacts
+                    WHERE model_status = 'active'
+                    ORDER BY promoted_at DESC NULLS LAST, created_at DESC
+                    LIMIT 1
+                    FOR UPDATE
+                    """
+                )
+                current_active = cur.fetchone()
+                if not current_active:
+                    raise ValueError("active_model_not_found")
+
+                cur.execute(
+                    """
+                    SELECT id
+                    FROM training_model_artifacts
+                    WHERE model_status = 'archived'
+                    ORDER BY archived_at DESC NULLS LAST, promoted_at DESC NULLS LAST, created_at DESC
+                    LIMIT 1
+                    FOR UPDATE
+                    """
+                )
+                previous = cur.fetchone()
+                if not previous:
+                    raise ValueError("previous_model_not_found")
+
+                cur.execute(
+                    """
+                    UPDATE training_model_artifacts
+                    SET model_status = 'archived', archived_at = NOW()
+                    WHERE id = %(current_id)s
+                    """,
+                    {"current_id": current_active["id"]},
+                )
+                cur.execute(
+                    """
+                    UPDATE training_model_artifacts
+                    SET
+                        model_status = 'active',
+                        promoted_at = NOW(),
+                        archived_at = NULL,
+                        promoted_by_user_id = %(actor_user_id)s
+                    WHERE id = %(previous_id)s
+                    RETURNING id, training_job_id, artifact_version, artifact_path, dataset_hash, train_size, validation_size, metrics, model_status, promoted_at, archived_at, promoted_by_user_id, created_at
+                    """,
+                    {
+                        "previous_id": previous["id"],
+                        "actor_user_id": safe_user_id,
+                    },
+                )
+                restored = cur.fetchone()
+                conn.commit()
+                if not restored:
+                    raise RuntimeError("failed_rollback_model")
+                return dict(restored)
+
+    def create_training_model_action(
+        self,
+        action_type: str,
+        actor_user_id: str | None,
+        artifact_id: str | None = None,
+        metadata: dict[str, Any] | None = None,
+    ) -> dict[str, Any]:
+        safe_user_id = self._normalize_uuid(actor_user_id)
+        payload = metadata or {}
+        with self._connect() as conn:
+            with conn.cursor() as cur:
+                cur.execute(
+                    """
+                    INSERT INTO training_model_actions (action_type, actor_user_id, artifact_id, metadata)
+                    VALUES (%(action_type)s, %(actor_user_id)s, %(artifact_id)s, %(metadata)s::jsonb)
+                    RETURNING id, action_type, actor_user_id, artifact_id, metadata, created_at
+                    """,
+                    {
+                        "action_type": action_type,
+                        "actor_user_id": safe_user_id,
+                        "artifact_id": artifact_id,
+                        "metadata": json.dumps(payload, ensure_ascii=True),
+                    },
+                )
+                row = cur.fetchone()
+                conn.commit()
+                if not row:
+                    raise RuntimeError("failed_create_training_action")
+                return dict(row)
+
+    def list_training_model_actions(self, limit: int = 20) -> list[dict[str, Any]]:
+        query = """
+            SELECT id, action_type, actor_user_id, artifact_id, metadata, created_at
+            FROM training_model_actions
+            ORDER BY created_at DESC
+            LIMIT %(limit)s
+        """
+        with self._connect() as conn:
+            with conn.cursor() as cur:
+                cur.execute(query, {"limit": limit})
+                return [dict(row) for row in cur.fetchall()]

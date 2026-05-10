@@ -7,6 +7,7 @@ import logging
 import os
 from pathlib import Path
 import time
+import uuid
 from zoneinfo import ZoneInfo
 
 from flask import Flask, jsonify, redirect, render_template_string, request, url_for, g
@@ -18,6 +19,7 @@ from offering_app.services.cash_window_service import CashWindowService
 from offering_app.services.kiosk_pos_service import KioskPOSService
 from offering_app.services.offering_service import OfferingService
 from offering_app.services.outputs_service import OutputsService
+from offering_app.services.training_job_service import NoopTrainingJobService, TrainingJobService
 from offering_app.ui.presentation import review_template, ui_base_css, ui_header
 from offering_app.ui.routes_workflow import register_workflow_routes
 
@@ -50,6 +52,12 @@ ROLE_POLICY = {
     "kiosk_add_catalog_line": {"treasurer", "admin"},
     "kiosk_add_custom_line": {"treasurer", "admin"},
     "kiosk_pay_order": {"treasurer", "admin"},
+    "training_force": {"admin"},
+    "training_status": {"admin"},
+    "training_jobs": {"admin"},
+    "training_promote": {"admin"},
+    "training_rollback": {"admin"},
+    "training_actions": {"admin"},
 }
 
 KNOWN_ROLES = {"treasurer", "admin", "auditor"}
@@ -62,6 +70,7 @@ def create_app(
     cash_window_service: CashWindowService | None = None,
     outputs_service: OutputsService | None = None,
     kiosk_pos_service: KioskPOSService | None = None,
+    training_job_service: TrainingJobService | NoopTrainingJobService | None = None,
 ) -> Flask:
     app = Flask(__name__)
     app.config["APP_ENV"] = os.getenv("APP_ENV", "local")
@@ -73,6 +82,12 @@ def create_app(
     app.config["APP_AUTH_PROXY_TOKEN"] = os.getenv("APP_AUTH_PROXY_TOKEN", "")
     app.config["APP_AUTH_PROXY_SIGNING_SECRET"] = os.getenv("APP_AUTH_PROXY_SIGNING_SECRET", "")
     app.config["APP_AUTH_PROXY_MAX_AGE_SECONDS"] = int(os.getenv("APP_AUTH_PROXY_MAX_AGE_SECONDS", "300"))
+    app.config["TRAINING_PATH"] = os.getenv("TRAINING_PATH", "./data/training")
+    app.config["OCR_METRICS"] = {
+        "captures": 0,
+        "fallback_events": 0,
+        "empty_field_events": 0,
+    }
 
     validate_auth_configuration(
         app_env=app.config["APP_ENV"],
@@ -86,6 +101,7 @@ def create_app(
     cash_window_service = cash_window_service or CashWindowService(storage)
     outputs_service = outputs_service or OutputsService(storage)
     kiosk_pos_service = kiosk_pos_service or KioskPOSService(storage)
+    training_job_service = training_job_service or NoopTrainingJobService()
 
     @app.before_request
     def before_request():
@@ -227,6 +243,37 @@ def create_app(
             )
             return "Forbidden", 403
         return None
+
+    def _log_ocr_capture(data: dict, fallback_to_manual: bool):
+        tracked_fields = getattr(service, "TRAINING_FIELDS", [])
+        raw_values = [str(data.get(f"raw_{field}", "") or "") for field in tracked_fields]
+        fields_read = len(raw_values)
+        empty_fields = sum(1 for value in raw_values if not value.strip())
+        ocr_confidence = float(data.get("ocr_confidence", 0.5) or 0.5)
+
+        counters = app.config.get("OCR_METRICS")
+        if isinstance(counters, dict):
+            counters["captures"] = int(counters.get("captures", 0)) + 1
+            if fallback_to_manual:
+                counters["fallback_events"] = int(counters.get("fallback_events", 0)) + 1
+            if empty_fields > 0:
+                counters["empty_field_events"] = int(counters.get("empty_field_events", 0)) + 1
+
+        app.logger.info(
+            json.dumps(
+                {
+                    "event": "ocr_capture_summary",
+                    "fields_read": fields_read,
+                    "empty_fields_count": empty_fields,
+                    "avg_confidence": round(ocr_confidence, 4),
+                    "fallback_to_manual": fallback_to_manual,
+                    "counters": app.config.get("OCR_METRICS"),
+                    "path": request.path,
+                    "method": request.method,
+                },
+                ensure_ascii=True,
+            )
+        )
 
     def _domain_error_response(exc: Exception):
         message = str(exc)
@@ -427,15 +474,32 @@ def create_app(
         if not file or file.filename == "":
             return "Image is required", 400
 
-        safe_name = secure_filename(file.filename)
+        safe_name = secure_filename(file.filename) or f"{uuid.uuid4().hex}.jpg"
         target = Path(app.config["UPLOAD_PATH"]) / safe_name
         target.parent.mkdir(parents=True, exist_ok=True)
         file.save(target)
 
-        data = service.process_image(str(target))
-        if service.should_fallback_to_manual(data):
+        fallback_to_manual = False
+        try:
+            data = service.process_image(str(target))
+            fallback_to_manual = service.should_fallback_to_manual(data)
+        except Exception as exc:
+            app.logger.info(json.dumps(
+                {"event": "ocr_process_error", "error": str(exc), "path": str(target)},
+                ensure_ascii=True,
+            ))
+            data = {
+                "member_name": "", "diezmo": "0", "ofrenda": "0", "primicias": "0",
+                "pro_templo": "0", "ofrenda_misionera": "0", "ofrenda_pastoral": "0",
+                "payment_method": "cash", "ocr_confidence": "0.0",
+                "image_path": str(target),
+            }
+            fallback_to_manual = True
+
+        if fallback_to_manual:
             data["member_name"] = ""
             data["ocr_manual_fallback"] = True
+        _log_ocr_capture(data, fallback_to_manual)
         data["service_date"] = _current_service_date()
         return render_template_string(
             _review_template(),
@@ -453,6 +517,8 @@ def create_app(
         actor = getattr(g, "auth_user_id", None)
         offering = service.build_offering_from_form(request.form, actor)
         corrections = service.build_corrections_from_form(request.form)
+        for correction in corrections:
+            correction.corrected_by_user_id = actor
         offering_id = service.confirm(offering, corrections)
         return redirect(url_for("review_existing", offering_id=offering_id))
 
@@ -645,7 +711,89 @@ def create_app(
         denied = _require_policy("admin_config")
         if denied:
             return denied
-        return jsonify({"status": "ok", "scope": "admin"})
+        return jsonify(
+            {
+                "status": "ok",
+                "scope": "admin",
+                "training": {
+                    "status": training_job_service.get_status(),
+                    "actions_log": training_job_service.list_actions(limit=10),
+                    "actions": {
+                        "force": "/admin/training/force",
+                        "status": "/admin/training/status",
+                        "jobs": "/admin/training/jobs",
+                        "promote": "/admin/training/promote",
+                        "rollback": "/admin/training/rollback",
+                        "actions_log": "/admin/training/actions",
+                    },
+                },
+            }
+        )
+
+    @app.post("/admin/training/force")
+    def admin_training_force():
+        denied = _require_policy("training_force")
+        if denied:
+            return denied
+        actor = getattr(g, "auth_user_id", None)
+        result = training_job_service.force_training(actor)
+        status_code = 202 if result.get("enqueued") else 200
+        return _ok_response(result, "Training force request processed", status_code)
+
+    @app.get("/admin/training/status")
+    def admin_training_status():
+        denied = _require_policy("training_status")
+        if denied:
+            return denied
+        return _ok_response(training_job_service.get_status(), "Training status")
+
+    @app.get("/admin/training/jobs")
+    def admin_training_jobs():
+        denied = _require_policy("training_jobs")
+        if denied:
+            return denied
+        limit_value = request.args.get("limit") or "20"
+        try:
+            limit = max(1, min(100, int(limit_value)))
+        except ValueError:
+            limit = 20
+        items = training_job_service.list_jobs(limit=limit)
+        return _ok_response({"items": items, "limit": limit}, "Training jobs")
+
+    @app.post("/admin/training/promote")
+    def admin_training_promote():
+        denied = _require_policy("training_promote")
+        if denied:
+            return denied
+        actor = getattr(g, "auth_user_id", None)
+        payload = request.get_json(silent=True) or {}
+        artifact_id = (payload.get("artifact_id") or request.form.get("artifact_id") or "").strip() or None
+        result = training_job_service.promote_candidate(actor_user_id=actor, artifact_id=artifact_id)
+        status_code = 200 if result.get("promoted") else 409
+        return _ok_response(result, "Training model promotion processed", status_code)
+
+    @app.post("/admin/training/rollback")
+    def admin_training_rollback():
+        denied = _require_policy("training_rollback")
+        if denied:
+            return denied
+        actor = getattr(g, "auth_user_id", None)
+        result = training_job_service.rollback_active_model(actor_user_id=actor)
+        status_code = 200 if result.get("rolled_back") else 409
+        return _ok_response(result, "Training model rollback processed", status_code)
+
+    @app.get("/admin/training/actions")
+    def admin_training_actions():
+        denied = _require_policy("training_actions")
+        if denied:
+            return denied
+        limit_value = request.args.get("limit") or "20"
+        try:
+            limit = max(1, min(100, int(limit_value)))
+        except ValueError:
+            limit = 20
+        items = training_job_service.list_actions(limit=limit)
+        return _ok_response({"items": items, "limit": limit}, "Training actions")
 
     register_workflow_routes(
         app,
