@@ -114,6 +114,15 @@ New orchestration docs:
 - docs/sprint-6/plan.md: sprint tasks and acceptance criteria
 - docs/sprint-6/progress.md: live tracker for context recovery
 - docs/sprint-6/done.md: sprint closure handoff
+- docs/sprint-7/plan.md: sprint tasks and acceptance criteria
+- docs/sprint-7/progress.md: live tracker for context recovery
+- docs/sprint-7/done.md: sprint closure handoff
+- docs/sprint-8/plan.md: sprint tasks and acceptance criteria
+- docs/sprint-8/progress.md: live tracker for context recovery
+- docs/sprint-8/done.md: sprint closure handoff
+- docs/sprint-9/plan.md: sprint tasks and acceptance criteria
+- docs/sprint-9/progress.md: live tracker for context recovery
+- docs/sprint-9/done.md: sprint closure handoff
 
 ## 6. Team Roles
 
@@ -134,12 +143,12 @@ DevOps (Dash, on demand):
 
 ## 7. Sprint Status (updated every sprint)
 
-Current sprint: Sprint 6 (Proxy signed identity and workflow UI foundations)
-Status: Completed
-Branch target: feature/sprint-6
-Start criteria:
-- Sprint 6 plan and tracker initialized
-- Sprint 5 merged to main with QA sign-off and handoff artifacts
+Current sprint: Sprint 9 (Model promotion controls and operator UX hardening)
+Status: Completed (Dev + QA, ready for Producer PR/merge flow)
+Branch target: feature/sprint-9
+Completion criteria:
+- Sprint 9 scope implemented and validated in Docker regression.
+- Sprint 9 QA sign-off approved and handoff artifacts updated.
 
 ## 8. Current State (rewritten every sprint)
 
@@ -150,9 +159,12 @@ Repository state:
 - Sprint 4 is merged to main with complete handoff artifacts.
 - Sprint 5 is merged to main with complete handoff artifacts.
 - Sprint 6 is merged to main with QA sign-off artifact.
+- Sprint 7 is implemented and QA signed off on feature branch (`feature/sprint-7`) with full docker regression passing.
+- Sprint 8 is implemented with async training lifecycle, admin job controls, and QA sign-off on feature branch (`feature/sprint-8`).
+- Sprint 9 is implemented with model promotion/rollback control plane, scheduled retraining guards, and QA sign-off on feature branch (`feature/sprint-9`).
 
 Technical baseline:
-- PostgreSQL schema migrations exist through 0007.
+- PostgreSQL schema migrations exist through 0009.
 - Security and environment strategy documented (ADR-003, ADR-004).
 - Health/readiness and baseline structured logging are active.
 - RBAC enforced across critical routes with explicit endpoint policy.
@@ -173,10 +185,13 @@ Technical baseline:
 - Proxy-signed auth mode is implemented with timestamp freshness validation.
 - Mobile-first workflow foundation views exist for cash and outputs operations.
 - Regression suite passes with Sprint 6 increments (42 tests).
+- Training model registry now tracks candidate/active/archived states with promote/rollback API controls.
+- Training scheduler supports nightly trigger windows, minimum sample thresholds, and cooldown protection.
+- Sprint 9 docker regression currently passes (`72 passed`).
 
 Immediate next move:
-- Start Sprint 7 planning from Sprint 6 completed baseline.
-- Prioritize richer workflow task UX and audit timeline visibility.
+- Open PR for Sprint 9 and merge after Producer review.
+- Initialize Sprint 10 plan/progress artifacts and define next operator-UX focus.
 
 ## 9. Security Rules
 
