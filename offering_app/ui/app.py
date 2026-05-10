@@ -17,6 +17,7 @@ from offering_app.repositories.postgresql_repo import PostgreSQLRepo
 from offering_app.services.cash_window_service import CashWindowService
 from offering_app.services.kiosk_pos_service import KioskPOSService
 from offering_app.services.offering_service import OfferingService
+from offering_app.services.ocr_debug_service import OcrDebugService
 from offering_app.services.outputs_service import OutputsService
 from offering_app.ui.presentation import review_template, ui_base_css, ui_header
 from offering_app.ui.routes_workflow import register_workflow_routes
@@ -30,7 +31,12 @@ ROLE_POLICY = {
     "day_log": {"treasurer", "admin", "auditor"},
     "review_existing": {"treasurer", "admin", "auditor"},
     "save_review": {"treasurer", "admin"},
+    "admin_dashboard": {"admin"},
     "admin_config": {"admin"},
+    "admin_ocr_debug_status": {"admin"},
+    "admin_ocr_debug_toggle": {"admin"},
+    "admin_ocr_debug_sessions": {"admin"},
+    "admin_ocr_debug_session": {"admin"},
     "cash_window_open": {"treasurer", "admin"},
     "cash_window_get": {"treasurer", "admin", "auditor"},
     "cash_window_line": {"treasurer", "admin"},
@@ -59,6 +65,7 @@ def create_app(
     service: OfferingService,
     storage: PostgreSQLRepo,
     upload_path: str,
+    ocr_debug_service: OcrDebugService | None = None,
     cash_window_service: CashWindowService | None = None,
     outputs_service: OutputsService | None = None,
     kiosk_pos_service: KioskPOSService | None = None,
@@ -73,6 +80,10 @@ def create_app(
     app.config["APP_AUTH_PROXY_TOKEN"] = os.getenv("APP_AUTH_PROXY_TOKEN", "")
     app.config["APP_AUTH_PROXY_SIGNING_SECRET"] = os.getenv("APP_AUTH_PROXY_SIGNING_SECRET", "")
     app.config["APP_AUTH_PROXY_MAX_AGE_SECONDS"] = int(os.getenv("APP_AUTH_PROXY_MAX_AGE_SECONDS", "300"))
+    app.config["OCR_DEBUG_ENABLED"] = os.getenv("OCR_DEBUG_ENABLED", "false").strip().lower() == "true"
+    app.config["OCR_DEBUG_RETENTION_DAYS"] = int(os.getenv("OCR_DEBUG_RETENTION_DAYS", "7"))
+    app.config["OCR_DEBUG_MAX_SESSIONS"] = int(os.getenv("OCR_DEBUG_MAX_SESSIONS", "500"))
+    app.config["OCR_DEBUG_PATH"] = os.getenv("OCR_DEBUG_PATH", "/app/data/ocr-debug")
 
     validate_auth_configuration(
         app_env=app.config["APP_ENV"],
@@ -86,6 +97,13 @@ def create_app(
     cash_window_service = cash_window_service or CashWindowService(storage)
     outputs_service = outputs_service or OutputsService(storage)
     kiosk_pos_service = kiosk_pos_service or KioskPOSService(storage)
+    ocr_debug_service = ocr_debug_service or OcrDebugService(
+        base_path=app.config["OCR_DEBUG_PATH"],
+        enabled=app.config["OCR_DEBUG_ENABLED"],
+        retention_days=app.config["OCR_DEBUG_RETENTION_DAYS"],
+        max_sessions=app.config["OCR_DEBUG_MAX_SESSIONS"],
+        logger=app.logger,
+    )
 
     @app.before_request
     def before_request():
@@ -252,6 +270,16 @@ def create_app(
     def _ok_response(data, message: str, status_code: int = 200):
         return jsonify({"status": "ok", "message": message, "data": _json_safe(data)}), status_code
 
+    def _parse_enabled(value):
+        if isinstance(value, bool):
+            return value
+        normalized = str(value or "").strip().lower()
+        if normalized in {"1", "true", "on", "yes"}:
+            return True
+        if normalized in {"0", "false", "off", "no"}:
+            return False
+        raise ValueError("invalid_enabled_flag")
+
     def _json_safe(value):
         if isinstance(value, dict):
             return {k: _json_safe(v) for k, v in value.items()}
@@ -409,11 +437,15 @@ def create_app(
                                     <a class="nav-pill" href="/workflow/cash">Caja</a>
                                     <a class="nav-pill" href="/workflow/outputs">Salidas</a>
                                     <a class="nav-pill" href="/workflow/kiosk">Kiosk POS</a>
+                                    {% if is_admin %}
+                                    <a class="nav-pill" href="/admin">Admin</a>
+                                    {% endif %}
                                 </div>
                             </section>
                         </main>
             """,
             summary=summary,
+            is_admin=(getattr(g, "auth_role", "") == "admin"),
                         ui_css=_ui_base_css(),
                         ui_header=_ui_header("Ofrendas", "Operacion diaria con enfoque mobile-first y auditoria visible."),
         )
@@ -646,6 +678,133 @@ def create_app(
         if denied:
             return denied
         return jsonify({"status": "ok", "scope": "admin"})
+
+    @app.get("/admin")
+    def admin_dashboard():
+        denied = _require_policy("admin_dashboard")
+        if denied:
+            return denied
+        status = ocr_debug_service.get_status()
+        sessions = ocr_debug_service.list_sessions(limit=10)
+        return render_template_string(
+            """
+                        {{ ui_css|safe }}
+                        <main class="app-shell">
+                            {{ ui_header|safe }}
+                            <section class="card stack">
+                                <h2>OCR Debug</h2>
+                                <p class="hint">Modo de troubleshooting de OCR para capturar artefactos por solicitud.</p>
+                                <div class="metric-row">
+                                    <div class="metric">
+                                        <span class="metric-label">Estado</span>
+                                        <span class="metric-value">{{ "ON" if status.enabled else "OFF" }}</span>
+                                    </div>
+                                    <div class="metric">
+                                        <span class="metric-label">Retencion (dias)</span>
+                                        <span class="metric-value">{{ status.retention_days }}</span>
+                                    </div>
+                                    <div class="metric">
+                                        <span class="metric-label">Max sesiones</span>
+                                        <span class="metric-value">{{ status.max_sessions }}</span>
+                                    </div>
+                                </div>
+                                <form method="post" action="/admin/ocr-debug/toggle">
+                                    <input type="hidden" name="enabled" value="{{ 'false' if status.enabled else 'true' }}">
+                                    <button type="submit" style="width: 100%; margin-top: 12px; padding: 11px 12px; border: 0; border-radius: 12px; color: #fff; font-weight: 800; background: linear-gradient(125deg, #15616d 0%, #1f7a7a 100%); cursor: pointer;">
+                                        {{ "Desactivar OCR Debug" if status.enabled else "Activar OCR Debug" }}
+                                    </button>
+                                </form>
+                            </section>
+                            <section class="card stack" style="margin-top:12px;">
+                                <h2>Ultimas sesiones debug</h2>
+                                <ul class="list-clean">
+                                {% for session in sessions %}
+                                    <li class="row-item">
+                                        <div class="row-main">
+                                            <div class="row-title">{{ session.request_id }}</div>
+                                            <div class="row-meta">{{ session.created_at or 'sin timestamp' }}</div>
+                                            <a class="inline-link" href="/admin/ocr-debug/session/{{ session.request_id }}">Ver detalle</a>
+                                        </div>
+                                    </li>
+                                {% endfor %}
+                                {% if not sessions %}
+                                    <li class="row-item">
+                                        <div class="row-main">
+                                            <div class="row-title">No hay sesiones debug</div>
+                                            <div class="row-meta">Activa OCR Debug y procesa una imagen.</div>
+                                        </div>
+                                    </li>
+                                {% endif %}
+                                </ul>
+                                <a class="inline-link" href="/">Volver al inicio</a>
+                            </section>
+                        </main>
+            """,
+            status=status,
+            sessions=sessions,
+            ui_css=_ui_base_css(),
+            ui_header=_ui_header("Admin Dashboard", "Controles administrativos y observabilidad OCR."),
+        )
+
+    @app.get("/admin/ocr-debug/status")
+    def admin_ocr_debug_status():
+        denied = _require_policy("admin_ocr_debug_status")
+        if denied:
+            return denied
+        return _ok_response(ocr_debug_service.get_status(), "OCR debug status")
+
+    @app.post("/admin/ocr-debug/toggle")
+    def admin_ocr_debug_toggle():
+        denied = _require_policy("admin_ocr_debug_toggle")
+        if denied:
+            return denied
+        payload = request.get_json(silent=True) or {}
+        requested = payload.get("enabled", request.form.get("enabled"))
+        try:
+            enabled = _parse_enabled(requested)
+        except ValueError:
+            return jsonify({"status": "error", "error": "invalid_payload", "message": "enabled is required"}), 400
+        status = ocr_debug_service.set_enabled(enabled)
+        if request.form:
+            return redirect(url_for("admin_dashboard"))
+        return _ok_response(status, "OCR debug updated")
+
+    @app.get("/admin/ocr-debug/sessions")
+    def admin_ocr_debug_sessions():
+        denied = _require_policy("admin_ocr_debug_sessions")
+        if denied:
+            return denied
+        limit = request.args.get("limit", default=20, type=int)
+        return _ok_response({"sessions": ocr_debug_service.list_sessions(limit=limit)}, "OCR debug sessions")
+
+    @app.get("/admin/ocr-debug/session/<request_id>")
+    def admin_ocr_debug_session(request_id: str):
+        denied = _require_policy("admin_ocr_debug_session")
+        if denied:
+            return denied
+        session = ocr_debug_service.get_session(request_id)
+        if not session:
+            return jsonify({"status": "error", "error": "not_found", "message": "Not found"}), 404
+        if "text/html" in (request.headers.get("Accept") or ""):
+            return render_template_string(
+                """
+                            {{ ui_css|safe }}
+                            <main class="app-shell">
+                                {{ ui_header|safe }}
+                                <section class="card stack">
+                                    <h2>Sesion OCR Debug</h2>
+                                    <p><strong>Request ID:</strong> {{ session.request_id }}</p>
+                                    <p><strong>Archivos:</strong> {{ session.files|join(', ') }}</p>
+                                    <pre style="white-space: pre-wrap;">{{ session|tojson(indent=2) }}</pre>
+                                    <a class="inline-link" href="/admin">Volver a admin</a>
+                                </section>
+                            </main>
+                """,
+                session=session,
+                ui_css=_ui_base_css(),
+                ui_header=_ui_header("OCR Debug Session", "Detalle de artefactos y payload OCR."),
+            )
+        return _ok_response(session, "OCR debug session")
 
     register_workflow_routes(
         app,
