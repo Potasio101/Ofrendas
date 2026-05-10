@@ -72,6 +72,14 @@ Variables relevantes:
 - `docs/architecture/ADR-009-cash-window-and-daily-close-audit.md`
 - `docs/architecture/ADR-010-kiosk-pos-cash-zelle-custom-items.md`
 - `docs/architecture/ADR-011-outputs-fund-source-and-approval.md`
+- `docs/architecture/ADR-012-ocr-debug-runtime-admin-toggle.md`
+
+## OCR Debug runtime controls
+
+- `OCR_DEBUG_ENABLED` (default `false`)
+- `OCR_DEBUG_RETENTION_DAYS` (default `7`)
+- `OCR_DEBUG_MAX_SESSIONS` (default `500`)
+- `OCR_DEBUG_PATH` (default `/app/data/ocr-debug`)
 
 ## Base de datos
 

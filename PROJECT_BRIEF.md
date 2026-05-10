@@ -134,9 +134,9 @@ DevOps (Dash, on demand):
 
 ## 7. Sprint Status (updated every sprint)
 
-Current sprint: Sprint 6 (Proxy signed identity and workflow UI foundations)
-Status: Completed
-Branch target: feature/sprint-6
+Current sprint: Sprint 10 (OCR debug runtime observability and admin controls)
+Status: Completed on feature branch, pending merge
+Branch target: feature/sprint-10
 Start criteria:
 - Sprint 6 plan and tracker initialized
 - Sprint 5 merged to main with QA sign-off and handoff artifacts
@@ -150,6 +150,7 @@ Repository state:
 - Sprint 4 is merged to main with complete handoff artifacts.
 - Sprint 5 is merged to main with complete handoff artifacts.
 - Sprint 6 is merged to main with QA sign-off artifact.
+- Sprint 10 scope is implemented on `feature/sprint-10` with docs and QA artifact prepared.
 
 Technical baseline:
 - PostgreSQL schema migrations exist through 0007.
@@ -172,11 +173,13 @@ Technical baseline:
 - Next target is stronger signed non-local identity verification.
 - Proxy-signed auth mode is implemented with timestamp freshness validation.
 - Mobile-first workflow foundation views exist for cash and outputs operations.
-- Regression suite passes with Sprint 6 increments (42 tests).
+- Regression suite passes with Sprint 10 increments in Docker.
+- Admin dashboard now includes OCR debug controls and session visibility.
+- OCR pipeline now emits request-level debug artifacts when runtime debug is enabled.
+- OCR debug artifact retention and max-session trimming are active.
 
 Immediate next move:
-- Start Sprint 7 planning from Sprint 6 completed baseline.
-- Prioritize richer workflow task UX and audit timeline visibility.
+- Open PR from `feature/sprint-10`, run final review, and merge after approval.
 
 ## 9. Security Rules
 
